@@ -1,7 +1,7 @@
 {
  "meta": {
-  "as_of": "2026-05-18",
-  "review_line": 0.017,
+  "as_of": "2025-09-07",
+  "review_line": 0.02,
   "budget": "0.25% of households per week",
   "households_scored": 4000,
   "reader": "keyword baseline (Claude not run yet)",
@@ -10,361 +10,194 @@
  },
  "cases": [
   {
-   "id": "hh-05687",
-   "name": "Donald Sorensen",
-   "pattern": "Possible investment, crypto or romance scam",
-   "score": 1.0,
-   "alert_date": "May 9",
-   "pending": 11180.0,
-   "trusted_contact_involved": false,
-   "deadlines": {
-    "hold_date": "2026-05-18",
-    "rule_2166_proposed_delay_ends": "2026-06-02",
-    "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2026-05-20",
-    "rule_2165_hold_ends": "2026-06-09",
-    "rule_2165_extended_hold_ends": "2026-06-24"
-   },
-   "claims": [
-    {
-     "text": "Advisor notes show requests to pay through unusual channels",
-     "record_ids": [
-      "N-0168469"
-     ]
-    },
-    {
-     "text": "$22,360 to an individual (Leonard Ingram) first used in the last 60 days",
-     "record_ids": [
-      "TX-0428766",
-      "TX-0430879"
-     ]
-    },
-    {
-     "text": "Account changes in the 5 days before: password reset, then login from a new device",
-     "record_ids": [
-      "EV-0027007",
-      "EV-0027011"
-     ]
-    }
-   ],
-   "status": "Awaiting specialist review"
-  },
-  {
-   "id": "hh-11499",
-   "name": "Henry Mercer",
-   "pattern": "Possible exploitation by someone close to the client",
-   "score": 1.0,
-   "alert_date": "May 10",
-   "pending": 0.0,
-   "trusted_contact_involved": true,
-   "deadlines": {
-    "hold_date": "2026-05-18",
-    "rule_2166_proposed_delay_ends": "2026-06-02",
-    "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2026-05-20",
-    "rule_2165_hold_ends": "2026-06-09",
-    "rule_2165_extended_hold_ends": "2026-06-24"
-   },
-   "claims": [
-    {
-     "text": "Advisor notes show confusion or memory lapses",
-     "record_ids": [
-      "N-0148551"
-     ]
-    },
-    {
-     "text": "Trusted contact changed to Andre Mercer; $30,290 sent to Andre Mercer in 90 days, who holds a role on the account",
-     "record_ids": [
-      "EV-0023319",
-      "EV-0023760",
-      "TX-0374986",
-      "TX-0391234",
-      "TX-0408231",
-      "TX-0429511"
-     ]
-    },
-    {
-     "text": "Account changes in the 1 days before: login from a new device",
-     "record_ids": [
-      "EV-0027280"
-     ]
-    }
-   ],
-   "status": "Awaiting specialist review"
-  },
-  {
-   "id": "hh-04724",
-   "name": "Samuel Abbott",
+   "id": "hh-04784",
+   "name": "Barbara Hayes",
    "pattern": "Possible account takeover",
-   "score": 0.923,
-   "alert_date": "Apr 30",
-   "pending": 97780.0,
+   "score": 1.0,
+   "alert_date": "Aug 31",
+   "pending": 4030.0,
    "trusted_contact_involved": false,
    "deadlines": {
-    "hold_date": "2026-05-18",
-    "rule_2166_proposed_delay_ends": "2026-06-02",
+    "hold_date": "2025-09-07",
+    "rule_2166_proposed_delay_ends": "2025-09-19",
     "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2026-05-20",
-    "rule_2165_hold_ends": "2026-06-09",
-    "rule_2165_extended_hold_ends": "2026-06-24"
+    "rule_2165_notice_due": "2025-09-09",
+    "rule_2165_hold_ends": "2025-09-26",
+    "rule_2165_extended_hold_ends": "2025-10-10"
    },
    "claims": [
     {
-     "text": "Account changes in the 6 days before: email changed, then login from a new device, then phone changed, then new bank linked",
+     "text": "Advisor notes show secrecy",
      "record_ids": [
-      "EV-0026529",
-      "EV-0026545",
-      "EV-0026594",
-      "EV-0026657"
+      "N-0091044"
      ]
     },
     {
-     "text": "$97,780 to a newly linked bank (Samuel Abbott ext. bank) first used in the last 60 days",
+     "text": "Withdrawal request of $4,030",
      "record_ids": [
-      "TX-0424623"
+      "TX-0242484"
      ]
     },
     {
-     "text": "Withdrawal request of $97,780, 3x the largest in the past year",
+     "text": "Account changes in the 14 days before: new bank linked",
      "record_ids": [
-      "TX-0424623"
+      "EV-0014854"
      ]
     }
    ],
    "status": "Awaiting specialist review"
   },
   {
-   "id": "margaret",
-   "name": "Margaret Ellis",
-   "pattern": "Possible investment, crypto or romance scam",
-   "score": 0.903,
-   "alert_date": "May 18",
-   "pending": 56180.0,
-   "trusted_contact_involved": false,
-   "deadlines": {
-    "hold_date": "2026-05-18",
-    "rule_2166_proposed_delay_ends": "2026-06-02",
-    "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2026-05-20",
-    "rule_2165_hold_ends": "2026-06-09",
-    "rule_2165_extended_hold_ends": "2026-06-24"
-   },
-   "claims": [
-    {
-     "text": "$56,180 to a crypto exchange (Crypto.com) first used in the last 60 days",
-     "record_ids": [
-      "TX-0437146"
-     ]
-    },
-    {
-     "text": "Advisor notes show unusual urgency or pressure to act fast",
-     "record_ids": [
-      "N-0171550"
-     ]
-    },
-    {
-     "text": "Account changes in the 3 days before: login from a new device",
-     "record_ids": [
-      "EV-0027501"
-     ]
-    }
-   ],
-   "status": "Awaiting specialist review"
-  },
-  {
-   "id": "hh-04564",
-   "name": "Betty Feldman",
-   "pattern": "Unusual money movement",
-   "score": 0.903,
-   "alert_date": "Apr 26",
-   "pending": 17830.0,
-   "trusted_contact_involved": false,
-   "deadlines": {
-    "hold_date": "2026-05-18",
-    "rule_2166_proposed_delay_ends": "2026-06-02",
-    "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2026-05-20",
-    "rule_2165_hold_ends": "2026-06-09",
-    "rule_2165_extended_hold_ends": "2026-06-24"
-   },
-   "claims": [
-    {
-     "text": "Advisor notes show unusual urgency or pressure to act fast",
-     "record_ids": [
-      "N-0164923"
-     ]
-    },
-    {
-     "text": "$7,410 to a new business payee (Travel agency) first used in the last 60 days",
-     "record_ids": [
-      "TX-0406878"
-     ]
-    },
-    {
-     "text": "Withdrawal request of $17,830",
-     "record_ids": [
-      "TX-0422504"
-     ]
-    }
-   ],
-   "status": "Awaiting specialist review"
-  },
-  {
-   "id": "hh-10235",
-   "name": "Jose Esposito",
+   "id": "hh-05489",
+   "name": "Mae Moreno",
    "pattern": "Possible account takeover",
-   "score": 0.903,
-   "alert_date": "May 17",
-   "pending": 0.0,
+   "score": 1.0,
+   "alert_date": "Aug 25",
+   "pending": 17020.0,
    "trusted_contact_involved": false,
    "deadlines": {
-    "hold_date": "2026-05-18",
-    "rule_2166_proposed_delay_ends": "2026-06-02",
+    "hold_date": "2025-09-07",
+    "rule_2166_proposed_delay_ends": "2025-09-19",
     "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2026-05-20",
-    "rule_2165_hold_ends": "2026-06-09",
-    "rule_2165_extended_hold_ends": "2026-06-24"
+    "rule_2165": "Client is not a specified adult under Rule 2165; use the proposed Rule 2166 delay or escalate."
    },
    "claims": [
     {
-     "text": "Advisor notes show unusual urgency or pressure to act fast, someone else speaking or deciding for the client",
+     "text": "Account changes in the 2 days before: login from a new device, then password reset",
      "record_ids": [
-      "N-0161039"
+      "EV-0015147",
+      "EV-0015154"
      ]
     },
     {
-     "text": "Account changes in the 1 days before: new bank linked",
+     "text": "Withdrawal request of $17,020, 6x the largest in the past year",
      "record_ids": [
-      "EV-0027597"
+      "TX-0239845"
      ]
     },
     {
-     "text": "$1,550 requested out in the last 30 days",
+     "text": "Funded by selling a position held 16 years",
      "record_ids": [
-      "TX-0429760"
+      "TX-0239845"
      ]
     }
    ],
    "status": "Awaiting specialist review"
   },
   {
-   "id": "hh-19483",
-   "name": "Helen Delgado",
-   "pattern": "Possible exploitation by someone close to the client",
-   "score": 0.903,
-   "alert_date": "May 3",
-   "pending": 3310.0,
-   "trusted_contact_involved": true,
+   "id": "hh-00508",
+   "name": "Stanley Ingram",
+   "pattern": "Possible account takeover",
+   "score": 0.69,
+   "alert_date": "Aug 23",
+   "pending": 103500.0,
+   "trusted_contact_involved": false,
    "deadlines": {
-    "hold_date": "2026-05-18",
-    "rule_2166_proposed_delay_ends": "2026-06-02",
+    "hold_date": "2025-09-07",
+    "rule_2166_proposed_delay_ends": "2025-09-19",
     "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2026-05-20",
-    "rule_2165_hold_ends": "2026-06-09",
-    "rule_2165_extended_hold_ends": "2026-06-24"
+    "rule_2165_notice_due": "2025-09-09",
+    "rule_2165_hold_ends": "2025-09-26",
+    "rule_2165_extended_hold_ends": "2025-10-10"
    },
    "claims": [
     {
-     "text": "Trusted contact changed to Dana Gallagher; $49,870 sent to Dana Gallagher in 90 days, who holds a role on the account",
+     "text": "Account changes in the 5 days before: address changed, then login from a new device, then new bank linked",
      "record_ids": [
-      "EV-0021480",
-      "EV-0022034",
-      "TX-0405797",
-      "TX-0409305",
-      "TX-0411714",
-      "TX-0417444",
-      "TX-0422430",
-      "TX-0426613"
+      "EV-0014900",
+      "EV-0014951",
+      "EV-0015032"
      ]
     },
     {
-     "text": "Withdrawal request of $3,310",
+     "text": "$106,170 to a newly linked bank (Stanley Ingram new bank) first used in the last 60 days",
      "record_ids": [
-      "TX-0426613"
+      "TX-0226223",
+      "TX-0238240"
+     ]
+    },
+    {
+     "text": "Withdrawal request of $103,500, 8x the largest in the past year",
+     "record_ids": [
+      "TX-0238240"
      ]
     }
    ],
    "status": "Awaiting specialist review"
   },
   {
-   "id": "harold",
-   "name": "Harold Brennan",
-   "pattern": "Possible exploitation by someone close to the client",
-   "score": 0.508,
-   "alert_date": "Nov 23",
-   "pending": 5790.0,
-   "trusted_contact_involved": true,
+   "id": "hh-12452",
+   "name": "Victor Pruitt",
+   "pattern": "Possible investment, crypto or romance scam",
+   "score": 0.625,
+   "alert_date": "Sep 6",
+   "pending": 7100.0,
+   "trusted_contact_involved": false,
    "deadlines": {
-    "hold_date": "2026-05-18",
-    "rule_2166_proposed_delay_ends": "2026-06-02",
+    "hold_date": "2025-09-07",
+    "rule_2166_proposed_delay_ends": "2025-09-19",
     "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2026-05-20",
-    "rule_2165_hold_ends": "2026-06-09",
-    "rule_2165_extended_hold_ends": "2026-06-24"
+    "rule_2165_notice_due": "2025-09-09",
+    "rule_2165_hold_ends": "2025-09-26",
+    "rule_2165_extended_hold_ends": "2025-10-10"
    },
    "claims": [
     {
-     "text": "Trusted contact changed to Jennifer Brennan; $5,790 sent to Jennifer Brennan in 90 days, who holds a role on the account",
+     "text": "Account changes in the 5 days before: new bank linked",
      "record_ids": [
-      "EV-0018698",
-      "EV-0018871",
-      "TX-0302288"
+      "EV-0015585"
      ]
     },
     {
-     "text": "$5,790 to an individual (Jennifer Brennan) first used in the last 60 days",
+     "text": "$7,100 to a crypto exchange (Crypto.com) first used in the last 60 days",
      "record_ids": [
-      "TX-0302288"
+      "TX-0246697"
      ]
     },
     {
-     "text": "Withdrawal request of $5,790",
+     "text": "Advisor notes show unusual urgency or pressure to act fast, requests to pay through unusual channels",
      "record_ids": [
-      "TX-0302288"
+      "N-0089262"
      ]
     }
    ],
    "status": "Awaiting specialist review"
   },
   {
-   "id": "hh-03280",
-   "name": "Ernest Castillo",
+   "id": "hh-09418",
+   "name": "Glenn Keller",
    "pattern": "Possible exploitation by someone close to the client",
-   "score": 0.333,
-   "alert_date": "May 7",
-   "pending": 11700.0,
+   "score": 0.152,
+   "alert_date": "Aug 31",
+   "pending": 27600.0,
    "trusted_contact_involved": true,
    "deadlines": {
-    "hold_date": "2026-05-18",
-    "rule_2166_proposed_delay_ends": "2026-06-02",
+    "hold_date": "2025-09-07",
+    "rule_2166_proposed_delay_ends": "2025-09-19",
     "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2026-05-20",
-    "rule_2165_hold_ends": "2026-06-09",
-    "rule_2165_extended_hold_ends": "2026-06-24"
+    "rule_2165_notice_due": "2025-09-09",
+    "rule_2165_hold_ends": "2025-09-26",
+    "rule_2165_extended_hold_ends": "2025-10-10"
    },
    "claims": [
     {
-     "text": "Trusted contact changed to Irene Brennan; $32,700 sent to Irene Brennan in 90 days, who holds a role on the account",
+     "text": "$45,900 sent to Lisa Yates in 90 days, who holds a role on the account",
      "record_ids": [
-      "EV-0024946",
-      "EV-0025005",
-      "TX-0400501",
-      "TX-0414835",
-      "TX-0429384"
+      "TX-0222674",
+      "TX-0242572"
      ]
     },
     {
-     "text": "Withdrawal request of $11,700",
+     "text": "$35,900 to an individual (Lisa Yates) first used in the last 60 days",
      "record_ids": [
-      "TX-0429384"
+      "TX-0242084",
+      "TX-0242572"
      ]
     },
     {
-     "text": "$27,920 to an individual (Irene Brennan) first used in the last 60 days",
+     "text": "Withdrawal request of $27,600",
      "record_ids": [
-      "TX-0414175",
-      "TX-0414835",
-      "TX-0429384"
+      "TX-0242572"
      ]
     }
    ],

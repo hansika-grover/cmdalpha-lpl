@@ -37,14 +37,14 @@ def render(r: dict, seeds: dict | None) -> str:
         out.append(f"| {LABEL[k]} | {p(m['recall'], 1)} | {ci(m['recall'])} | {p(m['caught_before_money_left'], 1)} | "
                    f"{p(m['dollars_protected_share'], 1)} | {p(m['lookalike_false_alarm_rate'], 1)} | {p(m['precision_at_0.5pct_base_rate'], 1)} |")
     out += ["", "**At fixed weekly review budgets** (cases caught, with look-alike false alarms in brackets):", "",
-            "| Method | 0.1% | 0.25% | 1% |", "|---|---|---|---|"]
+            "| Method | Fixed rule | 0.1% budget | 0.25% budget | 1% budget |", "|---|---|---|---|---|"]
     for k in ("threshold_100k", "threshold_25k"):
         m = M[k]["natural"]
         out.append(f"| {LABEL[k]} (fixed, {m['alerts_per_1k_households_per_week']['value']:.2f} alerts per 1k households a week) | "
-                   f"{p(m['recall'])} ({p(m['lookalike_false_alarm_rate'])}) | | |")
+                   f"{p(m['recall'])} ({p(m['lookalike_false_alarm_rate'])}) | | | |")
     for k in [k for k in LABEL if k in M and "budgets" in M[k]]:
         b = M[k]["budgets"]
-        out.append(f"| {LABEL[k]} | " + " | ".join(f"{p(b[x]['recall'])} ({p(b[x]['lookalike_false_alarm_rate'])})" for x in ("0.1%", "0.25%", "1%")) + " |")
+        out.append(f"| {LABEL[k]} | | " + " | ".join(f"{p(b[x]['recall'])} ({p(b[x]['lookalike_false_alarm_rate'])})" for x in ("0.1%", "0.25%", "1%")) + " |")
     s = M["sentinel"]["budgets"]["0.25%"]
     loto = r.get("leave_one_typology_out", {})
     out += ["", "**By scam type** at a 0.25% budget, and with that type held out of training entirely:", "",

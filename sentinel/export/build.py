@@ -290,7 +290,9 @@ class Exporter:
         clients = {}
         for key, v in show.items():
             if v and key != "ruth":
-                clients[v[0]] = self.client(v[0], as_of if v[1] > as_of - 30 else v[1], key)
+                inside = as_of - 30 < v[1] <= as_of
+                # outside today's window: show the household at the end of its own 30-day review window
+                clients[v[0]] = self.client(v[0], as_of if inside else min(v[1] + 29, 729.9), key)
         for h in open_.index:
             if h not in clients:
                 clients[h] = self.client(h, as_of)
@@ -298,7 +300,7 @@ class Exporter:
         cleared = []
         if show.get("ruth"):
             h, d = show["ruth"]
-            cleared.append(self.client(h, as_of if d > as_of - 30 else d + 1, "ruth"))
+            cleared.append(self.client(h, as_of if as_of - 30 < d <= as_of else min(d + 1, 729.9), "ruth"))
         for c in flagged + cleared:
             k = c["id"]
             if k in SHOWCASE_NAMES:
