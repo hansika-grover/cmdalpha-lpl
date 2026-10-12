@@ -627,6 +627,14 @@ class World:
                     key_to.setdefault(tag, []).append(rid)
         cases = pd.DataFrame(R["cases"])
         cases["case_id"] = [f"CASE-{i:04d}" for i in range(len(cases))]
+        # a case starts at its planned start or its earliest record (a red-flag note can come first)
+        first_rec = {}
+        for name in ("money_movements", "account_events", "notes"):
+            df = out[name]
+            for tag, d in zip(df["_tag"], df["_day"]):
+                if tag is not None and tag[0] == "case":
+                    first_rec[tag[1]] = min(first_rec.get(tag[1], np.inf), d)
+        cases["_start"] = [min(s, first_rec.get(c, np.inf)) for c, s in zip(cases["_case"], cases["_start"])]
         cases["start_ts"] = self.ts(cases["_start"]).strftime("%Y-%m-%d %H:%M")
         case_tx = mm[mm["_tag"].notna()].copy()
         case_tx["_tagt"] = case_tx["_tag"]

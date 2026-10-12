@@ -114,7 +114,7 @@ class Exporter:
                 # prefer: caught on a pending request, before money left, with flagged notes
                 amt = self.mm.loc[first["ref_id"], "amount"] if first["kind"] == "mm" else 1.0
                 peak = float(self.model.calibrated(np.array([a["score"].max()]))[0])
-                quality = 4 * pre + 3 * (first["kind"] == "mm") + 3 * min(nflags, 3) + 6 * peak
+                quality = 4 * pre + 3 * (first["kind"] in ("mm", "note")) + 3 * min(nflags, 3) + 6 * peak
                 cand["margaret"].append((quality + np.log10(amt), c.household_id, first["day"], c.case_id))
             if c.typology == "trusted_person_theft":
                 cand["harold"].append((5 * bool(first["hard"]) + nflags + c.total_loss / 1e4, c.household_id, first["day"], c.case_id))

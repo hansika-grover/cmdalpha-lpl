@@ -1,0 +1,8 @@
+# Deploys the dashboard. All data it shows is in web/data/*.json, written by `make export`.
+[build]
+  publish = "web"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "no-cache"
