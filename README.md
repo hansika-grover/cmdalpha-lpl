@@ -127,6 +127,10 @@ Models are set by environment variables: `SENTINEL_NOTES_MODEL` (default `claude
 * 1% of notes carry prompt-injection text, in scam and normal households alike.
 * Labels live only in `data/world/labels/`; the feature code cannot load them (tested).
 
+## For teammates
+
+Start with [`docs/CONTEXT.md`](docs/CONTEXT.md) (how everything fits together) and [`docs/PLAN.md`](docs/PLAN.md) (what is left, and who owns it).
+
 ## Repository
 
 ```
