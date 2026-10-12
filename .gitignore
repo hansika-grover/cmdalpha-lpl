@@ -1,0 +1,10 @@
+# generated data (rebuild with `make world`)
+/data/*
+!/data/.gitkeep
+results/_*
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+.venv/
+*.egg-info/
