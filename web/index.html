@@ -323,7 +323,7 @@ function viewQueue(){
     <div class="stat"><div class="v num">${money(pend)}</div><div class="l">in requests held for review before release</div></div>
     <div class="stat"><div class="v num">${flagged.length} <span class="muted" style="font-weight:500">of ${(META.households_scored||0).toLocaleString()}</span></div><div class="l">households with an open alert</div></div>
     <div class="stat"><div class="v num">${short$(assets)}</div><div class="l">in assets at the flagged households</div></div>
-    <div class="stat"><div class="v num">${caught} of ${flagged.length}</div><div class="l">caught by a $100k threshold rule. It <em class="c-crit">missed ${missed}</em> and raised <em class="c-warn">${fa} false alarm</em></div></div>
+    <div class="stat"><div class="v num">${caught} of ${flagged.length}</div><div class="l">would also be flagged by a $100k threshold rule. It would interrupt <em class="c-warn">${fa}</em> cleared ${fa===1?"client":"clients"} shown below</div></div>
    </div>
    <section class="block"><div class="sechead"><h2>Needs review</h2><span>Highest risk first</span></div>${flagged.map(rowHTML).join("")}</section>
    <section class="block"><div class="sechead"><h2>Checked, no action</h2><span>Shown so you can see why</span></div>${cleared.map(rowHTML).join("")}
