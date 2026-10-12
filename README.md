@@ -57,6 +57,8 @@ Test split: 4,000 households never seen in training. Notes reader: keyword notes
 **Calibration:** expected calibration error 0.00055. **Fairness** (false-alarm rate relative to overall, target ≤ 1.25×): ages 55-64 0.87×, ages 65-74 0.96×, ages 75-84 1.12×, ages 85+ 1.05×. **Speed:** 1.461 ms per household for all three engines on a laptop.
 
 **Robustness** (same model and thresholds, cases caught at 0.25%): as evaluated 88%, all notes removed 81%, half the notes removed 86%, doubled account-event noise 89%; coached cover stories 92% (n=12).
+
+**Stability across 5 independently generated worlds:** Sentinel catches 83% of cases at 0.25% on average (range 80–88%).
 <!-- RESULTS:END -->
 
 ## How it works
