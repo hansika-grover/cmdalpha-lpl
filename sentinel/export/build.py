@@ -117,7 +117,10 @@ class Exporter:
                 quality = 4 * pre + 3 * (first["kind"] in ("mm", "note")) + 3 * min(nflags, 3) + 6 * peak
                 cand["margaret"].append((quality + np.log10(amt), c.household_id, first["day"], c.case_id))
             if c.typology == "trusted_person_theft":
-                cand["harold"].append((5 * bool(first["hard"]) + nflags + c.total_loss / 1e4, c.household_id, first["day"], c.case_id))
+                hard = a[a["hard"].astype(bool)]
+                peak = float(self.model.calibrated(np.array([a["score"].max()]))[0])
+                day = hard.iloc[0]["day"] if len(hard) else first["day"]  # show the moment the hard rule fired
+                cand["harold"].append((5 * bool(len(hard)) + 3 * peak + nflags + c.total_loss / 1e4, c.household_id, day, c.case_id))
         neg = self.L["negatives"]
         neg = neg[(neg["household_id"].map(self.split) == "test") & neg["kind"].isin(["home_purchase", "moving_states", "long_term_care_deposit"])]
         ruth = []
@@ -247,6 +250,8 @@ class Exporter:
             callout = "The trusted contact may be involved: they are receiving money or recently gained a role on the account. Sentinel will not draft a message to them."
         elif inj:
             callout = "A note contained an instruction aimed at an AI. Sentinel treated it as data and reported it."
+        elif is_alert and ar["kind"] == "note" and not pending:
+            callout = "Flagged from the advisor's notes before any unusual withdrawal. The money hasn't left yet."
         elif pending and is_alert:
             callout = f"The {money(pending)} request has not been released. It is waiting for review."
         elif not is_alert and thr_flag:
@@ -291,8 +296,8 @@ class Exporter:
         for key, v in show.items():
             if v and key != "ruth":
                 inside = as_of - 30 < v[1] <= as_of
-                # outside today's window: show the household at the end of its own 30-day review window
-                clients[v[0]] = self.client(v[0], as_of if inside else min(v[1] + 29, 729.9), key)
+                # outside today's window: show the household at the moment its alert fired
+                clients[v[0]] = self.client(v[0], as_of if inside else v[1] + 1e-3, key)
         for h in open_.index:
             if h not in clients:
                 clients[h] = self.client(h, as_of)
@@ -329,7 +334,8 @@ def rename(obj, old_full, new_first, new_last):
     of, ol = old_full.split(" ", 1)
 
     def fix(s):
-        return s.replace(old_full, f"{new_first} {new_last}").replace(of, new_first).replace(ol, new_last)
+        s = s.replace(old_full, f"{new_first} {new_last}").replace(of, new_first).replace(ol, new_last)
+        return s.replace(of.lower(), new_first.lower()).replace(ol.lower(), new_last.lower())  # typo-prone notes are lowercase
     for k, v in list(obj.items()):
         if isinstance(v, str):
             obj[k] = fix(v)

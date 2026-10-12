@@ -27,8 +27,8 @@ Test split: 4,000 households never seen in training. Notes reader: keyword notes
 |---|---|---|---|---|---|---|
 | $100k threshold rule | 3.8% | 0–8% | 2.5% | 15.0% | 35.9% | 0.1% |
 | Expert rule checklist (no notes) | 35.0% | 25–46% | 33.8% | 42.4% | 82.3% | 1.1% |
-| Money movement only (engine A) | 70.0% | 59–81% | 40.0% | 53.1% | 31.3% | 3.4% |
-| **Sentinel** | 78.8% | 69–87% | 61.3% | 78.9% | 27.8% | 4.8% |
+| Money movement only (engine A) | 70.0% | 59–81% | 41.2% | 53.3% | 28.8% | 3.6% |
+| **Sentinel** | 78.8% | 69–87% | 63.7% | 79.1% | 26.8% | 5.2% |
 
 **At fixed weekly review budgets** (cases caught, with look-alike false alarms in brackets):
 
@@ -37,26 +37,26 @@ Test split: 4,000 households never seen in training. Notes reader: keyword notes
 | $100k threshold rule (fixed, 1.53 alerts per 1k households a week) | 4% (36%) | | | |
 | $25k threshold rule (fixed, 9.13 alerts per 1k households a week) | 31% (84%) | | | |
 | Expert rule checklist (no notes) | | 24% (78%) | 36% (88%) | 74% (96%) |
-| Money movement only (engine A) | | 61% (25%) | 78% (38%) | 92% (72%) |
-| **Sentinel** | | 71% (19%) | 86% (31%) | 92% (51%) |
-| Sentinel without notes | | 71% (28%) | 82% (37%) | 91% (57%) |
-| Sentinel without sequences | | 55% (8%) | 69% (17%) | 84% (37%) |
-| Sentinel without money movement | | 62% (15%) | 66% (21%) | 71% (30%) |
+| Money movement only (engine A) | | 62% (26%) | 78% (40%) | 92% (72%) |
+| **Sentinel** | | 69% (18%) | 88% (30%) | 91% (49%) |
+| Sentinel without notes | | 71% (29%) | 82% (40%) | 92% (57%) |
+| Sentinel without sequences | | 57% (10%) | 70% (18%) | 82% (36%) |
+| Sentinel without money movement | | 62% (15%) | 68% (21%) | 71% (29%) |
 
 **By scam type** at a 0.25% budget, and with that type held out of training entirely:
 
 | Typology | Test cases | Sentinel | Sentinel, type never seen | $100k rule |
 |---|---|---|---|---|
 | Investment, crypto or romance | 21 | 90% | 67% | 5% |
-| Tech support / bank impersonation | 16 | 94% | 56% | 0% |
+| Tech support / bank impersonation | 16 | 94% | 50% | 0% |
 | Government impersonation | 7 | 29% | 29% | 14% |
 | Silent account takeover | 13 | 100% | 69% | 8% |
-| Grandparent / voice clone | 5 | 60% | 60% | 0% |
+| Grandparent / voice clone | 5 | 80% | 60% | 0% |
 | Trusted-person theft | 18 | 94% | 94% | 0% |
 
-**Calibration:** expected calibration error 0.00045. **Fairness** (false-alarm rate relative to overall, target ≤ 1.25×): ages 55-64 0.85×, ages 65-74 0.95×, ages 75-84 1.14×, ages 85+ 1.03×. **Speed:** 1.665 ms per household for all three engines on a laptop.
+**Calibration:** expected calibration error 0.00055. **Fairness** (false-alarm rate relative to overall, target ≤ 1.25×): ages 55-64 0.87×, ages 65-74 0.96×, ages 75-84 1.12×, ages 85+ 1.05×. **Speed:** 1.461 ms per household for all three engines on a laptop.
 
-**Robustness** (same model and thresholds, cases caught at 0.25%): as evaluated 86%, all notes removed 80%, half the notes removed 85%, doubled account-event noise 89%; coached cover stories 92% (n=12).
+**Robustness** (same model and thresholds, cases caught at 0.25%): as evaluated 88%, all notes removed 81%, half the notes removed 86%, doubled account-event noise 89%; coached cover stories 92% (n=12).
 <!-- RESULTS:END -->
 
 ## How it works
