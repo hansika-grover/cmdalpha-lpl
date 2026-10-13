@@ -42,6 +42,7 @@ class World:
         self._k = 0  # tmp key counter
         self.person_names = {}
         self._buf, self._i = [], 0
+        self.tag_times = {}  # tag -> timestamps of its money/account records (anchors for notes)
 
     # ------------------------------------------------------------ helpers
     def key(self):
@@ -93,6 +94,8 @@ class World:
     def add_mm(self, h, day, amount, method, payee, holding_days=None, tag=None, account=None):
         k = self.key()
         status = "cancelled" if self.r() < self.cfg["normal_money"]["cancelled_rate"] else "completed"
+        if tag is not None:
+            self.tag_times.setdefault(tag, []).append(day)
         self.rows["money_movements"].append(dict(
             _k=k, household_id=h["id"], account_id=account or h["accounts"][0], _day=day,
             amount=round(float(amount), 2), method=method, _payee=payee,
@@ -101,6 +104,8 @@ class World:
 
     def add_ae(self, h, day, typ, channel="web", device=None, person=None, tag=None):
         k = self.key()
+        if tag is not None:
+            self.tag_times.setdefault(tag, []).append(day)
         self.rows["account_events"].append(dict(_k=k, household_id=h["id"], _day=day, type=typ, channel=channel,
                                                 device_id=device or h["device"], related_person_id=person, _tag=tag))
         return k
@@ -494,19 +499,23 @@ class World:
         if not outflows:
             return
         t0 = outflows[0][0]
-        txn_keys = []
+        txn_keys, txn_times = [], []
         for j, (d, a, pay, m) in enumerate(outflows):
             hd = self.holding_days(h, True) if (a > 5000 and self.r() < sell) else None
             tt = self.hour(d)
+            txn_times.append(tt)
             txn_keys.append(self.add_mm(h, tt, round(a, -1) if a > 100 else round(a, 2), m, pay, hd, tag=tag))
-        # notes around the first big outflow for contact scams
+        # the advisor's note about the call that prompted the largest request, ~30 minutes before it
         if typology in ("tech_support_impersonation", "government_impersonation", "grandparent_voice_clone", "investment_romance_scam"):
-            big = max(outflows, key=lambda o: o[1])
+            ib = max(range(len(outflows)), key=lambda j: outflows[j][1])
+            big = outflows[ib]
             req = self.request_text(h, round(big[1], -1))
             if cover:
-                self.cover_note(h, self.hour(big[0]) - 0.02, tag, request=req)
+                self.hour(big[0])  # unused draw: keeps the random stream (households, cases, amounts) unchanged
+                self.cover_note(h, txn_times[ib] - 0.02, tag, request=req)
             elif self.r() < red:
-                self.flag_note(h, self.hour(big[0]) - 0.02, typology, tag, request=req)
+                self.hour(big[0])  # unused draw, as above
+                self.flag_note(h, txn_times[ib] - 0.02, typology, tag, request=req)
         self.rows["cases"].append(dict(_case=c, household_id=h["id"], typology=typology,
                                        perpetrator_type=p["perpetrator"], _start=start, _first_out=t0,
                                        total_loss=round(sum(o[1] for o in outflows), 2), coached_cover_story=cover))
@@ -582,9 +591,14 @@ class World:
             self.add_mm(h, self.hour(d), round(A * self.rng.uniform(0.2, 0.6), -2), "journal", pay, self.holding_days(h, True), tag=tag)
         if h["notes_on"] and self.r() < p_note:
             sl = self.slots(h)
-            self.add_note(h, self.hour(start) - 0.03, "phone_call", T.fill(self.pick(T.LOOKALIKE_NOTES[kind]), sl), tag=tag)
+            # explaining notes come just before the episode's first record on or after its start day
+            later = [t for t in self.tag_times.get(tag, []) if t >= start]
+            anchor = min(later) if later else None
+            t1 = self.hour(start)  # drawn either way so the random stream is unchanged
+            self.add_note(h, (anchor if anchor is not None else t1) - 0.03, "phone_call", T.fill(self.pick(T.LOOKALIKE_NOTES[kind]), sl), tag=tag)
             if self.r() < 0.3:
-                self.add_note(h, self.hour(start) - 0.02, "phone_call", T.fill(self.pick(T.MITIGATING), sl), tag=tag)
+                t2 = self.hour(start)
+                self.add_note(h, (anchor if anchor is not None else t2) - 0.02, "phone_call", T.fill(self.pick(T.MITIGATING), sl), tag=tag)
         self.rows["negatives"].append(dict(_ep=e, household_id=h["id"], kind=kind, _start=start))
 
     def rows_name(self, pid):
