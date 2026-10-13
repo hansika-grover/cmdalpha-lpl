@@ -58,7 +58,7 @@ Test split: 4,000 households never seen in training. Notes reader: keyword notes
 
 **Robustness** (same model and thresholds, cases caught at 0.25%): as evaluated 81%, all notes removed 76%, half the notes removed 75%, doubled account-event noise 82%; coached cover stories 92% (n=12).
 
-**Stability across 5 worlds:** being re-run on the corrected generator.
+**Stability across 5 independently generated worlds:** Sentinel catches 85% of cases at 0.25% on average (range 81–89%).
 <!-- RESULTS:END -->
 
 ## How it works
@@ -154,9 +154,11 @@ tests/                   determinism, leakage, quote validation, deadlines, inje
   behind a scam's largest withdrawal, and the note explaining a look-alike (e.g. a condo purchase), drew their own random
   time of day instead of using the event they describe. 22–62% of request notes (by scam type) and 48% of look-alike notes
   landed *after* the event, so they were invisible when it was scored. Notes are now time-stamped from the event itself; the
-  households, cases and amounts are unchanged. On the main world, look-alike false alarms fell (25.8% from 29.8% at a 0.25%
-  budget) while recall moved within its confidence interval (81% from 88% at 0.25%; 76% from 79% at the $100k rule's
-  workload). Results shifted because the data was corrected, not because the model was tuned.
+  households, cases and amounts are unchanged. Averaged over 5 worlds at a 0.25% budget, Sentinel's recall rose from 83.5%
+  to 85.5% and look-alike false alarms fell from 29.3% to 27.3% (at 1%: 45.6% to 39.9%); the threshold rule and the
+  checklist, which don't read notes, did not change. On the main world alone recall moved down within its confidence
+  interval (88% to 81% at 0.25%), which is retraining noise on 80 test cases. Results shifted because the data was
+  corrected, not because the model was tuned.
 * Synthetic data. Advisor notes are template-generated in five styles; real notes are far more varied. The next step is a
   backtest on LPL's past Senior Investor Protection cases, then a silent run alongside today's rules.
 * The weekly alert budget is a parameter LPL would set; precision is low at generous budgets and is also reported at a
