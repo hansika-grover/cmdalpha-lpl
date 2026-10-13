@@ -1,7 +1,7 @@
 {
  "meta": {
   "as_of": "2025-08-02",
-  "review_line": 0.021,
+  "review_line": 0.023,
   "budget": "0.25% of households per week",
   "households_scored": 4000,
   "reader": "keyword baseline (Claude not run yet)",
@@ -14,9 +14,9 @@
    "name": "Harold Brennan",
    "pattern": "Possible exploitation by someone close to the client",
    "score": 1.0,
-   "alert_date": "Mar 21",
-   "pending": 5610.0,
-   "trusted_contact_involved": true,
+   "alert_date": "Jan 12",
+   "pending": 8890.0,
+   "trusted_contact_involved": false,
    "deadlines": {
     "hold_date": "2025-08-02",
     "rule_2166_proposed_delay_ends": "2025-08-15",
@@ -27,24 +27,27 @@
    },
    "claims": [
     {
-     "text": "Advisor notes show cannot explain the purpose of the transaction",
+     "text": "Trusted contact removed; $20,440 sent to Kelly Brennan in 90 days, who holds a role on the account",
      "record_ids": [
-      "N-0145417"
+      "EV-0019016",
+      "EV-0019335",
+      "TX-0310094",
+      "TX-0333152",
+      "TX-0348720"
      ]
     },
     {
-     "text": "Lisa Brennan added as joint owner; $11,170 sent to Lisa Brennan in 90 days, who holds a role on the account",
+     "text": "Withdrawal request of $8,890",
      "record_ids": [
-      "EV-0023290",
-      "TX-0376952",
-      "TX-0395226"
+      "TX-0348720"
      ]
     },
     {
-     "text": "$11,170 to an individual (Lisa Brennan) first used in the last 60 days",
+     "text": "$15,690 to an individual (Kelly Brennan) first used in the last 60 days",
      "record_ids": [
-      "TX-0376952",
-      "TX-0395226"
+      "TX-0333152",
+      "TX-0341468",
+      "TX-0348720"
      ]
     }
    ],
@@ -54,7 +57,7 @@
    "id": "margaret",
    "name": "Margaret Ellis",
    "pattern": "Possible investment, crypto or romance scam",
-   "score": 0.745,
+   "score": 0.8,
    "alert_date": "Aug 2",
    "pending": 0.0,
    "trusted_contact_involved": false,
@@ -83,10 +86,82 @@
    "status": "Awaiting specialist review"
   },
   {
+   "id": "hh-11052",
+   "name": "Walter Walsh",
+   "pattern": "Possible investment, crypto or romance scam",
+   "score": 0.533,
+   "alert_date": "Jul 4",
+   "pending": 680.0,
+   "trusted_contact_involved": false,
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "rule_2166_proposed_delay_ends": "2025-08-15",
+    "rule_2166_status": "Proposed, pending SEC approval",
+    "rule_2165_notice_due": "2025-08-05",
+    "rule_2165_hold_ends": "2025-08-22",
+    "rule_2165_extended_hold_ends": "2025-09-08"
+   },
+   "claims": [
+    {
+     "text": "Advisor notes show new relationship met online or recently",
+     "record_ids": [
+      "N-0061852"
+     ]
+    },
+    {
+     "text": "$14,320 to a new business payee (Federal Clearing Acct) first used in the last 60 days",
+     "record_ids": [
+      "TX-0186247"
+     ]
+    },
+    {
+     "text": "Withdrawal request of $680",
+     "record_ids": [
+      "TX-0203986"
+     ]
+    }
+   ],
+   "status": "Awaiting specialist review"
+  },
+  {
+   "id": "hh-12140",
+   "name": "Ruth Walsh",
+   "pattern": "Possible account takeover",
+   "score": 0.522,
+   "alert_date": "Jul 12",
+   "pending": 0.0,
+   "trusted_contact_involved": false,
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "rule_2166_proposed_delay_ends": "2025-08-15",
+    "rule_2166_status": "Proposed, pending SEC approval",
+    "rule_2165_notice_due": "2025-08-05",
+    "rule_2165_hold_ends": "2025-08-22",
+    "rule_2165_extended_hold_ends": "2025-09-08"
+   },
+   "claims": [
+    {
+     "text": "Account changes in the 2 days before: password reset, then login from a new device",
+     "record_ids": [
+      "EV-0012996",
+      "EV-0013097",
+      "EV-0013105"
+     ]
+    },
+    {
+     "text": "$1,160 requested out in the last 30 days",
+     "record_ids": [
+      "TX-0198689"
+     ]
+    }
+   ],
+   "status": "Awaiting specialist review"
+  },
+  {
    "id": "hh-13181",
    "name": "Shirley Jennings",
    "pattern": "Possible exploitation by someone close to the client",
-   "score": 0.714,
+   "score": 0.522,
    "alert_date": "Jul 8",
    "pending": 0.0,
    "trusted_contact_involved": false,
@@ -115,104 +190,6 @@
      "text": "$250 requested out in the last 30 days",
      "record_ids": [
       "TX-0193065"
-     ]
-    }
-   ],
-   "status": "Awaiting specialist review"
-  },
-  {
-   "id": "hh-11052",
-   "name": "Walter Walsh",
-   "pattern": "Possible investment, crypto or romance scam",
-   "score": 0.619,
-   "alert_date": "Jul 4",
-   "pending": 680.0,
-   "trusted_contact_involved": false,
-   "deadlines": {
-    "hold_date": "2025-08-02",
-    "rule_2166_proposed_delay_ends": "2025-08-15",
-    "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2025-08-05",
-    "rule_2165_hold_ends": "2025-08-22",
-    "rule_2165_extended_hold_ends": "2025-09-08"
-   },
-   "claims": [
-    {
-     "text": "Advisor notes show new relationship met online or recently",
-     "record_ids": [
-      "N-0061852"
-     ]
-    },
-    {
-     "text": "Withdrawal request of $680",
-     "record_ids": [
-      "TX-0203986"
-     ]
-    }
-   ],
-   "status": "Awaiting specialist review"
-  },
-  {
-   "id": "hh-18606",
-   "name": "Diane Fischer",
-   "pattern": "Possible investment, crypto or romance scam",
-   "score": 0.619,
-   "alert_date": "Jul 23",
-   "pending": 0.0,
-   "trusted_contact_involved": false,
-   "deadlines": {
-    "hold_date": "2025-08-02",
-    "rule_2166_proposed_delay_ends": "2025-08-15",
-    "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2025-08-05",
-    "rule_2165_hold_ends": "2025-08-22",
-    "rule_2165_extended_hold_ends": "2025-09-08"
-   },
-   "claims": [
-    {
-     "text": "Advisor notes show new relationship met online or recently",
-     "record_ids": [
-      "N-0068241"
-     ]
-    }
-   ],
-   "status": "Awaiting specialist review"
-  },
-  {
-   "id": "hh-12140",
-   "name": "Ruth Walsh",
-   "pattern": "Possible account takeover",
-   "score": 0.5,
-   "alert_date": "Jul 15",
-   "pending": 13810.0,
-   "trusted_contact_involved": false,
-   "deadlines": {
-    "hold_date": "2025-08-02",
-    "rule_2166_proposed_delay_ends": "2025-08-15",
-    "rule_2166_status": "Proposed, pending SEC approval",
-    "rule_2165_notice_due": "2025-08-05",
-    "rule_2165_hold_ends": "2025-08-22",
-    "rule_2165_extended_hold_ends": "2025-09-08"
-   },
-   "claims": [
-    {
-     "text": "Account changes in the 5 days before: password reset, then login from a new device",
-     "record_ids": [
-      "EV-0012996",
-      "EV-0013097",
-      "EV-0013105"
-     ]
-    },
-    {
-     "text": "$13,810 to a new business payee (TD Escrow Services) first used in the last 60 days",
-     "record_ids": [
-      "TX-0211959"
-     ]
-    },
-    {
-     "text": "Withdrawal request of $13,810",
-     "record_ids": [
-      "TX-0211959"
      ]
     }
    ],

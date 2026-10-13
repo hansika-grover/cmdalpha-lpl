@@ -241,7 +241,8 @@ def template_case_file(case: CaseData, as_of_date: str, pattern: str) -> tuple[d
     claims = [{"text": r["text"], "record_ids": r["records"]} for r in case.reasons if r.get("records") and r["family"] != "mitigating"]
     d = case.compute_deadlines(as_of_date)
     tc = hh["trusted_contact"]
-    action = "escalate_hold_2165" if case.score >= 0.5 else "call_client"
+    # lightest step first: escalate for a hold only when the trusted contact may be involved or risk is very high
+    action = "escalate_hold_2165" if (case.tc_involved or case.score >= 0.9) else "call_client"
     evid = "; ".join(f"{c['text']} ({', '.join(c['record_ids'][:4])})" for c in claims)
     drafts = {
         "call_script": (f"Hi {first}, it's your advisor. I'm calling about the recent request on your account. Before we move money "

@@ -194,12 +194,27 @@ class Exporter:
         keep = list(notable.index[-11:])
         if alert_i not in keep:
             keep = keep[-10:] + [alert_i]
+        # every record a reason or claim cites stays on the timeline, even if older or recurring
+        keep = sorted(set(keep) | set(rows.index[rows["ref_id"].isin(hot)]))
         events = []
         for j in sorted(set(keep)):
             d, wd, _ = date_of(self.Fi.loc[j, "day"])
             rid = self.Fi.loc[j, "ref_id"]
             events.append({"date": d, "day": wd, "text": self.describe(j), "ref": rid, "hot": rid in hot, "score": round(float(self.cal[j]), 3)})
-        first_day = win["day"].min() if len(win) else ar["day"]
+        first_day = min(self.Fi.loc[keep, "day"].min(), win["day"].min() if len(win) else ar["day"])
+        # what happened next: shown in grey on the dashboard, never a model input (records after the as-of date)
+        allrows = self.Fi.loc[idx]
+        last = self.Fi.loc[keep, "day"].max()
+        nxt = allrows[(allrows["day"] > last + 1e-6) & (allrows["day"] <= ar["day"] + 45)]
+        nxt = nxt[(nxt["kind"] != "mm") | (nxt["recurring"] == 0)]
+        events_after = []
+        for j in nxt.index:
+            d, wd, _ = date_of(self.Fi.loc[j, "day"])
+            rid = self.Fi.loc[j, "ref_id"]
+            e = {"date": d, "day": wd, "text": self.describe(j), "ref": rid, "hot": False, "score": round(float(self.cal[j]), 3)}
+            if self.Fi.loc[j, "kind"] == "mm":
+                e["amount"] = float(self.mm.loc[rid, "amount"])
+            events_after.append(e)
         events.insert(0, {"date": date_of(first_day - 1)[0], "day": "Baseline", "text": "Routine activity before this period.", "ref": "Baseline",
                           "score": round(float(self.cal[rows.index[rows["day"] < first_day][-1]]) if (rows["day"] < first_day).any() else 0.0, 3)})
         # notes with verified quotes
@@ -264,7 +279,7 @@ class Exporter:
              "pattern": pattern if is_alert else "Large withdrawal, context checks out" if thr_flag else "No unusual activity",
              "short": "; ".join(x["text"] for x in reasons[:2] if x["family"] != "mitigating") + "." if reasons else "No unusual activity.",
              "threshold": {"flag": thr_flag, "text": thr}, "trusted": {"name": tcname or "None on file", "safe": not cd.tc_involved},
-             "callout": callout, "events": events,
+             "callout": callout, "events": events, "events_after": events_after,
              "reasons": [{"t": x["text"], "pts": x["display"], "src": f"{x['engine']} · {', '.join(x['records'][:4])}", "quotes": x.get("quotes", [])} for x in reasons],
              "notes": notes, "flags": flags, "mitigating": mit, "injections": inj, "drafts": drafts,
              "case_file": {"claims": cf["claims"], "deadlines": cf["deadlines"], "recommended_action": cf["recommended_action"],
