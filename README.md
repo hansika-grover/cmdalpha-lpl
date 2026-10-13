@@ -27,8 +27,8 @@ Test split: 4,000 households never seen in training. Notes reader: keyword notes
 |---|---|---|---|---|---|---|
 | $100k threshold rule | 3.8% | 0–8% | 2.5% | 15.0% | 35.9% | 0.1% |
 | Expert rule checklist (no notes) | 35.0% | 25–46% | 33.8% | 42.4% | 82.3% | 1.1% |
-| Money movement only (engine A) | 70.0% | 59–81% | 41.2% | 53.3% | 28.8% | 3.6% |
-| **Sentinel** | 78.8% | 69–87% | 63.7% | 79.1% | 26.8% | 5.2% |
+| Money movement only (engine A) | 72.5% | 62–83% | 41.2% | 57.6% | 29.8% | 3.6% |
+| **Sentinel** | 76.2% | 67–85% | 62.5% | 70.6% | 21.7% | 5.2% |
 
 **At fixed weekly review budgets** (cases caught, with look-alike false alarms in brackets):
 
@@ -37,28 +37,28 @@ Test split: 4,000 households never seen in training. Notes reader: keyword notes
 | $100k threshold rule (fixed, 1.53 alerts per 1k households a week) | 4% (36%) | | | |
 | $25k threshold rule (fixed, 9.13 alerts per 1k households a week) | 31% (84%) | | | |
 | Expert rule checklist (no notes) | | 24% (78%) | 36% (88%) | 74% (96%) |
-| Money movement only (engine A) | | 62% (26%) | 78% (40%) | 92% (72%) |
-| **Sentinel** | | 69% (18%) | 88% (30%) | 91% (49%) |
-| Sentinel without notes | | 71% (29%) | 82% (40%) | 92% (57%) |
-| Sentinel without sequences | | 57% (10%) | 70% (18%) | 82% (36%) |
-| Sentinel without money movement | | 62% (15%) | 68% (21%) | 71% (29%) |
+| Money movement only (engine A) | | 60% (23%) | 78% (38%) | 91% (69%) |
+| **Sentinel** | | 74% (16%) | 81% (26%) | 89% (42%) |
+| Sentinel without notes | | 71% (29%) | 81% (41%) | 91% (55%) |
+| Sentinel without sequences | | 60% (7%) | 70% (15%) | 78% (30%) |
+| Sentinel without money movement | | 69% (14%) | 71% (21%) | 74% (28%) |
 
 **By scam type** at a 0.25% budget, and with that type held out of training entirely:
 
 | Typology | Test cases | Sentinel | Sentinel, type never seen | $100k rule |
 |---|---|---|---|---|
-| Investment, crypto or romance | 21 | 90% | 67% | 5% |
-| Tech support / bank impersonation | 16 | 94% | 50% | 0% |
+| Investment, crypto or romance | 21 | 81% | 67% | 5% |
+| Tech support / bank impersonation | 16 | 81% | 44% | 0% |
 | Government impersonation | 7 | 29% | 29% | 14% |
 | Silent account takeover | 13 | 100% | 69% | 8% |
-| Grandparent / voice clone | 5 | 80% | 60% | 0% |
+| Grandparent / voice clone | 5 | 60% | 60% | 0% |
 | Trusted-person theft | 18 | 94% | 94% | 0% |
 
-**Calibration:** expected calibration error 0.00055. **Fairness** (false-alarm rate relative to overall, target ≤ 1.25×): ages 55-64 0.87×, ages 65-74 0.96×, ages 75-84 1.12×, ages 85+ 1.05×. **Speed:** 1.461 ms per household for all three engines on a laptop.
+**Calibration:** expected calibration error 0.00052. **Fairness** (false-alarm rate relative to overall, target ≤ 1.25×): ages 55-64 0.85×, ages 65-74 0.96×, ages 75-84 1.13×, ages 85+ 1.08×. **Speed:** 1.805 ms per household for all three engines on a laptop.
 
-**Robustness** (same model and thresholds, cases caught at 0.25%): as evaluated 88%, all notes removed 81%, half the notes removed 86%, doubled account-event noise 89%; coached cover stories 92% (n=12).
+**Robustness** (same model and thresholds, cases caught at 0.25%): as evaluated 81%, all notes removed 76%, half the notes removed 75%, doubled account-event noise 82%; coached cover stories 92% (n=12).
 
-**Stability across 5 independently generated worlds:** Sentinel catches 83% of cases at 0.25% on average (range 80–88%).
+**Stability across 5 worlds:** being re-run on the corrected generator.
 <!-- RESULTS:END -->
 
 ## How it works
@@ -150,6 +150,13 @@ tests/                   determinism, leakage, quote validation, deadlines, inje
 
 ## Limitations, honestly
 
+* **Generator timing bug, fixed 13 Oct (found by Parth), after we had seen results.** The advisor note about the call
+  behind a scam's largest withdrawal, and the note explaining a look-alike (e.g. a condo purchase), drew their own random
+  time of day instead of using the event they describe. 22–62% of request notes (by scam type) and 48% of look-alike notes
+  landed *after* the event, so they were invisible when it was scored. Notes are now time-stamped from the event itself; the
+  households, cases and amounts are unchanged. On the main world, look-alike false alarms fell (25.8% from 29.8% at a 0.25%
+  budget) while recall moved within its confidence interval (81% from 88% at 0.25%; 76% from 79% at the $100k rule's
+  workload). Results shifted because the data was corrected, not because the model was tuned.
 * Synthetic data. Advisor notes are template-generated in five styles; real notes are far more varied. The next step is a
   backtest on LPL's past Senior Investor Protection cases, then a silent run alongside today's rules.
 * The weekly alert budget is a parameter LPL would set; precision is low at generous budgets and is also reported at a
