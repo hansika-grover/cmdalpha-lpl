@@ -112,7 +112,7 @@ def test_case_file_ingest_rejects_claims_without_valid_ids(tmp_path, monkeypatch
     stored = json.loads(CA.CACHE.read_text())["HH-1"]
     assert [c["record_ids"] for c in stored["case_file"]["claims"]] == [["TX-1"]]
     assert stored["case_file"]["drafts"]["trusted_contact_note"] is None
-    assert stored["case_file"]["generated_by"] == "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+    assert stored["case_file"]["generated_by"] == CA.SUBAGENT_GENERATED_BY
     assert json.loads((tmp_path / "results" / "case_agent_usage.json").read_text())["faithfulness"] == pytest.approx(1 / 3)
 
 

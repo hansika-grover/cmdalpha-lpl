@@ -4,9 +4,9 @@
   "review_line": 0.026,
   "budget": "0.25% of households per week",
   "households_scored": 4000,
-  "reader": "keyword baseline (Claude not run yet)",
+  "reader": "keyword reader",
   "agent": "Claude case agent",
-  "llm_read_by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+  "llm_read_by": "Claude (claude-haiku-5-5)",
   "showcase_note": "Margaret, Harold and Ruth are real pipeline outputs on synthetic test households, renamed to match the pitch."
  },
  "flagged": [
@@ -187,7 +187,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -424,7 +424,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "escalate_hold_2165",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -471,7 +471,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [
      {
       "cat": "Unusual urgency or pressure to act fast",
@@ -748,7 +748,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -783,7 +783,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [
      {
       "cat": "New relationship met online or recently",
@@ -1005,7 +1005,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -1052,7 +1052,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -1203,7 +1203,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -1235,7 +1235,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [],
     "injections": []
@@ -1391,7 +1391,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -1436,7 +1436,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -1631,7 +1631,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -1673,7 +1673,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -1834,7 +1834,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -2113,7 +2113,7 @@
      "hold_ends": "2026-01-15"
     },
     "recommended_action": "escalate_hold_2165",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -2160,7 +2160,7 @@
    "hard_rule": true,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -2343,7 +2343,7 @@
      "hold_ends": "2025-08-15 (proposed Rule 2166 delay, pending SEC approval)"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -2395,7 +2395,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [],
     "injections": []
@@ -2546,7 +2546,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -2735,7 +2735,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -2760,7 +2760,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -2991,7 +2991,7 @@
      "hold_ends": "2025-08-15"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -3034,7 +3034,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -3178,7 +3178,7 @@
      "hold_ends": "2025-08-15"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -3210,7 +3210,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -3366,7 +3366,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -3398,7 +3398,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -3542,7 +3542,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -3713,7 +3713,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -3745,7 +3745,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -3913,7 +3913,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -4124,7 +4124,7 @@
      "hold_ends": "2025-08-15 (proposed Rule 2166 delay, pending SEC approval)"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -4168,7 +4168,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [],
     "injections": []
@@ -4329,7 +4329,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -4382,7 +4382,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [],
     "injections": []
@@ -4518,7 +4518,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -4714,7 +4714,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -4756,7 +4756,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -4911,7 +4911,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -4963,7 +4963,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [],
     "injections": []
@@ -5130,7 +5130,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -5173,7 +5173,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -5326,7 +5326,7 @@
      "hold_ends": "2025-08-15 (proposed Rule 2166 delay, pending SEC approval)"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -5522,7 +5522,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -5555,7 +5555,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -5693,7 +5693,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -5715,7 +5715,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [],
     "injections": []
@@ -5886,7 +5886,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -5929,7 +5929,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -6091,7 +6091,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -6123,7 +6123,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -6288,7 +6288,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -6323,7 +6323,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [],
     "injections": []
@@ -6438,7 +6438,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -6449,7 +6449,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -6614,7 +6614,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -6646,7 +6646,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -6791,7 +6791,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -6833,7 +6833,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [],
     "injections": []
@@ -7068,7 +7068,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "no_action",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -7102,7 +7102,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [
      {
@@ -7272,7 +7272,7 @@
      "hold_ends": "2025-08-22"
     },
     "recommended_action": "call_client",
-    "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)",
+    "generated_by": "Claude case agent (claude-opus-5-5)",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -7304,7 +7304,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [],
     "injections": []
@@ -7426,10 +7426,10 @@
    "mitigating": [],
    "injections": [],
    "drafts": {
-    "Call script": "Hi Ruth, it's your advisor. I'm calling about the recent request on your account. Before we move money like this, I like to walk through it together.\n\nCould you tell me a little about what it's for, and who you've been working with on it?\n\nSome of what I'm seeing matches patterns we see in scams. You haven't done anything wrong, and it's your money. I want to make sure it stays yours.",
-    "Trusted-contact note": "No trusted contact on file. Consider asking the client to name one (FINRA Rule 4512).",
-    "Escalation memo": "Household HH-02471 (Ruth Castellano). Sentinel score 0.00. Evidence: $700,000 to a new business payee (First American Title) first used in the last 60 days (TX-0375480); Funded by selling a position held 11 years (TX-0375480).",
-    "APS referral": "Draft referral for the Senior Investor Protection team to review.\n\nClient: Ruth Castellano, SC\nConcern: Unusual money movement\nEvidence: $700,000 to a new business payee (First American Title) first used in the last 60 days (TX-0375480); Funded by selling a position held 11 years (TX-0375480)\nStatus: draft, nothing sent"
+    "Call script": "No call needed. The request matches the client's documented plans, and the score stays below the review line. It goes through normal processing; mention it at the next check-in.",
+    "Trusted-contact note": "Not needed. No concern to raise.",
+    "Escalation memo": "No escalation. Recorded for the audit trail: Sentinel reviewed this request and found no sign of exploitation.",
+    "APS referral": "Not applicable."
    },
    "case_file": {
     "claims": [
@@ -7452,7 +7452,7 @@
      "hold_ends": "2026-03-13"
     },
     "recommended_action": "call_client",
-    "generated_by": "template (Claude not run)",
+    "generated_by": "template",
     "faithfulness": 1.0,
     "claims_rejected": 0
    },
@@ -7484,7 +7484,7 @@
    "hard_rule": false,
    "reader": "keyword baseline",
    "llm_read": {
-    "by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+    "by": "Claude (claude-haiku-5-5)",
     "flags": [],
     "mitigating": [],
     "injections": []

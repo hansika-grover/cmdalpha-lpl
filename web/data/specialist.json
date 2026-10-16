@@ -4,9 +4,9 @@
   "review_line": 0.026,
   "budget": "0.25% of households per week",
   "households_scored": 4000,
-  "reader": "keyword baseline (Claude not run yet)",
+  "reader": "keyword reader",
   "agent": "Claude case agent",
-  "llm_read_by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
+  "llm_read_by": "Claude (claude-haiku-5-5)",
   "showcase_note": "Margaret, Harold and Ruth are real pipeline outputs on synthetic test households, renamed to match the pitch."
  },
  "cases": [

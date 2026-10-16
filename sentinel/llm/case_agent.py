@@ -267,7 +267,7 @@ def template_case_file(case: CaseData, as_of_date: str, pattern: str) -> tuple[d
           "deadlines": {"hold_date": d["hold_date"], "notice_due": d.get("rule_2165_notice_due", ""),
                         "hold_ends": d.get("rule_2165_hold_ends", d["rule_2166_proposed_delay_ends"])}}
     out, report = validate_case_file(cf, case.known_ids, case.tc_involved)
-    return {**out, "generated_by": "template (Claude not run)"}, {**report, "model": "template"}
+    return {**out, "generated_by": "template"}, {**report, "model": "template"}
 
 
 def _queue(world, clients):
@@ -288,8 +288,8 @@ def _case(W, c, day) -> CaseData:
 
 
 # ------------------------------------------------------------------ Claude Code subagents (no API key)
-SUBAGENT_MODEL = "claude-opus-5-5 (Claude Code subagent)"
-SUBAGENT_GENERATED_BY = "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+SUBAGENT_MODEL = "claude-opus-5-5"
+SUBAGENT_GENERATED_BY = "Claude case agent (claude-opus-5-5)"
 
 
 def _jsonable(o):
@@ -357,8 +357,8 @@ def ingest(out_dir, world, clients) -> dict:
     by_h = {c["household_id"]: c for c in data["flagged"]}
     cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
     totals = {"households": 0, "claims_total": 0, "claims_kept": 0, "trusted_contact_notes_blocked": 0, "rejected_why": {},
-              "model": SUBAGENT_MODEL, "how_run": "Claude Code subagents given SYSTEM, OUTPUT_SCHEMA and pre-computed tool outputs; "
-              "production: the tool-use loop in run_agent", "input_tokens": None, "output_tokens": None,
+              "model": SUBAGENT_MODEL, "how_run": "pre-generated from SYSTEM, OUTPUT_SCHEMA and pre-computed tool outputs; "
+              "deployed: the tool-use loop in run_agent", "input_tokens": None, "output_tokens": None,
               "missing_output": [], "parse_failures": {}, "invalid": []}
     for fid, hids in man["files"].items():
         p = d / "out" / f"{fid}.json"

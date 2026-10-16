@@ -2279,7 +2279,7 @@
    }
   },
   "sentinel": {
-   "label": "Sentinel: money movement + the firm-wide mule-account network + account-change sequences + notes + household memory (keyword (Claude not run) notes reader), fused and calibrated",
+   "label": "Sentinel: money movement + the firm-wide mule-account network + account-change sequences + notes + household memory (keyword notes reader), fused and calibrated",
    "budgets": {
     "0.05%": {
      "recall": {

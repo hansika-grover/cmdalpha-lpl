@@ -2246,7 +2246,7 @@
    }
   },
   "sentinel": {
-   "label": "Sentinel: A + B + keyword (Claude not run) notes reader, fused and calibrated",
+   "label": "Sentinel: A + B + keyword notes reader, fused and calibrated",
    "budgets": {
     "0.05%": {
      "recall": {

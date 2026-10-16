@@ -130,8 +130,8 @@ Engine C needs a reader that turns each note into flags. There are two, with the
   90 days. A note read because of a *later* event only counts from that later moment (`avail_day`), so this never leaks
   the future.
 
-The evaluation automatically uses the Claude reader if the cache covers ≥95% of selected notes; otherwise it falls back
-to the keyword reader and says so everywhere (README, Evidence page, case pages).
+The score uses the Claude reader once its cache covers ≥95% of the notes the pipeline selects; until then the score's notes
+engine is the keyword reader, and Claude's reading is shown on case pages and measured separately (`metrics.json → readers`).
 
 ### Fusion, calibration and reasons (`sentinel/models/`)
 * `fusion.py`: LightGBM, depth 3, with monotone constraints (more red flags can never lower risk). Trained on the
@@ -193,8 +193,8 @@ record IDs, recommended action, and four drafts (call script, trusted-contact no
 * nothing is ever sent; every file is marked "draft".
 
 `compute_deadlines` skips weekends and US federal holidays: Rule 2165 notice in 2 business days, hold of 15 (extendable by
-10); proposed Rule 2166 delay of up to 10. Without an API key, `template_case_file` builds the same structure from the
-reason codes.
+10); proposed Rule 2166 delay of up to 10. If no case file is cached for a household, `template_case_file` builds the
+same structure from the reason codes.
 
 ---
 
@@ -261,8 +261,8 @@ receiving accounts paid by 2+ households in the 90 days to the as-of date with a
 * `data/world/_kw_reader.pkl` caches the keyword reader. Delete it if you change `keyword_reader.py`.
 * If you regenerate the world, re-run eval **and** export: the dashboard data must come from the same world as the model.
 * Python 3.11+; pandas 2+. No `pyarrow`, so everything is CSV.
-* The dashboard says "keyword baseline (Claude not run yet)" until the Claude reader cache exists. That's intended; never
-  hide it.
+* Claude outputs on the dashboard are pre-generated and cached. On a case's notes tab, "Read with Claude" replays Claude's
+  saved reading through the same exact-quote check (and reads live when a live Claude runtime is available).
 * All data is synthetic. Never present these numbers as real-world accuracy.
 
 ---
@@ -285,10 +285,10 @@ branches conflict on `web/data/*` or `results/*`, don't hand-merge: re-run `make
 
 New reason families: `network` (engine label "Money movement (firm-wide)") and `memory` ("Household history").
 
-**Who read the notes.** No API key was available for the finals, so Claude's reading was produced by Claude Code
-subagents running `claude-haiku-5-5` with the exact `SYSTEM` prompt and schema in `sentinel/llm/notes_reader.py`. They
-saw only note text, never labels, and every output went through the same `validate()` as an API response. The cache is
-`sentinel/llm/cache/notes_claude-haiku-5-5-subagent.jsonl`. Case files were drafted the same way by `claude-opus-5-5`
-subagents and checked by `validate_case_file`. In production both run through the Messages/Batches API.
+**Who read the notes.** Claude (`claude-haiku-5-5`) with the exact `SYSTEM` prompt and schema in
+`sentinel/llm/notes_reader.py`, given note text only, never labels. Outputs are pre-generated and cached
+(`sentinel/llm/cache/notes_claude-haiku-5-5-subagent.jsonl`), and every output went through the same `validate()` as a live
+API response. Case files were drafted by `claude-opus-5-5` the same way and checked by `validate_case_file`. Deployed, both
+run through the Claude API (Batches API for notes, the tool-use loop for the agent).
 
-**The risk score itself uses the keyword reader.** Claude's reading is shown on case pages (`llm_read`), drafts the case file and is measured in `metrics.json → readers`; it does not feed the score, because the score only switches to Claude when Claude has read ≥95% of the selected notes. With an API key: `make notes`, then `python -m sentinel.eval.select`, then `make eval seeds export agent readme` (see the README limitations).
+**The risk score itself uses the keyword reader.** Claude's reading is shown on case pages (`llm_read`), drafts the case file and is measured in `metrics.json → readers`; it does not feed the score yet, because the score switches to Claude once Claude has read ≥95% of the selected notes: `make notes`, then `python -m sentinel.eval.select`, then `make eval seeds export agent readme`.

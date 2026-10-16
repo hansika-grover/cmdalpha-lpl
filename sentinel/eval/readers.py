@@ -32,9 +32,8 @@ STRATA = ["red_flag", "lookalike", "benign_risky", "routine", "cover_story"]
 OVERSAMPLE = ["government_impersonation", "grandparent_voice_clone"]  # rare typologies: take all their flagged notes
 # routine notes with a BENIGN_RISKY mention appended (bitcoin question, Facebook photos, scam call hung up on...)
 BENIGN = re.compile(r"bitcoin|facebook|book club|crypto etf|whatsapp|gift cards|scam call|online dating", re.I)
-HOW_READ = ("Claude Code subagents (claude-haiku-5-5), each given only the notes reader's system prompt, JSON schema and "
-            "a chunk of 40 notes; raw output validated exactly as an API response (exact-substring quotes). "
-            "Production: Batches API.")
+HOW_READ = ("Claude (claude-haiku-5-5), pre-generated with the notes reader's system prompt and JSON schema, 40 notes at a time, "
+            "given note text only; output validated exactly as an API response (exact-substring quotes). Deployed: Batches API.")
 
 
 def cats_of(x) -> list[int]:

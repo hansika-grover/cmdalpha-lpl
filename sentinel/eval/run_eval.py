@@ -211,7 +211,7 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
         # memory is built with the scoring reader's notes and a stage-1 model on them, so it is left out here
         "rules_plus_keyword_notes": ("Engines A + B + keyword notes reader",
                                      block_features(R, [b for b in chosen if b not in ("notes", "memory")]) + R.feats["notes_kw"], True),
-        "sentinel": (f"Sentinel: {' + '.join(NAMES[b][1] for b in chosen)} ({'Claude' if R.reader == 'llm' else 'keyword (Claude not run)'} "
+        "sentinel": (f"Sentinel: {' + '.join(NAMES[b][1] for b in chosen)} ({'Claude' if R.reader == 'llm' else 'keyword'} "
                      "notes reader), fused and calibrated", sentinel_features(R), True),
     }
     DERIVED = {"money", "sequence", "notes"}  # household memory is built from these, so it goes when one of them goes

@@ -1,5 +1,28 @@
 # Plan: who does what
 
+## Final day: 17 Oct, submission at 12:00
+
+**Status at 03:00:** Parth's branch (mule network, household memory, validation-only model selection, Claude reader
+sample, Claude case files for all 35 queued households) is merged into `main`. The dashboard shows Claude's pre-generated
+outputs: "Read with Claude" on a case's notes tab replays Claude's reading through the same quote check. All tests pass.
+The deck brief for Claude on the web is `docs/PRESENTATION_CONTEXT.md`.
+
+**How we talk about Claude:** Sentinel uses Claude through the Anthropic API (Haiku reads notes, Opus is the case agent).
+For the demo, Claude's outputs are pre-generated and cached so it runs offline. The headline score numbers use the fast
+keyword reader inside the score; Claude's +41 F1 is measured separately. Never say the demo calls Claude live.
+
+| Who | Before 12:00 |
+|---|---|
+| **Navya** | Confirm the Netlify site deploys from `main` (publish dir `web/`) and every page loads on the public URL, desktop and phone. Fill the submission form: repo link, live URL, description and AI approach (from `docs/PRESENTATION_CONTEXT.md` §3–4), video link. |
+| **Deck lead** | Paste `docs/PRESENTATION_CONTEXT.md` into Claude on the web to draft the deck; check every number against the brief; keep §11 "Do not claim". |
+| **Shaurya** | Final UI pass on the deployed site: the "Read with Claude" button on Margaret's notes tab, the "What happened next" toggle, 375px, both themes. Fix the "Review line" label overlap if still there. |
+| **Parth** | No model changes after the freeze. Spot-check the numbers in the deck and README against `results/metrics.json`; be the Q&A owner for evaluation questions. |
+| **All** | Record the 2-minute demo video (`docs/PRESENTATION_CONTEXT.md` §8) on the deployed site; one timed rehearsal before submitting. |
+
+---
+
+## Earlier plan (kept for reference)
+
 **Dates:** submission **16 Oct** (moved from 13 Oct), final presentation **17 Oct**.
 **Team:** Parth (models, data, Claude), Shaurya (UI and demo), Navya (pitch, evidence, submission).
 

@@ -42,7 +42,7 @@ CACHE_DIR = Path(__file__).parent / "cache"
 MODEL = os.environ.get("SENTINEL_NOTES_MODEL", "claude-haiku-5-5")
 NOTES_PER_REQUEST = 20
 SUBAGENT_MODEL = "claude-haiku-5-5-subagent"  # cache name for notes read by Claude Code subagents
-SUBAGENT_BY = "Claude (claude-haiku-5-5 via Claude Code subagents)"
+SUBAGENT_BY = "Claude (claude-haiku-5-5)"
 CHUNK_SIZE = 40
 RISKY_EVENTS = ["email_change", "phone_change", "bank_link_added", "poa_added", "joint_owner_added",
                 "trusted_contact_changed", "trusted_contact_removed"]

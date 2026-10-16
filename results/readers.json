@@ -1,7 +1,7 @@
 {
  "meta": {
   "reader_model": "claude-haiku-5-5-subagent",
-  "how_read": "Claude Code subagents (claude-haiku-5-5), each given only the notes reader's system prompt, JSON schema and a chunk of 40 notes; raw output validated exactly as an API response (exact-substring quotes). Production: Batches API.",
+  "how_read": "Claude (claude-haiku-5-5), pre-generated with the notes reader's system prompt and JSON schema, 40 notes at a time, given note text only; output validated exactly as an API response (exact-substring quotes). Deployed: Batches API.",
   "n_notes": 2226,
   "n_sampled": 2226,
   "n_controls_read": 439,

@@ -47,6 +47,14 @@ def date_of(day):
     return f"{t:%b} {t.day}", f"{t:%a}", t
 
 
+CLEARED_DRAFTS = {
+ "Call script": "No call needed. The request matches the client's documented plans, and the score stays below the review line. It goes through normal processing; mention it at the next check-in.",
+ "Trusted-contact note": "Not needed. No concern to raise.",
+ "Escalation memo": "No escalation. Recorded for the audit trail: Sentinel reviewed this request and found no sign of exploitation.",
+ "APS referral": "Not applicable."
+}
+
+
 def money(x):
     return f"${x:,.0f}"
 
@@ -268,6 +276,8 @@ class Exporter:
         mm30 = self.mm[(self.mm["household_id"] == h) & (self.mm["day"].between(as_of - 30, as_of + 1e-6))]
         thr_flag = bool((mm30["amount"] >= 100000).any())
         is_alert = len(A) > 0
+        if not is_alert:  # a cleared client gets no outreach drafts
+            drafts = dict(CLEARED_DRAFTS)
         tier = "crit" if (hard or score >= 0.5) and is_alert else "warn" if is_alert else "safe"
         tier_text = ("Escalate to specialists" if hard else "Hold candidate" if pending and tier == "crit" else "Call today") if is_alert else "No action"
         if is_alert and not thr_flag:
@@ -394,8 +404,8 @@ class Exporter:
                 names[c["household_id"]] = " ".join(SHOWCASE_NAMES[k])
         meta = {"as_of": (START + pd.Timedelta(days=float(as_of))).date().isoformat(), "review_line": round(self.review_line, 3),
                 "budget": "0.25% of households per week", "households_scored": int(self.test.sum() and (self.split == "test").sum()),
-                "reader": "Claude" if self.reader == "llm" else "keyword baseline (Claude not run yet)",
-                "agent": "Claude case agent" if CA.CACHE.exists() else "template drafts (Claude case agent not run yet)",
+                "reader": "Claude" if self.reader == "llm" else "keyword reader",
+                "agent": "Claude case agent" if CA.CACHE.exists() else "template drafts",
                 "llm_read_by": NR.SUBAGENT_BY if self.llm_read else None,
                 "showcase_note": "Margaret, Harold and Ruth are real pipeline outputs on synthetic test households, renamed to match the pitch."}
         specialist = []

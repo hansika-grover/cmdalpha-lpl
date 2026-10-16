@@ -819,8 +819,8 @@ function setNav(k,title){["queue","specialist","evidence","activity","about"].fo
 /* provenance: which notes reader / case agent produced what is on screen. Flips by itself once B runs Claude. */
 const isAI=s=>/claude/i.test(s||"")&&!/not run/i.test(s||"");
 function prov(src,kind){const ai=isAI(src);
-  const t=kind==="agent"?(ai?"Drafted by the Claude case agent":"Template drafts · Claude not run yet"):(ai?"Notes read by Claude":"Keyword notes reader · Claude not run yet");
-  const tip=kind==="agent"?(ai?"Claude drafted this case file with read-only tools. Code rejects any claim without a record ID.":"Built from the reason codes by a template. The Claude case agent replaces it once it runs."):(ai?"Claude read the notes. Any quote that isn't word for word in the note is dropped by code.":"A keyword and TF-IDF baseline reads the notes for now. The Claude reader replaces it once it runs.");
+  const t=kind==="agent"?(ai?"Drafted by the Claude case agent":"Template drafts"):(ai?"Notes read by Claude":"Score uses the fast keyword reader");
+  const tip=kind==="agent"?(ai?"Claude drafted this case file with read-only tools. Code rejects any claim without a record ID. In this demo the drafts are pre-generated; deployed, the agent runs through the Claude API.":"Built from the reason codes by a template."):(ai?"Claude read the notes. Any quote that isn't word for word in the note is dropped by code. In this demo the reading is pre-generated; deployed, it runs through the Claude API.":"The risk score reads notes with a fast keyword and TF-IDF reader. Claude's reading is on each case's notes tab.");
   return `<span class="prov ${ai?"ai":""}" title="${esc(tip+" Source: "+(src||"unknown"))}">${I(ai?"spark":"info")}${esc(t)}</span>`}
 /* business days from a to b (a exclusive), skipping weekends and the holidays above */
 function bdBetween(a,b){if(b<=a){let k=0;const x=new Date(b);while(iso(x)<iso(a)){x.setDate(x.getDate()+1);const w=x.getDay();if(w&&w!==6&&!HOL.has(iso(x)))k--}return k}let k=0;const x=new Date(a);while(iso(x)<iso(b)){x.setDate(x.getDate()+1);const w=x.getDay();if(w&&w!==6&&!HOL.has(iso(x)))k++}return k}
@@ -963,7 +963,7 @@ function viewCase(id,tab){
     body=`<section class="block" style="margin-top:40px"><div class="sechead"><h2>Advisor notes</h2><span>Highlights are the lines the AI cites</span></div>
       ${c.notes.map(n=>`<div class="note" id="r-${esc(n.id)}"><div class="nh"><b>${esc(n.kind)}</b><span>${esc(n.date)}</span><span class="id num">${n.id}</span></div><p>${hl(n.text,qs,sh)}</p></div>`).join("")}</section>
      <section class="block"><div class="sechead"><h2>What the notes reader found</h2><span>A quote that isn't in the notes is never shown</span></div>
-      <div class="livebar" id="livebar"><button class="btn pri" id="walk">${I("spark")}Walk through the reading</button><button class="btn" id="live" hidden>${I("spark")}Read live with Claude</button>${prov(c.reader)}<span class="st" id="livest">${isAI(c.reader)?"Claude read these notes":"The keyword baseline read these notes"}, matched to FinCEN-based red-flag categories. Every quote is checked word for word.</span></div>
+      <div class="livebar" id="livebar"><button class="btn pri" id="walk">${I("spark")}Walk through the reading</button><button class="btn" id="live" ${c.llm_read||window.claude?"":"hidden"}>${I("spark")}${S.claude&&S.claude[c.id]?"Show the keyword reader":"Read with Claude"}</button>${prov(S.claude&&S.claude[c.id]?(c.llm_read||{}).by:c.reader)}<span class="st" id="livest">${S.claude&&S.claude[c.id]?"Claude's reading (pre-generated sample for this demo; deployed, it runs through the Claude API)":isAI(c.reader)?"Claude read these notes":"The keyword reader read these notes"}, matched to FinCEN-based red-flag categories. Every quote is checked word for word.</span></div>
       <div id="flags">${flagsHTML(c,sh)}</div></section>`;
   } else if(tab==="drafts"){
     const dk=S.draft[c.id]||Object.keys(c.drafts)[0];
@@ -1003,7 +1003,8 @@ function wireCase(c,tab){
   if(tab==="notes"){
     document.getElementById("walk").onclick=()=>walk(c);
     const lb=document.getElementById("live");
-    if(window.claude&&typeof window.claude.use==="function"){window.claude.use("sample").then(s=>{if(s&&document.getElementById("live")){lb.hidden=false;lb.onclick=()=>live(c,s)}}).catch(()=>{})}
+    if(lb)lb.onclick=()=>sampleRead(c);
+    if(window.claude&&typeof window.claude.use==="function"&&!(S.claude&&S.claude[c.id])){window.claude.use("sample").then(s=>{if(s&&document.getElementById("live")){lb.hidden=false;lb.onclick=()=>live(c,s)}}).catch(()=>{})}
   }
   if(tab==="drafts"){const dk=S.draft[c.id]||Object.keys(c.drafts)[0];
     document.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{S.draft[c.id]=b.dataset.d;viewCase(c.id,"drafts")});
@@ -1020,6 +1021,18 @@ function walk(c){
     if(k<total){document.getElementById("livest").textContent=`Checked ${k} of ${total} quotes against the notes…`;setTimeout(t,650)}
     else{S.walk[c.id]=undefined;viewCase(c.id,"notes");document.getElementById("livest").textContent=`Done. ${total} findings, every quote found word for word in the notes.`}};
   setTimeout(t,650);
+}
+/* No live Claude connection: play back Claude's pre-generated reading of these notes, through the same quote check. */
+function sampleRead(c){
+  S.claude=S.claude||{};S.kw=S.kw||{};
+  if(S.claude[c.id]){const k=S.kw[c.id];c.flags=k.f;c.mitigating=k.m;c.injections=k.j;S.claude[c.id]=false;viewCase(c.id,"notes");return}
+  const L=c.llm_read;if(!L){toast("No saved Claude reading for this household");return}
+  S.kw[c.id]={f:c.flags,m:c.mitigating,j:c.injections};
+  const txt=id=>(c.notes.find(n=>n.id===id)||{}).text||"";
+  const ok=a=>(Array.isArray(a)?a:[]).map(x=>typeof x==="string"?{quote:x}:x).filter(x=>x.quote&&txt(x.note).includes(x.quote));
+  c.flags=ok(L.flags);c.mitigating=ok(L.mitigating);c.injections=ok(L.injections);S.claude[c.id]=true;
+  log("Sentinel notes reader",c.name,`Claude reading: ${c.flags.length} red flag${c.flags.length===1?"":"s"}${c.injections.length?", instruction in a note ignored":""}`,c.notes.map(n=>n.id).join("; "));
+  if(c.flags.length+c.mitigating.length+c.injections.length)walk(c);else{viewCase(c.id,"notes");document.getElementById("livest").textContent="Claude found no red flags in these notes."}
 }
 async function live(c,sample){
   const st=document.getElementById("livest"),b=document.getElementById("live");b.disabled=true;st.innerHTML=`<span class="spin"></span>Claude is reading ${c.notes.length} note${c.notes.length>1?"s":""}`;
@@ -1167,7 +1180,7 @@ function viewEvidence(){setNav("evidence");
   if(!EVID){app.innerHTML=`<div class="wrap"><div style="margin-top:72px"><h1>${evidFailed?"No evaluation data yet.":"Loading the evaluation…"}</h1><p class="lede">If this stays, run <code>make eval export</code>.</p></div></div>`;return}
   const wr=document.querySelector("#app .wrap"),cs_=wr?getComputedStyle(wr):null,W=Math.min(wr?wr.clientWidth-parseFloat(cs_.paddingLeft)-parseFloat(cs_.paddingRight):1100,1100)-4;
   const E=EVID,M=E.methods,MW=E.matched_workload_100k,B="0.25%",s=M.sentinel.budgets[B];
-  const reader=E.meta.notes_reader==="llm"?"Claude notes reader":"keyword notes reader (Claude not run yet)";
+  const reader=E.meta.notes_reader==="llm"?"Claude notes reader":"fast keyword notes reader";
   const EVM=[["recall","Cases caught","of exploitation cases get an alert",false],["caught_before_money_left","Caught before money left","alerted at or before the first withdrawal request",false],["dollars_protected_share","Stolen dollars protected","of stolen dollars were requested after the alert",false],["lookalike_false_alarm_rate","Legitimate look-alikes flagged","of real home purchases, gifts and moves get an alert. Lower is better",true]];
   const em=EVM.find(m=>m[0]===S.evm)||EVM[0];
   const t100=MW.threshold_100k, sm=MW.sentinel;
@@ -1183,7 +1196,7 @@ function viewEvidence(){setNav("evidence");
   app.innerHTML=`<div class="wrap"><div class="mast"><div class="eyebrow">Evidence from synthetic, held-out test households</div>
    <h1>More cases, earlier, with fewer false alarms.</h1>
    <p class="lede">At the same reviewer workload as a $100k threshold rule, Sentinel catches ${pct(V(sm.recall))} of exploitation cases. The rule catches ${pct(V(t100.recall))}. Measured on ${E.meta.households.test.toLocaleString()} synthetic test households the model never saw.</p>
-   <div class="provs">${prov(E.meta.notes_reader==="llm"?"Claude":"keyword baseline (Claude not run yet)")}</div></div>
+   <div class="provs">${prov(E.meta.notes_reader==="llm"?"Claude":"keyword reader")}</div></div>
    <section class="hero" aria-labelledby="hero-h"><h2 id="hero-h">Same workload, very different results</h2>
     <p class="cap">Every method raises the same number of alerts: ${(MW.weekly_rate*100).toFixed(2)}% of households a week. Big numbers are Sentinel; pick one to compare. Dots are estimates, lines are 95% confidence intervals.</p>
     <div class="tiles" role="tablist" aria-label="Choose the measure">${EVM.map(([k,t,l,low])=>`<button class="tile" role="tab" type="button" aria-selected="${k===em[0]}" data-evm="${k}"><span class="v">${pct(V(sm[k]))}</span><span class="l"><b>${esc(t)}</b></span><span class="vs">$100k rule: ${pct(V(t100[k]))}${low?" · lower is better":""}</span></button>`).join("")}</div>
