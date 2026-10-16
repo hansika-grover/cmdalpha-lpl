@@ -6,7 +6,12 @@ returns structured JSON. Code, not the model, enforces the guardrails:
   - no age as a reason and no medical diagnoses (claims that do either are rejected);
   - no draft to a trusted contact who may be involved (forced to null, and logged);
   - nothing is sent: every draft is status "draft" for a person to review.
-Without an API key, `template_case_file` builds the same structure from the reason codes.
+Without an API key, `template_case_file` builds the same structure from the reason codes, or Claude Code
+subagents write the case files from pre-computed tool outputs and `ingest` applies the same guardrails:
+
+    python -m sentinel.llm.case_agent dump-context --world data/world --clients web/data/clients.json --out DIR
+    python -m sentinel.llm.case_agent prompt DIR/in/ctx_0000.json DIR/out/ctx_0000.json
+    python -m sentinel.llm.case_agent ingest DIR --world data/world --clients web/data/clients.json
 """
 from __future__ import annotations
 
@@ -265,29 +270,175 @@ def template_case_file(case: CaseData, as_of_date: str, pattern: str) -> tuple[d
     return {**out, "generated_by": "template (Claude not run)"}, {**report, "model": "template"}
 
 
-def main():
+def _queue(world, clients):
+    """The world, the exported queue, its as-of date and the as-of day the agent sees."""
+    from ..data import load_world
+    data = json.loads(Path(clients).read_text(encoding="utf-8"))
+    as_of = data["meta"]["as_of"]
+    day = (pd.Timestamp(as_of) - pd.Timestamp("2024-10-01")).days + 0.999
+    return load_world(world), data, as_of, day
+
+
+def _case(W, c, day) -> CaseData:
+    quotes = {f["note"]: [f["quote"]] for f in c["flags"]}
+    return CaseData(W, c["household_id"], day, c.get("reason_codes", []), quotes, c["score"])
+
+
+# ------------------------------------------------------------------ Claude Code subagents (no API key)
+SUBAGENT_MODEL = "claude-opus-5-5 (Claude Code subagent)"
+SUBAGENT_GENERATED_BY = "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+
+
+def _jsonable(o):
+    return o.item() if hasattr(o, "item") else str(o)
+
+
+def dump_context(world, clients, out, per_file=3) -> dict:
+    """Run the read-only tools for every queued household (as the agent would) and write their outputs,
+    N households per file: DIR/in/ctx_NNNN.json, plus DIR/manifest.json."""
+    W, data, as_of, day = _queue(world, clients)
+    d = Path(out)
+    (d / "in").mkdir(parents=True, exist_ok=True)
+    (d / "out").mkdir(exist_ok=True)
+    recs = []
+    for c in data["flagged"]:
+        cd = _case(W, c, day)
+        recs.append({"household_id": cd.h, "as_of": as_of, "tool_outputs": {
+            "get_household": cd.get_household(), "get_timeline": cd.get_timeline(), "get_notes": cd.get_notes(),
+            "get_reasons": cd.get_reasons(), "compute_deadlines": cd.compute_deadlines(as_of)}})
+    files = {}
+    for i in range(0, len(recs), per_file):
+        fid = f"ctx_{i // per_file:04d}"
+        (d / "in" / f"{fid}.json").write_text(json.dumps(recs[i:i + per_file], indent=1, default=_jsonable), encoding="utf-8")
+        files[fid] = [r["household_id"] for r in recs[i:i + per_file]]
+    man = {"as_of": as_of, "clients": str(clients), "files": files}
+    (d / "manifest.json").write_text(json.dumps(man, indent=1), encoding="utf-8")
+    return man
+
+
+def subagent_prompt(path, out_path) -> str:
+    """Everything a case-agent subagent is given: SYSTEM, the output schema, and where to read and write."""
+    return f"""{SYSTEM}
+
+The tools have already been run for you. The file {path} is a JSON array; each item has household_id, as_of and
+tool_outputs (get_household, get_timeline with days=120, get_notes with days=180, get_reasons, and compute_deadlines
+for a hold placed on the as-of date). Use only these outputs, and cite only record IDs that appear in that household's
+tool outputs.
+
+Case file JSON schema (one per household):
+{json.dumps(OUTPUT_SCHEMA)}
+
+Write to {out_path} exactly one JSON object mapping each household_id in the file to its case file,
+{{"HH-...": {{...case file...}}, ...}}. Write nothing else to that file (no prose, no markdown fences) and do not
+change any other file."""
+
+
+def _case_ok(cf) -> bool:
+    req, dr, dl = OUTPUT_SCHEMA["required"], OUTPUT_SCHEMA["properties"]["drafts"]["required"], OUTPUT_SCHEMA["properties"]["deadlines"]["required"]
+    return (isinstance(cf, dict) and all(k in cf for k in req) and isinstance(cf["claims"], list)
+            and all(isinstance(c, dict) and isinstance(c.get("text"), str) and isinstance(c.get("record_ids"), list) for c in cf["claims"])
+            and isinstance(cf["drafts"], dict) and all(k in cf["drafts"] for k in dr)
+            and isinstance(cf["deadlines"], dict) and all(k in cf["deadlines"] for k in dl)
+            and cf["recommended_action"] in OUTPUT_SCHEMA["properties"]["recommended_action"]["enum"])
+
+
+def ingest(out_dir, world, clients) -> dict:
+    """Subagent case files -> validate_case_file (same guardrails as the API path) -> CACHE."""
+    from .notes_reader import _unfence
+    W, data, as_of, day = _queue(world, clients)
+    d = Path(out_dir)
+    man = json.loads((d / "manifest.json").read_text(encoding="utf-8"))
+    if man["as_of"] != as_of:
+        raise ValueError(f"context was dumped for {man['as_of']}, the queue is now {as_of}: dump again")
+    by_h = {c["household_id"]: c for c in data["flagged"]}
+    cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
+    totals = {"households": 0, "claims_total": 0, "claims_kept": 0, "trusted_contact_notes_blocked": 0, "rejected_why": {},
+              "model": SUBAGENT_MODEL, "how_run": "Claude Code subagents given SYSTEM, OUTPUT_SCHEMA and pre-computed tool outputs; "
+              "production: the tool-use loop in run_agent", "input_tokens": None, "output_tokens": None,
+              "missing_output": [], "parse_failures": {}, "invalid": []}
+    for fid, hids in man["files"].items():
+        p = d / "out" / f"{fid}.json"
+        if not p.exists():
+            totals["missing_output"].append(fid)
+            continue
+        try:
+            out = json.loads(_unfence(p.read_text(encoding="utf-8-sig")))
+            if not isinstance(out, dict):
+                raise TypeError("not a JSON object")
+        except Exception as e:  # malformed output: report it; the file is retried
+            totals["parse_failures"][fid] = f"{type(e).__name__}: {e}"[:200]
+            continue
+        for h in hids:
+            if not _case_ok(out.get(h)) or h not in by_h:
+                totals["invalid"].append(h)
+                continue
+            cd = _case(W, by_h[h], day)
+            cf, rep = validate_case_file(out[h], cd.known_ids, cd.tc_involved)
+            rep["model"] = SUBAGENT_MODEL
+            cache[h] = {"as_of": as_of, "case_file": {**cf, "generated_by": SUBAGENT_GENERATED_BY}, "report": rep}
+            totals["households"] += 1
+            totals["claims_total"] += rep["claims_total"]
+            totals["claims_kept"] += rep["claims_kept"]
+            totals["trusted_contact_notes_blocked"] += int(rep["trusted_contact_note_blocked"])
+            for r in rep["claims_rejected"]:
+                totals["rejected_why"][r["why"]] = totals["rejected_why"].get(r["why"], 0) + 1
+    totals["faithfulness"] = totals["claims_kept"] / max(totals["claims_total"], 1)
+    totals["retry"] = sorted(set(totals["missing_output"]) | set(totals["parse_failures"]) |
+                             {f for f, hs in man["files"].items() if set(hs) & set(totals["invalid"])})
+    if totals["households"]:
+        CACHE.parent.mkdir(parents=True, exist_ok=True)
+        CACHE.write_text(json.dumps(cache, indent=1, default=str), encoding="utf-8")
+        Path("results").mkdir(exist_ok=True)
+        Path("results/case_agent_usage.json").write_text(json.dumps(totals, indent=1), encoding="utf-8")
+    return totals
+
+
+def subagent_cli(argv):
+    import argparse
+    ap = argparse.ArgumentParser(prog="python -m sentinel.llm.case_agent")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    dc = sub.add_parser("dump-context", help="write tool outputs for every queued household, for Claude Code subagents")
+    dc.add_argument("--out", required=True)
+    dc.add_argument("--per-file", type=int, default=3)
+    g = sub.add_parser("ingest", help="validate subagent case files and cache them")
+    g.add_argument("dir")
+    p = sub.add_parser("prompt", help="print the full text a subagent is given")
+    p.add_argument("path")
+    p.add_argument("out")
+    for x in (dc, g):
+        x.add_argument("--world", default="data/world")
+        x.add_argument("--clients", default="web/data/clients.json")
+    a = ap.parse_args(argv)
+    if a.cmd == "prompt":
+        print(subagent_prompt(a.path, a.out))
+    elif a.cmd == "dump-context":
+        man = dump_context(a.world, a.clients, a.out, a.per_file)
+        print(f"{sum(map(len, man['files'].values()))} households in {len(man['files'])} files -> {a.out}")
+    else:
+        print(json.dumps(ingest(a.dir, a.world, a.clients), indent=1))
+
+
+def main(argv=None):
     """Run the Claude case agent for every household in the exported queue; cache validated case files."""
     import argparse
     import sys
-    from ..data import load_world
+    argv = sys.argv[1:] if argv is None else argv
+    if argv and argv[0] in ("dump-context", "ingest", "prompt"):
+        return subagent_cli(argv)
     ap = argparse.ArgumentParser()
     ap.add_argument("--world", default="data/world")
     ap.add_argument("--clients", default="web/data/clients.json")
     ap.add_argument("--limit", type=int, default=None)
-    a = ap.parse_args()
+    a = ap.parse_args(argv)
     if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")):
         print("No ANTHROPIC_API_KEY set: the dashboard keeps its template drafts.")
         return
-    W = load_world(a.world)
-    data = json.loads(Path(a.clients).read_text(encoding="utf-8"))
-    as_of = data["meta"]["as_of"]
-    day = (pd.Timestamp(as_of) - pd.Timestamp("2024-10-01")).days + 0.999
+    W, data, as_of, day = _queue(a.world, a.clients)
     cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
     todo = [c for c in data["flagged"] if c["household_id"] not in cache][: a.limit]
     totals = {"households": 0, "claims_total": 0, "claims_kept": 0, "input_tokens": 0, "output_tokens": 0}
     for c in todo:
-        quotes = {f["note"]: [f["quote"]] for f in c["flags"]}
-        cd = CaseData(W, c["household_id"], day, c.get("reason_codes", []), quotes, c["score"])
+        cd = _case(W, c, day)
         try:
             cf, rep = run_agent(cd, as_of)
         except Exception as e:  # keep going; that household keeps its template draft
