@@ -280,8 +280,9 @@ def _queue(world, clients):
 
 
 def _case(W, c, day) -> CaseData:
+    """A client is shown at its own as-of (a showcase case outside today's window is shown at its alert)."""
     quotes = {f["note"]: [f["quote"]] for f in c["flags"]}
-    return CaseData(W, c["household_id"], day, c.get("reason_codes", []), quotes, c["score"])
+    return CaseData(W, c["household_id"], c.get("as_of_day", day), c.get("reason_codes", []), quotes, c["score"])
 
 
 # ------------------------------------------------------------------ Claude Code subagents (no API key)
@@ -303,9 +304,10 @@ def dump_context(world, clients, out, per_file=3) -> dict:
     recs = []
     for c in data["flagged"]:
         cd = _case(W, c, day)
-        recs.append({"household_id": cd.h, "as_of": as_of, "tool_outputs": {
+        ca = c.get("as_of", as_of)
+        recs.append({"household_id": cd.h, "as_of": ca, "tool_outputs": {
             "get_household": cd.get_household(), "get_timeline": cd.get_timeline(), "get_notes": cd.get_notes(),
-            "get_reasons": cd.get_reasons(), "compute_deadlines": cd.compute_deadlines(as_of)}})
+            "get_reasons": cd.get_reasons(), "compute_deadlines": cd.compute_deadlines(ca)}})
     files = {}
     for i in range(0, len(recs), per_file):
         fid = f"ctx_{i // per_file:04d}"
@@ -375,7 +377,7 @@ def ingest(out_dir, world, clients) -> dict:
             cd = _case(W, by_h[h], day)
             cf, rep = validate_case_file(out[h], cd.known_ids, cd.tc_involved)
             rep["model"] = SUBAGENT_MODEL
-            cache[h] = {"as_of": as_of, "case_file": {**cf, "generated_by": SUBAGENT_GENERATED_BY}, "report": rep}
+            cache[h] = {"as_of": by_h[h].get("as_of", as_of), "case_file": {**cf, "generated_by": SUBAGENT_GENERATED_BY}, "report": rep}
             totals["households"] += 1
             totals["claims_total"] += rep["claims_total"]
             totals["claims_kept"] += rep["claims_kept"]
@@ -440,11 +442,11 @@ def main(argv=None):
     for c in todo:
         cd = _case(W, c, day)
         try:
-            cf, rep = run_agent(cd, as_of)
+            cf, rep = run_agent(cd, c.get("as_of", as_of))
         except Exception as e:  # keep going; that household keeps its template draft
             print(f"{c['household_id']}: {e}", file=sys.stderr)
             continue
-        cache[c["household_id"]] = {"as_of": as_of, "case_file": {**cf, "generated_by": f"Claude case agent ({rep['model']})"}, "report": rep}
+        cache[c["household_id"]] = {"as_of": c.get("as_of", as_of), "case_file": {**cf, "generated_by": f"Claude case agent ({rep['model']})"}, "report": rep}
         CACHE.write_text(json.dumps(cache, indent=1, default=str), encoding="utf-8")
         for k in ("claims_total", "claims_kept", "input_tokens", "output_tokens"):
             totals[k] += rep.get(k, 0)
