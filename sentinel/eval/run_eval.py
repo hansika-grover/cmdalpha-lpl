@@ -263,6 +263,9 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
                    "ms_per_household_scored": round(1000 * (R.feature_seconds + time.time() - t) / n_hh, 3),
                    "scoring_points": int(len(R.F))}
     res["meta"]["runtime_seconds"] = round(time.time() - t_all)
+    tuning = Path(out).parent / "tuning.json"  # validation-only model selection, kept across re-runs
+    if Path(out).name == "metrics.json" and tuning.exists():
+        res["tuning"] = json.loads(tuning.read_text(encoding="utf-8"))
     Path(out).parent.mkdir(parents=True, exist_ok=True)
     Path(out).write_text(json.dumps(res, indent=1), encoding="utf-8")
     print(f"wrote {out} in {time.time() - t_all:.0f}s")
