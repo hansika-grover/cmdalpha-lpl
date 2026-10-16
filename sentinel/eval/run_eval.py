@@ -45,6 +45,30 @@ def kw_reader(W, L, split, world_dir) -> pd.DataFrame:
     return kw
 
 
+# ---- model config (item 4): eval/tune.py writes config/model.yaml from validation; same params for every model spec
+MODEL_CONFIG = "config/model.yaml"
+
+
+def load_model_config(path=MODEL_CONFIG) -> dict | None:
+    """Tuned model config, or None (then Fusion uses its defaults)."""
+    if not Path(path).exists():
+        return None
+    import yaml
+    with open(path, encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
+def config_params(cfg: dict | None) -> dict | None:
+    return None if cfg is None else {**(cfg.get("params") or {}), "objective": cfg["objective"]}
+# ---- end model config
+
+
+def sentinel_features(R) -> list[str]:
+    """Sentinel's feature list; eval/tune.py tunes on exactly this."""
+    C = R.feats["notes_llm"] or R.feats["notes_kw"]
+    return R.feats["money"] + R.feats["sequence"] + C
+
+
 def llm_reader(W, world_dir):
     """Claude notes reader output from the committed cache; None when it has not been run."""
     try:
@@ -55,9 +79,9 @@ def llm_reader(W, world_dir):
 
 
 class Run:
-    def __init__(self, world_dir="data/world", seed=0, use_llm=True, verbose=True):
+    def __init__(self, world_dir="data/world", seed=0, use_llm=True, verbose=True, params=None):
         t0 = time.time()
-        self.world_dir, self.seed, self.verbose = world_dir, seed, verbose
+        self.world_dir, self.seed, self.verbose, self.params = world_dir, seed, verbose, params
         self.W, self.L = load_world(world_dir), load_labels(world_dir)
         self.split = household_split(self.W["households"], self.L["cases"], seed)
         readers = {"kw": kw_reader(self.W, self.L, self.split, world_dir)}
@@ -84,14 +108,14 @@ class Run:
             print(f"prepared in {time.time() - t0:.0f}s; reader={self.reader}; households={self.n_h}")
 
     # -------------------------------------------------------------- models
-    def train(self, feats, exclude_households=None, seed=0) -> Fusion:
+    def train(self, feats, exclude_households=None, seed=0, params=None) -> Fusion:
         tr = self.mask["train"] & ~self.lab["post"].to_numpy()
         va = self.mask["val"] & ~self.lab["post"].to_numpy()
         if exclude_households is not None:
             keep = ~self.F["household_id"].isin(exclude_households).to_numpy()
             tr, va = tr & keep, va & keep
         y = self.lab["y"].to_numpy()
-        return Fusion(feats, seed=seed).fit(self.F[tr], y[tr], self.F[va], y[va])
+        return Fusion(feats, seed=seed, params=params or self.params).fit(self.F[tr], y[tr], self.F[va], y[va])
 
     def evaluate(self, score, force=None, budgets=BUDGETS, B=1000, exclude_val=None, split="test"):
         """Thresholds per budget from validation; metrics on `split`."""
@@ -136,11 +160,13 @@ def reliability(p, y, edges=(0, .02, .05, .1, .2, .3, .5, .7, .9, 1.0001)):
 
 def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, loto=True, use_llm=True, save_model=True, robust=True):
     t_all = time.time()
-    R = Run(world_dir, seed, use_llm)
+    cfg = load_model_config()
+    R = Run(world_dir, seed, use_llm, params=config_params(cfg))
     res = {"meta": {"world": world_dir, "seed": seed, "households": R.n_h, "notes_reader": R.reader,
                     "llm_note_coverage": round(R.llm_coverage, 4),
                     "budgets_are": "weekly share of households sent to review",
-                    "base_rate_planted": round(len(R.L["cases"]) / len(R.W["households"]), 4)},
+                    "base_rate_planted": round(len(R.L["cases"]) / len(R.W["households"]), 4),
+                    "model_config": cfg or "defaults (no config/model.yaml)"},
            "methods": {}}
     M = res["methods"]
     # ---- today's methods
@@ -156,7 +182,7 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
         "money_only": ("Money movement only (engine A)", R.feats["money"], False),
         "rules_plus_keyword_notes": ("Engines A + B + keyword notes reader", R.feats["money"] + R.feats["sequence"] + R.feats["notes_kw"], True),
         "sentinel": (f"Sentinel: A + B + {'Claude' if R.reader == 'llm' else 'keyword (Claude not run)'} notes reader, fused and calibrated",
-                     R.feats["money"] + R.feats["sequence"] + C, True),
+                     sentinel_features(R), True),
         "ablation_no_notes": ("Sentinel without notes", R.feats["money"] + R.feats["sequence"], True),
         "ablation_no_sequences": ("Sentinel without account-change sequences", R.feats["money"] + C, False),
         "ablation_no_money": ("Sentinel without money movement", R.feats["sequence"] + C, True),
