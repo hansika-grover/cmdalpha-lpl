@@ -73,6 +73,11 @@ We have no real client data, so we generate a realistic fake book of business. A
 Every signal appears only with some probability, so no single signal gives a case away. 15% of contact scams come with a
 coached cover story ("it's for renovations").
 
+**Mule accounts.** Every payee has a receiving account / wallet fingerprint (`payees.dest_ref`). 35% of stranger-scam
+payees pay into a small pool of mule accounts, each reused for ~60 days (2–4 victims each); big legitimate payees (US
+Treasury, title companies, care homes, insurers) share accounts too. These refs come from a separate random stream
+(seed + 9001), so the rest of the world is byte-identical to v1. Rates in `exploitation.mule`; the share is our assumption.
+
 **Legitimate look-alikes (≈1,000 episodes):** home purchases, gifts to family, care-home deposits, moving states (looks
 exactly like an account takeover), remarriage, transfers to another firm, trust funding. These are what make false
 alarms measurable.
@@ -110,6 +115,7 @@ single sorted array plus `searchsorted` answers "how many X in the last 30 days"
 | Engine | File | What it measures |
 |---|---|---|
 | A, money movement | `features/money.py` | amount vs the household's own 12-month median (robust z), ratio to largest prior withdrawal, new/young payee, crypto/individual/new-bank payee, wire, sale of a 5-year+ holding, share of assets, 7/30-day velocity, transfers just under $10k |
+| A, firm-wide network | `features/network.py` | for the receiving account (`payees.dest_ref`): other households that paid it in 30/90 days, how many were first-time payers, days since any client first paid it, and the 90-day count while the account is under 60 days old (mule accounts reused across victims; accounts already paid in the first 90 days of data count as established) |
 | B, account-change sequences | `features/sequences.py` | counts and "days since" for 10 event types; named chains: contact change → bank link → withdrawal; password reset/new device → new payee; trusted contact changed then money out; **payee is the trusted contact / POA / joint owner** |
 | C, notes | `features/notes.py` + a reader | per-category red-flag counts over 30/90 days, distinct categories, days since a flagged note, mitigating context |
 
@@ -224,12 +230,15 @@ Labels are used *only* to choose which caught cases to feature. The queue itself
 ```
 id, household_id, name, age, since, assets, pending, score, tier ("crit"|"warn"|"safe"), tierText, pattern, short,
 threshold {flag, text}, trusted {name, safe}, callout, alert_date, hard_rule, reader,
+network {ref, other_households_30d, other_households_90d, first_time_payers_90d} | null
 events[] {date, day, text, ref, hot, score}          ← replay chart + timeline
 reasons[] {t, pts, src, quotes}                       ← "Why this score"
 notes[] {id, date, kind, text}; flags[] {cat, quote, note}; mitigating[]; injections[]
 drafts {"Call script", "Trusted-contact note", "Escalation memo", "APS referral"}
 case_file {claims[] {text, record_ids}, deadlines, recommended_action, generated_by, faithfulness}
 ```
+`network.json`: `{as_of, note, payees[] {ref, kind, display, first_seen, households[] {household_id, name, first_paid, total, in_queue}}}`,
+receiving accounts paid by 2+ households in the 90 days to the as-of date with at least one queued household (payment data only).
 
 ---
 

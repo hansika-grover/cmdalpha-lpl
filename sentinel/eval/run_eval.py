@@ -16,7 +16,7 @@ import numpy as np
 import pandas as pd
 
 from ..data import load_labels, load_world
-from ..features import memory, money, sequences
+from ..features import memory, money, network, sequences
 from ..features.build import build_features, notes_group
 from ..llm.keyword_reader import keyword_read, tfidf_risk
 from ..models.fusion import Fusion
@@ -66,7 +66,7 @@ def config_params(cfg: dict | None) -> dict | None:
 def sentinel_features(R) -> list[str]:
     """Sentinel's feature list; eval/tune.py tunes on exactly this."""
     C = R.feats["notes_llm"] or R.feats["notes_kw"]
-    return R.feats["money"] + R.feats["sequence"] + C + R.feats.get("memory", [])
+    return R.feats["money"] + R.feats.get("network", []) + R.feats["sequence"] + C + R.feats.get("memory", [])
 
 
 def llm_reader(W, world_dir):
@@ -102,7 +102,7 @@ class Run:
         self.n_h = {s: int((self.split == s).sum()) for s in ("train", "val", "test")}
         self.truth = {s: Truth(self.W, self.L, list(self.split[self.split == s].index)) for s in ("val", "test")}
         self.reader = "llm" if "llm" in readers else "kw"
-        self.feats = {"money": money.FEATURES, "sequence": sequences.FEATURES,
+        self.feats = {"money": money.FEATURES, "network": network.FEATURES, "sequence": sequences.FEATURES,
                       "notes_kw": notes_group("kw"), "notes_llm": notes_group("llm") if "llm" in readers else None}
         # ---- household memory (features/memory.py): engine counts + stage-1 score history (OOF on train)
         tm = time.time()
@@ -188,15 +188,19 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
     M["expert_checklist"] = {"label": "Expert rule checklist (no notes)", "budgets": R.evaluate(s_chk, B=B)}
     # ---- models
     C = R.feats["notes_llm"] or R.feats["notes_kw"]
+    # ---- firm-wide mule-account network (features/network.py): part of engine A for Sentinel; the
+    # per-household "money only" baseline stays v1, and ablation_no_network is Sentinel without it
+    A = R.feats["money"] + R.feats["network"]
     specs = {
         "money_only": ("Money movement only (engine A)", R.feats["money"], False),
-        "rules_plus_keyword_notes": ("Engines A + B + keyword notes reader", R.feats["money"] + R.feats["sequence"] + R.feats["notes_kw"], True),
+        "rules_plus_keyword_notes": ("Engines A + B + keyword notes reader", A + R.feats["sequence"] + R.feats["notes_kw"], True),
         "sentinel": (f"Sentinel: A + B + {'Claude' if R.reader == 'llm' else 'keyword (Claude not run)'} notes reader, fused and calibrated",
                      sentinel_features(R), True),
-        "ablation_no_memory": ("Sentinel without household memory", R.feats["money"] + R.feats["sequence"] + C, True),
-        "ablation_no_notes": ("Sentinel without notes", R.feats["money"] + R.feats["sequence"], True),
-        "ablation_no_sequences": ("Sentinel without account-change sequences", R.feats["money"] + C, False),
+        "ablation_no_memory": ("Sentinel without household memory", A + R.feats["sequence"] + C, True),
+        "ablation_no_notes": ("Sentinel without notes", A + R.feats["sequence"], True),
+        "ablation_no_sequences": ("Sentinel without account-change sequences", A + C, False),
         "ablation_no_money": ("Sentinel without money movement", R.feats["sequence"] + C, True),
+        "ablation_no_network": ("Sentinel without the firm-wide mule-account network", R.feats["money"] + R.feats["sequence"] + C + R.feats["memory"], True),
     }
     if R.reader != "llm":
         specs.pop("rules_plus_keyword_notes")  # identical to sentinel when Claude has not been run

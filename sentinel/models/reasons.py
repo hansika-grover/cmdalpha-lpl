@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 
 from ..features import memory as MEM
+from ..features.network import FEATURES as NETWORK, txn_network
 from ..generate.text import CATEGORIES
 
 FAMILIES = {
@@ -16,6 +17,7 @@ FAMILIES = {
     "crypto": ["payee_crypto", "crypto_sum_30d"],
     "long_held": ["sold_long_held"],
     "structuring": ["struct_cnt_60d"],
+    "network": list(NETWORK),
     "takeover": ["days_since_contact_change", "ato_chain", "ato_chain_young_payee", "access_then_new_payee"]
                 + [f"{p}_{t}" for p in ("cnt30", "since") for t in ("password_reset", "new_device", "email_change",
                                                                        "phone_change", "address_change", "bank_link_added")],
@@ -26,8 +28,8 @@ FAMILIES = {
     "memory": MEM.FEATURES,
 }
 ENGINE = {"size": "Money movement", "payee": "Money movement", "crypto": "Money movement", "long_held": "Money movement",
-          "structuring": "Money movement", "takeover": "Account changes", "role": "Account changes", "notes": "Notes reader",
-          "memory": "Household history"}
+          "structuring": "Money movement", "network": "Money movement (firm-wide)", "takeover": "Account changes", "role": "Account changes",
+          "notes": "Notes reader", "memory": "Household history"}
 
 
 def family(feature: str) -> str:
@@ -56,6 +58,7 @@ class Explainer:
         self.hh = W["households"].set_index("household_id")
         # memory: records that fired, per household (features/memory.py:fired_points)
         self.fired = {h: g.sort_values("day") for h, g in fired.groupby("household_id")} if fired is not None else {}
+        self.net = txn_network(W)
 
     def explain(self, household: str, day: float, ref_id: str, contrib: pd.Series, top=3) -> list[dict]:
         fam = contrib.groupby(contrib.index.map(family)).sum()
@@ -101,6 +104,22 @@ class Explainer:
                         "business": "a new business payee"}.get(r["kind"], "a new payee")
                 return {"text": f"{money(src['amount'].sum())} to {kind} ({r['display_name']}) first used in the last 60 days",
                         "records": list(src["txn_id"].tail(5))}
+        if f == "network" and mm is not None and len(mm):
+            # the current request, else the most-shared receiving account paid in the last 30 days
+            n = self.net.reindex(mm["txn_id"])
+            rid = ref if cur is not None else n.sort_values(["payee_other_hh_30d", "payee_other_hh_90d"], kind="stable").index[-1]
+            r = n.loc[rid]
+            k30, k90, ft = int(r["payee_other_hh_30d"]), int(r["payee_other_hh_90d"]), int(r["payee_first_time_payers_90d"])
+            first = f" ({ft} paying it for the first time)" if ft else ""
+            if k30 or k90:
+                w = (k30, 30) if k30 else (k90, 90)
+                return {"text": f"This account ({r['dest_ref']}) received money from {w[0]} other client{'s' * (w[0] != 1)} "
+                                f"in the last {w[1]} days{first}", "records": [rid]}
+            if r["payee_ref_age_days"] < 30:
+                d = int(r["payee_ref_age_days"])
+                text = (f"No other client has paid this account ({r['dest_ref']}) before" if d == 0 else
+                        f"This account ({r['dest_ref']}) is new to the firm: first paid by any client {d} day{'s' * (d != 1)} ago")
+                return {"text": text, "records": [rid]}
         if f == "long_held" and cur is not None and pd.notna(cur["source_holding_days"]):
             return {"text": f"Funded by selling a position held {cur['source_holding_days'] / 365:.0f} years", "records": [cur["txn_id"]]}
         if f == "structuring" and prior is not None:

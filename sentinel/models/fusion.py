@@ -16,7 +16,7 @@ import pandas as pd
 from pandas.util import hash_pandas_object
 from sklearn.isotonic import IsotonicRegression
 
-DECREASING = ("since_", "days_since", "mitigating")
+DECREASING = ("since_", "days_since", "mitigating", "ref_age_days")
 NEUTRAL = ("is_outflow", "amt_log", "thin_history", "notes_90d", "method_check", "method_acat", "method_journal",
            "out_cnt_7d", "out_cnt_30d")
 

@@ -35,6 +35,28 @@ normal_money:
   lumpy_to_new_individual: 0.15        # private contractor, family member, private car sale
   renovation_burst_rate: 0.30          # home repairs paid in 2-3 instalments to the same payee
   cancelled_rate: 0.01
+  # Destination fingerprints (payees.dest_ref). Every payee gets its own account/wallet except large legitimate
+  # recipients that many clients pay into the same accounts, so "many households paid this" is not a giveaway.
+  # Value = number of distinct receiving accounts behind that name. Crypto deposit addresses and accounts at
+  # another firm (ACAT) are per customer, so unique.
+  shared_destinations:
+    US Treasury: 1
+    County tax office: 40
+    First American Title: 4
+    Stewart Title Escrow: 4
+    Fidelity National Title: 4
+    Sunrise Senior Living: 6
+    Brookdale: 6
+    Oak Grove Memory Care: 2
+    Toyota of Springfield: 2
+    Honda Motors: 3
+    Lexus dealer: 3
+    Auto dealer: 30
+    Medical center: 30
+    Insurance co: 12
+    Charity: 25
+    Club dues: 50
+    Travel agency: 40
 
 account_change_rates_per_year:          # per household per year
   password_reset: 0.30
@@ -67,6 +89,17 @@ exploitation:
   loss_theft_sigma: 0.95
   max_loss_share_of_assets: 0.85
   coached_cover_story_rate: 0.15
+  # Mule accounts: scam rings route several victims' money through the same receiving accounts and wallets.
+  # Sources: FBI IC3 Elder Fraud Report 2023 and 2024 (money mules move elder-fraud proceeds; the same
+  # accounts and crypto addresses recur across complaints); FinCEN Advisory FIN-2022-A002 (elder financial
+  # exploitation red flags: payments to accounts or wallets linked to other victims, money-mule activity);
+  # FBI / FinCEN money-mule guidance (mules receive funds from multiple victims, accounts used for weeks).
+  # The exact rate, pool size and lifetime are OUR ASSUMPTIONS; no source publishes them. Drawn from a separate
+  # random stream (seed + 9001), so every other record is identical to the v1 world.
+  mule:
+    share_of_stranger_scams: 0.35       # stranger-scam payees (not own bank) whose destination is a mule ref
+    pool_size: {account: 3, wallet: 2}  # mule refs active at once, per 20,000 households (scaled, min 1)
+    pool_lifetime_days: 60              # each mule ref is reused for this long, then replaced (~2-4 victims each)
   typologies:
     investment_romance_scam:
       share: 0.30
