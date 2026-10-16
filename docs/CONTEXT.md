@@ -254,3 +254,29 @@ case_file {claims[] {text, record_ids}, deadlines, recommended_action, generated
 * The dashboard says "keyword baseline (Claude not run yet)" until the Claude reader cache exists. That's intended; never
   hide it.
 * All data is synthetic. Never present these numbers as real-world accuracy.
+
+---
+
+## 10. Data contracts (what the UI and the deck can rely on)
+
+**Rule: keys are only ever added.** No existing key in `clients.json`, `specialist.json`, `metrics.json` or `seeds.json`
+is renamed or removed. Every file below is written by a script (`make export`, `make eval`), never by hand. If two
+branches conflict on `web/data/*` or `results/*`, don't hand-merge: re-run `make export readme` on the merged tree.
+
+| File | Used by | Shape |
+|---|---|---|
+| `web/data/model.json` | scenario builder | `version`, `objective`, `features[]`, `monotone[]`, `trees` (LightGBM `dump_model()["tree_info"]`), `isotonic {x[], y[]}`, `review_line {raw, cal}`, `families {feature: family}`, `keyword_reader {categories[], lexicon[], mitigating, injection}` (regex sources, case-insensitive), `presets {showcase_id: {household_id, features {name: value}, baseline {base_med, scale, prior_max, assets}}}`, `event_effects {event: [{feature, op, value}]}` |
+| `web/data/model_check.json` | testing the JS evaluator | `rows[] {features {name: value}, raw, cal}`: the browser's tree walk must reproduce `raw` and `cal` to 1e-6 |
+| `web/data/reader_prompt.json` | live Claude (Netlify function) | `{model, system, schema, categories}`: the exact prompt and JSON schema the Python notes reader uses |
+| `web/data/network.json` | mule-network view | `payees[] {ref, kind, display, households[] {household_id, name, first_paid, total, in_queue}}`: destinations paid by 2+ households, at least one in the queue. Built from payments only, never labels |
+| `clients.json` new keys | case page | `llm_read {by, flags[] {cat, quote, note}, mitigating[], injections[]}`: Claude's reading of this client's notes (offline fallback for "Read live with Claude"; the score still uses `reader`). `network {ref, other_households_30d, other_households_90d, first_time_payers_90d} \| null` |
+| `metrics.json` new keys | Evidence page, deck | `readers` (keyword vs Claude precision/recall by category and advisor style, injection controls, dropped quotes), `tuning` (validation-only model selection), `methods.ablation_no_network`, `methods.ablation_no_memory`, `v1_vs_v2` |
+| `seeds.json` new key | Evidence page, deck | `by_typology {method: {budget: {typology: {mean, sd, per_seed[]}}}}` |
+
+New reason families: `network` (engine label "Money movement (firm-wide)") and `memory` ("Household history").
+
+**Who read the notes.** No API key was available for the finals, so Claude's reading was produced by Claude Code
+subagents running `claude-haiku-5-5` with the exact `SYSTEM` prompt and schema in `sentinel/llm/notes_reader.py`. They
+saw only note text, never labels, and every output went through the same `validate()` as an API response. The cache is
+`sentinel/llm/cache/notes_claude-haiku-5-5-subagent.jsonl`. Case files were drafted the same way by `claude-opus-5-5`
+subagents and checked by `validate_case_file`. In production both run through the Messages/Batches API.
