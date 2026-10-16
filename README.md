@@ -172,8 +172,18 @@ tests/                   determinism, leakage, quote validation, deadlines, inje
   and their output went through the same exact-quote validation as an API response
   (`sentinel/llm/cache/notes_claude-haiku-5-5-subagent.jsonl`). Case files were drafted the same way by Claude Opus
   subagents from pre-computed tool outputs and checked by `validate_case_file`. Claude read a stratified sample of 2,226
-  notes (for the reader comparison) and the notes of queued households (for the demo). It did **not** read all ~170k notes,
-  so Sentinel's headline numbers still use the keyword reader. In production both run through the Messages/Batches API.
+  notes (for the reader comparison) and the notes of queued households (for the demo).
+* **The risk score uses the keyword reader, not Claude.** Every headline number above (cases caught, false alarms, the
+  same-workload comparison) comes from a model whose notes features are produced by the keyword list. Claude is used to
+  read the queued households' notes with cited quotes, to draft the case file, and in the reader comparison, which shows
+  what it would add. The score switches to Claude only when Claude has read at least 95% of the notes the pipeline
+  selects, and without an API key we could not read that many.
+* **Plan once we have an API key:** put `ANTHROPIC_API_KEY` in `.env` and run `make notes` (Claude Haiku over the
+  cost-controlled note selection through the Batches API, cached by note hash). The evaluation then switches to the Claude
+  reader on its own, so we re-run `python -m sentinel.eval.select` (feature blocks chosen again on validation), then
+  `make eval seeds export`. Next comes `make agent` (the case agent through the API's tool-use loop instead of
+  pre-computed tool outputs) and `make readme`. The subagent cache stays in the repo as a record of what was shown at
+  the finals.
 * **Reader sample.** Red-flag notes for the reader comparison come from all households, because neither reader is trained on
   notes; the rest of the sample is from test households. It is stratified, not population-weighted, so its precision is
   not the precision on a live note stream. Neither reader finds the planted category in silent-takeover service notes

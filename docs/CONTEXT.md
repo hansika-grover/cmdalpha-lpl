@@ -290,3 +290,5 @@ subagents running `claude-haiku-5-5` with the exact `SYSTEM` prompt and schema i
 saw only note text, never labels, and every output went through the same `validate()` as an API response. The cache is
 `sentinel/llm/cache/notes_claude-haiku-5-5-subagent.jsonl`. Case files were drafted the same way by `claude-opus-5-5`
 subagents and checked by `validate_case_file`. In production both run through the Messages/Batches API.
+
+**The risk score itself uses the keyword reader.** Claude's reading is shown on case pages (`llm_read`), drafts the case file and is measured in `metrics.json → readers`; it does not feed the score, because the score only switches to Claude when Claude has read ≥95% of the selected notes. With an API key: `make notes`, then `python -m sentinel.eval.select`, then `make eval seeds export agent readme` (see the README limitations).
