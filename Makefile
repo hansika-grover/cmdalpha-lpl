@@ -3,7 +3,7 @@
 PY ?= python
 SEEDS ?= 0 1 2 3 4
 
-.PHONY: all world notes train eval seeds export agent readme test clean
+.PHONY: all world notes train eval seeds seeds-parallel export agent readme test clean
 
 all: world notes eval seeds export agent readme
 
@@ -18,6 +18,10 @@ train eval:       ## train, calibrate, evaluate with bootstrap CIs and leave-one
 
 seeds:            ## repeat on independent worlds (seeds 1-4) for stability
 	$(PY) -m sentinel.eval.seeds --seeds $(SEEDS)
+
+seeds-parallel:   ## same, one process per world, then summarize (seed 0 reuses results/metrics.json)
+	for s in 1 2 3 4; do $(PY) -m sentinel.eval.seeds --one $$s > results/_seed_$$s.log 2>&1 & done; wait
+	$(PY) -m sentinel.eval.seeds --summarize --seeds $(SEEDS)
 
 export:           ## JSON for the dashboard
 	$(PY) -m sentinel.export --world data/world

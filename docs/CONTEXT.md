@@ -168,7 +168,8 @@ scale so the line is visible.
 * **Leave one typology out**: retrain without one scam type, test on it ("does it catch a scam it never saw?").
 * **Robustness** (`robustness.py`): all notes removed, half removed, account-event noise doubled; recall by advisor
   writing style; recall on coached cover stories.
-* **Seeds** (`seeds.py`): repeat on 4 more independently generated worlds for stability (`results/seeds.json`).
+* **Seeds** (`seeds.py`): repeat on 4 more independently generated worlds for stability (`results/seeds.json`, incl.
+  per-typology recall under `by_typology`). `make seeds-parallel` runs one process per world, then `--summarize`.
 
 ---
 
