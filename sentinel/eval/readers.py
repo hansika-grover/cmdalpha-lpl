@@ -1,6 +1,6 @@
 """Who read the notes: keyword reader vs Claude, scored against the planted note truth.
 
-Claude reads a stratified sample of test-split notes. There is no API key here, so the reading is done
+Claude reads a stratified sample of notes (positives from all households, the rest from the test split). There is no API key here, so the reading is done
 by Claude Code subagents given only the reader's system prompt, schema and a chunk of notes; their raw
 JSON goes through the same validation as an API response (`notes_reader.ingest`). Production would use
 the Batches API. Sentinel's headline model stays on the keyword reader.
@@ -84,7 +84,10 @@ def sample(world="data/world", n=1500, out="data/world/_readers", seed=0, model=
     W, L = load_world(world), load_labels(world)
     split = household_split(W["households"], L["cases"], 0)  # the split run_eval uses
     N = label_notes(W, L)
-    pool = N[N["household_id"].map(split).eq("test").to_numpy()].reset_index(drop=True)
+    # neither reader is fit on any split (Claude is zero-shot, the keyword list is fixed), so planted red-flag and
+    # cover-story notes come from every household: test-split cases alone give ~1 government note
+    test = N["household_id"].map(split).eq("test").to_numpy()
+    pool = N[test | N["stratum"].isin(["red_flag", "cover_story"]).to_numpy()].reset_index(drop=True)
     rng = np.random.default_rng(seed)
     must = pool.index[(pool["stratum"] == "red_flag") & pool["typology"].isin(OVERSAMPLE)]
     rest = pool.drop(must)
@@ -246,8 +249,10 @@ def score_frame(S: pd.DataFrame, cache: dict, model: str, B=1000, seed=0) -> dic
                      "n_sampled": int((S["role"] != "control").sum()), "n_controls_read": int(len(ctl)),
                      "keyword_reader": "keyword_read lexicon flags only (no TF-IDF)",
                      "truth": "labels/note_truth.csv planted categories", "bootstrap": B,
-                     "sample": "test-split households, stratified by advisor style x stratum; government and grandparent "
-                               "case notes over-sampled; every injected test note added. Not population-weighted.",
+                     "sample": "red-flag and cover-story notes from all households (neither reader is trained on notes); "
+                               "look-alike, benign and routine notes from test-split households; stratified by advisor style x "
+                               "stratum; government and grandparent case notes all taken; every injected test note added "
+                               "with a stripped control. Not population-weighted.",
                      "composition": composition(S[S["read"]])},
             "keyword": res_k, "claude": res_c, "claude_minus_keyword": diff, "by_stratum": strata,
             "injection_controls": inj,
