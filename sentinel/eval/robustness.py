@@ -4,6 +4,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
+from ..features import memory
 from ..features.build import build_features
 from . import alerts as AL
 from .baselines import hard_rule
@@ -36,6 +37,7 @@ def run(R, model, readers_fn, taus: dict, B=200):
     for kind in ("no_notes", "half_notes", "noisy_account_events"):
         W2 = perturb(R.W, kind, R.seed)
         F2 = build_features(W2, readers_fn(W2), verbose=False)
+        F2 = memory.attach(F2, R.stage1, R.reader)  # memory: full-train stage-1 (only test rows are scored)
         F2["split"] = R.split.loc[F2["household_id"]].to_numpy()
         t = (F2["split"] == "test").to_numpy()
         hh = R.W["hh_index"].loc[F2["household_id"]].to_numpy()

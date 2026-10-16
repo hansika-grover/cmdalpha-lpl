@@ -18,6 +18,7 @@ from ..data import START, load_labels, load_world
 from ..eval import alerts as AL
 from ..eval.baselines import hard_rule
 from ..eval.run_eval import kw_reader
+from ..features import memory
 from ..features.build import build_features
 from ..generate.text import CATEGORIES
 from ..llm import case_agent as CA
@@ -63,13 +64,21 @@ class Exporter:
             readers["llm"] = llm
         self.reader_out = llm if llm is not None else self.kw
         self.F = build_features(self.W, readers)
+        # ---- household memory: full-train stage-1 model scores every row (only test rows are shown)
+        self.stage1 = run.get("stage1")
+        fired = None
+        if self.stage1 is not None:
+            self.F = memory.attach(self.F, self.stage1, run.get("memory_prefix", self.reader))
+            fired = memory.fired_points(self.F, self.reader_out, self.W["notes"])
+        # ---- end household memory
         self.raw = self.model.raw(self.F)
         self.cal = self.model.calibrated(self.raw)
         self.force = hard_rule(self.F)
         self.tau = self.taus["0.25%"]
         self.review_line = float(self.model.calibrated(np.array([self.tau]))[0])
         self.quotes = self._quotes(llm is not None)
-        self.explainer = Explainer(self.W, self.reader_out, {k: [q["quote"] for q in v["flags"]] for k, v in self.quotes.items()})
+        self.explainer = Explainer(self.W, self.reader_out, {k: [q["quote"] for q in v["flags"]] for k, v in self.quotes.items()},
+                                   fired=fired)
         t = (self.F["household_id"].map(self.split) == "test").to_numpy()
         self.test = t
         hh = self.W["hh_index"].loc[self.F["household_id"]].to_numpy()

@@ -16,7 +16,7 @@ import numpy as np
 import pandas as pd
 
 from ..data import load_labels, load_world
-from ..features import money, sequences
+from ..features import memory, money, sequences
 from ..features.build import build_features, notes_group
 from ..llm.keyword_reader import keyword_read, tfidf_risk
 from ..models.fusion import Fusion
@@ -66,7 +66,7 @@ def config_params(cfg: dict | None) -> dict | None:
 def sentinel_features(R) -> list[str]:
     """Sentinel's feature list; eval/tune.py tunes on exactly this."""
     C = R.feats["notes_llm"] or R.feats["notes_kw"]
-    return R.feats["money"] + R.feats["sequence"] + C
+    return R.feats["money"] + R.feats["sequence"] + C + R.feats.get("memory", [])
 
 
 def llm_reader(W, world_dir):
@@ -104,6 +104,16 @@ class Run:
         self.reader = "llm" if "llm" in readers else "kw"
         self.feats = {"money": money.FEATURES, "sequence": sequences.FEATURES,
                       "notes_kw": notes_group("kw"), "notes_llm": notes_group("llm") if "llm" in readers else None}
+        # ---- household memory (features/memory.py): engine counts + stage-1 score history (OOF on train)
+        tm = time.time()
+        s1 = self.feats["money"] + self.feats["sequence"] + (self.feats["notes_llm"] or self.feats["notes_kw"])
+        s1_scores, self.stage1 = memory.stage1_scores(self.F, self.lab["y"], self.lab["post"], self.F["split"], s1, seed)
+        self.F = memory.attach(self.F, self.stage1, self.reader, s1_scores)
+        self.feats["memory"] = memory.FEATURES
+        self.memory_seconds = time.time() - tm
+        if verbose:
+            print(f"memory features in {self.memory_seconds:.0f}s")
+        # ---- end household memory
         if verbose:
             print(f"prepared in {time.time() - t0:.0f}s; reader={self.reader}; households={self.n_h}")
 
@@ -183,6 +193,7 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
         "rules_plus_keyword_notes": ("Engines A + B + keyword notes reader", R.feats["money"] + R.feats["sequence"] + R.feats["notes_kw"], True),
         "sentinel": (f"Sentinel: A + B + {'Claude' if R.reader == 'llm' else 'keyword (Claude not run)'} notes reader, fused and calibrated",
                      sentinel_features(R), True),
+        "ablation_no_memory": ("Sentinel without household memory", R.feats["money"] + R.feats["sequence"] + C, True),
         "ablation_no_notes": ("Sentinel without notes", R.feats["money"] + R.feats["sequence"], True),
         "ablation_no_sequences": ("Sentinel without account-change sequences", R.feats["money"] + C, False),
         "ablation_no_money": ("Sentinel without money movement", R.feats["sequence"] + C, True),
@@ -215,7 +226,8 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
         run_dir.mkdir(exist_ok=True)
         with open(run_dir / "sentinel.pkl", "wb") as f:
             pickle.dump({"model": sm, "reader": R.reader, "split": R.split,
-                         "taus": {b: M["sentinel"]["budgets"][b]["threshold"] for b in BUDGETS}}, f)
+                         "taus": {b: M["sentinel"]["budgets"][b]["threshold"] for b in BUDGETS},
+                         "stage1": R.stage1, "memory_prefix": R.reader}, f)  # memory: stage-1 model for export
     t = R.mask["test"] & ~R.lab["post"].to_numpy()
     p = sm.calibrated(scores["sentinel"][0][t])
     res["calibration"] = reliability(p, R.lab["y"].to_numpy()[t])
@@ -224,7 +236,8 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
     # ---- leave one typology out
     if loto:
         res["leave_one_typology_out"] = {}
-        feats = specs["sentinel"][1]
+        # memory: stage-1 scores saw every typology, so LOTO keeps only the model-free memory features
+        feats = [f for f in specs["sentinel"][1] if f not in memory.SCORE_FEATURES]
         thr = threshold_scores(R.F, 100000)
         for typ in TYPOLOGIES:
             held = set(R.L["cases"].loc[R.L["cases"]["typology"] == typ, "household_id"])
@@ -259,6 +272,7 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
     t = time.time()
     sm.raw(R.F)
     res["cost"] = {"feature_seconds_all_households": round(R.feature_seconds, 1),
+                   "memory_seconds_incl_stage1_training": round(R.memory_seconds, 1),
                    "score_seconds_all_points": round(time.time() - t, 2),
                    "ms_per_household_scored": round(1000 * (R.feature_seconds + time.time() - t) / n_hh, 3),
                    "scoring_points": int(len(R.F))}

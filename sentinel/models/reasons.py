@@ -5,6 +5,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
+from ..features import memory as MEM
 from ..generate.text import CATEGORIES
 
 FAMILIES = {
@@ -22,9 +23,11 @@ FAMILIES = {
              "role_payee_sum_90d", "role_payee_cnt_90d"]
             + [f"{p}_{t}" for p in ("cnt30", "since") for t in ("poa_added", "joint_owner_added",
                                                                "trusted_contact_changed", "trusted_contact_removed")],
+    "memory": MEM.FEATURES,
 }
 ENGINE = {"size": "Money movement", "payee": "Money movement", "crypto": "Money movement", "long_held": "Money movement",
-          "structuring": "Money movement", "takeover": "Account changes", "role": "Account changes", "notes": "Notes reader"}
+          "structuring": "Money movement", "takeover": "Account changes", "role": "Account changes", "notes": "Notes reader",
+          "memory": "Household history"}
 
 
 def family(feature: str) -> str:
@@ -41,7 +44,7 @@ def money(x):
 
 
 class Explainer:
-    def __init__(self, W, reader_out: pd.DataFrame | None, quotes: dict | None = None):
+    def __init__(self, W, reader_out: pd.DataFrame | None, quotes: dict | None = None, fired: pd.DataFrame | None = None):
         self.W = W
         mm = W["money_movements"].merge(W["payees"][["payee_id", "kind", "display_name", "person_id", "created_ts"]], on="payee_id", how="left")
         self.mm = {h: g.sort_values("day") for h, g in mm.groupby("household_id")}
@@ -51,6 +54,8 @@ class Explainer:
         self.quotes = quotes or {}
         self.persons = W["persons"].set_index("person_id")
         self.hh = W["households"].set_index("household_id")
+        # memory: records that fired, per household (features/memory.py:fired_points)
+        self.fired = {h: g.sort_values("day") for h, g in fired.groupby("household_id")} if fired is not None else {}
 
     def explain(self, household: str, day: float, ref_id: str, contrib: pd.Series, top=3) -> list[dict]:
         fam = contrib.groupby(contrib.index.map(family)).sum()
@@ -136,6 +141,18 @@ class Explainer:
             if bits:
                 t = "; ".join(bits[-2:])
                 return {"text": t[0].upper() + t[1:], "records": recs[-8:]}
+        if f == "memory":
+            g = self._window(self.fired, h, day, 30)
+            if g is None or not len(g):
+                return None
+            recs, e = list(dict.fromkeys(g["ref_id"])), g["engine"].nunique()
+            if len(recs) == 1:
+                src = " and ".join({"money": "money movement", "sequence": "account changes", "notes": "notes"}[x]
+                                   for x in dict.fromkeys(g["engine"]))
+                return {"text": f"A warning sign in the last 30 days ({src}) keeps risk elevated",
+                        "records": recs}
+            return {"text": f"Risk has been building: {len(recs)} warning signs across {e} engine{'s' * (e > 1)} in the last 30 days",
+                    "records": recs[-8:]}
         if f in ("notes", "mitigating") and self.reader is not None:
             nt = self._window(self.notes, h, day, 90)
             if nt is None or not len(nt):
