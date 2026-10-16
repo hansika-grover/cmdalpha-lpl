@@ -6,6 +6,7 @@ import pandas as pd
 import pytest
 
 import sentinel.features.build as build_mod
+import sentinel.features.memory as memory_mod
 import sentinel.features.money as money_mod
 import sentinel.features.notes as notes_mod
 import sentinel.features.sequences as seq_mod
@@ -50,3 +51,53 @@ def test_features_ignore_the_future(world):
     num = [c for c in a.columns if c not in ("kind", "ref_id", "household_id")]
     diff = np.abs(a[num].to_numpy(float) - b[num].to_numpy(float))
     assert np.nanmax(diff) < 1e-6, a[num].columns[np.nanargmax(diff.max(axis=0))]
+    # household memory: engine counts too (the score history is tested on a tiny frame below)
+    ma = memory_mod.engine_features(F, "kw")[(F["day"] <= cut).to_numpy()].to_numpy(float)
+    mb = memory_mod.engine_features(F2, "kw").to_numpy(float)
+    assert ma.shape == mb.shape and np.abs(ma - mb).max() < 1e-6
+    assert ma[:, 0].max() > 0  # something fired
+
+
+def test_score_history_uses_past_and_current_points_only():
+    day = np.array([0.0, 5.0, 10.0, 20.0, 0.0, 1.0])
+    F = pd.DataFrame({"household_id": ["B"] * 4 + ["A"] * 2,  # groups not in sorted order
+                      "ts": pd.Timestamp("2024-10-01") + pd.to_timedelta(day, unit="D")})
+    s = np.array([0.1, 0.9, 0.2, 0.3, 0.5, 0.4])
+    H = memory_mod.score_history(F, s)
+    assert H["peak_score_14d"].tolist() == [0.1, 0.9, 0.9, 0.3, 0.5, 0.5]  # day 20: day 5 is outside 14 days
+    assert np.allclose(H["mean_score_30d"], [0.1, 0.5, 0.4, 0.375, 0.5, 0.45])
+    s2 = s.copy()
+    s2[3] = 99.0  # changing a later point never changes an earlier one
+    assert (memory_mod.score_history(F, s2).drop(index=3) == H.drop(index=3)).all().all()
+
+
+def test_oof_stage1_never_scores_a_household_it_trained_on(monkeypatch):
+    class Rec:
+        made = []
+
+        def __init__(self, feats, seed=0):
+            self.i = len(Rec.made)
+            Rec.made.append(self)
+
+        def fit(self, X, y, Xv, yv):
+            self.seen = set(X["household_id"])
+            return self
+
+        def raw(self, X):
+            return np.full(len(X), float(self.i))
+
+    monkeypatch.setattr(memory_mod, "Fusion", Rec)
+    rng = np.random.default_rng(0)
+    hh = np.repeat([f"H{i}" for i in range(60)], 5)
+    n = np.arange(len(hh))
+    split = np.where(n < 200, "train", np.where(n < 250, "val", "test"))
+    F = pd.DataFrame({"household_id": hh, "x": rng.random(len(hh))})
+    y = (rng.random(len(hh)) < 0.1).astype(int)
+    s, full = memory_mod.stage1_scores(F, y, np.zeros(len(hh), bool), split, ["x"])
+    assert len(Rec.made) == 1 + memory_mod.FOLDS and full is Rec.made[0]
+    for i in range(len(hh)):
+        m = Rec.made[int(s[i])]
+        if split[i] == "train":
+            assert m is not full and hh[i] not in m.seen
+        else:
+            assert m is full
