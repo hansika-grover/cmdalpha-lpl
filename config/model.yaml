@@ -1,9 +1,12 @@
 objective: binary
-params:
-  max_depth: 3
-  num_leaves: 8
-  n_estimators: 600
-  learning_rate: 0.05
-  class_weight: balanced
-selected_by: validation recall at 0.25% weekly budget
-chosen_at: '2026-10-16T22:13:44'
+params: {}
+features:
+- money
+- network
+- sequence
+- notes
+- memory
+feature_set: v1+network+memory
+settings: default
+selected_by: mean validation recall at 0.25% weekly budget over 5 worlds
+chosen_at: '2026-10-16T22:31:29'

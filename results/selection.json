@@ -1,0 +1,164 @@
+{
+ "selected_by": "mean validation recall at 0.25% weekly budget over 5 worlds",
+ "split_used": "val only (test untouched)",
+ "worlds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "note": "Selection step added on 16 Oct after a test run; candidates and rule fixed before it ran.",
+ "candidates": [
+  {
+   "features": "v1",
+   "settings": "default",
+   "recall_0.25%": 0.8897,
+   "recall_0.25%_per_world": [
+    0.9114,
+    0.8861,
+    0.8375,
+    0.9125,
+    0.9012
+   ],
+   "false_alarms_0.25%": 0.2583,
+   "before_money_0.25%": 0.7797,
+   "recall_1%": 0.9274
+  },
+  {
+   "features": "v1",
+   "settings": "tuned",
+   "recall_0.25%": 0.8748,
+   "recall_0.25%_per_world": [
+    0.9114,
+    0.8734,
+    0.8375,
+    0.875,
+    0.8765
+   ],
+   "false_alarms_0.25%": 0.2692,
+   "before_money_0.25%": 0.7372,
+   "recall_1%": 0.9048
+  },
+  {
+   "features": "v1+memory",
+   "settings": "default",
+   "recall_0.25%": 0.8948,
+   "recall_0.25%_per_world": [
+    0.9114,
+    0.9114,
+    0.85,
+    0.9,
+    0.9012
+   ],
+   "false_alarms_0.25%": 0.2599,
+   "before_money_0.25%": 0.772,
+   "recall_1%": 0.9199
+  },
+  {
+   "features": "v1+memory",
+   "settings": "tuned",
+   "recall_0.25%": 0.8723,
+   "recall_0.25%_per_world": [
+    0.9114,
+    0.8734,
+    0.8375,
+    0.8875,
+    0.8519
+   ],
+   "false_alarms_0.25%": 0.2475,
+   "before_money_0.25%": 0.7022,
+   "recall_1%": 0.9074
+  },
+  {
+   "features": "v1+network",
+   "settings": "default",
+   "recall_0.25%": 0.8972,
+   "recall_0.25%_per_world": [
+    0.9367,
+    0.8734,
+    0.8375,
+    0.9125,
+    0.9259
+   ],
+   "false_alarms_0.25%": 0.2764,
+   "before_money_0.25%": 0.7897,
+   "recall_1%": 0.9224
+  },
+  {
+   "features": "v1+network",
+   "settings": "tuned",
+   "recall_0.25%": 0.8773,
+   "recall_0.25%_per_world": [
+    0.9241,
+    0.8608,
+    0.8375,
+    0.875,
+    0.8889
+   ],
+   "false_alarms_0.25%": 0.2785,
+   "before_money_0.25%": 0.7472,
+   "recall_1%": 0.9099
+  },
+  {
+   "features": "v1+network+memory",
+   "settings": "default",
+   "recall_0.25%": 0.8998,
+   "recall_0.25%_per_world": [
+    0.9241,
+    0.9114,
+    0.8375,
+    0.9125,
+    0.9136
+   ],
+   "false_alarms_0.25%": 0.2765,
+   "before_money_0.25%": 0.777,
+   "recall_1%": 0.9249
+  },
+  {
+   "features": "v1+network+memory",
+   "settings": "tuned",
+   "recall_0.25%": 0.8824,
+   "recall_0.25%_per_world": [
+    0.9367,
+    0.8861,
+    0.8375,
+    0.8875,
+    0.8642
+   ],
+   "false_alarms_0.25%": 0.2526,
+   "before_money_0.25%": 0.7222,
+   "recall_1%": 0.9048
+  }
+ ],
+ "chosen": {
+  "objective": "binary",
+  "params": {},
+  "features": [
+   "money",
+   "network",
+   "sequence",
+   "notes",
+   "memory"
+  ],
+  "feature_set": "v1+network+memory",
+  "settings": "default",
+  "selected_by": "mean validation recall at 0.25% weekly budget over 5 worlds",
+  "chosen_at": "2026-10-16T22:31:29",
+  "val": {
+   "features": "v1+network+memory",
+   "settings": "default",
+   "recall_0.25%": 0.8998,
+   "recall_0.25%_per_world": [
+    0.9241,
+    0.9114,
+    0.8375,
+    0.9125,
+    0.9136
+   ],
+   "false_alarms_0.25%": 0.2765,
+   "before_money_0.25%": 0.777,
+   "recall_1%": 0.9249
+  }
+ }
+}

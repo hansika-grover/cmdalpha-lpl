@@ -10,7 +10,8 @@ LABEL = {"threshold_100k": "$100k threshold rule", "threshold_50k": "$50k thresh
          "rules_plus_keyword_notes": "Engines A + B + keyword notes", "sentinel": "**Sentinel**",
          "ablation_no_notes": "Sentinel without notes", "ablation_no_sequences": "Sentinel without sequences",
          "ablation_no_money": "Sentinel without money movement", "ablation_no_network": "Sentinel without the mule-account network",
-         "ablation_no_memory": "Sentinel without household memory"}
+         "ablation_no_memory": "Sentinel without household memory", "with_network": "Sentinel plus the mule-account network (not chosen)",
+         "with_memory": "Sentinel plus household memory (not chosen)"}
 TYP = {"investment_romance_scam": "Investment, crypto or romance", "tech_support_impersonation": "Tech support / bank impersonation",
        "government_impersonation": "Government impersonation", "silent_account_takeover": "Silent account takeover",
        "grandparent_voice_clone": "Grandparent / voice clone", "trusted_person_theft": "Trusted-person theft"}
@@ -78,7 +79,7 @@ def render(r: dict, seeds: dict | None) -> str:
                 cell = lambda d: "–" if not d or d.get("mean") is None else f"{d['mean'] * 100:.0f}% ± {d['sd'] * 100:.0f}"
                 out.append(f"| {name} | {cell(bt['sentinel']['0.25%'].get(t))} | {cell(bt['sentinel']['1%'].get(t))} | "
                            f"{cell(bt.get('threshold_100k', {}).get('natural', {}).get(t))} |")
-    out += readers_section(r.get("readers")) + v1_section(r) + tuning_section(r)
+    out += readers_section(r.get("readers")) + v1_section(r) + selection_section(r) + tuning_section(r)
     for f, label in (("results/notes_reader_usage.json", "Notes reader"), ("results/case_agent_usage.json", "Case agent")):
         if Path(f).exists():
             u = json.loads(Path(f).read_text())
@@ -127,6 +128,20 @@ def v1_section(r: dict) -> list[str]:
            "only change to the world is the destination-account column, drawn from a separate random stream, so every v1 record "
            "is identical and the baselines were re-run on it):", "", "| | v1 | Now |", "|---|---|---|"]
     out += [f"| {name} | {p(f(v1), 1)} | {p(f(r), 1)} |" for name, f in rows]
+    return out
+
+
+def selection_section(r: dict) -> list[str]:
+    sel = r.get("selection")
+    if not sel:
+        return []
+    ch = sel["chosen"]
+    out = ["", f"**Which model is Sentinel** was decided on validation only ({sel['selected_by']}; test untouched). "
+           "This step was added after a test run showed the finals additions did not beat v1; the candidates and the rule were "
+           f"fixed before it ran. Chosen: **{ch['feature_set']}**, {ch['settings']} settings.", "",
+           "| Feature blocks | Settings | Validation recall at 0.25% | Validation look-alike false alarms |", "|---|---|---|---|"]
+    out += [f"| {c['features']} | {c['settings']} | {p(c['recall_0.25%'], 1)} | {p(c['false_alarms_0.25%'], 1)} |"
+            for c in sorted(sel["candidates"], key=lambda c: -c["recall_0.25%"])]
     return out
 
 

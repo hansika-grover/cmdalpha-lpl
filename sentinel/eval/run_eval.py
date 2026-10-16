@@ -63,10 +63,23 @@ def config_params(cfg: dict | None) -> dict | None:
 # ---- end model config
 
 
-def sentinel_features(R) -> list[str]:
-    """Sentinel's feature list; eval/tune.py tunes on exactly this."""
+BLOCKS = ["money", "network", "sequence", "notes", "memory"]  # feature blocks Sentinel can be built from
+
+
+def block_features(R, blocks) -> list[str]:
     C = R.feats["notes_llm"] or R.feats["notes_kw"]
-    return R.feats["money"] + R.feats.get("network", []) + R.feats["sequence"] + C + R.feats.get("memory", [])
+    return [f for b in BLOCKS if b in blocks for f in (C if b == "notes" else R.feats.get(b, []))]
+
+
+def sentinel_blocks(cfg: dict | None = None) -> list[str]:
+    """The blocks chosen on validation by eval/select.py (config/model.yaml `features`), else all of them."""
+    cfg = load_model_config() if cfg is None else cfg
+    return list((cfg or {}).get("features") or BLOCKS)
+
+
+def sentinel_features(R, blocks=None) -> list[str]:
+    """Sentinel's feature list; eval/tune.py and eval/select.py use exactly this."""
+    return block_features(R, sentinel_blocks() if blocks is None else blocks)
 
 
 def llm_reader(W, world_dir):
@@ -188,20 +201,23 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
     M["expert_checklist"] = {"label": "Expert rule checklist (no notes)", "budgets": R.evaluate(s_chk, B=B)}
     # ---- models
     C = R.feats["notes_llm"] or R.feats["notes_kw"]
-    # ---- firm-wide mule-account network (features/network.py): part of engine A for Sentinel; the
-    # per-household "money only" baseline stays v1, and ablation_no_network is Sentinel without it
-    A = R.feats["money"] + R.feats["network"]
+    # ---- Sentinel = the feature blocks chosen on validation (eval/select.py); every chosen block gets an
+    # ablation without it, and every block not chosen is reported as an addition, so nothing tried is hidden
+    chosen = sentinel_blocks()
+    NAMES = {"money": ("money", "money movement"), "network": ("network", "the firm-wide mule-account network"),
+             "sequence": ("sequences", "account-change sequences"), "notes": ("notes", "notes"), "memory": ("memory", "household memory")}
     specs = {
         "money_only": ("Money movement only (engine A)", R.feats["money"], False),
-        "rules_plus_keyword_notes": ("Engines A + B + keyword notes reader", A + R.feats["sequence"] + R.feats["notes_kw"], True),
-        "sentinel": (f"Sentinel: A + B + {'Claude' if R.reader == 'llm' else 'keyword (Claude not run)'} notes reader, fused and calibrated",
-                     sentinel_features(R), True),
-        "ablation_no_memory": ("Sentinel without household memory", A + R.feats["sequence"] + C, True),
-        "ablation_no_notes": ("Sentinel without notes", A + R.feats["sequence"], True),
-        "ablation_no_sequences": ("Sentinel without account-change sequences", A + C, False),
-        "ablation_no_money": ("Sentinel without money movement", R.feats["sequence"] + C, True),
-        "ablation_no_network": ("Sentinel without the firm-wide mule-account network", R.feats["money"] + R.feats["sequence"] + C + R.feats["memory"], True),
+        "rules_plus_keyword_notes": ("Engines A + B + keyword notes reader",
+                                     block_features(R, [b for b in chosen if b != "notes"]) + R.feats["notes_kw"], True),
+        "sentinel": (f"Sentinel: {' + '.join(NAMES[b][1] for b in chosen)} ({'Claude' if R.reader == 'llm' else 'keyword (Claude not run)'} "
+                     "notes reader), fused and calibrated", sentinel_features(R), True),
     }
+    for b in BLOCKS:
+        if b in chosen:  # the hard rule reads the role chain features, so it is off without sequences (as in v1)
+            specs[f"ablation_no_{NAMES[b][0]}"] = (f"Sentinel without {NAMES[b][1]}", block_features(R, [x for x in chosen if x != b]), b != "sequence")
+        else:
+            specs[f"with_{NAMES[b][0]}"] = (f"Sentinel plus {NAMES[b][1]} (tried, not chosen on validation)", block_features(R, chosen + [b]), True)
     if R.reader != "llm":
         specs.pop("rules_plus_keyword_notes")  # identical to sentinel when Claude has not been run
     models, scores = {}, {}
@@ -281,9 +297,9 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
                    "ms_per_household_scored": round(1000 * (R.feature_seconds + time.time() - t) / n_hh, 3),
                    "scoring_points": int(len(R.F))}
     res["meta"]["runtime_seconds"] = round(time.time() - t_all)
-    tuning = Path(out).parent / "tuning.json"  # validation-only model selection, kept across re-runs
-    if Path(out).name == "metrics.json" and tuning.exists():
-        res["tuning"] = json.loads(tuning.read_text(encoding="utf-8"))
+    for key, f in (("tuning", "tuning.json"), ("selection", "selection.json")):  # validation-only choices, kept across re-runs
+        if Path(out).name == "metrics.json" and (Path(out).parent / f).exists():
+            res[key] = json.loads((Path(out).parent / f).read_text(encoding="utf-8"))
     Path(out).parent.mkdir(parents=True, exist_ok=True)
     Path(out).write_text(json.dumps(res, indent=1), encoding="utf-8")
     print(f"wrote {out} in {time.time() - t_all:.0f}s")
