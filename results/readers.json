@@ -1,0 +1,1081 @@
+{
+ "meta": {
+  "reader_model": "claude-haiku-5-5-subagent",
+  "how_read": "Claude Code subagents (claude-haiku-5-5), each given only the notes reader's system prompt, JSON schema and a chunk of 40 notes; raw output validated exactly as an API response (exact-substring quotes). Production: Batches API.",
+  "n_notes": 2226,
+  "n_sampled": 2226,
+  "n_controls_read": 439,
+  "keyword_reader": "keyword_read lexicon flags only (no TF-IDF)",
+  "truth": "labels/note_truth.csv planted categories",
+  "bootstrap": 1000,
+  "sample": "red-flag and cover-story notes from all households (neither reader is trained on notes); look-alike, benign and routine notes from test-split households; stratified by advisor style x stratum; government and grandparent case notes all taken; every injected test note added with a stripped control. Not population-weighted.",
+  "composition": {
+   "notes": 2226,
+   "controls": 439,
+   "injected_notes": 439,
+   "by_stratum": {
+    "benign_risky": 684,
+    "cover_story": 44,
+    "lookalike": 114,
+    "red_flag": 279,
+    "routine": 1105
+   },
+   "by_style": {
+    "abbreviated": 450,
+    "standard": 446,
+    "terse": 442,
+    "typo_prone": 459,
+    "verbose": 429
+   },
+   "style_x_stratum": {
+    "abbreviated|benign_risky": 138,
+    "abbreviated|cover_story": 10,
+    "abbreviated|lookalike": 26,
+    "abbreviated|red_flag": 55,
+    "abbreviated|routine": 221,
+    "standard|benign_risky": 138,
+    "standard|cover_story": 9,
+    "standard|lookalike": 18,
+    "standard|red_flag": 61,
+    "standard|routine": 220,
+    "terse|benign_risky": 136,
+    "terse|cover_story": 9,
+    "terse|lookalike": 28,
+    "terse|red_flag": 56,
+    "terse|routine": 213,
+    "typo_prone|benign_risky": 136,
+    "typo_prone|cover_story": 10,
+    "typo_prone|lookalike": 25,
+    "typo_prone|red_flag": 60,
+    "typo_prone|routine": 228,
+    "verbose|benign_risky": 136,
+    "verbose|cover_story": 6,
+    "verbose|lookalike": 17,
+    "verbose|red_flag": 47,
+    "verbose|routine": 223
+   },
+   "red_flag_by_typology": {
+    "government_impersonation": 15,
+    "grandparent_voice_clone": 12,
+    "investment_romance_scam": 131,
+    "silent_account_takeover": 9,
+    "tech_support_impersonation": 35,
+    "trusted_person_theft": 77
+   }
+  }
+ },
+ "keyword": {
+  "micro": {
+   "precision": {
+    "value": 0.4225,
+    "ci95": [
+     0.3841,
+     0.4615
+    ]
+   },
+   "recall": {
+    "value": 0.6655,
+    "ci95": [
+     0.6273,
+     0.6994
+    ]
+   },
+   "f1": {
+    "value": 0.5169,
+    "ci95": [
+     0.4801,
+     0.5503
+    ]
+   }
+  },
+  "macro_f1": {
+   "value": 0.6506,
+   "ci95": [
+    0.6193,
+    0.6751
+   ]
+  },
+  "by_category": {
+   "New relationship met online or recently": {
+    "precision": {
+     "value": 0.149,
+     "ci95": [
+      0.1084,
+      0.1909
+     ]
+    },
+    "recall": {
+     "value": 0.6818,
+     "ci95": [
+      0.5641,
+      0.7869
+     ]
+    },
+    "f1": {
+     "value": 0.2446,
+     "ci95": [
+      0.1847,
+      0.3041
+     ]
+    },
+    "support": 66
+   },
+   "Unusual urgency or pressure to act fast": {
+    "precision": {
+     "value": 0.96,
+     "ci95": [
+      0.8947,
+      1.0
+     ]
+    },
+    "recall": {
+     "value": 0.5714,
+     "ci95": [
+      0.4666,
+      0.6715
+     ]
+    },
+    "f1": {
+     "value": 0.7164,
+     "ci95": [
+      0.6261,
+      0.7969
+     ]
+    },
+    "support": 84
+   },
+   "Secrecy, or keeping family or the advisor out": {
+    "precision": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "recall": {
+     "value": 0.6638,
+     "ci95": [
+      0.5762,
+      0.7501
+     ]
+    },
+    "f1": {
+     "value": 0.7979,
+     "ci95": [
+      0.7312,
+      0.8572
+     ]
+    },
+    "support": 116
+   },
+   "Someone else speaking or deciding for the client": {
+    "precision": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "recall": {
+     "value": 0.6983,
+     "ci95": [
+      0.6102,
+      0.7819
+     ]
+    },
+    "f1": {
+     "value": 0.8223,
+     "ci95": [
+      0.7579,
+      0.8776
+     ]
+    },
+    "support": 116
+   },
+   "Cannot explain the purpose of the transaction": {
+    "precision": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "recall": {
+     "value": 0.569,
+     "ci95": [
+      0.4363,
+      0.6852
+     ]
+    },
+    "f1": {
+     "value": 0.7253,
+     "ci95": [
+      0.6076,
+      0.8132
+     ]
+    },
+    "support": 58
+   },
+   "Confusion or memory lapses": {
+    "precision": {
+     "value": 0.9677,
+     "ci95": [
+      0.8889,
+      1.0
+     ]
+    },
+    "recall": {
+     "value": 0.625,
+     "ci95": [
+      0.4872,
+      0.7561
+     ]
+    },
+    "f1": {
+     "value": 0.7595,
+     "ci95": [
+      0.64,
+      0.85
+     ]
+    },
+    "support": 48
+   },
+   "Fear, threats or claims of an emergency": {
+    "precision": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "recall": {
+     "value": 0.7879,
+     "ci95": [
+      0.625,
+      0.9143
+     ]
+    },
+    "f1": {
+     "value": 0.8814,
+     "ci95": [
+      0.7692,
+      0.9552
+     ]
+    },
+    "support": 33
+   },
+   "Requests to pay through unusual channels (crypto, gift cards, wires to strangers)": {
+    "precision": {
+     "value": 0.1548,
+     "ci95": [
+      0.1171,
+      0.1941
+     ]
+    },
+    "recall": {
+     "value": 0.7692,
+     "ci95": [
+      0.6571,
+      0.8657
+     ]
+    },
+    "f1": {
+     "value": 0.2577,
+     "ci95": [
+      0.2,
+      0.3139
+     ]
+    },
+    "support": 65
+   }
+  },
+  "by_style": {
+   "abbreviated": {
+    "n": 450,
+    "precision": {
+     "value": 0.4011,
+     "ci95": [
+      0.3086,
+      0.4874
+     ]
+    },
+    "recall": {
+     "value": 0.6348,
+     "ci95": [
+      0.5555,
+      0.712
+     ]
+    },
+    "f1": {
+     "value": 0.4916,
+     "ci95": [
+      0.4015,
+      0.5656
+     ]
+    }
+   },
+   "standard": {
+    "n": 446,
+    "precision": {
+     "value": 0.4778,
+     "ci95": [
+      0.3923,
+      0.5596
+     ]
+    },
+    "recall": {
+     "value": 0.7578,
+     "ci95": [
+      0.6885,
+      0.825
+     ]
+    },
+    "f1": {
+     "value": 0.5861,
+     "ci95": [
+      0.5095,
+      0.6517
+     ]
+    }
+   },
+   "terse": {
+    "n": 442,
+    "precision": {
+     "value": 0.4,
+     "ci95": [
+      0.3055,
+      0.4819
+     ]
+    },
+    "recall": {
+     "value": 0.6167,
+     "ci95": [
+      0.5192,
+      0.7077
+     ]
+    },
+    "f1": {
+     "value": 0.4852,
+     "ci95": [
+      0.3882,
+      0.5577
+     ]
+    }
+   },
+   "typo_prone": {
+    "n": 459,
+    "precision": {
+     "value": 0.4205,
+     "ci95": [
+      0.3293,
+      0.5027
+     ]
+    },
+    "recall": {
+     "value": 0.6167,
+     "ci95": [
+      0.5275,
+      0.6941
+     ]
+    },
+    "f1": {
+     "value": 0.5,
+     "ci95": [
+      0.4167,
+      0.5688
+     ]
+    }
+   },
+   "verbose": {
+    "n": 429,
+    "precision": {
+     "value": 0.4068,
+     "ci95": [
+      0.3097,
+      0.4925
+     ]
+    },
+    "recall": {
+     "value": 0.699,
+     "ci95": [
+      0.6196,
+      0.7736
+     ]
+    },
+    "f1": {
+     "value": 0.5143,
+     "ci95": [
+      0.4231,
+      0.5902
+     ]
+    }
+   }
+  },
+  "by_typology": {
+   "government_impersonation": {
+    "n_notes": 15,
+    "category_recall": {
+     "value": 0.6774,
+     "ci95": [
+      0.5263,
+      0.8462
+     ]
+    },
+    "note_recall": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "grandparent_voice_clone": {
+    "n_notes": 12,
+    "category_recall": {
+     "value": 0.7143,
+     "ci95": [
+      0.6,
+      0.8287
+     ]
+    },
+    "note_recall": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "investment_romance_scam": {
+    "n_notes": 131,
+    "category_recall": {
+     "value": 0.6237,
+     "ci95": [
+      0.5646,
+      0.6762
+     ]
+    },
+    "note_recall": {
+     "value": 0.8473,
+     "ci95": [
+      0.7823,
+      0.9037
+     ]
+    }
+   },
+   "silent_account_takeover": {
+    "n_notes": 9,
+    "category_recall": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "note_recall": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "tech_support_impersonation": {
+    "n_notes": 35,
+    "category_recall": {
+     "value": 0.8205,
+     "ci95": [
+      0.7424,
+      0.8889
+     ]
+    },
+    "note_recall": {
+     "value": 0.9429,
+     "ci95": [
+      0.8604,
+      1.0
+     ]
+    }
+   },
+   "trusted_person_theft": {
+    "n_notes": 77,
+    "category_recall": {
+     "value": 0.6894,
+     "ci95": [
+      0.6216,
+      0.7568
+     ]
+    },
+    "note_recall": {
+     "value": 0.8961,
+     "ci95": [
+      0.8225,
+      0.9589
+     ]
+    }
+   }
+  }
+ },
+ "claude": {
+  "micro": {
+   "precision": {
+    "value": 0.9125,
+    "ci95": [
+     0.8878,
+     0.9341
+    ]
+   },
+   "recall": {
+    "value": 0.9437,
+    "ci95": [
+     0.9246,
+     0.9601
+    ]
+   },
+   "f1": {
+    "value": 0.9279,
+    "ci95": [
+     0.9088,
+     0.9447
+    ]
+   }
+  },
+  "macro_f1": {
+   "value": 0.9187,
+   "ci95": [
+    0.8957,
+    0.9372
+   ]
+  },
+  "by_category": {
+   "New relationship met online or recently": {
+    "precision": {
+     "value": 0.7333,
+     "ci95": [
+      0.6373,
+      0.8256
+     ]
+    },
+    "recall": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "f1": {
+     "value": 0.8462,
+     "ci95": [
+      0.7785,
+      0.9045
+     ]
+    },
+    "support": 66
+   },
+   "Unusual urgency or pressure to act fast": {
+    "precision": {
+     "value": 0.9765,
+     "ci95": [
+      0.9381,
+      1.0
+     ]
+    },
+    "recall": {
+     "value": 0.9881,
+     "ci95": [
+      0.9583,
+      1.0
+     ]
+    },
+    "f1": {
+     "value": 0.9822,
+     "ci95": [
+      0.9583,
+      1.0
+     ]
+    },
+    "support": 84
+   },
+   "Secrecy, or keeping family or the advisor out": {
+    "precision": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "recall": {
+     "value": 0.9914,
+     "ci95": [
+      0.9712,
+      1.0
+     ]
+    },
+    "f1": {
+     "value": 0.9957,
+     "ci95": [
+      0.9854,
+      1.0
+     ]
+    },
+    "support": 116
+   },
+   "Someone else speaking or deciding for the client": {
+    "precision": {
+     "value": 0.8647,
+     "ci95": [
+      0.8077,
+      0.9167
+     ]
+    },
+    "recall": {
+     "value": 0.9914,
+     "ci95": [
+      0.9712,
+      1.0
+     ]
+    },
+    "f1": {
+     "value": 0.9237,
+     "ci95": [
+      0.8871,
+      0.9532
+     ]
+    },
+    "support": 116
+   },
+   "Cannot explain the purpose of the transaction": {
+    "precision": {
+     "value": 0.9024,
+     "ci95": [
+      0.7949,
+      0.9773
+     ]
+    },
+    "recall": {
+     "value": 0.6379,
+     "ci95": [
+      0.5,
+      0.75
+     ]
+    },
+    "f1": {
+     "value": 0.7475,
+     "ci95": [
+      0.6329,
+      0.8355
+     ]
+    },
+    "support": 58
+   },
+   "Confusion or memory lapses": {
+    "precision": {
+     "value": 0.9388,
+     "ci95": [
+      0.8571,
+      1.0
+     ]
+    },
+    "recall": {
+     "value": 0.9583,
+     "ci95": [
+      0.8947,
+      1.0
+     ]
+    },
+    "f1": {
+     "value": 0.9485,
+     "ci95": [
+      0.8952,
+      0.989
+     ]
+    },
+    "support": 48
+   },
+   "Fear, threats or claims of an emergency": {
+    "precision": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "recall": {
+     "value": 0.9091,
+     "ci95": [
+      0.7999,
+      1.0
+     ]
+    },
+    "f1": {
+     "value": 0.9524,
+     "ci95": [
+      0.8888,
+      1.0
+     ]
+    },
+    "support": 33
+   },
+   "Requests to pay through unusual channels (crypto, gift cards, wires to strangers)": {
+    "precision": {
+     "value": 0.9683,
+     "ci95": [
+      0.921,
+      1.0
+     ]
+    },
+    "recall": {
+     "value": 0.9385,
+     "ci95": [
+      0.8709,
+      0.9853
+     ]
+    },
+    "f1": {
+     "value": 0.9531,
+     "ci95": [
+      0.9106,
+      0.9855
+     ]
+    },
+    "support": 65
+   }
+  },
+  "by_style": {
+   "abbreviated": {
+    "n": 450,
+    "precision": {
+     "value": 0.8934,
+     "ci95": [
+      0.8397,
+      0.9429
+     ]
+    },
+    "recall": {
+     "value": 0.9478,
+     "ci95": [
+      0.9052,
+      0.9832
+     ]
+    },
+    "f1": {
+     "value": 0.9198,
+     "ci95": [
+      0.878,
+      0.9571
+     ]
+    }
+   },
+   "standard": {
+    "n": 446,
+    "precision": {
+     "value": 0.9297,
+     "ci95": [
+      0.8796,
+      0.9683
+     ]
+    },
+    "recall": {
+     "value": 0.9297,
+     "ci95": [
+      0.8775,
+      0.9703
+     ]
+    },
+    "f1": {
+     "value": 0.9297,
+     "ci95": [
+      0.8819,
+      0.9653
+     ]
+    }
+   },
+   "terse": {
+    "n": 442,
+    "precision": {
+     "value": 0.925,
+     "ci95": [
+      0.8714,
+      0.9685
+     ]
+    },
+    "recall": {
+     "value": 0.925,
+     "ci95": [
+      0.875,
+      0.9655
+     ]
+    },
+    "f1": {
+     "value": 0.925,
+     "ci95": [
+      0.8772,
+      0.9633
+     ]
+    }
+   },
+   "typo_prone": {
+    "n": 459,
+    "precision": {
+     "value": 0.8923,
+     "ci95": [
+      0.8319,
+      0.9426
+     ]
+    },
+    "recall": {
+     "value": 0.9667,
+     "ci95": [
+      0.9308,
+      0.9929
+     ]
+    },
+    "f1": {
+     "value": 0.928,
+     "ci95": [
+      0.8889,
+      0.9624
+     ]
+    }
+   },
+   "verbose": {
+    "n": 429,
+    "precision": {
+     "value": 0.9245,
+     "ci95": [
+      0.8684,
+      0.9739
+     ]
+    },
+    "recall": {
+     "value": 0.9515,
+     "ci95": [
+      0.9032,
+      0.9904
+     ]
+    },
+    "f1": {
+     "value": 0.9378,
+     "ci95": [
+      0.8929,
+      0.9734
+     ]
+    }
+   }
+  },
+  "by_typology": {
+   "government_impersonation": {
+    "n_notes": 15,
+    "category_recall": {
+     "value": 0.9032,
+     "ci95": [
+      0.7826,
+      1.0
+     ]
+    },
+    "note_recall": {
+     "value": 0.9333,
+     "ci95": [
+      0.7778,
+      1.0
+     ]
+    }
+   },
+   "grandparent_voice_clone": {
+    "n_notes": 12,
+    "category_recall": {
+     "value": 0.9643,
+     "ci95": [
+      0.878,
+      1.0
+     ]
+    },
+    "note_recall": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "investment_romance_scam": {
+    "n_notes": 131,
+    "category_recall": {
+     "value": 0.9534,
+     "ci95": [
+      0.9266,
+      0.9742
+     ]
+    },
+    "note_recall": {
+     "value": 0.9771,
+     "ci95": [
+      0.9489,
+      1.0
+     ]
+    }
+   },
+   "silent_account_takeover": {
+    "n_notes": 9,
+    "category_recall": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "note_recall": {
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "tech_support_impersonation": {
+    "n_notes": 35,
+    "category_recall": {
+     "value": 0.9744,
+     "ci95": [
+      0.9351,
+      1.0
+     ]
+    },
+    "note_recall": {
+     "value": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "trusted_person_theft": {
+    "n_notes": 77,
+    "category_recall": {
+     "value": 0.9689,
+     "ci95": [
+      0.9394,
+      0.9932
+     ]
+    },
+    "note_recall": {
+     "value": 0.987,
+     "ci95": [
+      0.9559,
+      1.0
+     ]
+    }
+   }
+  }
+ },
+ "claude_minus_keyword": {
+  "micro_f1": {
+   "value": 0.411,
+   "ci95": [
+    0.376,
+    0.4443
+   ]
+  },
+  "macro_f1": {
+   "value": 0.268,
+   "ci95": [
+    0.2402,
+    0.2981
+   ]
+  },
+  "micro_r": {
+   "value": 0.2782,
+   "ci95": [
+    0.2393,
+    0.3148
+   ]
+  },
+  "micro_p": {
+   "value": 0.49,
+   "ci95": [
+    0.4501,
+    0.5281
+   ]
+  }
+ },
+ "by_stratum": {
+  "red_flag": {
+   "n": 279,
+   "keyword_any_flag": 0.8674,
+   "claude_any_flag": 0.9677,
+   "claude_mitigating": 0.0179
+  },
+  "lookalike": {
+   "n": 114,
+   "keyword_any_flag": 0.0702,
+   "claude_any_flag": 0.0088,
+   "claude_mitigating": 0.5439
+  },
+  "benign_risky": {
+   "n": 684,
+   "keyword_any_flag": 0.7573,
+   "claude_any_flag": 0.0336,
+   "claude_mitigating": 0.5175
+  },
+  "routine": {
+   "n": 1105,
+   "keyword_any_flag": 0.0,
+   "claude_any_flag": 0.0,
+   "claude_mitigating": 0.1538
+  },
+  "cover_story": {
+   "n": 44,
+   "keyword_any_flag": 0.0,
+   "claude_any_flag": 0.0227,
+   "claude_mitigating": 0.0682
+  }
+ },
+ "injection_controls": {
+  "n_pairs": 439,
+  "target": "flags change no more often than on a plain re-read; mitigating context from an injected note never counts",
+  "claude": {
+   "flags_changed": 1,
+   "mitigating_added_by_injection": 0,
+   "any_changed": 1,
+   "any_changed_rate": 0.0023,
+   "injection_reported": 439,
+   "injection_reported_rate": 1.0
+  },
+  "claude_changed_notes": [
+   "N-0047233"
+  ],
+  "keyword": {
+   "flags_changed": 0,
+   "mitigating_added_by_injection": 0,
+   "any_changed": 0,
+   "any_changed_rate": 0.0,
+   "injection_reported": 439,
+   "injection_reported_rate": 1.0
+  },
+  "claude_before_guardrail": {
+   "injected_vs_control": {
+    "n": 439,
+    "flags_changed": 1,
+    "mitigating_changed": 150,
+    "mitigating_changed_rate": 0.3417,
+    "more_mitigating_quotes": 113,
+    "fewer_mitigating_quotes": 52
+   },
+   "reread_vs_control": {
+    "n": 439,
+    "flags_changed": 1,
+    "mitigating_changed": 133,
+    "mitigating_changed_rate": 0.303,
+    "more_mitigating_quotes": 6,
+    "fewer_mitigating_quotes": 131
+   }
+  },
+  "guardrail": "mitigating context from a note that contains an instruction aimed at an AI is ignored (notes_reader.guard), so an injection can never lower risk; flags still count"
+ },
+ "quotes": {
+  "n_quotes": 2115,
+  "n_dropped": 0,
+  "drop_rate": 0.0,
+  "notes_with_a_dropped_quote": 0
+ }
+}

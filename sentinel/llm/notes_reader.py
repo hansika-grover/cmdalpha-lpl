@@ -95,6 +95,16 @@ def cache_path(model=MODEL) -> Path:
     return CACHE_DIR / f"notes_{model}.jsonl"
 
 
+def guard(out: dict) -> dict:
+    """Guardrail in code: a note that contains an instruction aimed at an AI can never lower risk, so the
+    reader's mitigating context from that note is ignored (its flags still count). On 439 injected notes
+    read beside their stripped copies, injected copies got extra mitigating context 113 times and less 52
+    times, while a plain re-read of the same notes went the other way (6 vs 131)."""
+    if out.get("injection") and out.get("mitigating"):
+        return {**out, "mitigating": 0, "mitigating_raw": out["mitigating"], "mitigating_ignored": True}
+    return out
+
+
 def load_cache(model=MODEL) -> dict[str, dict]:
     p = cache_path(model)
     out = {}
@@ -102,7 +112,7 @@ def load_cache(model=MODEL) -> dict[str, dict]:
         for line in p.read_text(encoding="utf-8").splitlines():
             if line.strip():
                 r = json.loads(line)
-                out[r["h"]] = r
+                out[r["h"]] = {**r, "out": guard(r["out"])}
     return out
 
 

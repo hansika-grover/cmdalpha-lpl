@@ -1,0 +1,9 @@
+objective: binary
+params:
+  max_depth: 3
+  num_leaves: 8
+  n_estimators: 600
+  learning_rate: 0.05
+  class_weight: balanced
+selected_by: validation recall at 0.25% weekly budget
+chosen_at: '2026-10-16T22:13:44'
