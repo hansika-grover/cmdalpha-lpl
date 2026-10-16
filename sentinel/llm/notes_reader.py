@@ -11,6 +11,14 @@
 
     python -m sentinel.llm.notes_reader --world data/world            # read uncached selected notes (Batches API)
     python -m sentinel.llm.notes_reader --world data/world --sync --limit 200
+
+Without an API key, Claude Code subagents can do the reading. Each gets only SYSTEM, SCHEMA and one
+chunk file, and writes raw JSON; `ingest` puts it through the same validation as an API response:
+
+    python -m sentinel.llm.notes_reader chunks --world data/world --out DIR     # or --ids FILE / --notes CSV
+    python -m sentinel.llm.notes_reader prompt DIR/in/chunk_0000.json DIR/out/chunk_0000.json
+    python -m sentinel.llm.notes_reader ingest DIR --model claude-haiku-5-5-subagent
+Each subagent reads DIR/in/chunk_NNNN.json and writes DIR/out/chunk_NNNN.json; rerun `ingest` after retries.
 """
 from __future__ import annotations
 
@@ -18,6 +26,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -27,11 +36,14 @@ import pandas as pd
 
 from ..features.common import OFF, keyed
 from ..features.notes import FLAG_COLS
-from ..generate.text import CATEGORIES
+from ..generate.text import CATEGORIES, INJECTIONS
 
 CACHE_DIR = Path(__file__).parent / "cache"
 MODEL = os.environ.get("SENTINEL_NOTES_MODEL", "claude-haiku-5-5")
 NOTES_PER_REQUEST = 20
+SUBAGENT_MODEL = "claude-haiku-5-5-subagent"  # cache name for notes read by Claude Code subagents
+SUBAGENT_BY = "Claude (claude-haiku-5-5 via Claude Code subagents)"
+CHUNK_SIZE = 40
 RISKY_EVENTS = ["email_change", "phone_change", "bank_link_added", "poa_added", "joint_owner_added",
                 "trusted_contact_changed", "trusted_contact_removed"]
 
@@ -122,6 +134,22 @@ def select_notes(W, kw: pd.DataFrame | None = None) -> pd.DataFrame:
     avail = np.where(now, notes["day"].to_numpy(), nxt - np.floor(nk / OFF) * OFF)
     return pd.DataFrame({"note_id": notes["note_id"].to_numpy()[sel], "avail_day": avail[sel],
                          "text": notes["text"].to_numpy()[sel]})
+
+
+def strip_injection(text: str) -> str | None:
+    """The note with its injection removed (the control read), or None if it carries none."""
+    for inj in INJECTIONS:
+        if inj in text:
+            return text.replace(" " + inj, "")
+    return None
+
+
+def selected_texts(W) -> tuple[pd.DataFrame, list[str], list[str]]:
+    """Selected notes, plus each injected one with the injection removed (the injection test)."""
+    sel = select_notes(W)
+    texts = list(sel["text"])
+    stripped = [t.replace(" " + inj, "") for t in texts for inj in INJECTIONS if inj in t]
+    return sel, texts + stripped, stripped
 
 
 # ------------------------------------------------------------------ validation
@@ -243,22 +271,147 @@ def read(texts: list[str], model=MODEL, sync=False, workers=8) -> dict:
     return usage
 
 
-def main():
+# ------------------------------------------------------------------ Claude Code subagents (no API key)
+def write_chunks(texts: list[str], out_dir, model=SUBAGENT_MODEL, size=CHUNK_SIZE, skip_cached=True) -> dict:
+    """Uncached texts -> DIR/in/chunk_NNNN.json (JSON arrays of {note_id: n<k>, text}, ids as `_request` uses)
+    and DIR/manifest.json (chunk id -> text hashes in order), so outputs map back by id and position."""
+    d = Path(out_dir)
+    cache = load_cache(model) if skip_cached else {}
+    todo = list(dict.fromkeys(t for t in texts if text_hash(t) not in cache))
+    (d / "in").mkdir(parents=True, exist_ok=True)
+    (d / "out").mkdir(exist_ok=True)
+    chunks = {}
+    for i in range(0, len(todo), size):
+        cid, part = f"chunk_{i // size:04d}", todo[i:i + size]
+        items = [{"note_id": f"n{k}", "text": t} for k, t in enumerate(part)]
+        (d / "in" / f"{cid}.json").write_text(json.dumps(items, ensure_ascii=False, indent=0), encoding="utf-8")
+        chunks[cid] = [text_hash(t) for t in part]
+    man = {"model": model, "size": size, "n_notes": len(todo), "chunks": chunks}
+    (d / "manifest.json").write_text(json.dumps(man, indent=1), encoding="utf-8")
+    return man
+
+
+def subagent_prompt(chunk_path, out_path) -> str:
+    """Everything a subagent is given: the reader's system prompt, the schema, and where to read and write."""
+    return f"""{SYSTEM}
+
+Output JSON schema:
+{json.dumps(SCHEMA, ensure_ascii=False)}
+
+Task: read the file {chunk_path}. It is a JSON array of notes, each {{"note_id": ..., "text": ...}}.
+Read every note yourself (do not write or run code to classify them) and apply the rules above.
+Write to {out_path} exactly one JSON object of the form {{"results": [...]}} that matches the schema:
+one result per note_id, in the order given. Write nothing else to that file (no prose, no markdown
+fences) and do not change any other file."""
+
+
+def _unfence(s: str) -> str:
+    s = s.strip()
+    m = re.match(r"^```[a-zA-Z]*\s*\n(.*?)\n?```$", s, re.S)
+    return m.group(1) if m else s
+
+
+def _ok(r) -> bool:
+    return isinstance(r, dict) and isinstance(r.get("note_id"), str) and all(
+        isinstance(r.get(k), list) and all(isinstance(x, dict) for x in r[k]) for k in ("flags", "mitigating", "injections"))
+
+
+def ingest(out_dir, model=SUBAGENT_MODEL) -> dict:
+    """Subagent outputs (DIR/out/<chunk>.json) -> the same `_store`/`validate` path as an API response -> cache."""
+    d = Path(out_dir)
+    man = json.loads((d / "manifest.json").read_text(encoding="utf-8"))
+    cache = load_cache(model)
+    rep = {"chunks": len(man["chunks"]), "stored": 0, "already_cached": 0, "n_quotes": 0, "n_dropped": 0,
+           "missing_output": [], "parse_failures": {}, "incomplete": {}}
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    with open(cache_path(model), "a", encoding="utf-8") as fh:
+        for cid, hashes in man["chunks"].items():
+            batch = [(x["note_id"], x["text"]) for x in json.loads((d / "in" / f"{cid}.json").read_text(encoding="utf-8"))]
+            if [text_hash(t) for _, t in batch] != hashes:
+                raise ValueError(f"{cid}: chunk file does not match the manifest")
+            todo = [(i, t) for i, t in batch if text_hash(t) not in cache]
+            rep["already_cached"] += len(batch) - len(todo)
+            if not todo:
+                continue
+            p = d / "out" / f"{cid}.json"
+            if not p.exists():
+                rep["missing_output"].append(cid)
+                continue
+            try:
+                res = json.loads(_unfence(p.read_text(encoding="utf-8-sig")))["results"]
+                if not isinstance(res, list):
+                    raise TypeError("results is not a list")
+            except Exception as e:  # malformed output: report it; the chunk is retried
+                rep["parse_failures"][cid] = f"{type(e).__name__}: {e}"[:200]
+                continue
+            good = {r["note_id"]: r for r in res if _ok(r)}
+            ok = [(i, t) for i, t in todo if i in good]
+            if len(ok) < len(todo):
+                rep["incomplete"][cid] = [i for i, _ in todo if i not in good]
+            if ok:
+                _store(ok, json.dumps({"results": [good[i] for i, _ in ok]}), model, None, fh)
+            for i, t in ok:
+                v = validate(t, good[i])
+                rep["n_quotes"] += v["n_quotes"]
+                rep["n_dropped"] += v["n_dropped"]
+                cache[text_hash(t)] = True
+            rep["stored"] += len(ok)
+    rep["retry"] = sorted(set(rep["missing_output"]) | set(rep["parse_failures"]) | set(rep["incomplete"]))
+    return rep
+
+
+def subagent_cli(argv):
+    ap = argparse.ArgumentParser(prog="python -m sentinel.llm.notes_reader")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    c = sub.add_parser("chunks", help="write chunk files for Claude Code subagents")
+    c.add_argument("--out", required=True)
+    c.add_argument("--world", default="data/world")
+    c.add_argument("--ids", help="file with one note_id per line (default: selected notes + injection controls)")
+    c.add_argument("--notes", help="CSV with a `text` column")
+    c.add_argument("--model", default=SUBAGENT_MODEL)
+    c.add_argument("--size", type=int, default=CHUNK_SIZE)
+    g = sub.add_parser("ingest", help="validate subagent outputs and add them to the cache")
+    g.add_argument("dir")
+    g.add_argument("--model", default=SUBAGENT_MODEL)
+    p = sub.add_parser("prompt", help="print the full text a subagent is given")
+    p.add_argument("chunk")
+    p.add_argument("out")
+    a = ap.parse_args(argv)
+    if a.cmd == "prompt":
+        print(subagent_prompt(a.chunk, a.out))
+    elif a.cmd == "ingest":
+        print(json.dumps(ingest(a.dir, a.model), indent=1))
+    else:
+        if a.notes:
+            texts = list(pd.read_csv(a.notes, keep_default_na=False)["text"].astype(str))
+        else:
+            from ..data import load_world
+            W = load_world(a.world)
+            if a.ids:
+                ids = [x.strip() for x in Path(a.ids).read_text(encoding="utf-8").splitlines() if x.strip()]
+                texts = list(W["notes"].set_index("note_id").loc[ids, "text"])
+            else:
+                texts = selected_texts(W)[1]
+        man = write_chunks(texts, a.out, a.model, a.size)
+        print(f"{man['n_notes']:,} uncached notes in {len(man['chunks'])} chunks of up to {a.size} -> {a.out}")
+
+
+def main(argv=None):
+    argv = sys.argv[1:] if argv is None else argv
+    if argv and argv[0] in ("chunks", "ingest", "prompt"):
+        return subagent_cli(argv)
     ap = argparse.ArgumentParser()
     ap.add_argument("--world", default="data/world")
+    ap.add_argument("--model", default=MODEL)
     ap.add_argument("--sync", action="store_true", help="call the Messages API directly instead of the Batches API")
     ap.add_argument("--limit", type=int, default=None, help="read at most N notes (for a trial run)")
     ap.add_argument("--with-stripped-injections", action="store_true", default=True)
-    a = ap.parse_args()
+    a = ap.parse_args(argv)
     from ..data import load_world
-    from ..generate.text import INJECTIONS
     W = load_world(a.world)
-    sel = select_notes(W)
-    texts = list(sel["text"])
     # injection test: also read each injected note with the injection removed
-    stripped = [t.replace(" " + inj, "") for t in texts for inj in INJECTIONS if inj in t]
-    texts += stripped
-    cache = load_cache()
+    sel, texts, stripped = selected_texts(W)
+    cache = load_cache(a.model)
     todo = [t for t in texts if text_hash(t) not in cache]
     print(f"selected {len(sel):,} of {len(W['notes']):,} notes ({len(sel) / len(W['notes']):.1%}); "
           f"+{len(stripped):,} injection controls; {len(todo):,} not yet cached")
@@ -270,11 +423,11 @@ def main():
         print("No ANTHROPIC_API_KEY set: skipping Claude reading. The pipeline will use the committed cache "
               "if it covers the selected notes, otherwise the keyword reader (reported as such).")
         return
-    u = read(todo, sync=a.sync)
+    u = read(todo, model=a.model, sync=a.sync)
     print(json.dumps(u))
     log = Path("results") / "notes_reader_usage.json"
     log.parent.mkdir(exist_ok=True)
-    log.write_text(json.dumps({**u, "model": MODEL}, indent=1))
+    log.write_text(json.dumps({**u, "model": a.model}, indent=1))
 
 
 if __name__ == "__main__":

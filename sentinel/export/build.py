@@ -77,6 +77,8 @@ class Exporter:
         self.tau = self.taus["0.25%"]
         self.review_line = float(self.model.calibrated(np.array([self.tau]))[0])
         self.quotes = self._quotes(llm is not None)
+        # Claude's read of queued/showcase notes (Claude Code subagents); shown beside the reader Sentinel scored with
+        self.llm_read = NR.cached_quotes(self.W, NR.SUBAGENT_MODEL)
         self.explainer = Explainer(self.W, self.reader_out, {k: [q["quote"] for q in v["flags"]] for k, v in self.quotes.items()},
                                    fired=fired)
         t = (self.F["household_id"].map(self.split) == "test").to_numpy()
@@ -236,6 +238,10 @@ class Exporter:
             flags += [{"cat": f["cat"], "quote": f["quote"], "note": n.note_id} for f in q.get("flags", []) if f["quote"] in n.text]
             mit += [{"quote": x, "note": n.note_id} for x in q.get("mitigating", []) if x in n.text]
             inj += [{"quote": x, "note": n.note_id} for x in q.get("injections", []) if x in n.text]
+        read = [(n.note_id, self.llm_read[n.note_id]) for n in hn.itertuples() if n.note_id in self.llm_read]
+        llm_read = {"by": NR.SUBAGENT_BY, "flags": [{"cat": f["cat"], "quote": f["quote"], "note": i} for i, q in read for f in q["flags"]],
+                    "mitigating": [{"quote": x, "note": i} for i, q in read for x in q["mitigating"]],
+                    "injections": [{"quote": x, "note": i} for i, q in read for x in q["injections"]]} if read else None
         # case file (Claude agent cache if present, else template)
         cd = CA.CaseData(self.W, h, as_of, reasons, {k: [q["quote"] for q in v["flags"]] for k, v in self.quotes.items()}, score)
         pattern = self.pattern(reasons, flags)
@@ -294,7 +300,8 @@ class Exporter:
              "case_file": {"claims": cf["claims"], "deadlines": cf["deadlines"], "recommended_action": cf["recommended_action"],
                            "generated_by": cf.get("generated_by", "Claude case agent"), "faithfulness": rep.get("faithfulness"),
                            "claims_rejected": len(rep.get("claims_rejected", []))},
-             "reason_codes": reasons, "alert_date": date_of(ar["day"])[0], "hard_rule": hard, "reader": "Claude" if self.reader == "llm" else "keyword baseline"}
+             "reason_codes": reasons, "alert_date": date_of(ar["day"])[0], "hard_rule": hard, "reader": "Claude" if self.reader == "llm" else "keyword baseline",
+             "llm_read": llm_read}
         return c
 
     def pattern(self, reasons, flags):
@@ -338,6 +345,7 @@ class Exporter:
                 "budget": "0.25% of households per week", "households_scored": int(self.test.sum() and (self.split == "test").sum()),
                 "reader": "Claude" if self.reader == "llm" else "keyword baseline (Claude not run yet)",
                 "agent": "Claude case agent" if CA.CACHE.exists() else "template drafts (Claude case agent not run yet)",
+                "llm_read_by": NR.SUBAGENT_BY if self.llm_read else None,
                 "showcase_note": "Margaret, Harold and Ruth are real pipeline outputs on synthetic test households, renamed to match the pitch."}
         specialist = []
         for c in flagged:
