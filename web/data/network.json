@@ -1,0 +1,2087 @@
+{
+ "as_of": "2025-08-02",
+ "note": "Receiving accounts (dest_ref) paid by 2+ households in the 90 days to the as-of date, at least one in the queue; newest account first. Payment data only. Large legitimate payees (tax, title, insurers) appear too.",
+ "payees": [
+  {
+   "ref": "ACCT-7553f371",
+   "kind": "business",
+   "display": "TD Escrow Services",
+   "first_seen": "2025-05-31",
+   "households": [
+    {
+     "household_id": "HH-13213",
+     "name": "Beverly Keller",
+     "first_paid": "2025-05-31",
+     "total": 155650.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12140",
+     "name": "Ruth Walsh",
+     "first_paid": "2025-07-15",
+     "total": 27620.0,
+     "in_queue": true
+    }
+   ]
+  },
+  {
+   "ref": "ACCT-070c6060",
+   "kind": "business",
+   "display": "County tax office",
+   "first_seen": "2024-10-12",
+   "households": [
+    {
+     "household_id": "HH-01221",
+     "name": "Frank Keller",
+     "first_paid": "2025-04-09",
+     "total": 1830.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01358",
+     "name": "Marilyn Gallagher",
+     "first_paid": "2025-05-13",
+     "total": 25470.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00281",
+     "name": "Anita Whitfield",
+     "first_paid": "2025-05-20",
+     "total": 1400.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15011",
+     "name": "Lois Ellis",
+     "first_paid": "2025-05-31",
+     "total": 1200.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18499",
+     "name": "Albert Kaplan",
+     "first_paid": "2025-06-09",
+     "total": 43800.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08766",
+     "name": "Jean Underwood",
+     "first_paid": "2025-06-29",
+     "total": 8190.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06203",
+     "name": "Judith Esposito",
+     "first_paid": "2025-07-18",
+     "total": 25310.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09121",
+     "name": "Joan Moreno",
+     "first_paid": "2025-07-19",
+     "total": 28310.0,
+     "in_queue": true
+    },
+    {
+     "household_id": "HH-03446",
+     "name": "Raymond Nakamura",
+     "first_paid": "2025-07-26",
+     "total": 18390.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13439",
+     "name": "Evelyn Delgado",
+     "first_paid": "2025-07-27",
+     "total": 17540.0,
+     "in_queue": false
+    }
+   ]
+  },
+  {
+   "ref": "ACCT-ac8b8803",
+   "kind": "business",
+   "display": "County tax office",
+   "first_seen": "2024-10-07",
+   "households": [
+    {
+     "household_id": "HH-06860",
+     "name": "Janet Pruitt",
+     "first_paid": "2025-05-18",
+     "total": 8770.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11052",
+     "name": "Walter Walsh",
+     "first_paid": "2025-05-20",
+     "total": 1150.0,
+     "in_queue": true
+    },
+    {
+     "household_id": "HH-01104",
+     "name": "Clarence Rasmussen",
+     "first_paid": "2025-05-23",
+     "total": 4560.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06043",
+     "name": "Irene Delgado",
+     "first_paid": "2025-05-23",
+     "total": 9220.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12918",
+     "name": "Frances Fischer",
+     "first_paid": "2025-06-05",
+     "total": 17070.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07676",
+     "name": "Henry Okafor",
+     "first_paid": "2025-06-15",
+     "total": 1110.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-02071",
+     "name": "Ruth Tanaka",
+     "first_paid": "2025-07-01",
+     "total": 590.0,
+     "in_queue": false
+    }
+   ]
+  },
+  {
+   "ref": "ACCT-d22b4124",
+   "kind": "business",
+   "display": "Club dues",
+   "first_seen": "2024-10-04",
+   "households": [
+    {
+     "household_id": "HH-13338",
+     "name": "Jean Okafor",
+     "first_paid": "2025-05-06",
+     "total": 2690.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09286",
+     "name": "Ernest Zimmerman",
+     "first_paid": "2025-05-11",
+     "total": 1300.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04249",
+     "name": "Elaine Hayes",
+     "first_paid": "2025-05-14",
+     "total": 2800.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15111",
+     "name": "Beverly Novak",
+     "first_paid": "2025-05-25",
+     "total": 2240.0,
+     "in_queue": true
+    },
+    {
+     "household_id": "HH-16107",
+     "name": "Frank Gallagher",
+     "first_paid": "2025-05-27",
+     "total": 1380.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01988",
+     "name": "Yolanda Holloway",
+     "first_paid": "2025-05-29",
+     "total": 2110.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01757",
+     "name": "Evelyn Walsh",
+     "first_paid": "2025-05-30",
+     "total": 890.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19107",
+     "name": "Margaret Oduya",
+     "first_paid": "2025-05-30",
+     "total": 200.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10609",
+     "name": "Ruth Fischer",
+     "first_paid": "2025-06-07",
+     "total": 1090.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-03371",
+     "name": "Nancy Holloway",
+     "first_paid": "2025-06-11",
+     "total": 1580.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10644",
+     "name": "Barbara Patel",
+     "first_paid": "2025-06-11",
+     "total": 2780.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-16021",
+     "name": "Mae Fischer",
+     "first_paid": "2025-06-15",
+     "total": 880.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-16550",
+     "name": "Kenneth Yates",
+     "first_paid": "2025-06-19",
+     "total": 1130.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00171",
+     "name": "Joan Walsh",
+     "first_paid": "2025-06-25",
+     "total": 1660.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11907",
+     "name": "James Ellis",
+     "first_paid": "2025-06-29",
+     "total": 2020.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08101",
+     "name": "Shirley Hayes",
+     "first_paid": "2025-06-30",
+     "total": 1670.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-16533",
+     "name": "Sharon Yates",
+     "first_paid": "2025-06-30",
+     "total": 2950.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00897",
+     "name": "George Hartley",
+     "first_paid": "2025-07-02",
+     "total": 1410.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11724",
+     "name": "Donald Caldwell",
+     "first_paid": "2025-07-03",
+     "total": 1810.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12484",
+     "name": "Lawrence Mercer",
+     "first_paid": "2025-07-03",
+     "total": 610.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07762",
+     "name": "Gail Prescott",
+     "first_paid": "2025-07-05",
+     "total": 1350.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14692",
+     "name": "Jose Feldman",
+     "first_paid": "2025-07-07",
+     "total": 2880.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08934",
+     "name": "Sandra Nakamura",
+     "first_paid": "2025-07-08",
+     "total": 970.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07941",
+     "name": "Anita Maddox",
+     "first_paid": "2025-07-11",
+     "total": 2240.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12470",
+     "name": "Richard Zimmerman",
+     "first_paid": "2025-07-12",
+     "total": 350.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09115",
+     "name": "Clarence Mercer",
+     "first_paid": "2025-07-16",
+     "total": 2710.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19468",
+     "name": "Martha Jacobs",
+     "first_paid": "2025-07-18",
+     "total": 2300.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10517",
+     "name": "Glenn Duvall",
+     "first_paid": "2025-07-19",
+     "total": 2940.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12661",
+     "name": "Robert Feldman",
+     "first_paid": "2025-07-20",
+     "total": 890.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01443",
+     "name": "Martha Barrett",
+     "first_paid": "2025-07-22",
+     "total": 720.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10271",
+     "name": "Maria Romero",
+     "first_paid": "2025-07-29",
+     "total": 1920.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01061",
+     "name": "Roger Ibarra",
+     "first_paid": "2025-07-31",
+     "total": 610.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19118",
+     "name": "Beverly Jennings",
+     "first_paid": "2025-08-02",
+     "total": 2180.0,
+     "in_queue": false
+    }
+   ]
+  },
+  {
+   "ref": "ACCT-a2832d18",
+   "kind": "business",
+   "display": "County tax office",
+   "first_seen": "2024-10-04",
+   "households": [
+    {
+     "household_id": "HH-15799",
+     "name": "Phyllis Keller",
+     "first_paid": "2025-04-02",
+     "total": 61620.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13452",
+     "name": "Glenn Prescott",
+     "first_paid": "2025-05-01",
+     "total": 1840.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12413",
+     "name": "Diane Mercer",
+     "first_paid": "2025-05-14",
+     "total": 500.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04036",
+     "name": "Norma Underwood",
+     "first_paid": "2025-05-31",
+     "total": 87010.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-02479",
+     "name": "Frank Kaplan",
+     "first_paid": "2025-06-06",
+     "total": 39090.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18624",
+     "name": "Ronald Ellis",
+     "first_paid": "2025-06-07",
+     "total": 28410.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10699",
+     "name": "Grace Pruitt",
+     "first_paid": "2025-06-14",
+     "total": 9200.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12246",
+     "name": "Ronald Ibarra",
+     "first_paid": "2025-06-22",
+     "total": 700.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10043",
+     "name": "Nancy Ingram",
+     "first_paid": "2025-06-25",
+     "total": 7370.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04500",
+     "name": "Earl Jennings",
+     "first_paid": "2025-06-30",
+     "total": 10440.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07873",
+     "name": "Sandra Fischer",
+     "first_paid": "2025-07-05",
+     "total": 1890.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12696",
+     "name": "James Underwood",
+     "first_paid": "2025-07-06",
+     "total": 500.0,
+     "in_queue": true
+    }
+   ]
+  },
+  {
+   "ref": "ACCT-e2cfb0dc",
+   "kind": "business",
+   "display": "Club dues",
+   "first_seen": "2024-10-03",
+   "households": [
+    {
+     "household_id": "HH-15669",
+     "name": "Judith Hayes",
+     "first_paid": "2025-05-06",
+     "total": 1860.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-02255",
+     "name": "Lois Lindqvist",
+     "first_paid": "2025-05-16",
+     "total": 2360.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10870",
+     "name": "Melvin Prescott",
+     "first_paid": "2025-05-17",
+     "total": 760.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-03861",
+     "name": "Shirley Walsh",
+     "first_paid": "2025-05-18",
+     "total": 960.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12156",
+     "name": "Luis Lombardi",
+     "first_paid": "2025-05-19",
+     "total": 1280.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15513",
+     "name": "Bernard Brennan",
+     "first_paid": "2025-05-19",
+     "total": 440.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12696",
+     "name": "James Underwood",
+     "first_paid": "2025-05-22",
+     "total": 1670.0,
+     "in_queue": true
+    },
+    {
+     "household_id": "HH-08418",
+     "name": "Frank Walsh",
+     "first_paid": "2025-05-26",
+     "total": 1560.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11758",
+     "name": "Mae Sorensen",
+     "first_paid": "2025-06-07",
+     "total": 2080.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00192",
+     "name": "Stanley Esposito",
+     "first_paid": "2025-06-08",
+     "total": 2160.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14440",
+     "name": "Roger Hayes",
+     "first_paid": "2025-06-19",
+     "total": 2010.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09378",
+     "name": "Leonard Pruitt",
+     "first_paid": "2025-06-23",
+     "total": 2800.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-02683",
+     "name": "Harold Brennan",
+     "first_paid": "2025-06-25",
+     "total": 1450.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18584",
+     "name": "Victor Whitfield",
+     "first_paid": "2025-06-25",
+     "total": 1780.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13268",
+     "name": "Janet Okafor",
+     "first_paid": "2025-06-28",
+     "total": 2940.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00711",
+     "name": "Evelyn Patel",
+     "first_paid": "2025-06-30",
+     "total": 2660.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04277",
+     "name": "Joyce Okafor",
+     "first_paid": "2025-07-02",
+     "total": 2450.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09099",
+     "name": "Dennis Quinlan",
+     "first_paid": "2025-07-02",
+     "total": 2910.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09650",
+     "name": "Joan Abbott",
+     "first_paid": "2025-07-03",
+     "total": 700.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00044",
+     "name": "Francis Ingram",
+     "first_paid": "2025-07-04",
+     "total": 2940.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15056",
+     "name": "Samuel Quinlan",
+     "first_paid": "2025-07-04",
+     "total": 2430.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01634",
+     "name": "Joyce Nakamura",
+     "first_paid": "2025-07-08",
+     "total": 1800.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12594",
+     "name": "Leonard Jacobs",
+     "first_paid": "2025-07-10",
+     "total": 2390.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14720",
+     "name": "Maria Duvall",
+     "first_paid": "2025-07-13",
+     "total": 430.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-03775",
+     "name": "Anita Kowalski",
+     "first_paid": "2025-07-15",
+     "total": 1520.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00097",
+     "name": "Norma Novak",
+     "first_paid": "2025-07-16",
+     "total": 300.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11927",
+     "name": "Victor Keller",
+     "first_paid": "2025-07-16",
+     "total": 2310.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18964",
+     "name": "Francis Quinlan",
+     "first_paid": "2025-07-16",
+     "total": 1250.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06928",
+     "name": "Ronald Holloway",
+     "first_paid": "2025-07-17",
+     "total": 160.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19806",
+     "name": "Grace Mercer",
+     "first_paid": "2025-07-20",
+     "total": 620.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13075",
+     "name": "Phyllis Okafor",
+     "first_paid": "2025-07-23",
+     "total": 700.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-05215",
+     "name": "James Quinlan",
+     "first_paid": "2025-07-26",
+     "total": 1460.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08736",
+     "name": "Anita Larsen",
+     "first_paid": "2025-07-27",
+     "total": 2190.0,
+     "in_queue": false
+    }
+   ]
+  },
+  {
+   "ref": "ACCT-2516eb05",
+   "kind": "business",
+   "display": "Auto dealer",
+   "first_seen": "2024-10-03",
+   "households": [
+    {
+     "household_id": "HH-05150",
+     "name": "Sandra Zimmerman",
+     "first_paid": "2025-05-04",
+     "total": 8090.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15754",
+     "name": "Clarence Okafor",
+     "first_paid": "2025-05-08",
+     "total": 24750.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17553",
+     "name": "Rosa Underwood",
+     "first_paid": "2025-05-17",
+     "total": 24420.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17275",
+     "name": "Grace Whitfield",
+     "first_paid": "2025-05-22",
+     "total": 25770.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06600",
+     "name": "Judith Duvall",
+     "first_paid": "2025-06-08",
+     "total": 540.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14985",
+     "name": "Maria Jacobs",
+     "first_paid": "2025-06-14",
+     "total": 3220.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07320",
+     "name": "Gerald Kowalski",
+     "first_paid": "2025-06-23",
+     "total": 24570.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14530",
+     "name": "Marilyn Prescott",
+     "first_paid": "2025-07-09",
+     "total": 4120.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01711",
+     "name": "Martha Gallagher",
+     "first_paid": "2025-07-10",
+     "total": 13190.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08636",
+     "name": "Charles Walsh",
+     "first_paid": "2025-07-16",
+     "total": 5070.0,
+     "in_queue": true
+    },
+    {
+     "household_id": "HH-09394",
+     "name": "Gerald Nakamura",
+     "first_paid": "2025-07-22",
+     "total": 22140.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01294",
+     "name": "Ernest Pruitt",
+     "first_paid": "2025-07-23",
+     "total": 7030.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17207",
+     "name": "Irene Maddox",
+     "first_paid": "2025-07-26",
+     "total": 3720.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19219",
+     "name": "Beverly Feldman",
+     "first_paid": "2025-07-29",
+     "total": 2430.0,
+     "in_queue": false
+    }
+   ]
+  },
+  {
+   "ref": "ACCT-15dadb04",
+   "kind": "business",
+   "display": "Club dues",
+   "first_seen": "2024-10-02",
+   "households": [
+    {
+     "household_id": "HH-06715",
+     "name": "Frances Holloway",
+     "first_paid": "2025-01-21",
+     "total": 2960.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17101",
+     "name": "Martha Patel",
+     "first_paid": "2025-05-05",
+     "total": 1200.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-02323",
+     "name": "Raymond Esposito",
+     "first_paid": "2025-05-09",
+     "total": 2750.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06949",
+     "name": "Stanley Maddox",
+     "first_paid": "2025-05-09",
+     "total": 1590.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18606",
+     "name": "Diane Fischer",
+     "first_paid": "2025-05-12",
+     "total": 510.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17964",
+     "name": "Evelyn Ibarra",
+     "first_paid": "2025-05-15",
+     "total": 2080.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08792",
+     "name": "Martha Romero",
+     "first_paid": "2025-05-16",
+     "total": 2970.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19231",
+     "name": "Arthur Fischer",
+     "first_paid": "2025-05-18",
+     "total": 1790.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04082",
+     "name": "Albert Greer",
+     "first_paid": "2025-05-20",
+     "total": 2760.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08425",
+     "name": "Yolanda Kaplan",
+     "first_paid": "2025-05-22",
+     "total": 520.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17168",
+     "name": "Francis Holloway",
+     "first_paid": "2025-05-23",
+     "total": 530.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13063",
+     "name": "Samuel Maddox",
+     "first_paid": "2025-05-24",
+     "total": 430.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18327",
+     "name": "Kenneth Romero",
+     "first_paid": "2025-05-25",
+     "total": 1020.0,
+     "in_queue": true
+    },
+    {
+     "household_id": "HH-04572",
+     "name": "Roger Ingram",
+     "first_paid": "2025-05-29",
+     "total": 2010.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14730",
+     "name": "Irene Fischer",
+     "first_paid": "2025-06-05",
+     "total": 980.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-05120",
+     "name": "Howard Hartley",
+     "first_paid": "2025-06-10",
+     "total": 1610.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08126",
+     "name": "Patricia Jacobs",
+     "first_paid": "2025-06-10",
+     "total": 530.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01499",
+     "name": "Ruth Novak",
+     "first_paid": "2025-06-15",
+     "total": 2190.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12906",
+     "name": "William Esposito",
+     "first_paid": "2025-06-19",
+     "total": 2040.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07569",
+     "name": "Irene Tanaka",
+     "first_paid": "2025-06-22",
+     "total": 2360.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14128",
+     "name": "Henry Rasmussen",
+     "first_paid": "2025-06-25",
+     "total": 2480.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11472",
+     "name": "Earl Hartley",
+     "first_paid": "2025-06-28",
+     "total": 270.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19651",
+     "name": "Leonard Delgado",
+     "first_paid": "2025-06-28",
+     "total": 1540.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00307",
+     "name": "Sharon Tanaka",
+     "first_paid": "2025-06-29",
+     "total": 1970.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01915",
+     "name": "Jean Rasmussen",
+     "first_paid": "2025-07-01",
+     "total": 2630.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04948",
+     "name": "Barbara Greer",
+     "first_paid": "2025-07-05",
+     "total": 2380.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06008",
+     "name": "Leonard Lombardi",
+     "first_paid": "2025-07-07",
+     "total": 2530.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15233",
+     "name": "Yolanda Barrett",
+     "first_paid": "2025-07-08",
+     "total": 2830.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14399",
+     "name": "Margaret Feldman",
+     "first_paid": "2025-07-12",
+     "total": 830.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-03948",
+     "name": "Yolanda Okafor",
+     "first_paid": "2025-07-19",
+     "total": 1510.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14395",
+     "name": "Mae Hartley",
+     "first_paid": "2025-07-19",
+     "total": 2440.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04834",
+     "name": "Beverly Nakamura",
+     "first_paid": "2025-07-27",
+     "total": 700.0,
+     "in_queue": false
+    }
+   ]
+  },
+  {
+   "ref": "ACCT-a80d9b48",
+   "kind": "business",
+   "display": "Insurance co",
+   "first_seen": "2024-10-01",
+   "households": [
+    {
+     "household_id": "HH-10617",
+     "name": "Carol Ingram",
+     "first_paid": "2024-10-23",
+     "total": 3980.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04635",
+     "name": "Douglas Hartley",
+     "first_paid": "2025-05-04",
+     "total": 2470.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09105",
+     "name": "Ronald Sullivan",
+     "first_paid": "2025-05-04",
+     "total": 2650.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14575",
+     "name": "Victor Vasquez",
+     "first_paid": "2025-05-04",
+     "total": 2230.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07087",
+     "name": "Helen Moreno",
+     "first_paid": "2025-05-05",
+     "total": 1520.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15605",
+     "name": "Harold Rasmussen",
+     "first_paid": "2025-05-06",
+     "total": 1650.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14421",
+     "name": "Martha Ingram",
+     "first_paid": "2025-05-07",
+     "total": 1210.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09230",
+     "name": "Shirley Sorensen",
+     "first_paid": "2025-05-09",
+     "total": 1130.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18379",
+     "name": "Martha Larsen",
+     "first_paid": "2025-05-09",
+     "total": 510.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04234",
+     "name": "Joyce Okafor",
+     "first_paid": "2025-05-10",
+     "total": 860.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14325",
+     "name": "Nancy Hartley",
+     "first_paid": "2025-05-10",
+     "total": 1410.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19524",
+     "name": "Roger Abbott",
+     "first_paid": "2025-05-10",
+     "total": 2360.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-03137",
+     "name": "Robert Moreno",
+     "first_paid": "2025-05-12",
+     "total": 2510.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-16162",
+     "name": "Elaine Lombardi",
+     "first_paid": "2025-05-12",
+     "total": 1260.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18283",
+     "name": "Dennis Patel",
+     "first_paid": "2025-05-12",
+     "total": 2120.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07751",
+     "name": "Roger Caldwell",
+     "first_paid": "2025-05-13",
+     "total": 2690.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06616",
+     "name": "Maria Novak",
+     "first_paid": "2025-05-14",
+     "total": 2180.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19604",
+     "name": "Carl Caldwell",
+     "first_paid": "2025-05-14",
+     "total": 2240.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19956",
+     "name": "Nancy Patel",
+     "first_paid": "2025-05-15",
+     "total": 570.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14624",
+     "name": "Linda Nakamura",
+     "first_paid": "2025-05-16",
+     "total": 500.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-05830",
+     "name": "Margaret Romero",
+     "first_paid": "2025-05-18",
+     "total": 2250.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14563",
+     "name": "William Maddox",
+     "first_paid": "2025-05-18",
+     "total": 2170.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07731",
+     "name": "Judith Kaplan",
+     "first_paid": "2025-05-19",
+     "total": 580.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09583",
+     "name": "Ronald Maddox",
+     "first_paid": "2025-05-19",
+     "total": 2490.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18290",
+     "name": "Victor Greer",
+     "first_paid": "2025-05-19",
+     "total": 2730.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01266",
+     "name": "Ronald Rasmussen",
+     "first_paid": "2025-05-20",
+     "total": 2380.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13423",
+     "name": "Norma Delgado",
+     "first_paid": "2025-05-20",
+     "total": 2040.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15207",
+     "name": "Sharon Romero",
+     "first_paid": "2025-05-20",
+     "total": 2250.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15405",
+     "name": "Norma Vasquez",
+     "first_paid": "2025-05-20",
+     "total": 640.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17266",
+     "name": "Sandra Ibarra",
+     "first_paid": "2025-05-20",
+     "total": 2410.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07733",
+     "name": "Betty Rasmussen",
+     "first_paid": "2025-05-22",
+     "total": 1290.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11383",
+     "name": "Joan Patel",
+     "first_paid": "2025-05-22",
+     "total": 350.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19819",
+     "name": "Eugene Abbott",
+     "first_paid": "2025-05-23",
+     "total": 2130.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00630",
+     "name": "Grace Lombardi",
+     "first_paid": "2025-05-25",
+     "total": 1510.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11901",
+     "name": "Stanley Castillo",
+     "first_paid": "2025-05-25",
+     "total": 440.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15487",
+     "name": "Gerald Quinlan",
+     "first_paid": "2025-05-26",
+     "total": 1380.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18002",
+     "name": "Marilyn Hayes",
+     "first_paid": "2025-05-26",
+     "total": 960.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00077",
+     "name": "Luis Gallagher",
+     "first_paid": "2025-05-27",
+     "total": 180.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13585",
+     "name": "Nancy Zimmerman",
+     "first_paid": "2025-05-27",
+     "total": 2770.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-03966",
+     "name": "Arthur Jennings",
+     "first_paid": "2025-05-28",
+     "total": 330.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08254",
+     "name": "Clarence Fischer",
+     "first_paid": "2025-05-28",
+     "total": 2360.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11540",
+     "name": "Arthur Oduya",
+     "first_paid": "2025-05-29",
+     "total": 2700.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-05726",
+     "name": "Hiroshi Rasmussen",
+     "first_paid": "2025-05-30",
+     "total": 2380.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-05409",
+     "name": "Ruth Novak",
+     "first_paid": "2025-05-31",
+     "total": 1240.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15055",
+     "name": "Gerald Whitfield",
+     "first_paid": "2025-05-31",
+     "total": 720.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10234",
+     "name": "Doris Yates",
+     "first_paid": "2025-06-02",
+     "total": 1500.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09303",
+     "name": "Gerald Mercer",
+     "first_paid": "2025-06-03",
+     "total": 1290.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15029",
+     "name": "Roger Nakamura",
+     "first_paid": "2025-06-03",
+     "total": 2710.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01091",
+     "name": "Lorraine Lindqvist",
+     "first_paid": "2025-06-04",
+     "total": 140.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17352",
+     "name": "Melvin Delgado",
+     "first_paid": "2025-06-05",
+     "total": 1720.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17478",
+     "name": "Victor Quinlan",
+     "first_paid": "2025-06-05",
+     "total": 260.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07582",
+     "name": "Robert Caldwell",
+     "first_paid": "2025-06-07",
+     "total": 1850.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07988",
+     "name": "Judith Pruitt",
+     "first_paid": "2025-06-07",
+     "total": 1240.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11653",
+     "name": "Ralph Nguyen",
+     "first_paid": "2025-06-07",
+     "total": 1660.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15621",
+     "name": "Jean Patel",
+     "first_paid": "2025-06-07",
+     "total": 1280.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04562",
+     "name": "Anita Ibarra",
+     "first_paid": "2025-06-08",
+     "total": 2550.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04747",
+     "name": "Ronald Sullivan",
+     "first_paid": "2025-06-08",
+     "total": 1670.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-16470",
+     "name": "Gerald Underwood",
+     "first_paid": "2025-06-08",
+     "total": 250.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14274",
+     "name": "Helen Yates",
+     "first_paid": "2025-06-09",
+     "total": 2260.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17348",
+     "name": "Shirley Zimmerman",
+     "first_paid": "2025-06-09",
+     "total": 2850.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09402",
+     "name": "Gerald Barrett",
+     "first_paid": "2025-06-10",
+     "total": 890.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15399",
+     "name": "Walter Moreno",
+     "first_paid": "2025-06-10",
+     "total": 1980.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01046",
+     "name": "Ronald Barrett",
+     "first_paid": "2025-06-11",
+     "total": 290.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04700",
+     "name": "Margaret Abbott",
+     "first_paid": "2025-06-11",
+     "total": 2740.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14795",
+     "name": "Dennis Rasmussen",
+     "first_paid": "2025-06-11",
+     "total": 1190.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-03057",
+     "name": "Earl Hayes",
+     "first_paid": "2025-06-13",
+     "total": 880.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04323",
+     "name": "Margaret Esposito",
+     "first_paid": "2025-06-13",
+     "total": 1790.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10940",
+     "name": "Elaine Jacobs",
+     "first_paid": "2025-06-14",
+     "total": 1880.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11673",
+     "name": "Anita Nguyen",
+     "first_paid": "2025-06-15",
+     "total": 1030.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14299",
+     "name": "Frances Barrett",
+     "first_paid": "2025-06-15",
+     "total": 2570.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15160",
+     "name": "Linda Prescott",
+     "first_paid": "2025-06-15",
+     "total": 270.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18612",
+     "name": "Wayne Sorensen",
+     "first_paid": "2025-06-15",
+     "total": 1470.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-02699",
+     "name": "Eugene Nguyen",
+     "first_paid": "2025-06-16",
+     "total": 730.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06877",
+     "name": "George Greer",
+     "first_paid": "2025-06-16",
+     "total": 620.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-16981",
+     "name": "Richard Nguyen",
+     "first_paid": "2025-06-16",
+     "total": 1950.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04996",
+     "name": "Victor Novak",
+     "first_paid": "2025-06-17",
+     "total": 810.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07434",
+     "name": "Richard Nguyen",
+     "first_paid": "2025-06-17",
+     "total": 1990.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07881",
+     "name": "George Caldwell",
+     "first_paid": "2025-06-17",
+     "total": 420.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15358",
+     "name": "Earl Prescott",
+     "first_paid": "2025-06-17",
+     "total": 1500.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-05097",
+     "name": "Walter Sullivan",
+     "first_paid": "2025-06-18",
+     "total": 600.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13438",
+     "name": "Sandra Oliveira",
+     "first_paid": "2025-06-19",
+     "total": 1110.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07239",
+     "name": "Ruth Lindqvist",
+     "first_paid": "2025-06-20",
+     "total": 890.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11269",
+     "name": "Glenn Moreno",
+     "first_paid": "2025-06-20",
+     "total": 470.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18059",
+     "name": "Grace Esposito",
+     "first_paid": "2025-06-20",
+     "total": 1770.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00756",
+     "name": "Lawrence Jennings",
+     "first_paid": "2025-06-21",
+     "total": 770.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-03387",
+     "name": "Francis Sullivan",
+     "first_paid": "2025-06-21",
+     "total": 1270.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07861",
+     "name": "Dorothy Okafor",
+     "first_paid": "2025-06-21",
+     "total": 1080.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15823",
+     "name": "Dennis Nakamura",
+     "first_paid": "2025-06-21",
+     "total": 2160.0,
+     "in_queue": true
+    },
+    {
+     "household_id": "HH-18266",
+     "name": "Donald Esposito",
+     "first_paid": "2025-06-21",
+     "total": 410.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04857",
+     "name": "Nancy Pruitt",
+     "first_paid": "2025-06-24",
+     "total": 1040.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14803",
+     "name": "Douglas Abbott",
+     "first_paid": "2025-06-26",
+     "total": 1850.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08717",
+     "name": "Rosa Quinlan",
+     "first_paid": "2025-06-27",
+     "total": 1220.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18054",
+     "name": "Albert Hartley",
+     "first_paid": "2025-06-28",
+     "total": 330.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-04489",
+     "name": "Beverly Delgado",
+     "first_paid": "2025-06-29",
+     "total": 990.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07373",
+     "name": "Kathleen Quinlan",
+     "first_paid": "2025-06-29",
+     "total": 200.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-19196",
+     "name": "Frank Brennan",
+     "first_paid": "2025-06-30",
+     "total": 2260.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00546",
+     "name": "James Okafor",
+     "first_paid": "2025-07-01",
+     "total": 150.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06924",
+     "name": "Irene Jennings",
+     "first_paid": "2025-07-01",
+     "total": 2190.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11436",
+     "name": "Patricia Tanaka",
+     "first_paid": "2025-07-02",
+     "total": 820.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13823",
+     "name": "Howard Tanaka",
+     "first_paid": "2025-07-02",
+     "total": 440.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06609",
+     "name": "Barbara Ellis",
+     "first_paid": "2025-07-03",
+     "total": 360.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12195",
+     "name": "Luis Lombardi",
+     "first_paid": "2025-07-03",
+     "total": 1920.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09428",
+     "name": "Luis Feldman",
+     "first_paid": "2025-07-04",
+     "total": 2480.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12311",
+     "name": "Albert Underwood",
+     "first_paid": "2025-07-04",
+     "total": 1170.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18359",
+     "name": "Sharon Novak",
+     "first_paid": "2025-07-06",
+     "total": 640.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07945",
+     "name": "Elaine Castillo",
+     "first_paid": "2025-07-07",
+     "total": 190.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08878",
+     "name": "Charles Hartley",
+     "first_paid": "2025-07-08",
+     "total": 2150.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06686",
+     "name": "Harold Oduya",
+     "first_paid": "2025-07-09",
+     "total": 1270.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07491",
+     "name": "Eugene Keller",
+     "first_paid": "2025-07-10",
+     "total": 2130.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18980",
+     "name": "Sharon Whitfield",
+     "first_paid": "2025-07-10",
+     "total": 1450.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14975",
+     "name": "Shirley Whitfield",
+     "first_paid": "2025-07-12",
+     "total": 1780.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15438",
+     "name": "Helen Quinlan",
+     "first_paid": "2025-07-12",
+     "total": 780.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17754",
+     "name": "Frank Delgado",
+     "first_paid": "2025-07-12",
+     "total": 870.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06547",
+     "name": "Wayne Oliveira",
+     "first_paid": "2025-07-14",
+     "total": 2050.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14773",
+     "name": "Phyllis Hayes",
+     "first_paid": "2025-07-14",
+     "total": 1150.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-08568",
+     "name": "Ralph Oduya",
+     "first_paid": "2025-07-15",
+     "total": 1850.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07004",
+     "name": "Marilyn Pruitt",
+     "first_paid": "2025-07-16",
+     "total": 750.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17510",
+     "name": "Dorothy Patel",
+     "first_paid": "2025-07-16",
+     "total": 1380.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13100",
+     "name": "Betty Underwood",
+     "first_paid": "2025-07-17",
+     "total": 1470.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-12723",
+     "name": "Grace Delgado",
+     "first_paid": "2025-07-18",
+     "total": 1590.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14850",
+     "name": "Nancy Lombardi",
+     "first_paid": "2025-07-18",
+     "total": 2240.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07353",
+     "name": "Shirley Barrett",
+     "first_paid": "2025-07-19",
+     "total": 2180.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-09067",
+     "name": "Hiroshi Vasquez",
+     "first_paid": "2025-07-19",
+     "total": 2990.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14988",
+     "name": "Kathleen Feldman",
+     "first_paid": "2025-07-20",
+     "total": 980.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-05483",
+     "name": "Samuel Novak",
+     "first_paid": "2025-07-21",
+     "total": 2670.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-00980",
+     "name": "Judith Caldwell",
+     "first_paid": "2025-07-22",
+     "total": 1630.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06913",
+     "name": "Joyce Castillo",
+     "first_paid": "2025-07-23",
+     "total": 480.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13686",
+     "name": "Eugene Lindqvist",
+     "first_paid": "2025-07-23",
+     "total": 790.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18584",
+     "name": "Victor Whitfield",
+     "first_paid": "2025-07-23",
+     "total": 2940.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-18890",
+     "name": "Irene Holloway",
+     "first_paid": "2025-07-23",
+     "total": 2720.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10526",
+     "name": "Kenneth Quinlan",
+     "first_paid": "2025-07-24",
+     "total": 1420.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-11397",
+     "name": "Maria Tanaka",
+     "first_paid": "2025-07-24",
+     "total": 1190.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-15494",
+     "name": "James Okafor",
+     "first_paid": "2025-07-24",
+     "total": 1190.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07477",
+     "name": "Yolanda Yates",
+     "first_paid": "2025-07-25",
+     "total": 2860.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-07268",
+     "name": "Ruth Ibarra",
+     "first_paid": "2025-07-26",
+     "total": 2110.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-14068",
+     "name": "Dorothy Quinlan",
+     "first_paid": "2025-07-28",
+     "total": 1590.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-01678",
+     "name": "Frank Maddox",
+     "first_paid": "2025-07-29",
+     "total": 470.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-13878",
+     "name": "Dennis Patel",
+     "first_paid": "2025-07-29",
+     "total": 420.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17038",
+     "name": "Linda Kowalski",
+     "first_paid": "2025-07-29",
+     "total": 1660.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10194",
+     "name": "Shirley Moreno",
+     "first_paid": "2025-08-01",
+     "total": 500.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-10245",
+     "name": "Henry Yates",
+     "first_paid": "2025-08-01",
+     "total": 1450.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-17880",
+     "name": "Sandra Ibarra",
+     "first_paid": "2025-08-01",
+     "total": 1990.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-06962",
+     "name": "Barbara Delgado",
+     "first_paid": "2025-08-02",
+     "total": 470.0,
+     "in_queue": false
+    },
+    {
+     "household_id": "HH-16227",
+     "name": "Dorothy Nakamura",
+     "first_paid": "2025-08-02",
+     "total": 1560.0,
+     "in_queue": false
+    }
+   ]
+  }
+ ]
+}
