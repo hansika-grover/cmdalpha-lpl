@@ -19,6 +19,7 @@ from ..eval import alerts as AL
 from ..eval.baselines import hard_rule
 from ..eval.run_eval import kw_reader
 from ..features.build import build_features
+from ..features.network import FEATURES as NETWORK
 from ..generate.text import CATEGORIES
 from ..llm import case_agent as CA
 from ..llm import notes_reader as NR
@@ -85,6 +86,7 @@ class Exporter:
         self.hh = self.W["households"].set_index("household_id")
         self.persons = self.W["persons"].set_index("person_id")
         self.accounts = self.W["accounts"]
+        self.net = self.explainer.net  # per-transaction firm-wide network features (payment data only)
 
     def _quotes(self, use_llm):
         if use_llm:
@@ -285,8 +287,56 @@ class Exporter:
              "case_file": {"claims": cf["claims"], "deadlines": cf["deadlines"], "recommended_action": cf["recommended_action"],
                            "generated_by": cf.get("generated_by", "Claude case agent"), "faithfulness": rep.get("faithfulness"),
                            "claims_rejected": len(rep.get("claims_rejected", []))},
-             "reason_codes": reasons, "alert_date": date_of(ar["day"])[0], "hard_rule": hard, "reader": "Claude" if self.reader == "llm" else "keyword baseline"}
+             "reason_codes": reasons, "alert_date": date_of(ar["day"])[0], "hard_rule": hard, "reader": "Claude" if self.reader == "llm" else "keyword baseline",
+             "network": self.network(rows, as_of)}
         return c
+
+    def network(self, rows, as_of):
+        """The most suspicious shared receiving account in the last 90 days of outflows (largest network
+        contribution to the score), or None when no outflow went to an account other clients also paid or the
+        network features did not raise the score (e.g. a large, long-established payee like a tax office)."""
+        out = rows[(rows["kind"] == "mm") & (rows["day"] > as_of - 90)]
+        n = self.net.reindex(out["ref_id"])
+        keep = (n["payee_other_hh_90d"] > 0).to_numpy()
+        if not keep.any():
+            return None
+        out, n = out[keep], n[keep]
+        feats = [f for f in NETWORK if f in self.model.features]
+        if feats:
+            push = self.model.contributions(self.Fi.loc[out.index])[feats].sum(axis=1).to_numpy()
+        else:
+            push = n["payee_young_ref_other_hh_90d"].to_numpy() - 0.5
+        if push.max() <= 0:
+            return None
+        r = n.iloc[int(np.argmax(push))]
+        return {"ref": r["dest_ref"], "other_households_30d": int(r["payee_other_hh_30d"]),
+                "other_households_90d": int(r["payee_other_hh_90d"]), "first_time_payers_90d": int(r["payee_first_time_payers_90d"])}
+
+    def network_view(self, as_of, queued: set, names: dict):
+        """Receiving accounts paid by 2+ households in the 90 days to the as-of date, at least one of them queued."""
+        mm = self.mm[self.mm["day"] <= as_of + 1e-6].join(self.net[["dest_ref"]])
+        seen = mm.groupby("dest_ref")["day"].min()  # first payment by any client, firm-wide
+        mm = mm[mm["kind"] != "own_bank"]
+        recent = mm[mm["day"] > as_of - 90]
+        hh_n = recent.groupby("dest_ref")["household_id"].nunique()
+        refs = [r for r in hh_n[hh_n >= 2].index if queued & set(recent.loc[recent["dest_ref"] == r, "household_id"])]
+        payees = []
+        for r in refs:
+            hs = set(recent.loc[recent["dest_ref"] == r, "household_id"])
+            g = mm[(mm["dest_ref"] == r) & mm["household_id"].isin(hs)]
+            q = g[g["household_id"].isin(queued)].iloc[0]
+            rows = []
+            for h, gh in g.groupby("household_id"):
+                rows.append({"household_id": h, "name": names.get(h, self.hh.loc[h, "client_name"]),
+                             "first_paid": (START + pd.Timedelta(days=float(gh["day"].min()))).date().isoformat(),
+                             "total": round(float(gh["amount"].sum()), 2), "in_queue": h in queued})
+            payees.append({"ref": r, "kind": KIND_LABEL.get(q["kind"], q["kind"]), "display": q["display_name"],
+                           "first_seen": (START + pd.Timedelta(days=float(seen[r]))).date().isoformat(),
+                           "households": sorted(rows, key=lambda x: x["first_paid"])})
+        return {"as_of": (START + pd.Timedelta(days=float(as_of))).date().isoformat(),
+                "note": "Receiving accounts (dest_ref) paid by 2+ households in the 90 days to the as-of date, at least one in the "
+                        "queue; newest account first. Payment data only. Large legitimate payees (tax, title, insurers) appear too.",
+                "payees": sorted(payees, key=lambda p: (p["first_seen"], p["ref"]), reverse=True)}
 
     def pattern(self, reasons, flags):
         fams = {x["family"] for x in reasons}
@@ -321,10 +371,12 @@ class Exporter:
         if show.get("ruth"):
             h, d = show["ruth"]
             cleared.append(self.client(h, as_of if as_of - 30 < d <= as_of else min(d + 1, 729.9), "ruth"))
+        names = {}
         for c in flagged + cleared:
             k = c["id"]
             if k in SHOWCASE_NAMES:
                 rename(c, self.hh.loc[c["household_id"], "client_name"], *SHOWCASE_NAMES[k])
+                names[c["household_id"]] = " ".join(SHOWCASE_NAMES[k])
         meta = {"as_of": (START + pd.Timedelta(days=float(as_of))).date().isoformat(), "review_line": round(self.review_line, 3),
                 "budget": "0.25% of households per week", "households_scored": int(self.test.sum() and (self.split == "test").sum()),
                 "reader": "Claude" if self.reader == "llm" else "keyword baseline (Claude not run yet)",
@@ -340,7 +392,11 @@ class Exporter:
         WEB.mkdir(parents=True, exist_ok=True)
         write(WEB / "clients.json", {"meta": meta, "flagged": flagged, "cleared": cleared})
         write(WEB / "specialist.json", {"meta": meta, "cases": specialist})
+        net = self.network_view(as_of, {c["household_id"] for c in flagged}, names)
+        write(WEB / "network.json", net)
         print("showcase candidates:", {k: len(v) for k, v in self._cand.items()})
+        print(f"network: {len(net['payees'])} shared receiving accounts touch the queue; "
+              f"{sum(c['network'] is not None for c in flagged)} queued clients paid a shared account")
         print(f"as of {meta['as_of']}: {len(flagged)} in queue, {len(specialist)} for specialists, showcase={ {k: (v[0] if v else None) for k, v in show.items()} }")
         return meta
 

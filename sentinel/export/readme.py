@@ -9,7 +9,7 @@ LABEL = {"threshold_100k": "$100k threshold rule", "threshold_50k": "$50k thresh
          "expert_checklist": "Expert rule checklist (no notes)", "money_only": "Money movement only (engine A)",
          "rules_plus_keyword_notes": "Engines A + B + keyword notes", "sentinel": "**Sentinel**",
          "ablation_no_notes": "Sentinel without notes", "ablation_no_sequences": "Sentinel without sequences",
-         "ablation_no_money": "Sentinel without money movement"}
+         "ablation_no_money": "Sentinel without money movement", "ablation_no_network": "Sentinel without the mule-account network"}
 TYP = {"investment_romance_scam": "Investment, crypto or romance", "tech_support_impersonation": "Tech support / bank impersonation",
        "government_impersonation": "Government impersonation", "silent_account_takeover": "Silent account takeover",
        "grandparent_voice_clone": "Grandparent / voice clone", "trusted_person_theft": "Trusted-person theft"}

@@ -604,6 +604,47 @@ class World:
     def rows_name(self, pid):
         return self.person_names.get(pid, "Family member")
 
+    # ------------------------------------------------------------ destination accounts (mule network)
+    def dest_refs(self, pay: pd.DataFrame) -> list[str]:
+        """Receiving account / wallet behind each payee. Uses its own random stream, so every other
+        record matches the world without this column. Mule refs are not marked; only labels reveal them."""
+        rng = np.random.default_rng(self.seed + 9001)
+        mu = self.cfg["exploitation"]["mule"]
+        shared_n = self.cfg["normal_money"].get("shared_destinations", {})
+        scale = self.N / 20000
+        slots = {t: [None] * max(1, round(n * scale)) for t, n in mu["pool_size"].items()}
+        stranger = {c["_case"] for c in self.rows["cases"] if c["perpetrator_type"] == "stranger"}
+        used, shared, person = set(), {}, {}
+
+        def new(prefix):
+            while True:
+                r = f"{prefix}-{int(rng.integers(16 ** 8)):08x}"
+                if r not in used:
+                    used.add(r)
+                    return r
+
+        out = []
+        for hid, kind, name, pid, day, tag in zip(pay["household_id"], pay["kind"], pay["display_name"], pay["person_id"],
+                                                  pay["_day"], pay["_tag"]):
+            prefix = "WAL" if kind == "crypto_exchange" else "ACCT"
+            if isinstance(tag, tuple) and tag[0] == "case" and tag[1] in stranger and kind != "own_bank"                     and rng.random() < mu["share_of_stranger_scams"]:
+                pool = slots["wallet" if prefix == "WAL" else "account"]
+                j = int(rng.integers(len(pool)))
+                if pool[j] is None or day >= pool[j][1]:
+                    pool[j] = (new(prefix), day + mu["pool_lifetime_days"])
+                out.append(pool[j][0])
+            elif name in shared_n and kind == "business":
+                refs = shared.setdefault(name, [])
+                j = int(rng.integers(shared_n[name]))
+                while len(refs) <= j:
+                    refs.append(new(prefix))
+                out.append(refs[j])
+            elif pid is not None and not (isinstance(pid, float) and math.isnan(pid)):
+                out.append(person.setdefault((hid, pid), new(prefix)))
+            else:
+                out.append(new(prefix))
+        return out
+
     # ------------------------------------------------------------ finalize
     def ts(self, days):
         return (self.start + pd.to_timedelta(np.asarray(days, dtype=float) * 86400, unit="s")).floor("min")
@@ -613,6 +654,7 @@ class World:
         pay = pd.DataFrame(R["payees"]).sort_values(["_day", "household_id", "_k"], kind="stable").reset_index(drop=True)
         pay["payee_id"] = [f"PY-{i:06d}" for i in range(len(pay))]
         pay["created_ts"] = self.ts(pay["_day"]).strftime("%Y-%m-%d %H:%M")
+        pay["dest_ref"] = self.dest_refs(pay)
         pmap = dict(zip(pay["_k"], pay["payee_id"]))
         new_payee = dict(zip(pay["_k"], pay["_day"] >= 0))
 
@@ -676,7 +718,7 @@ class World:
             "persons": pd.DataFrame(R["persons"]),
             "accounts": pd.DataFrame(R["accounts"]),
             "positions": pd.DataFrame(R["positions"]),
-            "payees": pay[["payee_id", "household_id", "kind", "display_name", "person_id", "created_ts"]],
+            "payees": pay[["payee_id", "household_id", "kind", "display_name", "person_id", "created_ts", "dest_ref"]],
             "money_movements": mm[["txn_id", "account_id", "household_id", "ts", "amount", "method", "payee_id",
                                    "payee_is_new", "source_holding_days", "status"]],
             "account_events": out["account_events"][["event_id", "household_id", "ts", "type", "channel", "device_id", "related_person_id"]],

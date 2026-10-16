@@ -1,14 +1,14 @@
-"""Assemble the scoring-point feature table from the three engines."""
+"""Assemble the scoring-point feature table from the three engines (A includes the firm-wide network)."""
 from __future__ import annotations
 
 import time
 
 import pandas as pd
 
-from . import money, notes, sequences
+from . import money, network, notes, sequences
 from .common import build_points
 
-GROUPS = {"money": money.FEATURES, "sequence": sequences.FEATURES}
+GROUPS = {"money": money.FEATURES, "network": network.FEATURES, "sequence": sequences.FEATURES}
 
 
 def notes_group(prefix: str) -> list[str]:
@@ -21,8 +21,9 @@ def build_features(W, readers: dict[str, pd.DataFrame], verbose=True) -> pd.Data
     P = build_points(W)
     mm = money.enrich_txns(W)
     A = money.money_features(W, P, mm)
+    N = network.network_features(W, P)
     B = sequences.sequence_features(W, P, mm)
-    parts = [P, A, B]
+    parts = [P, A, N, B]
     for name, out in readers.items():
         C = notes.notes_features(W, P, out)
         C.columns = [f"{name}_{c}" for c in C.columns]

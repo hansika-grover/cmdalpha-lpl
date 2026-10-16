@@ -159,6 +159,14 @@ tests/                   determinism, leakage, quote validation, deadlines, inje
   checklist, which don't read notes, did not change. On the main world alone recall moved down within its confidence
   interval (88% to 81% at 0.25%), which is retraining noise on 80 test cases. Results shifted because the data was
   corrected, not because the model was tuned.
+* **Mule-account network: the world is v1 plus one column.** Payees now carry a receiving account / wallet fingerprint
+  (`dest_ref`), drawn from a separate random stream (seed + 9001), so every other record, ID, timestamp and note is
+  byte-identical to the v1 world (v1 numbers frozen in `results/v1_metrics.json`). 35% of stranger-scam payees pay a mule
+  account shared with other victims for ~60 days (`config/world.yaml → exploitation.mule`). That mules are reused across
+  victims is sourced (FBI IC3 Elder Fraud Reports 2023/2024; FinCEN Advisory FIN-2022-A002; FBI/FinCEN money-mule
+  guidance); the exact share, pool size and lifetime are our assumptions. Large legitimate payees (tax, title, care homes,
+  insurers) also share accounts, so "many clients paid this" is not a giveaway on its own. All baselines are re-run on
+  the same world, and `ablation_no_network` reports Sentinel without these features.
 * Synthetic data. Advisor notes are template-generated in five styles; real notes are far more varied. The next step is a
   backtest on LPL's past Senior Investor Protection cases, then a silent run alongside today's rules.
 * The weekly alert budget is a parameter LPL would set; precision is low at generous budgets and is also reported at a
