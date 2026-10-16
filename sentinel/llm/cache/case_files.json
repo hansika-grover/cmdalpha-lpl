@@ -1,0 +1,2307 @@
+{
+ "HH-12140": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Ruth Walsh's account had several login and security changes in July, including two password resets on different channels and a login from a new device within about two days. Earlier there was a first-time $100 check to an individual, Tom Mercer, and another new-device login in May. One scheduled withdrawal goes to an account that another client also started paying in the last 90 days. No advisor notes on file explain these changes, and no trusted contact is on record.",
+   "pattern": "Possible account takeover: repeated password resets and new-device logins, plus a first-time individual payee and a receiving account shared with another client.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "A password reset was made by mobile on 2025-07-10.",
+     "record_ids": [
+      "EV-0012996"
+     ]
+    },
+    {
+     "text": "A login from a new device on the web followed on 2025-07-12, and a second password reset by phone came later that same day.",
+     "record_ids": [
+      "EV-0013097",
+      "EV-0013105"
+     ]
+    },
+    {
+     "text": "An earlier new-device login on the web happened on 2025-05-30.",
+     "record_ids": [
+      "EV-0011099"
+     ]
+    },
+    {
+     "text": "A $100 check went to a first-time individual payee, Tom Mercer, on 2025-05-16.",
+     "record_ids": [
+      "TX-0172130"
+     ]
+    },
+    {
+     "text": "A scheduled withdrawal goes to an account that received money from one other client in the last 90 days, and that client was paying it for the first time.",
+     "record_ids": [
+      "TX-0211959"
+     ]
+    },
+    {
+     "text": "There are no advisor notes in the last 180 days that explain the account changes or the new payee.",
+     "record_ids": [
+      "EV-0012996",
+      "EV-0013097",
+      "EV-0013105",
+      "TX-0172130"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Ruth, it's [advisor name] from [firm]. I hope you're doing well. I'm calling for a routine security check. We noticed a couple of password resets and a login from a new device on your account in July, and I wanted to make sure that was you. Did you get a new phone or computer recently, or reset your password yourself? (Listen.) Thank you. I also wanted to check on a few payments, including a check to Tom Mercer in May and your regular scheduled withdrawals. Can you tell me a bit about those, just so our records are right? (Listen.) If anyone ever calls or emails asking for your login, codes or account details, please call me first. We're always glad to double-check. One more thing: you don't have a trusted contact on file. That's simply someone we could reach if we ever couldn't reach you. Would you like to name one? There's no pressure at all. Thanks so much for your time, Ruth.",
+    "trusted_contact_note": null,
+    "escalation_memo": "Household HH-12140 (Ruth Walsh, TN). Account activity suggests possible account takeover. Password resets were made on 2025-07-10 by mobile (EV-0012996) and on 2025-07-12 by phone (EV-0013105), and a new-device web login came between them on 2025-07-12 (EV-0013097). There was an earlier new-device login on 2025-05-30 (EV-0011099). A first-time $100 check went to an individual, Tom Mercer, on 2025-05-16 (TX-0172130). A scheduled withdrawal (TX-0211959) goes to an account that one other client began paying in the last 90 days. No advisor notes explain this activity. There is no trusted contact on file, so no trusted contact note was drafted. Recommended next step: the advisor calls the client to confirm the account changes and payees, and the team reviews the shared receiving account. If the client does not recognize the activity, secure the account (reset credentials, review devices) and reassess whether a Rule 2165 hold is needed on any pending disbursement. If a hold is placed on 2025-08-02, notice is due 2025-08-05 and the hold ends 2025-08-22.",
+    "aps_referral": "DRAFT, for review only, not to be sent unless the review supports it. Client: Ruth Walsh, Tennessee, household HH-12140. Concern: possible unauthorized access to a brokerage account. Password resets on 2025-07-10 and 2025-07-12 and a new-device login on 2025-07-12 (EV-0012996, EV-0013097, EV-0013105). An earlier new-device login on 2025-05-30 (EV-0011099). A first-time $100 check to an individual, Tom Mercer (TX-0172130), and a scheduled withdrawal to an account that another client also recently began paying (TX-0211959). The firm has not yet confirmed with the client whether she authorized these changes. A referral would be made only if the client cannot confirm the activity or there are signs she is being taken advantage of."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 6,
+   "claims_kept": 6,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-11039": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "On the as-of date, Doris Brennan came into the office wanting the quickest way to move money, without waiting for a check. She described a new 'boyfriend', Andrew, whom she has never met in person, and said she was told not to tell anyone at the bank or the firm. About $16,490 has been requested out in the last 30 days. Her trusted contact is her son, Tom Brennan, and nothing on record suggests he is involved.",
+   "pattern": "Possible romance scam: a relationship with someone she has never met, pressure to move money fast, and instructions to keep it secret.",
+   "recommended_action": "escalate_hold_2165",
+   "claims": [
+    {
+     "text": "Doris asked for the quickest way to move money and did not want to wait for a check.",
+     "record_ids": [
+      "N-0087769"
+     ]
+    },
+    {
+     "text": "Doris described a new 'boyfriend' named Andrew whom she has never met in person.",
+     "record_ids": [
+      "N-0087769"
+     ]
+    },
+    {
+     "text": "Doris said she was instructed not to tell anyone at the bank or the firm.",
+     "record_ids": [
+      "N-0087769"
+     ]
+    },
+    {
+     "text": "About $16,490 was requested out in the last 30 days.",
+     "record_ids": [
+      "TX-0218855"
+     ]
+    },
+    {
+     "text": "Last month Doris discussed long-term care options at her own request, and no action was taken.",
+     "record_ids": [
+      "N-0081368"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Doris, it's [advisor name]. Thank you for coming in today. I know you'd like to move this money quickly, and I want to help you do what's right for you. Before we send anything, we take a short pause on requests like this. We do it for every client, to make sure everything is safe. Can you tell me a little more about what the money is for and where it would go? (Listen.) It sounds like Andrew is important to you. Sometimes people we meet online ask for money in a hurry or ask us to keep it private, and I'd feel better if we looked at this together first. You haven't done anything wrong, and you can always talk to me. Would it be all right if I also spoke with Tom, your trusted contact, so he can support you? (Listen.) We'll follow up in the next few days. Please call me anytime, especially if anyone asks you to hurry or to keep things quiet.",
+    "trusted_contact_note": "Hi Tom, this is [advisor name] from [firm]. You're listed as your mother Doris's trusted contact. I'm reaching out because we've placed a short, temporary pause on a request on her account while we make sure everything is in order. I'd like to talk with you briefly to confirm her current contact details and to see whether you can help us support her. I can't share account details, but I'd welcome a call when you have a moment at [phone]. Thank you.",
+    "escalation_memo": "Household HH-11039 (Doris Brennan, MA). On 2025-08-02 the client came into the office wanting the quickest way to move money, without waiting for a check (N-0087769). She described a new 'boyfriend', Andrew, whom she has never met in person, and said she was instructed not to tell anyone at the bank or the firm (N-0087769). About $16,490 was requested out in the last 30 days (TX-0218855). In an earlier note she asked about long-term care options, with no action taken (N-0081368). Pattern: possible romance scam, with urgency and secrecy. Note that the model's quoted text names 'Margaret', but the source note names Doris, so these claims rely on the note itself. The trusted contact is her son, Tom Brennan, and nothing on record suggests he is involved. Recommendation: place a Rule 2165 temporary hold on the pending disbursement, notify the trusted contact, and review internally. Hold placed 2025-08-02; notice due 2025-08-05; hold ends 2025-08-22 (extended hold, if warranted, ends 2025-09-08). Consider an APS referral.",
+    "aps_referral": "DRAFT, for review only. Client: Doris Brennan, Massachusetts, household HH-11039. Concern: possible financial exploitation through a romance scam. On 2025-08-02 the client asked for the quickest way to move money and did not want to wait for a check. She described a new partner, Andrew, whom she has never met in person, and said she was instructed not to tell anyone at the bank or the firm (N-0087769). About $16,490 was requested out of her account in the last 30 days (TX-0218855). The firm has placed or is placing a temporary hold on the disbursement and is contacting her trusted contact, her son Tom Brennan."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-11052": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "In late April, Walter Walsh mentioned a friend he met on Instagram, a woman named Elena. From May through early June, wires to 'Federal Clearing Acct', a first-time business payee, rose steadily: $910, $4,420, $7,960, then $14,320. He said the $14,320 was to pay off old credit cards, but it went by wire to the same payee. Other activity looks routine: a county tax payment, a $500 transfer to his own checking for a grandchild's wedding gift, and ordinary planning conversations. Only $680 has been requested out in the last 30 days. His trusted contact is his daughter, Dana Walsh, and nothing on record suggests she is involved.",
+   "pattern": "Possible romance or impostor scam: an online friend, then escalating wires to a vaguely named new payee, with a stated purpose that does not clearly match the payee.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "Walter mentioned a friend he met on Instagram, a woman named Elena.",
+     "record_ids": [
+      "N-0061852"
+     ]
+    },
+    {
+     "text": "Wires to 'Federal Clearing Acct', first paid on 2025-05-06, rose from $910 to $4,420 to $7,960 to $14,320 between May 6 and June 7.",
+     "record_ids": [
+      "TX-0165074",
+      "TX-0167232",
+      "TX-0180000",
+      "TX-0186247"
+     ]
+    },
+    {
+     "text": "Walter said the $14,320 was to pay off old credit cards, but it went by wire to 'Federal Clearing Acct'.",
+     "record_ids": [
+      "N-0072463",
+      "TX-0186247"
+     ]
+    },
+    {
+     "text": "A $500 transfer went to his own checking account; he said it was a wedding gift for a grandchild.",
+     "record_ids": [
+      "TX-0213395",
+      "N-0083433"
+     ]
+    },
+    {
+     "text": "In recent conversations Walter seemed well and engaged: a review meeting, a beneficiary review with no concerns, and questions about CD rates.",
+     "record_ids": [
+      "N-0072934",
+      "N-0073145",
+      "N-0084239"
+     ]
+    },
+    {
+     "text": "Only $680 was requested out in the last 30 days.",
+     "record_ids": [
+      "TX-0203986"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Walter, it's [advisor name]. How's the painting class going? (Listen.) I'm doing a quick review of recent activity, and I wanted to go over the wires to 'Federal Clearing Acct' from May and June. I want to make sure the credit card payoff went where you meant it to. Do you have a statement from the card company showing it was paid? (Listen.) I ask because we sometimes see payment requests that look official but aren't. Did anyone, maybe someone you've met online, suggest that payee or help you set those up? (Listen.) There's no wrong answer. I just want to be sure your money is going where you want it. Before any future wire to a new or unfamiliar payee, please give me a call and we'll check it together. Thanks, Walter.",
+    "trusted_contact_note": "Hi Dana, this is [advisor name] from [firm]. You're listed as your father Walter's trusted contact. I'm doing a routine check-in and wanted to confirm we have the right contact information for him and for you. If you have a moment, I'd welcome a short call at [phone]. I can't share account details, but I'm glad to explain the trusted contact role. Thank you.",
+    "escalation_memo": "Household HH-11052 (Walter Walsh, MD). On 2025-04-29 the client mentioned a friend he met on Instagram, Elena (N-0061852). Wires to a first-time business payee, 'Federal Clearing Acct', then rose steadily: $910 on 2025-05-06 (TX-0165074), $4,420 on 2025-05-09 (TX-0167232), $7,960 on 2025-05-27 (TX-0180000) and $14,320 on 2025-06-07 (TX-0186247), about $28,610 in all. The client said the $14,320 was for old credit cards (N-0072463), but the payee does not look like a card issuer. Other activity looks routine (TX-0213395, N-0083433, N-0073145). Recent outflow is low: $680 requested in the last 30 days (TX-0203986). The trusted contact is his daughter, Dana Walsh, and nothing on record suggests she is involved. Recommendation: the advisor calls the client to verify the payee and purpose, and the team flags further wires to this payee for review. If new requests go to this payee, consider a Rule 2165 hold. A hold placed on 2025-08-02 would need notice by 2025-08-05 and would end 2025-08-22.",
+    "aps_referral": "DRAFT, for review only, not to be sent unless the review supports it. Client: Walter Walsh, Maryland, household HH-11052. Concern: possible financial exploitation by someone met online. The client mentioned a friend met on Instagram (N-0061852). From May 6 to June 7, 2025, four wires totaling about $28,610 went to a new payee, 'Federal Clearing Acct', each larger than the last (TX-0165074, TX-0167232, TX-0180000, TX-0186247). The client said the largest was to pay off credit cards (N-0072463). The firm is contacting the client to confirm the payee and purpose."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 6,
+   "claims_kept": 6,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-17484": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Dennis Nakamura told the advisor on 2025-07-23 that he met a couple on a cruise and stays in touch with them on WhatsApp. Money leaving the account so far is modest and has plausible explanations: a $4,540 wire to his own checking account for a family cruise, a new $2,060 ACH payment to a landscaper, and his usual scheduled withdrawals. No request has been made to send money to the new contacts. The flag rests mainly on the new relationship, so a friendly check-in call is the right next step, not a hold.",
+   "pattern": "Possible early-stage relationship (romance/friendship) exploitation risk: new contacts met while traveling and kept up through a messaging app, with no unusual money movement to them so far.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "Dennis mentioned he met a nice couple on a cruise and keeps in touch with them on WhatsApp.",
+     "record_ids": [
+      "N-0085077"
+     ]
+    },
+    {
+     "text": "On 2025-06-08 Dennis asked for $4,540 to cover a cruise with family, and a $4,540 wire went to his own checking account that day.",
+     "record_ids": [
+      "N-0072766",
+      "TX-0186999"
+     ]
+    },
+    {
+     "text": "A $2,060 ACH payment went to a new payee, a landscaping business, on 2025-07-13.",
+     "record_ids": [
+      "TX-0210590"
+     ]
+    },
+    {
+     "text": "About $3,340 was requested out in the last 30 days, made up of the landscaper payment and a recurring scheduled withdrawal.",
+     "record_ids": [
+      "TX-0210590",
+      "TX-0212609"
+     ]
+    },
+    {
+     "text": "At the 2025-07-29 annual review the portfolio was on track and the monthly distribution was unchanged.",
+     "record_ids": [
+      "N-0086874"
+     ]
+    },
+    {
+     "text": "The review note says a family trusted contact was confirmed, but no trusted contact is recorded on the household; this should be reconciled.",
+     "record_ids": [
+      "N-0086874"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Dennis, it's [advisor name]. I hope you're doing well. I'm just checking in after our review last week. Thanks again for walking through the tax forms with me the other day. You mentioned the couple you met on your cruise; it sounds like a fun trip. I like to mention this to all my clients: if anyone you know mainly online or by message ever asks for money, help with an investment, or to keep something private, give me a call first and we can talk it through together, no pressure at all. Also, at our review we talked about a family member as your trusted contact, but I don't see one on file yet. Would you like to add someone now so I have a person to reach if I ever can't reach you? Is there anything coming up that you'd like me to plan for? Thanks, Dennis, it's always good to talk.",
+    "trusted_contact_note": null,
+    "escalation_memo": "Household HH-17484 (Dennis Nakamura, OR). Recommended action: advisor call; no hold at this time. Basis: client reported a new relationship with a couple met on a cruise, kept up over WhatsApp (N-0085077). Money movement is modest and explained: a $4,540 wire to his own checking for a family cruise (N-0072766, TX-0186999), a $2,060 ACH to a new landscaping payee (TX-0210590), and recurring scheduled withdrawals (TX-0212609). Annual review on 2025-07-29 found the portfolio on track and distributions unchanged (N-0086874). No transfers to the new contacts are on record. Trusted contact: none is on file on the household record, although N-0086874 says a family trusted contact was confirmed; trusted_contact_note is left null because there is no contact on file to write to. Advisor should ask the client to add one. Re-review if any request to pay an individual, a new external account, a crypto or gift-card purchase, or an urgent wire appears. If a hold under FINRA Rule 2165 becomes necessary on 2025-08-02, notice is due 2025-08-05 and the hold ends 2025-08-22 (extendable to 2025-09-08). This is a draft for human review; nothing has been sent.",
+    "aps_referral": "Not recommended at this time. No transfer to the new contacts and no other sign of financial harm is on record (N-0085077, TX-0210590, TX-0186999). Draft for use only if facts change: Referral to Oregon Adult Protective Services regarding Dennis Nakamura, LPL household HH-17484. The client has reported a new relationship with people met on a cruise and kept up through WhatsApp (N-0085077). [Describe any new requests to send money, amounts, dates and payees, with record IDs.] Contact: [advisor name, phone]."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 6,
+   "claims_kept": 6,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-09121": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Joan Moreno wrote a $28,310 check to the County tax office on 2025-07-19. The flag comes from the size of that payment and the fact that the payee is new. A county tax office is a government payee, and a large once-a-year payment there fits a property tax bill. Recent advisor notes describe routine contact: a market update, confirming a deposit, and 1099 questions. A $990 check to a new individual, Brian Abbott, in April is small and not explained in the notes. No exploitation pattern stands out.",
+   "pattern": "No clear exploitation pattern; a large one-time payment to a government tax payee that is consistent with ordinary tax obligations.",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "A $28,310 check went to a new payee, the County tax office, on 2025-07-19.",
+     "record_ids": [
+      "TX-0214860"
+     ]
+    },
+    {
+     "text": "The same morning, Joan's call with the advisor was about confirming her monthly deposit, and the note describes nothing unusual.",
+     "record_ids": [
+      "N-0084083"
+     ]
+    },
+    {
+     "text": "A $990 check went to a new individual payee, Brian Abbott, on 2025-04-26; the notes do not explain it.",
+     "record_ids": [
+      "TX-0158876"
+     ]
+    },
+    {
+     "text": "Other recent contacts were routine: a market update call and questions about the 1099.",
+     "record_ids": [
+      "N-0074242",
+      "N-0086571"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Optional, at the next routine contact: Hi Joan, it's [advisor name]. Just a quick check-in. I noticed a larger payment to the county tax office in July. Was that your property tax bill? I ask so I can plan your cash needs around it next year. And is there anything else coming up that you'd like me to set aside money for? Thanks, Joan.",
+    "trusted_contact_note": "Not recommended to send at this time. Draft if needed: Hi Anne, this is [advisor name] at LPL. Joan Moreno has listed you as her trusted contact. I'm reaching out only to confirm your contact details are current. I can't share account information, but I wanted you to know how to reach me if you ever have questions. Thank you.",
+    "escalation_memo": "Household HH-09121 (Joan Moreno, MD). Recommended action: none. The flag rests on a $28,310 check to a new payee, the County tax office (TX-0214860), which fits a property tax payment. Notes from the same period show routine contact (N-0084083, N-0086571, N-0074242). A $990 check to a new individual, Brian Abbott (TX-0158876), is small and from April. The advisor may confirm both payments at the next routine contact. Trusted contact Anne Romero (friend) is not flagged as possibly involved. If a hold under FINRA Rule 2165 were placed on 2025-08-02, notice would be due 2025-08-05 and the hold would end 2025-08-22. This is a draft for human review; nothing has been sent.",
+    "aps_referral": "Not recommended. The records show no sign of exploitation (TX-0214860, N-0084083)."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 4,
+   "claims_kept": 4,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-11557": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Carol Duvall was flagged because a note mentions social media: her grandson set her up on Facebook so she can see family photos. That describes a family member helping with family contact, not a new relationship with a stranger. The only money leaving the account in the window is her recurring scheduled withdrawals (about $750 in the last 30 days). Recent notes are routine: 1099 questions, a contact-details update, and an estate-document review. No action is needed.",
+   "pattern": "No exploitation pattern; the notes flag is a benign family social-media setup, and money movement is limited to recurring scheduled withdrawals.",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "Carol's grandson set her up on Facebook so she can see family photos; this is family contact, not a new outside relationship.",
+     "record_ids": [
+      "N-0083577"
+     ]
+    },
+    {
+     "text": "Money out in the window is limited to recurring scheduled withdrawals, about $750 in the last 30 days.",
+     "record_ids": [
+      "TX-0173866",
+      "TX-0194431",
+      "TX-0214563"
+     ]
+    },
+    {
+     "text": "Recent contacts were routine: 1099 questions and confirming address and contact details.",
+     "record_ids": [
+      "N-0079023",
+      "N-0081331",
+      "N-0083577"
+     ]
+    },
+    {
+     "text": "Carol earlier asked for $7,880 for a cruise with her daughter Dana, who is her trusted contact, and reviewed her estate documents in April.",
+     "record_ids": [
+      "N-0046252",
+      "N-0055416"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "No call needed beyond the usual follow-up. Optional friendly mention at the next contact: Hi Carol, it's [advisor name]. Glad you're enjoying the family photos on Facebook. A tip I share with everyone: if someone you meet online ever asks for money or for account details, check with me or Dana first. Anything you'd like me to help with this month?",
+    "trusted_contact_note": "Not recommended to send at this time. Draft if needed: Hi Dana, this is [advisor name] at LPL. Carol has listed you as her trusted contact. I'm reaching out only to confirm your contact details are current. I can't share account details, but please feel free to reach me if you ever have questions. Thank you.",
+    "escalation_memo": "Household HH-11557 (Carol Duvall, NV). Recommended action: none. The notes flag (N-0083577) refers to a grandson setting up Facebook for family photos, which is family contact rather than a new outside relationship. Money out is limited to recurring scheduled withdrawals (TX-0173866, TX-0194431, TX-0214563). Recent contacts were routine (N-0079023, N-0081331). Trusted contact Dana Duvall (daughter) is not flagged as possibly involved; a power of attorney is on file. If a hold under FINRA Rule 2165 were placed on 2025-08-02, notice would be due 2025-08-05 and the hold would end 2025-08-22. This is a draft for human review; nothing has been sent.",
+    "aps_referral": "Not recommended. The records show no sign of exploitation (N-0083577, TX-0194431)."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 4,
+   "claims_kept": 4,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-13181": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Shirley Jennings (IL) shows weak signals only. There were two web password resets about seven weeks apart, the latest three days before a $250 recurring scheduled withdrawal. Recent notes describe ordinary, client-led conversations. The scoring reasons mention a power of attorney granted to Rachel Sullivan, but the household record shows no power of attorney on file, so the records should be checked. Nothing points to exploitation right now.",
+   "pattern": "Low-level account activity: repeated password resets alongside routine recurring withdrawals. No new payees and no unusual money movement.",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "There were two password resets through the web channel, on 2025-05-19 and 2025-07-05.",
+     "record_ids": [
+      "EV-0010644",
+      "EV-0012799"
+     ]
+    },
+    {
+     "text": "The scoring reasons tie the 2025-07-05 password reset to a $250 request in the last 30 days, which is one of the recurring scheduled withdrawals.",
+     "record_ids": [
+      "EV-0012799",
+      "TX-0193065"
+     ]
+    },
+    {
+     "text": "The timeline lists recurring scheduled withdrawals as routine, repeating activity.",
+     "record_ids": [
+      "TX-0172530",
+      "TX-0193065",
+      "TX-0213194"
+     ]
+    },
+    {
+     "text": "The scoring reasons mention a power of attorney granted to Rachel Sullivan. The household record shows no power of attorney on file, so this mismatch should be reconciled.",
+     "record_ids": [
+      "EV-0007137"
+     ]
+    },
+    {
+     "text": "In March, Shirley asked in person for an $830 withdrawal for a cruise with her daughter Rachel.",
+     "record_ids": [
+      "N-0051283"
+     ]
+    },
+    {
+     "text": "In July, Shirley asked about CD rates versus the bond fund. The note says she sounded well and the conversation was pleasant.",
+     "record_ids": [
+      "N-0080912"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Shirley, it's [advisor name]. I'm just checking in. I enjoyed our talk about CD rates and the bond fund, and I wanted to see whether you've had more thoughts on that. One small housekeeping item: our records show a couple of password resets on your online account over the summer. That's very common, and I only want to make sure it was you and that logging in is working well. If anything ever looks unfamiliar, call me and we'll sort it out together. Also, would you like to name a trusted contact on the account? It's someone we could reach if we ever couldn't reach you. It's completely optional.",
+    "trusted_contact_note": null,
+    "escalation_memo": "Household HH-13181 (Shirley Jennings). No escalation is recommended. The signals are two web password resets (EV-0010644, EV-0012799) and a $250 recurring scheduled withdrawal (TX-0193065). There are no new payees and no unusual withdrawals. The scoring reasons cite a power of attorney to Rachel Sullivan (EV-0007137), but the household record shows no power of attorney. Please reconcile the records. No trusted contact is on file, so trusted_contact_note is null. The advisor may offer to add one. Draft only, for review; nothing has been sent.",
+    "aps_referral": "No APS referral is recommended at this time. The records show routine password resets (EV-0010644, EV-0012799) and recurring scheduled withdrawals (TX-0193065). Nothing in them suggests exploitation."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 6,
+   "claims_kept": 6,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-15823": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Dennis Nakamura (MD) shows possible account-takeover signals. A login from a new device on 2025-07-01 was followed five days later by an email change through mobile. Earlier, a phone password reset came before $2,160 and $580 ACH payments to a payee new to the account, 'Insurance co'. There are no advisor notes for the last 180 days. The advisor should confirm with Dennis that he made these changes.",
+   "pattern": "Possible account takeover: a new device login, then a contact-detail change, plus payments to a new business payee.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "A login from a new device on 2025-07-01 was followed by an email change on 2025-07-06.",
+     "record_ids": [
+      "EV-0012587",
+      "EV-0012860"
+     ]
+    },
+    {
+     "text": "There was a password reset by phone on 2025-04-30.",
+     "record_ids": [
+      "EV-0009770"
+     ]
+    },
+    {
+     "text": "Two ACH payments went to 'Insurance co', a payee marked new: $580 on 2025-04-08 and $2,160 on 2025-06-21.",
+     "record_ids": [
+      "TX-0143967",
+      "TX-0196090"
+     ]
+    },
+    {
+     "text": "A $2,220 check went to Dennis's own checking account, which is an existing payee.",
+     "record_ids": [
+      "TX-0153965"
+     ]
+    },
+    {
+     "text": "The scoring reasons flag $2,160 requested out in the last 30 days.",
+     "record_ids": [
+      "TX-0196090"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Dennis, it's [advisor name]. I'm calling for a quick routine check. Our system noticed a few recent updates to your account: a sign-in from a new device in early July and a change to the email address on file. I'd like to confirm those were yours, so your account stays protected and our messages reach you. While I have you, I saw a couple of payments to an insurance company this spring and wanted to make sure those look right to you. If anything seems unfamiliar, we can lock things down together today. Would you also like to name a trusted contact? It's someone we could reach if we ever can't reach you, and it's completely optional.",
+    "trusted_contact_note": null,
+    "escalation_memo": "Household HH-15823 (Dennis Nakamura). Recommendation: the advisor calls the client using contact details on file from before the 2025-07-06 email change. The signals are a new device login (EV-0012587) followed by an email change (EV-0012860), an earlier phone password reset (EV-0009770), and ACH payments to a new payee, 'Insurance co' (TX-0143967, TX-0196090). The account has no advisor notes in the last 180 days. No trusted contact is on file, so trusted_contact_note is null. If Dennis does not recognize the changes or payments, escalate to Senior Investor Protection and consider a hold. Draft only, for review; nothing has been sent.",
+    "aps_referral": "No APS referral is recommended yet. The concern is possible unauthorized account access: a new device login and email change (EV-0012587, EV-0012860), plus payments to a new payee (TX-0143967, TX-0196090). Revisit this if the client does not confirm the activity."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-14405": {
+  "as_of": "2025-12-23",
+  "case_file": {
+   "summary": "Clarence Prescott (NC) shows a cluster of related changes. Over about two weeks in November, his phone number was changed, a joint owner was added, and his trusted contact was removed. In December, $11,550 went out in two payments to Kelly Prescott, an individual payee new to the account. The second payment, $6,470 on the as-of date, was funded by selling a position he had held for 15 years. Advisor notes through September describe stable, routine conversations with no plans for gifts or large withdrawals. A temporary hold under Rule 2165 is recommended while the activity is confirmed with Clarence.",
+   "pattern": "Account control changes (phone change, joint owner added, trusted contact removed) followed by growing payments to a new individual payee who holds a role on the account, funded by selling a long-held position.",
+   "recommended_action": "escalate_hold_2165",
+   "claims": [
+    {
+     "text": "The phone number on the account was changed on 2025-11-07 through the web channel.",
+     "record_ids": [
+      "EV-0018745"
+     ]
+    },
+    {
+     "text": "A joint owner was added at a branch on 2025-11-12.",
+     "record_ids": [
+      "EV-0019016"
+     ]
+    },
+    {
+     "text": "The trusted contact was removed by phone on 2025-11-19.",
+     "record_ids": [
+      "EV-0019335"
+     ]
+    },
+    {
+     "text": "A $5,080 check went to Kelly Prescott, an individual marked as a new payee, on 2025-12-03.",
+     "record_ids": [
+      "TX-0310094"
+     ]
+    },
+    {
+     "text": "A $6,470 ACH payment went to Kelly Prescott on 2025-12-23, the as-of date.",
+     "record_ids": [
+      "TX-0333152"
+     ]
+    },
+    {
+     "text": "The $6,470 payment was funded by selling a position held for 15 years.",
+     "record_ids": [
+      "TX-0333152"
+     ]
+    },
+    {
+     "text": "The scoring reasons describe $11,550 sent in 90 days to a payee who holds a role on the account, after the trusted contact was removed. The reason names the payee 'Kelly Brennan', while the transactions show 'Kelly Prescott'. This name mismatch should be checked.",
+     "record_ids": [
+      "EV-0019016",
+      "EV-0019335",
+      "TX-0310094",
+      "TX-0333152"
+     ]
+    },
+    {
+     "text": "The scoring reasons note 3 warning signs across 2 engines in the last 30 days.",
+     "record_ids": [
+      "TX-0310094",
+      "TX-0328210",
+      "TX-0333152"
+     ]
+    },
+    {
+     "text": "Advisor notes from July to September describe routine conversations: staying the course, monthly distribution unchanged, comfortable with the current allocation. None mentions plans for large gifts or payments to family.",
+     "record_ids": [
+      "N-0083100",
+      "N-0097047",
+      "N-0098635"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Clarence, it's [advisor name]. I hope you're doing well. I'm calling as part of our regular care for your account. I noticed a few recent updates, including a new joint owner and some changes to your contact details. I also saw two payments to Kelly Prescott this month, one of them funded by selling a holding you've had for a long time. I want to make sure everything is just as you intend and that you have everything you need from us. Could you tell me a bit about what these payments are for? There's no wrong answer. I just want to be sure your plan still fits what you want. Before we make any further moves, I'd like to take a short pause on this latest payment so we can talk it through properly. Is now a good time, or would you prefer to come in?",
+    "trusted_contact_note": null,
+    "escalation_memo": "Household HH-14405 (Clarence Prescott). Recommendation: place a temporary hold under FINRA Rule 2165 on the 2025-12-23 disbursement of $6,470 to Kelly Prescott (TX-0333152). Notice is due by 2025-12-26 and the hold ends 2026-01-15, unless it is extended. Basis: in November the phone number was changed (EV-0018745), a joint owner was added (EV-0019016), and the trusted contact was removed (EV-0019335). In December, $11,550 went out in two payments to Kelly Prescott, a new individual payee (TX-0310094, TX-0333152). The second was funded by selling a position held for 15 years (TX-0333152). The scoring reasons say the payee holds a role on the account, but they name 'Kelly Brennan', so confirm the payee's identity and whether this person is the newly added joint owner. Advisor notes through September show no plans for such payments (N-0083100, N-0097047, N-0098635). No trusted contact is on file, so trusted_contact_note is null. The contact was removed shortly before these payments, and the people around the account may be involved, so do not reach out to any family member or the joint owner about this review. Speak with Clarence directly, using contact details that were verified before the 2025-11-07 phone change. Draft only, for review; nothing has been sent.",
+    "aps_referral": "Draft for review; do not send without Senior Investor Protection approval. Client: Clarence Prescott, North Carolina, household HH-14405. Concern: possible financial exploitation. In November 2025 the account's phone number was changed (EV-0018745), a joint owner was added (EV-0019016), and the trusted contact was removed (EV-0019335). In December 2025, $11,550 was sent in two payments to an individual, Kelly Prescott, who was new as a payee (TX-0310094, TX-0333152). The second payment was funded by selling a long-held investment (TX-0333152). Earlier conversations with the client gave no sign of plans for such payments (N-0083100, N-0097047, N-0098635). The firm has placed or is placing a temporary hold on the most recent disbursement and is trying to confirm the client's wishes directly."
+   },
+   "deadlines": {
+    "hold_date": "2025-12-23",
+    "notice_due": "2025-12-26",
+    "hold_ends": "2026-01-15"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 9,
+   "claims_kept": 9,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-14976": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Maria Castillo's email address was changed through the web channel on 2025-07-24, and a $9,920 withdrawal was requested within the last 30 days. That withdrawal is part of a set of recurring scheduled withdrawals, and the July annual review recorded the monthly distribution as unchanged. Overall concern is low; a brief call to confirm the email change is the proportionate step.",
+   "pattern": "Single contact-detail change (email, via web) near a routine recurring distribution; no new payees, no unusual amounts, and recent notes describe a stable, on-track relationship.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "The email address on the account was changed through the web channel on 2025-07-24.",
+     "record_ids": [
+      "EV-0013678"
+     ]
+    },
+    {
+     "text": "A $9,920 withdrawal was requested in the last 30 days.",
+     "record_ids": [
+      "TX-0216071"
+     ]
+    },
+    {
+     "text": "That withdrawal is listed among the household's recurring scheduled withdrawals.",
+     "record_ids": [
+      "TX-0175377",
+      "TX-0195932",
+      "TX-0216071"
+     ]
+    },
+    {
+     "text": "At the July annual review the portfolio was on track and the monthly distribution was unchanged.",
+     "record_ids": [
+      "N-0081545"
+     ]
+    },
+    {
+     "text": "In March the client made a withdrawal request ($28,090 for a kitchen remodel) by email, so email is a channel she uses for money requests; requests arriving at the new address should be confirmed by phone.",
+     "record_ids": [
+      "N-0048706",
+      "EV-0013678"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Maria, it's [advisor name] calling from [firm]. I hope you're doing well. I'm just making a quick courtesy call - we noticed the email address on your account was updated online recently, and we like to check in whenever contact details change so we know everything is as you want it. Was that a change you made? [If yes:] Wonderful, thank you - I'll make a note. And just so you know, if you ever send us a request by email, we'll usually give you a quick call to confirm it; that's simply how we keep your account safe. [If no or unsure:] Thank you for telling me. Let's go through it together and get your contact details set back the way you want them. Is there anything else on your mind about the account? Thanks so much for your time, Maria.",
+    "trusted_contact_note": "Hello Tom, this is [advisor name] at [firm]. Maria has listed you as her trusted contact. We're reaching out only because we have been unable to reach Maria to confirm a recent update to her account contact information. Could you help us confirm the best way to reach her, and let us know whether she is doing well? We won't share details of her accounts. Thank you for your help.",
+    "escalation_memo": "Household HH-14976 (Maria Castillo, MA). Low concern. The account email was changed via web on 2025-07-24 (EV-0013678). A $9,920 withdrawal (TX-0216071) occurred within 30 days, but it is one of the household's recurring scheduled withdrawals (TX-0175377, TX-0195932, TX-0216071), and the 2025-07-10 annual review recorded the monthly distribution as unchanged (N-0081545). The client has previously sent money requests by email (N-0048706), so any emailed request to the new address should be verified by phone using the number on file. Recommended action: advisor calls the client to confirm the email change. No hold recommended at this time. The client is not a specified adult under Rule 2165; if a delay becomes necessary, the proposed Rule 2166 delay (pending SEC approval) would run from 2025-08-02 to 2025-08-15. Trusted contact (nephew Tom Ellis) is not flagged as possibly involved. Draft for human review; nothing has been sent.",
+    "aps_referral": "Not recommended at this time. The records show one contact-detail change (EV-0013678) and a recurring scheduled withdrawal consistent with prior notes (TX-0216071, N-0081545); no indication of exploitation has been established. Revisit if the client does not confirm the email change or if unusual requests follow."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "Not applicable - client is not a specified adult under Rule 2165",
+    "hold_ends": "2025-08-15 (proposed Rule 2166 delay, pending SEC approval)"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-18327": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "A power of attorney was added in person at a branch on 2025-07-15, granted to Anne Romero, the client's daughter and confirmed trusted contact. Earlier notes show Kenneth discussing long-term care options at his own request and confirming Anne as trusted contact. The only recent outgoing payment is a $1,020 check for club dues. Nothing in the records suggests exploitation.",
+   "pattern": "Planned role change (POA to an already-confirmed family trusted contact) made in person at a branch, consistent with the client's own planning conversations; ordinary low-value payment activity.",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "A power of attorney was added through the branch channel on 2025-07-15, granted to Anne Romero.",
+     "record_ids": [
+      "EV-0013255"
+     ]
+    },
+    {
+     "text": "Anne Romero is the client's daughter and was confirmed as trusted contact during an in-office meeting in which Kenneth asked to discuss long-term care options.",
+     "record_ids": [
+      "N-0049306"
+     ]
+    },
+    {
+     "text": "The only outgoing payment in the last 120 days is a $1,020 check to a new business payee for club dues.",
+     "record_ids": [
+      "TX-0178503"
+     ]
+    },
+    {
+     "text": "Other recent contacts were routine: confirming a monthly deposit and reviewing beneficiary designations with no changes needed.",
+     "record_ids": [
+      "N-0044054",
+      "N-0046437"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Kenneth, it's [advisor name] from [firm]. I hope you're well. I saw that the power of attorney paperwork for Anne was completed at the branch in July, and I just wanted to check in and make sure everything went smoothly and is set up the way you intended. Is there anything you'd like to go over, or any questions about how it works day to day? As always, you're welcome to call me anytime. Thanks, Kenneth.",
+    "trusted_contact_note": "Hello Anne, this is [advisor name] at [firm]. You are listed as Kenneth's trusted contact. We have no concerns to raise; this note is only to let you know we're available if you ever have questions about how we can support Kenneth. Thank you.",
+    "escalation_memo": "Household HH-18327 (Kenneth Romero, MO). No escalation recommended. A POA was added at the branch on 2025-07-15 (EV-0013255), granted to Anne Romero, the client's daughter, who was confirmed as trusted contact in a March meeting where the client asked to discuss long-term care options (N-0049306). Recent activity is routine: a $1,020 club-dues check (TX-0178503), a deposit confirmation call (N-0044054) and a beneficiary review with no changes (N-0046437). Trusted contact is not flagged as possibly involved. Housekeeping: the household profile still shows has_power_of_attorney as false; operations should confirm the POA is recorded. If a hold were ever needed, Rule 2165 dates for a hold placed 2025-08-02 are: notice due 2025-08-05, hold ends 2025-08-22 (extendable to 2025-09-08). Draft for human review; nothing has been sent.",
+    "aps_referral": "Not recommended. The POA change (EV-0013255) was made in person and is consistent with the client's own planning discussions (N-0049306); payment activity is ordinary (TX-0178503)."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 4,
+   "claims_kept": 4,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-18799": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Within four days in July, George Lombardi's account had its mailing address changed, a login from a new device, its phone number changed, and a new bank link added, all through the web. An email change was also made through the web in May. No money has moved out in the window, and there is no trusted contact on file. This sequence matches a common account-takeover pattern and should be verified with the client using contact details from before the changes.",
+   "pattern": "Possible account takeover: sequential web-channel changes to address, device, phone and linked bank over four days (preceded by an earlier email change), which would let someone redirect communications and move money. No outgoing transfers yet.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "The email address was changed via the web on 2025-05-18.",
+     "record_ids": [
+      "EV-0010579"
+     ]
+    },
+    {
+     "text": "Between 2025-07-15 and 2025-07-19 the address was changed, a new device logged in, the phone number was changed, and a new bank link was added, all through the web channel.",
+     "record_ids": [
+      "EV-0013250",
+      "EV-0013252",
+      "EV-0013288",
+      "EV-0013416"
+     ]
+    },
+    {
+     "text": "No outgoing money movements appear in the 120-day timeline.",
+     "record_ids": [
+      "EV-0010579",
+      "EV-0013250",
+      "EV-0013252",
+      "EV-0013288",
+      "EV-0013416"
+     ]
+    },
+    {
+     "text": "At the May quarterly check-in the client was comfortable with his allocation, and none of the notes mention plans to move, change phone or link a new bank.",
+     "record_ids": [
+      "N-0062493",
+      "N-0047963",
+      "N-0047995",
+      "N-0049902"
+     ]
+    },
+    {
+     "text": "The client has said he prefers his RMD distribution in December, so a distribution request before then would be out of pattern.",
+     "record_ids": [
+      "N-0047995"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi George, it's [advisor name] from [firm]. I hope you're doing well. I'm calling because we noticed a few updates to your account online in mid-July - a new mailing address, a new phone number, a new device signing in, and a new bank account linked. Whenever several details change close together, we like to check in personally so we can be sure everything is just as you want it. Were those changes you made? [If yes:] Thank you, that's great to hear. Just to complete our records, could you confirm the new bank you linked? [If no or unsure:] Thank you for letting me know - you did exactly the right thing. We'll secure the account right away and go through each change together. And since we don't have a trusted contact on file for you, would you like to name someone we could reach if we ever can't get hold of you? Thanks so much, George.",
+    "trusted_contact_note": null,
+    "escalation_memo": "Household HH-18799 (George Lombardi, CA). Moderate concern - account-takeover pattern. Web-channel changes: email (2025-05-18, EV-0010579), address (2025-07-15, EV-0013250), new device login (2025-07-15, EV-0013252), phone (2025-07-16, EV-0013288), new bank link (2025-07-19, EV-0013416). No outgoing transfers appear yet. Notes from March-May describe routine activity and give no reason for these changes (N-0047963, N-0047995, N-0049902, N-0062493). There is no trusted contact on file, so no trusted-contact note is drafted. Recommended: advisor calls the client using a phone number on file from before 2025-07-16 (not the newly changed number) to verify each change; until verified, flag the new bank link and pause disbursements to it. If the client cannot be reached or does not recognize the changes, escalate to Senior Investor Protection and consider a hold. Rule 2165 dates for a hold placed 2025-08-02: notice due 2025-08-05, hold ends 2025-08-22 (extendable to 2025-09-08); proposed Rule 2166 delay would end 2025-08-15 (pending SEC approval). Draft for human review; nothing has been sent.",
+    "aps_referral": "Not recommended until the client has been contacted. If the client does not recognize the July web changes to his address, device, phone and linked bank (EV-0013250, EV-0013252, EV-0013288, EV-0013416) or the May email change (EV-0010579), and a third party appears to be directing the account, a referral to California Adult Protective Services should be prepared with these record details."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-02012": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Low overall concern (score 0.083). Over about three months the account saw a new bank link, logins from two new devices, and three one-time payments to new payees (a travel agency and two individuals). Recent notes show routine service contacts and a review where the monthly distribution was unchanged. A friendly check-in call to confirm the new payees, devices and bank link is a sensible step.",
+   "pattern": "Possible account-takeover signals (new bank link, new devices) alongside first-time payments to new individual payees; no direct evidence of exploitation in the notes.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "A bank link was added to the account at the branch on 2025-04-24.",
+     "record_ids": [
+      "EV-0009474"
+     ]
+    },
+    {
+     "text": "Logins from new devices were recorded on 2025-05-08 (web) and 2025-07-04 (mobile).",
+     "record_ids": [
+      "EV-0010142",
+      "EV-0012754"
+     ]
+    },
+    {
+     "text": "A $3,280 check went to a new payee, a travel agency, on 2025-04-26.",
+     "record_ids": [
+      "TX-0158779"
+     ]
+    },
+    {
+     "text": "Two payments went to new individual payees: a $2,800 check to Kevin Greer on 2025-05-15 and a $1,290 ACH to Karen Larsen on 2025-05-31.",
+     "record_ids": [
+      "TX-0171502",
+      "TX-0181252"
+     ]
+    },
+    {
+     "text": "About $1,240 was requested out in the last 30 days, in line with recurring scheduled withdrawals.",
+     "record_ids": [
+      "TX-0189341",
+      "TX-0168787",
+      "TX-0209445"
+     ]
+    },
+    {
+     "text": "Recent notes describe routine contact: contact details and the trusted contact (niece Dana) were confirmed, and the annual review found the portfolio on track with the monthly distribution unchanged.",
+     "record_ids": [
+      "N-0073069",
+      "N-0076458"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Sandra, this is [Advisor] checking in. I hope your summer is going well. I'm doing a routine look at accounts and wanted to confirm a few recent items with you so our records are up to date. We saw a new bank account linked in April, and sign-ins from a couple of new devices in May and July. Were those you? I also noticed a few new payments this spring: one to a travel agency, one to Kevin Greer and one to Karen Larsen. Are those all people and businesses you know and meant to pay? If anything doesn't look familiar, or if anyone has been asking you for money or for account details, we're here to help and can take care of it together. Is there anything else you'd like me to look at while we're on the phone?",
+    "trusted_contact_note": "Hi Dana, this is [Advisor] at [Firm]. Sandra has named you as her trusted contact. We're reaching out as part of a routine check to confirm we have the right contact information for her and to ask whether you know of any recent changes, such as new bank accounts or devices, that we should be aware of. We won't share account details, and there's nothing urgent. Please call me at [phone] when convenient. Thank you.",
+    "escalation_memo": "Household HH-02012 (Sandra Vasquez, VA). Score 0.083 (low). Observations: bank link added 2025-04-24 (EV-0009474); new-device logins 2025-05-08 and 2025-07-04 (EV-0010142, EV-0012754); payments to new payees: travel agency $3,280 (TX-0158779), Kevin Greer $2,800 (TX-0171502), Karen Larsen $1,290 (ACH, TX-0181252). Mitigating: routine contact confirmation and annual review with distribution unchanged (N-0073069, N-0076458). Trusted contact (niece) not flagged as possibly involved. Recommendation: advisor call to confirm the new payees, devices and bank link; no hold at this time. Client is not a specified adult under Rule 2165; if a concern is confirmed, consider the proposed Rule 2166 delay (would end 2025-08-15 for a hold placed 2025-08-02) or escalate to the Senior Investor Protection team. Draft only, for review.",
+    "aps_referral": "Not recommended at this time. The records show account changes and payments to new payees (EV-0009474, EV-0010142, EV-0012754, TX-0158779, TX-0171502, TX-0181252) but no evidence of exploitation. Revisit if the client cannot confirm these items or if new concerns arise."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "N/A (client is not a specified adult under Rule 2165)",
+    "hold_ends": "2025-08-15"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 6,
+   "claims_kept": 6,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-04596": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Low overall concern (score 0.083). A power of attorney naming the client's daughter, Karen Zimmerman (who is also the trusted contact), was added at the branch on 2025-07-04. The household record still shows no power of attorney on file, so the paperwork should be confirmed. Other activity is a one-time wire to a travel agency in April and recurring scheduled withdrawals. A note from 2025-07-07 records a routine market update with the client, who was advised to stay the course.",
+   "pattern": "Role change (POA added to a family member) with little other unusual money movement; record mismatch on the POA to verify.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "A power of attorney was added at the branch on 2025-07-04, granted to Karen Zimmerman.",
+     "record_ids": [
+      "EV-0012735"
+     ]
+    },
+    {
+     "text": "A $2,560 wire went to a new payee, a travel agency, on 2025-04-04.",
+     "record_ids": [
+      "TX-0140774"
+     ]
+    },
+    {
+     "text": "About $370 was requested out in the last 30 days, consistent with recurring scheduled withdrawals.",
+     "record_ids": [
+      "TX-0192857",
+      "TX-0172322",
+      "TX-0212986"
+     ]
+    },
+    {
+     "text": "On 2025-07-07 the advisor gave Howard a market update; he asked whether to change anything and was advised to stay the course.",
+     "record_ids": [
+      "N-0080811"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Howard, this is [Advisor]. Thanks again for our conversation last month. I'm calling to tidy up our records. We have a note that a power of attorney for Karen was set up at the branch in early July. I want to make sure we have the right documents on file and that everything is set up the way you want. Is that right, and is there anything you'd like Karen to be able to do, or not do, on the account? Also, please let me know if you have any questions about recent activity. We're always happy to help.",
+    "trusted_contact_note": "Hi Karen, this is [Advisor] at [Firm]. Howard has named you as his trusted contact. We're reaching out to confirm your contact details and to ask that a copy of the power of attorney documents be provided to our office so our records are complete. Nothing is urgent. Please call me at [phone] at your convenience. Thank you.",
+    "escalation_memo": "Household HH-04596 (Howard Zimmerman, SC). Score 0.083 (low). Observations: POA added 2025-07-04 at branch, granted to daughter Karen Zimmerman, who is also trusted contact (EV-0012735); household record still shows no POA on file, so documentation should be confirmed. Wire of $2,560 to new payee (travel agency) 2025-04-04 (TX-0140774). Recent withdrawals small and recurring (TX-0192857). Routine market update note 2025-07-07 (N-0080811). Trusted contact not flagged as possibly involved. Recommendation: advisor call to confirm POA scope and obtain documents; no hold at this time. Client is not a specified adult under Rule 2165; if concerns arise, consider the proposed Rule 2166 delay (would end 2025-08-15 for a hold placed 2025-08-02) or escalate. Draft only, for review.",
+    "aps_referral": "Not recommended at this time. A POA was added (EV-0012735) and there is one travel payment (TX-0140774), but nothing in the records indicates misuse. Revisit if the POA documents cannot be confirmed or activity changes."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "N/A (client is not a specified adult under Rule 2165)",
+    "hold_ends": "2025-08-15"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 4,
+   "claims_kept": 4,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-09061": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Low overall concern (score 0.083). A new bank link was added at the branch on 2025-08-01, the day before the as-of date. Other money movement is recurring scheduled withdrawals (about $4,050 in the last 30 days). Recent notes describe routine conversations about long-term care options, CD rates versus bond funds, and confirming a monthly deposit. A brief call to confirm the new bank link is enough at this stage.",
+   "pattern": "Single account change (new bank link) without unusual outgoing payments; routine recurring withdrawals.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "A new bank link was added at the branch on 2025-08-01.",
+     "record_ids": [
+      "EV-0014042"
+     ]
+    },
+    {
+     "text": "About $4,050 was requested out in the last 30 days, in line with recurring scheduled withdrawals.",
+     "record_ids": [
+      "TX-0208190",
+      "TX-0167573",
+      "TX-0188103"
+     ]
+    },
+    {
+     "text": "Recent notes record routine conversations: long-term care options at her request, confirming a monthly deposit to her checking, and CD rates versus a bond fund.",
+     "record_ids": [
+      "N-0058182",
+      "N-0069031",
+      "N-0080370"
+     ]
+    },
+    {
+     "text": "A July review note describes Betty as doing well and active.",
+     "record_ids": [
+      "N-0080585"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Betty, this is [Advisor]. I hope the garden is doing well. I'm calling with a quick routine check: we saw a new bank account linked to your account at the branch on August 1st. Was that something you set up? I just want to make sure it's right and that your monthly deposits keep going where you want them. If anyone has asked you to move money or share account details, we're happy to help you sort it out. Anything else on your mind, like the CD and bond fund question we talked about?",
+    "trusted_contact_note": "Hi Mark, this is [Advisor] at [Firm]. Betty has named you as her trusted contact. We're reaching out as part of a routine check to confirm your contact details. We won't share account details, and there's nothing urgent. Please call me at [phone] when convenient. Thank you.",
+    "escalation_memo": "Household HH-09061 (Betty Holloway, MD). Score 0.083 (low). Observations: new bank link added at branch 2025-08-01 (EV-0014042); recurring scheduled withdrawals of about $4,050 in the last 30 days (TX-0208190). Notes show routine planning conversations (N-0058182, N-0069031, N-0080370, N-0080585). Trusted contact (brother) not flagged as possibly involved. Recommendation: advisor call to confirm the bank link; no hold at this time. If a hold under Rule 2165 is placed on 2025-08-02, notice would be due 2025-08-05, the hold would end 2025-08-22, and an extension would end 2025-09-08; the proposed Rule 2166 delay would end 2025-08-15. Draft only, for review.",
+    "aps_referral": "Not recommended at this time. The only notable change is a new bank link (EV-0014042), with no unusual outgoing payments. Revisit if the client does not recognize the bank link or new concerns arise."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 4,
+   "claims_kept": 4,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-11924": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Low-concern household. A power of attorney naming Amy Delgado was added in person at a branch on 2025-07-13. Money going out in the last 120 days went to the client's own existing checking account or to recurring scheduled withdrawals. There are no notes on file and no new outside payees. No exploitation pattern is visible; the only follow-up is to confirm the POA paperwork is complete, because the household profile still shows no power of attorney.",
+   "pattern": "Routine account change (POA added at branch) with transfers only to the client's own long-standing bank account; no sign of exploitation.",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "A power of attorney was added through the branch channel on 2025-07-13, naming Amy Delgado.",
+     "record_ids": [
+      "EV-0013151"
+     ]
+    },
+    {
+     "text": "The two larger withdrawals ($162,010 on 2025-04-17 and $72,630 on 2025-05-30) went by ACH to Eugene Delgado's own checking account, an existing payee.",
+     "record_ids": [
+      "TX-0151300",
+      "TX-0181025"
+     ]
+    },
+    {
+     "text": "Other outflows in the window are recurring scheduled withdrawals; about $8,690 was requested out in the last 30 days.",
+     "record_ids": [
+      "TX-0171107",
+      "TX-0191629",
+      "TX-0211741"
+     ]
+    },
+    {
+     "text": "The household profile still lists no power of attorney, which does not match the POA-added event, so the records may need updating.",
+     "record_ids": [
+      "EV-0013151"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Eugene, this is [advisor name] from [firm]. I'm just calling to check in and make sure everything is set up the way you want it. I see a power of attorney for Amy was added at the branch in July. I'd like to make sure we have the paperwork filed correctly so it works smoothly for you. Is there anything you'd like to change or ask about? While I have you, would you like to name a trusted contact on the account? That's someone we could reach if we ever couldn't get hold of you. It doesn't give them any access to your money. Thanks so much for your time.",
+    "trusted_contact_note": null,
+    "escalation_memo": "Internal note for review (draft, not sent). HH-11924, Eugene Delgado, MD. Model score 0.083 (low). A POA naming Amy Delgado was added at a branch on 2025-07-13 (EV-0013151). Large outflows went to the client's own existing checking account (TX-0151300, TX-0181025); other activity is recurring scheduled withdrawals (TX-0171107, TX-0191629, TX-0211741). No notes on file. No trusted contact is on file, so there is no trusted contact note. The household profile says has_power_of_attorney = false, which conflicts with EV-0013151; operations should confirm the POA documents were received and the profile updated. No hold or escalation recommended. If a hold were placed on 2025-08-02, the Rule 2165 notice would be due 2025-08-05 and the hold would end 2025-08-22.",
+    "aps_referral": "Not recommended at this time. The records show no indication of exploitation: transfers went to the client's own account and the only notable event is a POA added in person at a branch (EV-0013151). Revisit if new information comes up."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 4,
+   "claims_kept": 4,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-16629": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Low-concern household. Activity is a single $2,390 charitable gift to a new payee in May and a login from a new mobile device on 2025-07-21. Recent notes describe normal planning conversations with no concerns raised. A note says the trusted contact, her son Mark, was confirmed, but the household profile shows no trusted contact on file, so the records should be reconciled.",
+   "pattern": "New-device login and one small charitable gift, alongside notes describing ordinary planning conversations; no exploitation pattern.",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "A login from a new mobile device was recorded on 2025-07-21.",
+     "record_ids": [
+      "EV-0013523"
+     ]
+    },
+    {
+     "text": "One $2,390 ACH payment went to a new charity payee on 2025-05-03.",
+     "record_ids": [
+      "TX-0162998"
+     ]
+    },
+    {
+     "text": "On 2025-07-04 the advisor reviewed estate documents with Ruth, who chose to revisit next year; the note records no concerns.",
+     "record_ids": [
+      "N-0079993"
+     ]
+    },
+    {
+     "text": "At a 2025-07-15 review meeting Ruth asked about CD rates versus the bond fund, and the note says trusted contact son Mark was confirmed.",
+     "record_ids": [
+      "N-0082964"
+     ]
+    },
+    {
+     "text": "The household profile lists no trusted contact even though a note says one was confirmed, so the record needs updating.",
+     "record_ids": [
+      "N-0082964"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Ruth, this is [advisor name] from [firm]. I'm calling for a quick routine check-in. We noticed a sign-in from a new phone or device on July 21. Was that you setting up a new device? I just want to make sure your account stays secure. Also, when we met in July you mentioned your son Mark as your trusted contact. I'd like to make sure his details are properly on file. Could we confirm them together? Thank you, and let me know if anything else comes up about the CD and bond fund question.",
+    "trusted_contact_note": null,
+    "escalation_memo": "Internal note for review (draft, not sent). HH-16629, Ruth Lombardi, NY. Model score 0.083 (low). A new mobile device login on 2025-07-21 (EV-0013523) and one $2,390 gift to a new charity payee (TX-0162998). Notes describe ordinary planning conversations with no concerns (N-0079993, N-0082964). N-0082964 says trusted contact son Mark was confirmed, but the household profile shows no trusted contact, so there is no trusted contact on record to draft a note to; trusted_contact_note is left null until the record is updated. No hold or escalation recommended. If a hold were placed on 2025-08-02, the Rule 2165 notice would be due 2025-08-05 and the hold would end 2025-08-22.",
+    "aps_referral": "Not recommended at this time. Activity is a new-device login (EV-0013523) and a small charitable gift (TX-0162998), and recent notes record no concerns (N-0079993, N-0082964)."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-18948": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Low-concern household. Recent outflows include $118,640 to the client's own existing checking account, a $650 ACH to a new individual payee (Chris Fischer), and a $2,450 check to a new landscaper payee whose account no other client has paid before. Recurring scheduled withdrawals continue. There are no notes on file. The amounts to new payees are small and fit ordinary household spending, so no action is recommended. A trusted contact (sister, Michelle Nakamura) is on file and not flagged as involved.",
+   "pattern": "Small payments to new payees and a large transfer to the client's own bank account; consistent with routine spending, no clear exploitation pattern.",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "$118,640 went by ACH on 2025-07-23 to Janet Okafor's own checking account, an existing payee.",
+     "record_ids": [
+      "TX-0217782"
+     ]
+    },
+    {
+     "text": "A $650 ACH payment went to a new individual payee, Chris Fischer, on 2025-07-18.",
+     "record_ids": [
+      "TX-0214118"
+     ]
+    },
+    {
+     "text": "A $2,450 check went to a new landscaper payee on 2025-08-01; no other client has paid that account before.",
+     "record_ids": [
+      "TX-0222646"
+     ]
+    },
+    {
+     "text": "The model notes two warning signs from one engine in the last 30 days, involving a scheduled withdrawal and the own-account transfer.",
+     "record_ids": [
+      "TX-0202900",
+      "TX-0217782"
+     ]
+    },
+    {
+     "text": "Other outflows are recurring scheduled withdrawals.",
+     "record_ids": [
+      "TX-0195492",
+      "TX-0202900",
+      "TX-0215474"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Janet, this is [advisor name] from [firm]. I'm calling for a quick routine check-in. I saw a transfer to your checking account in late July and a couple of payments to new payees, a landscaper and Chris Fischer. Is there anything coming up that you'd like help planning for, so we can make sure the cash is where you need it? If anything ever feels off about a request for money, I'm always happy to talk it through. Thanks so much.",
+    "trusted_contact_note": "Hi Michelle, this is [advisor name] from [firm]. Janet has named you as her trusted contact. I'm reaching out only to confirm we have your current contact details. This doesn't give you any access to her accounts, and nothing is wrong. Please call me back at [phone] when it's convenient. Thank you.",
+    "escalation_memo": "Internal note for review (draft, not sent). HH-18948, Janet Okafor, OH. Model score 0.083 (low). $118,640 to the client's own existing checking account (TX-0217782); $650 to a new individual payee, Chris Fischer (TX-0214118); $2,450 check to a new landscaper payee not previously paid by any client (TX-0222646); recurring scheduled withdrawals (TX-0195492, TX-0202900, TX-0215474). No notes on file. Trusted contact Michelle Nakamura (sister) is not flagged as possibly involved. No hold or escalation recommended; the advisor may want to mention the new payees at the next routine contact. If a hold were placed on 2025-08-02, the Rule 2165 notice would be due 2025-08-05 and the hold would end 2025-08-22.",
+    "aps_referral": "Not recommended at this time. Payments to new payees are small (TX-0214118, TX-0222646), and the large transfer went to the client's own account (TX-0217782)."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-19593": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Low overall concern (score 0.083). The main signal is a run of online account changes: a password reset, then a login from a new device, then an email change on the mobile channel within 11 days. Money movement in the last 30 days is modest and goes to the client's own checking account and a scheduled withdrawal. A recent contact note says the client called to confirm contact details and sounded well. A short call to confirm that the client made these account changes is the right next step.",
+   "pattern": "Possible account takeover signals (new device followed by email change), without matching unusual money movement.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "A password reset was made on the web channel on 2025-04-24.",
+     "record_ids": [
+      "EV-0009462"
+     ]
+    },
+    {
+     "text": "A login from a new device on mobile on 2025-06-28 was followed by an email change on mobile on 2025-07-09, 11 days later.",
+     "record_ids": [
+      "EV-0012419",
+      "EV-0012965"
+     ]
+    },
+    {
+     "text": "About $6,550 was requested out in the last 30 days, including $5,310 by ACH to the client's own existing checking account and a recurring scheduled withdrawal.",
+     "record_ids": [
+      "TX-0194090",
+      "TX-0199593"
+     ]
+    },
+    {
+     "text": "A $2,040 check went to a new business payee (Plumber) on 2025-05-27.",
+     "record_ids": [
+      "TX-0179955"
+     ]
+    },
+    {
+     "text": "On 2025-06-26 a note records a contact confirming address and contact details on file, and says he sounded well. This note came two days before the new-device login and before the email change.",
+     "record_ids": [
+      "N-0077740",
+      "EV-0012419",
+      "EV-0012965"
+     ]
+    },
+    {
+     "text": "An earlier note records an estate document review with no concerns.",
+     "record_ids": [
+      "N-0045312"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Henry, this is [advisor] checking in. Nothing is wrong. We just like to confirm things when there are updates to an online account. Our records show a new phone or device was used to sign in recently, and the email address on your account was changed in early July. Were those changes yours? Could you confirm the email address you'd like us to use? If any of this doesn't sound familiar, we can secure the account together right now. Also, is there anything coming up that you'd like help planning for? Thanks for your time, Henry.",
+    "trusted_contact_note": "Hi Lisa, this is [advisor] at LPL, reaching you as the trusted contact Henry Nakamura listed on his account. We are making a routine check after some recent updates to his online account and haven't been able to confirm them with him yet. Could you help us get in touch with Henry, or let us know the best way to reach him? We won't share any details of his account. Thank you.",
+    "escalation_memo": "Household HH-19593 (Henry Nakamura, NY). Score is low (0.083). Signals are account changes: password reset (EV-0009462), new-device login (EV-0012419), then email change 11 days later (EV-0012965). Recent outflows are to the client's own existing checking account (TX-0194090) plus a scheduled withdrawal (TX-0199593), and a $2,040 check to a new business payee (TX-0179955). The 2025-06-26 contact note (N-0077740) is unremarkable. The trusted contact (daughter Lisa Walsh) is not flagged as possibly involved. Recommendation: the advisor calls to verify the account changes. No hold is recommended now. The client is not a specified adult under Rule 2165. If verification fails or unusual outflows appear, consider the proposed Rule 2166 delay (would run to 2025-08-15 from a 2025-08-02 hold) and send to Senior Investor Protection for review.",
+    "aps_referral": "Not recommended at this time. The records show account-change signals (EV-0012419, EV-0012965) but no money moving to unfamiliar parties beyond a small business payment (TX-0179955). Revisit if the client cannot confirm the changes or if unusual outflows appear."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "Not applicable: client is not a specified adult under Rule 2165",
+    "hold_ends": "2025-08-15 (proposed Rule 2166 delay, pending SEC approval)"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 6,
+   "claims_kept": 6,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-07334": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Low concern (score 0.056). Recent outflows are small: a $1,890 check to a new business payee (Plumber) and an $890 ACH to a new individual payee, Tom Kowalski, who no other client has paid. An earlier large withdrawal went to the client's own existing checking account. Notes show regular, routine reviews, and the June annual review says the portfolio is on track. The new individual payee is worth a light mention at the next routine contact, but no intervention is warranted.",
+   "pattern": "Small first-time payment to a new individual payee, with mitigating routine-review notes.",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "An $890 ACH went on 2025-07-03 to Tom Kowalski, a new individual payee whose account no other client has paid before.",
+     "record_ids": [
+      "TX-0203565"
+     ]
+    },
+    {
+     "text": "A $1,890 check went to a new business payee (Plumber) on 2025-06-22.",
+     "record_ids": [
+      "TX-0196995"
+     ]
+    },
+    {
+     "text": "A $26,800 check on 2025-04-22 went to the client's own existing checking account.",
+     "record_ids": [
+      "TX-0155400"
+     ]
+    },
+    {
+     "text": "At the June 2025 annual review the portfolio was on track and the monthly distribution was unchanged, which lowers concern.",
+     "record_ids": [
+      "N-0072186"
+     ]
+    },
+    {
+     "text": "Notes show routine contact through the spring, including a check-in where he sounded well, a beneficiary review with no changes, estate document review and a plan update.",
+     "record_ids": [
+      "N-0045914",
+      "N-0046477",
+      "N-0049443",
+      "N-0051091"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Victor, this is [advisor] with a quick routine check-in. Everything looks in order with your plan. I noticed a recent payment to a new recipient, Tom Kowalski. I just want to confirm it was something you set up and that it went where you meant it to. Is there anything coming up you'd like help planning for? Thanks, Victor.",
+    "trusted_contact_note": "Hi Emily, this is [advisor] at LPL, reaching you as the trusted contact Victor Ellis listed on his account. We're doing a routine check-in and would appreciate help reaching Victor if we can't get hold of him directly. We won't share any details of his account. Thank you.",
+    "escalation_memo": "Household HH-07334 (Victor Ellis, MD). Score is low (0.056). Signals: an $890 ACH to a new individual payee not seen elsewhere at the firm (TX-0203565), and a $1,890 check to a new business payee (TX-0196995). The earlier $26,800 outflow went to the client's own existing checking account (TX-0155400). Mitigating: the annual review notes the portfolio on track and the distribution unchanged (N-0072186), and there were regular routine contacts (N-0045914, N-0046477, N-0049443, N-0051091). The trusted contact is not flagged as possibly involved. Recommendation: no action now. Mention the new payee at the next routine contact. No escalation to Senior Investor Protection is needed.",
+    "aps_referral": "Not recommended. The records show small payments (TX-0196995, TX-0203565) and routine, unremarkable contact (N-0072186)."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-08636": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Low concern (score 0.056). Over three months the client paid several new payees: a $2,660 check to a plumber, a $2,150 ACH to an individual (Tom Romero), and a $5,070 wire to an auto dealer. A login from a new mobile device followed on 2025-07-25. There are no notes in the last 180 days to give context. A friendly check-in call to confirm the new device and recent payments, and to catch up, is reasonable.",
+   "pattern": "Several first-time payees (one an individual, one a wire) followed by a new-device login, with no recent contact notes.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "A login from a new mobile device was recorded on 2025-07-25.",
+     "record_ids": [
+      "EV-0013680"
+     ]
+    },
+    {
+     "text": "A $5,070 wire went to a new business payee (Auto dealer) on 2025-07-16. This was the main money movement in the last 30 days.",
+     "record_ids": [
+      "TX-0212716"
+     ]
+    },
+    {
+     "text": "A $2,150 ACH went to a new individual payee, Tom Romero, on 2025-05-19.",
+     "record_ids": [
+      "TX-0174219"
+     ]
+    },
+    {
+     "text": "A $2,660 check went to a new business payee (Plumber) on 2025-04-25.",
+     "record_ids": [
+      "TX-0157960"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Charles, this is [advisor] with a quick check-in, since it's been a while since we spoke. We noticed a sign-in from a new phone or device recently. Was that you? I also see a few payments this spring and summer, including one to an auto dealer and one to Tom Romero. I just want to make sure everything went where you meant it to. Is anything new going on, like a car purchase or a home project, that we should plan around? Thanks, Charles.",
+    "trusted_contact_note": "Hi Brian, this is [advisor] at LPL, reaching you as the trusted contact Charles Walsh listed on his account. We're doing a routine check-in after a recent account update and would appreciate help reaching Charles if we can't get hold of him directly. We won't share any details of his account. Thank you.",
+    "escalation_memo": "Household HH-08636 (Charles Walsh, NY). Score is low (0.056). Signals: a new-device login (EV-0013680) after a $5,070 wire to a new business payee (TX-0212716). Earlier outflows went to a new individual (TX-0174219, $2,150) and a new business (TX-0157960, $2,660). There are no contact notes in the last 180 days. The trusted contact (son Brian Keller) is not flagged as possibly involved. Recommendation: the advisor calls to verify the device and the recent payments. No hold is recommended now. If concerns come up, a Rule 2165 hold placed 2025-08-02 would need notice by 2025-08-05 and would end 2025-08-22 (extendable to 2025-09-08). The proposed Rule 2166 delay would end 2025-08-15.",
+    "aps_referral": "Not recommended at this time. Payments are moderate and mostly to businesses (TX-0157960, TX-0212716), with one to an individual (TX-0174219). Revisit if the client cannot confirm the new device (EV-0013680) or the payments."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 4,
+   "claims_kept": 4,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-12696": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "A new bank link was added on the web on 2025-07-29, and two days later $6,510 went by ACH to a new external bank account titled in the client's name that no other firm client has paid before. Earlier outflows were small payments to businesses. The only note on file, from April, records no concerns. The model score is low (0.056). A courtesy call to confirm the client set up the link and moved the money is reasonable.",
+   "pattern": "Possible account takeover: a new external bank link followed shortly by a first transfer to that account.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "A bank link was added through the web channel on 2025-07-29.",
+     "record_ids": [
+      "EV-0013869"
+     ]
+    },
+    {
+     "text": "On 2025-07-31, $6,510 was sent by ACH to a new external bank payee named 'James Underwood ext. bank', two days after the bank link was added.",
+     "record_ids": [
+      "TX-0222082",
+      "EV-0013869"
+     ]
+    },
+    {
+     "text": "No other client at the firm has paid the receiving account (ACCT-fa6d85ca) before.",
+     "record_ids": [
+      "TX-0222082"
+     ]
+    },
+    {
+     "text": "Other recent outflows were smaller payments to businesses: $1,670 for club dues and $500 to the county tax office.",
+     "record_ids": [
+      "TX-0176419",
+      "TX-0205667"
+     ]
+    },
+    {
+     "text": "The April 2025 review note describes the client as active, volunteering twice a week, with no concerns recorded.",
+     "record_ids": [
+      "N-0057952"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi James, this is [advisor name] from [firm]. I hope you're doing well and still enjoying your time at the library. I'm calling as part of our routine account care. I noticed a new bank account was linked online on July 29th, and a transfer of $6,510 went to it on the 31st. I just want to confirm that you set that up yourself and that everything looks right to you. [Pause and listen.] Thank you. If anyone ever contacts you asking you to move money or share account details, please feel free to call me first. I'm always glad to help.",
+    "trusted_contact_note": "Hi Lisa, this is [advisor name] from [firm]. James has named you as his trusted contact. We're reaching out because we were unable to reach him about a routine account question, and we'd appreciate it if you could let him know we'd like to speak with him. We won't share account details, but please call us at [phone] if you have any questions.",
+    "escalation_memo": "Household HH-12696 (James Underwood, FL). A bank link was added via web on 2025-07-29 (EV-0013869), followed on 2025-07-31 by a $6,510 ACH to a new external bank payee in the client's name (TX-0222082); no other firm client has paid that account. Prior outflows were small business payments (TX-0176419, TX-0205667). The April note records no concerns (N-0057952). Model score is low (0.056). Trusted contact Lisa Esposito (friend) is not flagged as possibly involved. Recommended: advisor call to confirm the client authorized the link and transfer. If he did not authorize it, or the call raises concerns, consider a Rule 2165 hold on further disbursements (notice due 2025-08-05, hold ends 2025-08-22 for a hold placed 2025-08-02). Draft only; for human review.",
+    "aps_referral": "Draft for review only; not to be filed unless the advisor's call or follow-up raises concerns. Client: James Underwood, Florida. Concern: on 2025-07-29 a new bank account was linked online (EV-0013869), and on 2025-07-31 $6,510 was transferred to a new external account (TX-0222082) that no other firm client has paid. The firm is confirming with the client whether he authorized these actions. No diagnosis or capacity judgment is made."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-13244": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "On 2025-07-24, $49,190 was wired to a new business payee listed as 'Jeweler', funded by selling a position held 7 years. The phone note for the same day records the request as being for a hospital bill, which does not match the payee. The July annual review found no concerns, and there is no trusted contact on file. The model score is low (0.056), but the purpose and payee don't match, so a call to understand the payment is warranted.",
+   "pattern": "Large one-time wire to a new payee, with a stated purpose that does not match the payee.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "$49,190 was wired on 2025-07-24 to a new business payee named 'Jeweler'.",
+     "record_ids": [
+      "TX-0218514"
+     ]
+    },
+    {
+     "text": "The wire was funded by selling a position held for 7 years.",
+     "record_ids": [
+      "TX-0218514"
+     ]
+    },
+    {
+     "text": "The phone note made the same day records the $49,190 request as being for a hospital bill, which does not match the jeweler payee.",
+     "record_ids": [
+      "N-0085475",
+      "TX-0218514"
+     ]
+    },
+    {
+     "text": "The annual review on 2025-07-06 found the portfolio on track, the monthly distribution unchanged, and no concerns.",
+     "record_ids": [
+      "N-0080516"
+     ]
+    },
+    {
+     "text": "Earlier contacts were routine questions about CD rates, bond funds and market conditions.",
+     "record_ids": [
+      "N-0042250",
+      "N-0051048"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Marilyn, this is [advisor name] from [firm]. I hope you're doing well. I'm following up on the $49,190 withdrawal from July 24th. Our notes say it was for a hospital bill, and the wire went to a payee listed as a jeweler, so I want to make sure our records are right and that everything went where you meant it to. Could you tell me a little about it? [Pause and listen.] Thank you, that helps. Since we don't have a trusted contact on file, would you like to name someone we could reach if we ever can't get hold of you? And if anyone ever asks you to send money quickly or keep a payment private, I'm always happy to talk it through with you first.",
+    "trusted_contact_note": null,
+    "escalation_memo": "Household HH-13244 (Marilyn Oduya, AZ). A $49,190 wire to a new business payee 'Jeweler' on 2025-07-24 (TX-0218514), funded by selling a 7-year position. The same-day phone note records the purpose as a hospital bill (N-0085475), which is inconsistent with the payee. The 2025-07-06 annual review recorded no concerns (N-0080516). Model score is low (0.056). No trusted contact is on file, so trusted_contact_note is null; the advisor should invite the client to name one. Recommended: advisor call to reconcile the stated purpose with the payee. If further disbursements are requested and concerns remain, consider a Rule 2165 hold (notice due 2025-08-05, hold ends 2025-08-22 for a hold placed 2025-08-02). Draft only; for human review.",
+    "aps_referral": "Draft for review only; not to be filed unless the advisor's call raises concerns. Client: Marilyn Oduya, Arizona. Concern: on 2025-07-24 the client requested $49,190, described as being for a hospital bill (N-0085475), and the funds were wired to a new payee listed as a jeweler (TX-0218514), funded by selling a long-held position. The firm is contacting the client to understand the payment. No diagnosis or capacity judgment is made."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-15674": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Two recent $580 payments (TX-0215514, TX-0221330) went to a new business payee listed as 'Jeweler'. The firm first saw that receiving account 8 days ago. The timeline lists the same two IDs as recurring scheduled withdrawals, so the records conflict. The only other recent outflow was a $9,770 transfer in April to the client's own checking account, which matches her emailed request for an estimated tax payment. Notes describe her as doing well, and her trusted contact was confirmed. The score is low (0.056), and a light check-in call to confirm the new payee is enough.",
+   "pattern": "Small payments to a new business payee that is also new to the firm. Low concern.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "Two payments of $580 each, $1,160 in total, went to a new business payee 'Jeweler' first used in the last 60 days.",
+     "record_ids": [
+      "TX-0215514",
+      "TX-0221330"
+     ]
+    },
+    {
+     "text": "The receiving account (ACCT-a52b1fe1) is new to the firm; another client first paid it 8 days ago.",
+     "record_ids": [
+      "TX-0221330"
+     ]
+    },
+    {
+     "text": "The timeline groups these same two transactions under recurring scheduled withdrawals, so how they are categorized should be confirmed.",
+     "record_ids": [
+      "TX-0215514",
+      "TX-0221330"
+     ]
+    },
+    {
+     "text": "A $9,770 ACH on 2025-04-17 went to the client's own existing checking account, matching her same-day request for an estimated tax payment.",
+     "record_ids": [
+      "TX-0151529",
+      "N-0058109"
+     ]
+    },
+    {
+     "text": "Review notes describe the client as doing well, and her trusted contact (niece Karen) was confirmed twice.",
+     "record_ids": [
+      "N-0042665",
+      "N-0053707"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Norma, this is [advisor name] from [firm]. I hope you and the grandkids are doing well. I'm calling for a quick routine check. I noticed two payments of $580 going to a payee listed as a jeweler, and since it's a new payee on your account, I just want to confirm those are expected and set up the way you want. [Pause and listen.] Wonderful, thank you. As always, if anyone ever asks you to send money or set up payments you're unsure about, please give me a call first.",
+    "trusted_contact_note": "Hi Karen, this is [advisor name] from [firm]. Norma has named you as her trusted contact. We're reaching out because we were unable to reach her about a routine account question, and we'd be grateful if you could let her know we'd like to speak with her. We won't share account details, but please call us at [phone] with any questions.",
+    "escalation_memo": "Household HH-15674 (Norma Greer, MO). Two $580 payments to a new business payee 'Jeweler' (TX-0215514, TX-0221330); the receiving account is new to the firm (first paid 8 days ago). The timeline lists these same IDs as recurring scheduled withdrawals, so how they are categorized needs confirming. The April $9,770 transfer went to her own checking account for an estimated tax payment (TX-0151529, N-0058109). Notes describe her as doing well, with her trusted contact niece Karen Nguyen confirmed (N-0042665, N-0053707); Karen is not flagged as possibly involved. Model score is low (0.056). Recommended: a routine check-in call. No hold is indicated now; for reference, a Rule 2165 hold placed 2025-08-02 would need notice by 2025-08-05 and end 2025-08-22. Draft only; for human review.",
+    "aps_referral": "Draft for review only; no referral is indicated at this time. Client: Norma Greer, Missouri. Observation: two small payments ($580 each) to a new payee listed as a jeweler, sent to an account new to the firm (TX-0215514, TX-0221330). The firm is confirming with the client that these payments are expected. No diagnosis or capacity judgment is made."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-16547": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Low-signal household. The only notable event is a power of attorney added at the branch on 2025-07-29, granted to Eric Novak, who is also the listed trusted contact. Money out in the window is a transfer to the client's own long-standing checking account plus recurring scheduled withdrawals. There are no advisor notes in the last 180 days. A light confirmation call is reasonable; nothing points to exploitation.",
+   "pattern": "New power of attorney (to the existing trusted contact) with routine, own-account outflows; no unusual payees or amounts.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "A power of attorney was added through the branch on 2025-07-29, granted to Eric Novak.",
+     "record_ids": [
+      "EV-0013892"
+     ]
+    },
+    {
+     "text": "Eric Novak, the son, is the listed trusted contact and is not flagged as possibly involved.",
+     "record_ids": [
+      "EV-0013892"
+     ]
+    },
+    {
+     "text": "The $2,370 ACH on 2025-07-05 went to the client's own checking account, an existing payee.",
+     "record_ids": [
+      "TX-0205012"
+     ]
+    },
+    {
+     "text": "About $3,880 was requested out in the last 30 days, made up of the own-account transfer and a recurring scheduled withdrawal.",
+     "record_ids": [
+      "TX-0205012",
+      "TX-0220402"
+     ]
+    },
+    {
+     "text": "Recurring scheduled withdrawals continue on their normal pattern.",
+     "record_ids": [
+      "TX-0179744",
+      "TX-0200157",
+      "TX-0220402"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Glenn, it's [advisor name] checking in. I saw that a power of attorney was recently set up on your account, and I just wanted to make sure everything was put in place the way you wanted. Is there anything you'd like us to know about how you and Eric plan to handle things going forward? Also, is the regular transfer to your checking still working well for you? I'm always happy to help, so please call me anytime.",
+    "trusted_contact_note": "Hi Eric, this is [advisor name], your father Glenn's financial advisor. You're listed as Glenn's trusted contact, and we noticed the new power of attorney on file. We're simply reaching out to confirm our records are current and to let you know you can contact us with any questions. Thank you.",
+    "escalation_memo": "HH-16547 (Glenn Novak, CA). Review score 0.056. A power of attorney was added at the branch on 2025-07-29 naming Eric Novak, who is also the trusted contact and is not flagged as possibly involved (EV-0013892). Outflows are an own-account ACH of $2,370 (TX-0205012) and recurring scheduled withdrawals (TX-0179744, TX-0200157, TX-0220402). No new payees and no notes in the window. Recommendation: advisor confirmation call only; no hold or escalation indicated. Client is not a specified adult under Rule 2165; if a delay were ever needed, the proposed Rule 2166 delay would end 2025-08-15. Draft for human review; nothing has been sent.",
+    "aps_referral": "Not recommended at this time. The records show a power of attorney added for the existing trusted contact (EV-0013892) and routine own-account and scheduled withdrawals (TX-0205012, TX-0220402). There is no indication of exploitation. Revisit only if the confirmation call raises concerns."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "n/a - not a specified adult under Rule 2165",
+    "hold_ends": "2025-08-15 (proposed Rule 2166 delay, pending SEC approval)"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-01726": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Several role changes and new individual payees. The trusted contact was changed by phone on 2025-04-12 to Scott Nakamura. A week later a $1,970 wire went to a new individual payee, Michelle Romero. A $1,420 check to another new individual, Jennifer Moreno, followed in May, and a power of attorney naming Chris Hayes was added at the branch on 2025-08-01. The advisor note says the $1,970 request was for an estimated tax payment, but the wire went to a private individual. The note is also timestamped before the wire and describes the call as \"this afternoon\". Amounts are modest and the score is low, but a friendly check-in call is warranted.",
+   "pattern": "Trusted contact change followed by payments to new individual payees, with a stated purpose that does not match the payee type, and a recent new power of attorney.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "The trusted contact was changed by phone on 2025-04-12 to Scott Nakamura.",
+     "record_ids": [
+      "EV-0008893"
+     ]
+    },
+    {
+     "text": "On 2025-04-19, one week after the trusted contact change, a $1,970 wire went to Michelle Romero, a new individual payee.",
+     "record_ids": [
+      "TX-0152962",
+      "EV-0008893"
+     ]
+    },
+    {
+     "text": "The advisor note says the $1,970 request was for an estimated tax payment, but the wire went to a private individual rather than a tax authority.",
+     "record_ids": [
+      "N-0058564",
+      "TX-0152962"
+     ]
+    },
+    {
+     "text": "The note on the $1,970 request is timestamped 07:56 and refers to the call as \"this afternoon\", before the 09:08 wire, so its timing is inconsistent.",
+     "record_ids": [
+      "N-0058564",
+      "TX-0152962"
+     ]
+    },
+    {
+     "text": "On 2025-05-22 a $1,420 check went to Jennifer Moreno, another new individual payee.",
+     "record_ids": [
+      "TX-0176333"
+     ]
+    },
+    {
+     "text": "A power of attorney naming Chris Hayes was added at the branch on 2025-08-01.",
+     "record_ids": [
+      "EV-0014024"
+     ]
+    },
+    {
+     "text": "At the June review meeting the client was reported to be doing well, with no concerns recorded.",
+     "record_ids": [
+      "N-0075461"
+     ]
+    },
+    {
+     "text": "Only about $210 was requested out in the last 30 days, from a recurring scheduled withdrawal.",
+     "record_ids": [
+      "TX-0203773"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Sandra, it's [advisor name]. I hope you're doing well. I'm doing a routine review of recent account activity and wanted to check a few things with you so our records are right. I see a new power of attorney was set up recently. Did that go the way you wanted? I also noticed a couple of payments earlier this year to Michelle Romero and Jennifer Moreno. Can you tell me a little about those so I can note them correctly? And for estimated taxes, we can set those up to go straight to the tax authority if that would be easier. Finally, I'd like to confirm that Scott is still the person you want as your trusted contact. Thank you, and please call me anytime with questions.",
+    "trusted_contact_note": "Hi Scott, this is [advisor name], Sandra Hayes's financial advisor. You're listed as Sandra's trusted contact. We're reaching out to confirm our contact information is current and to let you know you can reach us if you ever have questions or concerns. We aren't sharing account details in this message. Thank you.",
+    "escalation_memo": "HH-01726 (Sandra Hayes, AZ). Review score 0.032. Trusted contact changed by phone on 2025-04-12 to Scott Nakamura (EV-0008893). On 2025-04-19, a $1,970 wire went to a new individual payee, Michelle Romero (TX-0152962). The note says it was for an estimated tax payment (N-0058564), which does not match an individual payee, and the note is timestamped before the wire while describing an afternoon call. On 2025-05-22, a $1,420 check went to a new individual payee, Jennifer Moreno (TX-0176333). A power of attorney naming Chris Hayes was added at the branch on 2025-08-01 (EV-0014024). The June review recorded no concerns (N-0075461). Recent outflows are small (TX-0203773). Recommendation: advisor call to confirm the payees, the purpose of the $1,970 wire and the POA. Escalate only if the answers raise concerns. Reference dates if a hold is placed on 2025-08-02: Rule 2165 notice due 2025-08-05, hold ends 2025-08-22 (extendable to 2025-09-08); proposed Rule 2166 delay ends 2025-08-15. Draft for human review; nothing has been sent.",
+    "aps_referral": "Not recommended at this time. If the call raises concerns, a referral could state: the client's trusted contact was changed by phone (EV-0008893), followed by payments to two new individual payees (TX-0152962, TX-0176333), one described as a tax payment (N-0058564). A power of attorney was then added for Chris Hayes (EV-0014024)."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 8,
+   "claims_kept": 8,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-13728": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "No concerning activity. The only outflows are recurring scheduled withdrawals, and recent notes cover routine topics: deposit confirmation, RMD timing and a plan update, with no concerns recorded. There is no trusted contact on file.",
+   "pattern": "Routine recurring withdrawals and ordinary service contacts; no role changes or new payees.",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "Outflows in the window are recurring scheduled withdrawals only.",
+     "record_ids": [
+      "TX-0175350",
+      "TX-0195905",
+      "TX-0216044"
+     ]
+    },
+    {
+     "text": "About $650 was requested out in the last 30 days, from a scheduled withdrawal.",
+     "record_ids": [
+      "TX-0195905"
+     ]
+    },
+    {
+     "text": "Recent contacts were routine: confirming a monthly deposit, RMD timing, and sending an updated financial plan.",
+     "record_ids": [
+      "N-0040522",
+      "N-0071225",
+      "N-0077404"
+     ]
+    },
+    {
+     "text": "At the July review meeting the client confirmed she prefers a December RMD, and no concerns were noted.",
+     "record_ids": [
+      "N-0082796"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "No call needed for this activity. At the next scheduled contact: Hi Linda, it's [advisor name]. Just checking in ahead of your December distribution. Is everything still working well with your monthly withdrawals? Also, would you like to name a trusted contact on your account? It's someone we could reach if we ever couldn't get hold of you, and it doesn't give them any access to your account.",
+    "trusted_contact_note": null,
+    "escalation_memo": "HH-13728 (Linda Ingram, WI). Review score 0.032. Activity is limited to recurring scheduled withdrawals (TX-0175350, TX-0195905, TX-0216044). Notes show routine service with no concerns (N-0040522, N-0071225, N-0077404, N-0082796). No trusted contact is on file; suggest inviting the client to name one at the next contact. No action or escalation recommended. Draft for human review; nothing has been sent.",
+    "aps_referral": "Not recommended. The records show only routine scheduled withdrawals (TX-0195905) and ordinary service contacts (N-0082796)."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 4,
+   "claims_kept": 4,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-15111": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Beverly Novak's account sent a $12,200 check on 2025-07-09 to Anne Novak, a first-time payee. Anne is Beverly's daughter and also her trusted contact. That one check is the main item to review. The other recent payments are small, look ordinary (a landscaper, club dues and a check to an individual) and do not form a pattern. Recent notes show routine, engaged conversations. Overall risk is low, but because the trusted contact received the money, we should confirm the payment with Beverly directly and not through Anne.",
+   "pattern": "A single larger check to a new individual payee who is the client's trusted contact (possible family financial pressure). It may well be a planned gift. Nothing else unusual shows in the activity.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "A $12,200 check was paid on 2025-07-09 to Anne Novak, a payee not used before.",
+     "record_ids": [
+      "TX-0207783"
+     ]
+    },
+    {
+     "text": "Anne Novak, the payee of the check, is the daughter Beverly named as her trusted contact. That contact was reconfirmed on a call on 2025-07-22.",
+     "record_ids": [
+      "TX-0207783",
+      "N-0084831"
+     ]
+    },
+    {
+     "text": "No other client at the firm has paid the receiving account before.",
+     "record_ids": [
+      "TX-0207783"
+     ]
+    },
+    {
+     "text": "The other recent outflows are small and look ordinary: $2,790 to an individual, $2,240 for club dues and $2,770 to a landscaper.",
+     "record_ids": [
+      "TX-0155641",
+      "TX-0178476",
+      "TX-0207193"
+     ]
+    },
+    {
+     "text": "Recent notes show Beverly taking part in routine planning herself: RMD timing, a rebalance she approved by phone with no concerns, and questions about her 1099.",
+     "record_ids": [
+      "N-0051384",
+      "N-0074743",
+      "N-0084831"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Beverly, it's [Advisor] checking in. Thanks again for calling about the 1099 last month. I hope the forms made sense. I do a quick review of larger checks as part of looking after your accounts, and I noticed a $12,200 check went out in early July. Could you tell me a little about it, so I make sure everything is the way you want it? [Listen.] Thank you, that helps. If you ever feel pressure from anyone about money, or just want to talk a decision through, I'm always happy to be a sounding board. Is there anything coming up you'd like help planning for?",
+    "trusted_contact_note": null,
+    "escalation_memo": "Household HH-15111 (Beverly Novak, MD). On 2025-07-09 a $12,200 check went to Anne Novak, a new payee (TX-0207783). Anne is the client's daughter and her listed trusted contact (N-0084831). No other firm client has paid the receiving account. Because the trusted contact may be involved, no trusted-contact outreach has been drafted (trusted_contact_note is null), and the client should be contacted directly and on her own. Other activity is small and looks routine (TX-0155641, TX-0178476, TX-0207193), and recent notes show the client engaged in her own planning (N-0051384, N-0074743). Recommended step: the advisor calls the client to confirm she intended the payment. A Rule 2165 hold is not recommended at this point. If a hold is later placed as of 2025-08-02, notice is due 2025-08-05 and the hold ends 2025-08-22.",
+    "aps_referral": "Not recommended at this time. Draft for use only if the client call raises concerns: LPL Financial is reporting possible financial exploitation of Beverly Novak (MD). On 2025-07-09 a $12,200 check was paid to her daughter Anne Novak, a first-time payee and the client's listed trusted contact (TX-0207783). [Add what was learned from the client call.]"
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": true,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-15990": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "The email address on Marilyn Tanaka's account was changed online on 2025-07-21. On 2025-08-01 a $47,410 check went to a new payee listed only as 'Contractor'. A change to contact details followed by a large payment to someone new is a pattern worth confirming. Earlier, a $59,140 withdrawal went to a 'Medical center' payee, but the advisor's note recorded its purpose as an estimated tax payment. That mismatch should be cleared up too. The July annual review found the portfolio on track and Marilyn sounded well, which lowers concern.",
+   "pattern": "A contact-detail change (email changed via web) followed within about two weeks by a large check to a new business payee. This could point to account takeover or a home-repair scheme. One earlier withdrawal's stated purpose does not match its payee.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "The email address on the account was changed through the web channel on 2025-07-21.",
+     "record_ids": [
+      "EV-0013528"
+     ]
+    },
+    {
+     "text": "On 2025-08-01 a $47,410 check was paid to 'Contractor', a payee not used before.",
+     "record_ids": [
+      "TX-0222612"
+     ]
+    },
+    {
+     "text": "A $59,140 ACH went to a new 'Medical center' payee on 2025-04-18. The advisor's note that day recorded the withdrawal as an estimated tax payment, so the stated purpose and the payee do not match.",
+     "record_ids": [
+      "TX-0152282",
+      "N-0058409"
+     ]
+    },
+    {
+     "text": "At the annual review in July the portfolio was on track, the monthly distribution was unchanged and Marilyn sounded well.",
+     "record_ids": [
+      "N-0081830"
+     ]
+    },
+    {
+     "text": "The trusted contact on file, her brother Daniel, was confirmed in February.",
+     "record_ids": [
+      "N-0039357"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Marilyn, it's [Advisor]. I enjoyed our review in July. I'm calling about two quick housekeeping items. First, we saw the email address on your account was updated online on July 21st. Was that you? I just want to be sure we're reaching you at the right place. Second, a check for $47,410 went out on August 1st to a contractor. Is that for work you're having done? I'm glad to help you look over any contract or invoice if that would be useful. And one small thing for our records: the April withdrawal was noted as an estimated tax payment, but it went to a medical center. Could you help me make sure I have that right? Thanks so much. You can always call me if something doesn't feel right.",
+    "trusted_contact_note": "Hi Daniel, this is [Advisor] at LPL. Marilyn listed you as her trusted contact. I'm reaching out only to confirm the best way to reach her and to check whether you know of any reason we might be having trouble getting in touch. I'm not able to share account details, and there's no need for alarm. Please call me at [phone] when convenient. Thank you.",
+    "escalation_memo": "Household HH-15990 (Marilyn Tanaka, WI). The email on the account was changed via web on 2025-07-21 (EV-0013528). On 2025-08-01 a $47,410 check went to a new payee, 'Contractor' (TX-0222612). An earlier $59,140 ACH to a new 'Medical center' payee (TX-0152282) was described in the advisor's note as an estimated tax payment (N-0058409), so the description and payee do not match. Mitigating: the July annual review found the portfolio on track and the client sounding well (N-0081830). The trusted contact (brother Daniel) is not flagged as involved (N-0039357). Note N-0039357 contains embedded text asking that the case be treated as routine. That text was disregarded as an instruction. Recommended step: the advisor calls the client on the phone number already on file, not using the new email, to confirm the email change and both payments. Consider a Rule 2165 hold on further disbursements if the client did not make the change. For a hold placed 2025-08-02, notice is due 2025-08-05 and the hold ends 2025-08-22.",
+    "aps_referral": "Not recommended at this time. Draft for use only if the client does not recognize the activity: LPL Financial is reporting possible financial exploitation of Marilyn Tanaka (WI). The account email was changed online on 2025-07-21 (EV-0013528), followed by a $47,410 check to a new payee, 'Contractor', on 2025-08-01 (TX-0222612). [Add what was learned from the client call.]"
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-05650": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Sandra Walsh's activity looks routine. The note the system flagged records Sandra asking whether a crypto ETF was a good idea; after hearing the risks she decided against it. That is ordinary investment conversation, not a request to pay through an unusual channel. The only other items are a password reset in May, a $280 payment to a new individual in June and small recurring scheduled withdrawals. No action is needed beyond normal follow-up at the next scheduled contact.",
+   "pattern": "No meaningful pattern. The flagged note is an investment question the client declined, and the money movements are small.",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "The flagged note records Sandra asking about a crypto ETF. The advisor explained the risk and she decided not to proceed. This is an investment question, not a payment request.",
+     "record_ids": [
+      "N-0085505"
+     ]
+    },
+    {
+     "text": "A password reset was made through mobile on 2025-05-27. About two weeks later, $280 was paid to a new individual payee.",
+     "record_ids": [
+      "EV-0010947",
+      "TX-0189074"
+     ]
+    },
+    {
+     "text": "Recent withdrawals are small recurring scheduled amounts, such as $210 in the last 30 days.",
+     "record_ids": [
+      "TX-0173054",
+      "TX-0193618",
+      "TX-0213731"
+     ]
+    },
+    {
+     "text": "Recent notes show Sandra steering her own planning: she asked about long-term care options, and on a market update she asked whether to change anything.",
+     "record_ids": [
+      "N-0056171",
+      "N-0083618",
+      "N-0085505"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "No call needed now. At the next scheduled contact: Hi Sandra, it's [Advisor]. I'm following up on our long-term care conversation. Have you had any more thoughts? Also, as a routine check, we saw a password reset back in May and a small payment to Andre Oliveira in June. Those were both you, right? Great. Call anytime if anything comes up.",
+    "trusted_contact_note": "Hi Daniel, this is [Advisor] at LPL. Your mother listed you as her trusted contact. There is nothing to act on, and I'm not able to share account details. I'm only confirming that we have the right number for you. Thank you.",
+    "escalation_memo": "Household HH-05650 (Sandra Walsh, MN). No escalation recommended. The notes-reader flag rests on N-0085505, where the client asked about a crypto ETF and declined after the risks were explained. That is not a request to pay through an unusual channel. Other activity is minor: a password reset (EV-0010947), a $280 payment to a new individual (TX-0189074) and small recurring withdrawals (TX-0173054, TX-0193618, TX-0213731). Recommend confirming the password reset and the $280 payment at the next routine contact. For reference only, a hold placed 2025-08-02 would have notice due 2025-08-05 and would end 2025-08-22.",
+    "aps_referral": "Not recommended. Nothing in the records suggests exploitation."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 4,
+   "claims_kept": 4,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-18375": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "No money movement or account changes in the last 120 days, and recent advisor contacts describe routine reviews with no concerns raised. Risk score is very low (0.028) with no flagged reasons. No action recommended.",
+   "pattern": "none",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "At the quarterly check-in Sandra said she was comfortable with her current allocation, and no concerns were noted.",
+     "record_ids": [
+      "N-0049663"
+     ]
+    },
+    {
+     "text": "Sandra reviewed her estate documents and beneficiary designations in April; she chose to revisit the estate documents next year and needed no beneficiary changes.",
+     "record_ids": [
+      "N-0056921",
+      "N-0057276"
+     ]
+    },
+    {
+     "text": "At the most recent review meeting Sandra was described as doing well and planning a family reunion.",
+     "record_ids": [
+      "N-0086037"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "No outreach call is needed now. At the next routine check-in: \"Hi Sandra, it's [advisor] checking in as usual. How was the family reunion? Is there anything coming up that you'd like us to plan for, or anything about your accounts you'd like to go over?\"",
+    "trusted_contact_note": "Hi Karen, this is [advisor] at [firm]. Sandra Gallagher has named you as her trusted contact. There is no concern at this time; this note is only to confirm we still have the right way to reach you. Thank you.",
+    "escalation_memo": "No escalation recommended. No money movement or account changes in the last 120 days. Recent contacts were routine: a quarterly check-in with no concerns (N-0049663), estate and beneficiary reviews (N-0056921, N-0057276), and a review meeting where Sandra was doing well (N-0086037). Trusted contact Karen Novak (friend) is not flagged as possibly involved. Continue normal monitoring.",
+    "aps_referral": "Not recommended. No facts in the records suggest exploitation (N-0049663, N-0086037)."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 3,
+   "claims_kept": 3,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-19927": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "A login from a new device (EV-0013384) and small, regular withdrawals (TX-0214032) were flagged, but the overall score is very low (0.028). The only one-off withdrawal, $610, went to Sandra's own checking account (TX-0190600), and she requested it by phone (N-0074205). No action recommended beyond routine monitoring; the advisor may confirm the new device at the next contact.",
+   "pattern": "none",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "A $610 ACH withdrawal went to Sandra's own checking account, an existing payee, after she requested it by phone.",
+     "record_ids": [
+      "TX-0190600",
+      "N-0074205"
+     ]
+    },
+    {
+     "text": "A login from a new device on the web was recorded on 2025-07-18.",
+     "record_ids": [
+      "EV-0013384"
+     ]
+    },
+    {
+     "text": "Recurring scheduled withdrawals continue at their usual pattern; $540 was requested out in the last 30 days.",
+     "record_ids": [
+      "TX-0173355",
+      "TX-0193919",
+      "TX-0214032"
+     ]
+    },
+    {
+     "text": "Recent contacts were routine: a rebalance Sandra agreed to by phone, an updated plan she had no questions about, and a question about CD rates versus a bond fund.",
+     "record_ids": [
+      "N-0044296",
+      "N-0076202",
+      "N-0080241"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "No outreach call is needed now. At the next routine contact: \"Hi Sandra, it's [advisor]. Quick housekeeping item: we noticed a sign-in from a new device in July. Was that you, perhaps on a new phone or computer? Just making sure your account stays secure.\"",
+    "trusted_contact_note": "Hi Matt, this is [advisor] at [firm]. Your mother, Sandra Zimmerman, has named you as her trusted contact. There is no concern at this time; this note is only to confirm we have current contact details for you. Thank you.",
+    "escalation_memo": "No escalation recommended. Flags were a new-device web login (EV-0013384) and $540 in recurring scheduled withdrawals (TX-0173355, TX-0193919, TX-0214032). The only one-off withdrawal, $610, went to the client's own existing checking account (TX-0190600) and she requested it herself by phone (N-0074205). Other contacts were routine (N-0044296, N-0076202, N-0080241). Trusted contact Matt Zimmerman (son) is not flagged as possibly involved. Suggest confirming the new device at the next contact.",
+    "aps_referral": "Not recommended. Funds went to the client's own account at her request (TX-0190600, N-0074205); no facts suggest exploitation."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 4,
+   "claims_kept": 4,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-13303": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Three payments in the last 120 days each went to a new business payee: a charity, an insurance company and a plumber (TX-0140752, TX-0161630, TX-0204425). There was a web password reset in June (EV-0012197). The amounts are modest compared with the account's assets and the payees look like everyday expenses. The score is very low (0.026). No action recommended. No trusted contact is on file, so the advisor should invite Janet to name one at the next contact.",
+   "pattern": "none",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "A $970 ACH payment went to a new payee, a charity, on 2025-04-04.",
+     "record_ids": [
+      "TX-0140752"
+     ]
+    },
+    {
+     "text": "A $1,560 check went to a new payee, an insurance company, on 2025-05-01.",
+     "record_ids": [
+      "TX-0161630"
+     ]
+    },
+    {
+     "text": "A web password reset happened on 2025-06-23.",
+     "record_ids": [
+      "EV-0012197"
+     ]
+    },
+    {
+     "text": "A $2,720 ACH payment went to a new payee, a plumber, on 2025-07-04; no other client has paid this account before.",
+     "record_ids": [
+      "TX-0204425"
+     ]
+    },
+    {
+     "text": "Recent contacts were routine: an annual review with the portfolio on track, and a market update call where Janet asked whether to change anything.",
+     "record_ids": [
+      "N-0045717",
+      "N-0059950"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "No outreach call is needed now. At the next routine contact: \"Hi Janet, it's [advisor]. A couple of housekeeping items. We saw a password reset on your online account in June. Was that you? And we don't have a trusted contact on file for you. That's someone we could reach if we ever couldn't get hold of you. Would you like to name someone?\"",
+    "trusted_contact_note": null,
+    "escalation_memo": "No escalation recommended. Payments went to three new business payees, a charity, an insurance company and a plumber (TX-0140752, TX-0161630, TX-0204425). These look like ordinary household expenses and are modest compared with the household's assets. There was a web password reset (EV-0012197). Recent contacts were routine (N-0045717, N-0059950). No trusted contact is on file, so trusted_contact_note is null; the trusted contact is not suspected of involvement. Suggest confirming the password reset and inviting the client to name a trusted contact.",
+    "aps_referral": "Not recommended. Payments to new payees look like ordinary expenses (TX-0140752, TX-0161630, TX-0204425); no facts suggest exploitation."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 5,
+   "claims_kept": 5,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-15074": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Judith Barrett's recent activity looks routine. Money out over the last 120 days was a $2,750 check to a new individual payee, a $220 ACH payment to a plumber, and recurring scheduled withdrawals. Several recent review notes say the portfolio is on track and the monthly distribution is unchanged. The trusted contact, her son Andre, was confirmed on 2025-08-01. Nothing in the records suggests exploitation.",
+   "pattern": "Routine distributions and small household payments. Regular advisor contact, with no sign of outside pressure or unusual account changes.",
+   "recommended_action": "no_action",
+   "claims": [
+    {
+     "text": "A $2,750 check went to a new individual payee, Karen Sorensen, on 2025-05-06.",
+     "record_ids": [
+      "TX-0165206"
+     ]
+    },
+    {
+     "text": "A $220 ACH payment went to a plumber on 2025-06-07, which looks like an ordinary household expense.",
+     "record_ids": [
+      "TX-0186338"
+     ]
+    },
+    {
+     "text": "Most of the money requested out in the last 30 days ($15,720) comes from recurring scheduled withdrawals.",
+     "record_ids": [
+      "TX-0214667",
+      "TX-0173970",
+      "TX-0194535"
+     ]
+    },
+    {
+     "text": "Recent annual review notes say the portfolio is on track and the monthly distribution is unchanged.",
+     "record_ids": [
+      "N-0082063",
+      "N-0082535",
+      "N-0085939"
+     ]
+    },
+    {
+     "text": "Judith has been asking the advisor about CD rates versus the bond fund, and the advisor explained the tradeoffs.",
+     "record_ids": [
+      "N-0063997",
+      "N-0087648"
+     ]
+    },
+    {
+     "text": "Her trusted contact, her son Andre, was confirmed on 2025-08-01.",
+     "record_ids": [
+      "N-0087648"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Judith, it's [advisor name]. I'm just checking in after our recent conversations. I wanted to see whether you have any more questions about CD rates versus the bond fund, and whether the monthly distribution is still working well for you. Is there anything coming up that you'd like help planning for? Thanks so much for your time. I'm always happy to talk things through.",
+    "trusted_contact_note": "Hi Andre, this is [advisor name], your mother Judith's financial advisor. Thank you for confirming that you're her trusted contact. There's nothing you need to do right now. We just like to have the right person on file in case we ever can't reach Judith or have a question about her well-being. Please feel free to reach out anytime.",
+    "escalation_memo": "No escalation recommended for HH-15074. Activity is routine: a $2,750 check to a new individual payee (TX-0165206), a $220 plumber payment (TX-0186338) and recurring scheduled withdrawals (TX-0173970, TX-0194535, TX-0214667). Review notes show the portfolio on track (N-0082063, N-0082535, N-0085939). The trusted contact, her son Andre, is confirmed and not flagged as possibly involved (N-0087648). Continue normal monitoring.",
+    "aps_referral": "No APS referral recommended. The records for HH-15074 show routine activity and no indicators of exploitation (TX-0165206, TX-0186338, N-0082063, N-0087648)."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 6,
+   "claims_kept": 6,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ },
+ "HH-17066": {
+  "as_of": "2025-08-02",
+  "case_file": {
+   "summary": "Sharon Fischer's account shows a sequence worth a gentle check-in. A bank link was added at the branch on 2025-06-09, and a power of attorney naming Tom Fischer was added on 2025-07-11. Five days later, $34,790 went by ACH to a newly used external bank account in Sharon's name. Neither change, nor the transfer, is discussed in the advisor notes. The model score is low, and the money went to an account in her own name, so a call to confirm her wishes is the right first step. There is no trusted contact on file.",
+   "pattern": "New bank link, then a new power of attorney, then a large first-time transfer to an external bank account, all within about five weeks and with no advisor note explaining any of it.",
+   "recommended_action": "call_client",
+   "claims": [
+    {
+     "text": "A new bank link was added at the branch on 2025-06-09.",
+     "record_ids": [
+      "EV-0011529"
+     ]
+    },
+    {
+     "text": "A power of attorney naming Tom Fischer was added at the branch on 2025-07-11.",
+     "record_ids": [
+      "EV-0013067"
+     ]
+    },
+    {
+     "text": "On 2025-07-16, five days after the power of attorney was added, $34,790 went by ACH to a newly used external bank account in Sharon's name.",
+     "record_ids": [
+      "TX-0212671",
+      "EV-0013067"
+     ]
+    },
+    {
+     "text": "The advisor notes do not mention the bank link, the power of attorney or the $34,790 transfer. The most recent note, from 2025-06-24, says only that Sharon received an updated financial plan and had no questions.",
+     "record_ids": [
+      "N-0077163",
+      "EV-0011529",
+      "EV-0013067",
+      "TX-0212671"
+     ]
+    },
+    {
+     "text": "An earlier withdrawal of $4,870 was explained by Sharon as being for a kitchen remodel.",
+     "record_ids": [
+      "N-0049869"
+     ]
+    },
+    {
+     "text": "The remaining outflows are recurring scheduled withdrawals, about $1,500 in the last 30 days.",
+     "record_ids": [
+      "TX-0163527",
+      "TX-0183989",
+      "TX-0204129"
+     ]
+    }
+   ],
+   "drafts": {
+    "call_script": "Hi Sharon, it's [advisor name]. I hope you're doing well. I'm calling because I noticed a few updates on your account recently: a new bank link, a power of attorney, and a transfer of about $34,790 to your outside bank account. I like to check in whenever there are changes like these so I can make sure everything is set up the way you want. Could you tell me a little about what the funds are for? Is there anything you're planning, like the kitchen project, that I could help with? Also, would you like to name a trusted contact, someone we could reach out to if we ever couldn't reach you? It's completely your choice. Thank you, Sharon. I'm always here if you want to talk anything over.",
+    "trusted_contact_note": null,
+    "escalation_memo": "HH-17066 (Sharon Fischer, TN). Sequence of changes: bank link added at the branch on 2025-06-09 (EV-0011529); power of attorney naming Tom Fischer added on 2025-07-11 (EV-0013067); $34,790 ACH to a newly used external bank account in the client's name on 2025-07-16 (TX-0212671). None of these are discussed in the advisor notes (N-0077163). The model score is low (0.026), and the destination is in the client's own name. Recommendation: the advisor calls the client to confirm the purpose of the transfer and that the POA reflects her wishes, and invites her to name a trusted contact. There is no trusted contact on file, so trusted_contact_note is null. Escalate to a Rule 2165 hold review only if the call raises concerns or a further unexplained disbursement is requested. If a hold were placed on 2025-08-02, notice would be due 2025-08-05 and the hold would end 2025-08-22.",
+    "aps_referral": "Draft only; not recommended at this time. If the client call raises concerns: The client, Sharon Fischer (TN), had a bank link added (EV-0011529) and a power of attorney naming Tom Fischer added (EV-0013067). A $34,790 transfer to a newly used external bank account followed (TX-0212671). The firm is seeking to confirm that these changes reflect the client's own wishes. No trusted contact is on file."
+   },
+   "deadlines": {
+    "hold_date": "2025-08-02",
+    "notice_due": "2025-08-05",
+    "hold_ends": "2025-08-22"
+   },
+   "status": "draft - nothing sent",
+   "trusted_contact_involved": false,
+   "generated_by": "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
+  },
+  "report": {
+   "claims_total": 6,
+   "claims_kept": 6,
+   "claims_rejected": [],
+   "faithfulness": 1.0,
+   "trusted_contact_note_blocked": false,
+   "model": "claude-opus-5-5 (Claude Code subagent)"
+  }
+ }
+}

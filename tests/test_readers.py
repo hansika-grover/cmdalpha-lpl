@@ -114,3 +114,17 @@ def test_case_file_ingest_rejects_claims_without_valid_ids(tmp_path, monkeypatch
     assert stored["case_file"]["drafts"]["trusted_contact_note"] is None
     assert stored["case_file"]["generated_by"] == "Claude case agent (claude-opus-5-5 via Claude Code subagents)"
     assert json.loads((tmp_path / "results" / "case_agent_usage.json").read_text())["faithfulness"] == pytest.approx(1 / 3)
+
+
+def test_case_agent_sees_the_record_at_the_exact_as_of_moment(monkeypatch):
+    """Margaret's alert fires on a note at her as-of moment; the agent must see that note, as the page does."""
+    import sentinel.llm.case_agent as CA
+    seen = {}
+
+    class Rec:
+        def __init__(self, W, h, day, *a):
+            seen["day"] = day
+    monkeypatch.setattr(CA, "CaseData", Rec)
+    note_day = 670.123456789  # a timestamp that rounding to 4 decimals would push below
+    CA._case(None, {"household_id": "HH-1", "flags": [], "score": 0.5, "as_of_day": note_day}, day=999.0)
+    assert seen["day"] >= note_day

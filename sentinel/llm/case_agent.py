@@ -282,7 +282,9 @@ def _queue(world, clients):
 def _case(W, c, day) -> CaseData:
     """A client is shown at its own as-of (a showcase case outside today's window is shown at its alert)."""
     quotes = {f["note"]: [f["quote"]] for f in c["flags"]}
-    return CaseData(W, c["household_id"], c.get("as_of_day", day), c.get("reason_codes", []), quotes, c["score"])
+    # + 1e-6: the same tolerance the export uses, so a record at the exact as-of moment (often the one that
+    # triggered the alert) is visible to the agent as it is on the page
+    return CaseData(W, c["household_id"], c.get("as_of_day", day) + 1e-6, c.get("reason_codes", []), quotes, c["score"])
 
 
 # ------------------------------------------------------------------ Claude Code subagents (no API key)

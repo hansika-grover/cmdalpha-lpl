@@ -302,7 +302,7 @@ class Exporter:
              "case_file": {"claims": cf["claims"], "deadlines": cf["deadlines"], "recommended_action": cf["recommended_action"],
                            "generated_by": cf.get("generated_by", "Claude case agent"), "faithfulness": rep.get("faithfulness"),
                            "claims_rejected": len(rep.get("claims_rejected", []))},
-             "reason_codes": reasons, "alert_date": date_of(ar["day"])[0], "as_of": as_of_date, "as_of_day": round(float(as_of), 4), "hard_rule": hard, "reader": "Claude" if self.reader == "llm" else "keyword baseline",
+             "reason_codes": reasons, "alert_date": date_of(ar["day"])[0], "as_of": as_of_date, "as_of_day": float(as_of), "hard_rule": hard, "reader": "Claude" if self.reader == "llm" else "keyword baseline",
              "llm_read": llm_read, "network": self.network(rows, as_of)}
         return c
 

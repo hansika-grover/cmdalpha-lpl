@@ -107,6 +107,8 @@ Claude minus keyword, F1: +41 points (95% CI 38–44%). Quotes that were not exa
 | v1+memory | tuned | 87.2% | 24.8% |
 
 **Settings search** (`eval/tune.py`, world 0's validation split only): 24 configurations; best was `binary` with `{"max_depth": 3, "num_leaves": 8, "n_estimators": 600, "learning_rate": 0.05, "class_weight": "balanced"}`. LightGBM's ranking objective, grouped by week, reached 91.1% validation recall at 0.25% against 93.7% for the best binary model. That tuned config then lost to LightGBM's default settings in the 5-world validation selection above, for every feature set, so Sentinel uses the defaults: one world's validation split (about 80 cases) was too small to tune on.
+
+**Case agent usage:** {"households": 35, "claims_total": 178, "claims_kept": 178, "trusted_contact_notes_blocked": 0, "rejected_why": {}, "model": "claude-opus-5-5 (Claude Code subagent)", "how_run": "Claude Code subagents given SYSTEM, OUTPUT_SCHEMA and pre-computed tool outputs; production: the tool-use loop in run_agent", "input_tokens": null, "output_tokens": null, "missing_output": [], "parse_failures": {}, "invalid": [], "faithfulness": 1.0, "retry": []}
 <!-- RESULTS:END -->
 
 ## How it works

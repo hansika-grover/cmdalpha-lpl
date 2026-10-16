@@ -1,0 +1,16 @@
+{
+ "households": 35,
+ "claims_total": 178,
+ "claims_kept": 178,
+ "trusted_contact_notes_blocked": 0,
+ "rejected_why": {},
+ "model": "claude-opus-5-5 (Claude Code subagent)",
+ "how_run": "Claude Code subagents given SYSTEM, OUTPUT_SCHEMA and pre-computed tool outputs; production: the tool-use loop in run_agent",
+ "input_tokens": null,
+ "output_tokens": null,
+ "missing_output": [],
+ "parse_failures": {},
+ "invalid": [],
+ "faithfulness": 1.0,
+ "retry": []
+}

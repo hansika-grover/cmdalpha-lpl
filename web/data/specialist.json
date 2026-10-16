@@ -5,7 +5,7 @@
   "budget": "0.25% of households per week",
   "households_scored": 4000,
   "reader": "keyword baseline (Claude not run yet)",
-  "agent": "template drafts (Claude case agent not run yet)",
+  "agent": "Claude case agent",
   "llm_read_by": "Claude (claude-haiku-5-5 via Claude Code subagents)",
   "showcase_note": "Margaret, Harold and Ruth are real pipeline outputs on synthetic test households, renamed to match the pitch."
  },
@@ -28,23 +28,43 @@
    },
    "claims": [
     {
-     "text": "A warning sign in the last 30 days (money movement and account changes) keeps risk elevated",
+     "text": "A password reset was made by mobile on 2025-07-10.",
+     "record_ids": [
+      "EV-0012996"
+     ]
+    },
+    {
+     "text": "A login from a new device on the web followed on 2025-07-12, and a second password reset by phone came later that same day.",
+     "record_ids": [
+      "EV-0013097",
+      "EV-0013105"
+     ]
+    },
+    {
+     "text": "An earlier new-device login on the web happened on 2025-05-30.",
+     "record_ids": [
+      "EV-0011099"
+     ]
+    },
+    {
+     "text": "A $100 check went to a first-time individual payee, Tom Mercer, on 2025-05-16.",
+     "record_ids": [
+      "TX-0172130"
+     ]
+    },
+    {
+     "text": "A scheduled withdrawal goes to an account that received money from one other client in the last 90 days, and that client was paying it for the first time.",
      "record_ids": [
       "TX-0211959"
      ]
     },
     {
-     "text": "This account (ACCT-7553f371) received money from 1 other client in the last 90 days (1 paying it for the first time)",
-     "record_ids": [
-      "TX-0211959"
-     ]
-    },
-    {
-     "text": "Account changes in the 5 days before: password reset, then login from a new device",
+     "text": "There are no advisor notes in the last 180 days that explain the account changes or the new payee.",
      "record_ids": [
       "EV-0012996",
       "EV-0013097",
-      "EV-0013105"
+      "EV-0013105",
+      "TX-0172130"
      ]
     }
    ],
@@ -68,21 +88,33 @@
    },
    "claims": [
     {
-     "text": "Advisor notes show new relationship met online or recently, unusual urgency or pressure to act fast, secrecy",
+     "text": "Margaret asked for the quickest way to move money and did not want to wait for a check.",
      "record_ids": [
       "N-0087769"
      ]
     },
     {
-     "text": "$16,490 requested out in the last 30 days",
+     "text": "Margaret described a new 'boyfriend' named Andrew whom she has never met in person.",
+     "record_ids": [
+      "N-0087769"
+     ]
+    },
+    {
+     "text": "Margaret said she was instructed not to tell anyone at the bank or the firm.",
+     "record_ids": [
+      "N-0087769"
+     ]
+    },
+    {
+     "text": "About $16,490 was requested out in the last 30 days.",
      "record_ids": [
       "TX-0218855"
      ]
     },
     {
-     "text": "A warning sign in the last 30 days (notes) keeps risk elevated",
+     "text": "Last month Margaret discussed long-term care options at her own request, and no action was taken.",
      "record_ids": [
-      "N-0087769"
+      "N-0081368"
      ]
     }
    ],
@@ -106,15 +138,46 @@
    },
    "claims": [
     {
-     "text": "$680 requested out in the last 30 days",
+     "text": "Walter mentioned a friend he met on Instagram, a woman named Elena.",
      "record_ids": [
-      "TX-0203986"
+      "N-0061852"
      ]
     },
     {
-     "text": "Advisor notes show new relationship met online or recently",
+     "text": "Wires to 'Federal Clearing Acct', first paid on 2025-05-06, rose from $910 to $4,420 to $7,960 to $14,320 between May 6 and June 7.",
      "record_ids": [
-      "N-0061852"
+      "TX-0165074",
+      "TX-0167232",
+      "TX-0180000",
+      "TX-0186247"
+     ]
+    },
+    {
+     "text": "Walter said the $14,320 was to pay off old credit cards, but it went by wire to 'Federal Clearing Acct'.",
+     "record_ids": [
+      "N-0072463",
+      "TX-0186247"
+     ]
+    },
+    {
+     "text": "A $500 transfer went to his own checking account; he said it was a wedding gift for a grandchild.",
+     "record_ids": [
+      "TX-0213395",
+      "N-0083433"
+     ]
+    },
+    {
+     "text": "In recent conversations Walter seemed well and engaged: a review meeting, a beneficiary review with no concerns, and questions about CD rates.",
+     "record_ids": [
+      "N-0072934",
+      "N-0073145",
+      "N-0084239"
+     ]
+    },
+    {
+     "text": "Only $680 was requested out in the last 30 days.",
+     "record_ids": [
+      "TX-0203986"
      ]
     }
    ],
@@ -138,7 +201,52 @@
    },
    "claims": [
     {
-     "text": "Risk has been building: 3 warning signs across 2 engines in the last 30 days",
+     "text": "The phone number on the account was changed on 2025-11-07 through the web channel.",
+     "record_ids": [
+      "EV-0018745"
+     ]
+    },
+    {
+     "text": "A joint owner was added at a branch on 2025-11-12.",
+     "record_ids": [
+      "EV-0019016"
+     ]
+    },
+    {
+     "text": "The trusted contact was removed by phone on 2025-11-19.",
+     "record_ids": [
+      "EV-0019335"
+     ]
+    },
+    {
+     "text": "A $5,080 check went to Kelly Brennan, an individual marked as a new payee, on 2025-12-03.",
+     "record_ids": [
+      "TX-0310094"
+     ]
+    },
+    {
+     "text": "A $6,470 ACH payment went to Kelly Brennan on 2025-12-23, the as-of date.",
+     "record_ids": [
+      "TX-0333152"
+     ]
+    },
+    {
+     "text": "The $6,470 payment was funded by selling a position held for 15 years.",
+     "record_ids": [
+      "TX-0333152"
+     ]
+    },
+    {
+     "text": "The scoring reasons describe $11,550 sent in 90 days to a payee who holds a role on the account, after the trusted contact was removed. The reason names the payee 'Kelly Brennan', while the transactions show 'Kelly Brennan'. This name mismatch should be checked.",
+     "record_ids": [
+      "EV-0019016",
+      "EV-0019335",
+      "TX-0310094",
+      "TX-0333152"
+     ]
+    },
+    {
+     "text": "The scoring reasons note 3 warning signs across 2 engines in the last 30 days.",
      "record_ids": [
       "TX-0310094",
       "TX-0328210",
@@ -146,18 +254,11 @@
      ]
     },
     {
-     "text": "Funded by selling a position held 15 years",
+     "text": "Advisor notes from July to September describe routine conversations: staying the course, monthly distribution unchanged, comfortable with the current allocation. None mentions plans for large gifts or payments to family.",
      "record_ids": [
-      "TX-0333152"
-     ]
-    },
-    {
-     "text": "Trusted contact removed; $11,550 sent to Kelly Brennan in 90 days, who holds a role on the account",
-     "record_ids": [
-      "EV-0019016",
-      "EV-0019335",
-      "TX-0310094",
-      "TX-0333152"
+      "N-0083100",
+      "N-0097047",
+      "N-0098635"
      ]
     }
    ],
