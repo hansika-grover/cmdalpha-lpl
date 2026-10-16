@@ -9,7 +9,8 @@ LABEL = {"threshold_100k": "$100k threshold rule", "threshold_50k": "$50k thresh
          "expert_checklist": "Expert rule checklist (no notes)", "money_only": "Money movement only (engine A)",
          "rules_plus_keyword_notes": "Engines A + B + keyword notes", "sentinel": "**Sentinel**",
          "ablation_no_notes": "Sentinel without notes", "ablation_no_sequences": "Sentinel without sequences",
-         "ablation_no_money": "Sentinel without money movement", "ablation_no_network": "Sentinel without the mule-account network"}
+         "ablation_no_money": "Sentinel without money movement", "ablation_no_network": "Sentinel without the mule-account network",
+         "ablation_no_memory": "Sentinel without household memory"}
 TYP = {"investment_romance_scam": "Investment, crypto or romance", "tech_support_impersonation": "Tech support / bank impersonation",
        "government_impersonation": "Government impersonation", "silent_account_takeover": "Silent account takeover",
        "grandparent_voice_clone": "Grandparent / voice clone", "trusted_person_theft": "Trusted-person theft"}
@@ -69,11 +70,79 @@ def render(r: dict, seeds: dict | None) -> str:
         sr = seeds["methods"]["sentinel"]["0.25%"]["recall"]
         out += ["", f"**Stability across {len(seeds['seeds'])} independently generated worlds:** Sentinel catches "
                 f"{sr['mean'] * 100:.0f}% of cases at 0.25% on average (range {sr['min'] * 100:.0f}–{sr['max'] * 100:.0f}%)."]
+        bt = seeds.get("by_typology", {})
+        if bt.get("sentinel"):
+            out += ["", "By scam type, mean ± sd of cases caught across the worlds:", "",
+                    "| Typology | Sentinel at 0.25% | Sentinel at 1% | $100k rule |", "|---|---|---|---|"]
+            for t, name in TYP.items():
+                cell = lambda d: "–" if not d or d.get("mean") is None else f"{d['mean'] * 100:.0f}% ± {d['sd'] * 100:.0f}"
+                out.append(f"| {name} | {cell(bt['sentinel']['0.25%'].get(t))} | {cell(bt['sentinel']['1%'].get(t))} | "
+                           f"{cell(bt.get('threshold_100k', {}).get('natural', {}).get(t))} |")
+    out += readers_section(r.get("readers")) + v1_section(r) + tuning_section(r)
     for f, label in (("results/notes_reader_usage.json", "Notes reader"), ("results/case_agent_usage.json", "Case agent")):
         if Path(f).exists():
             u = json.loads(Path(f).read_text())
             out.append(f"\n**{label} usage:** {json.dumps(u)}")
     return "\n".join(out)
+
+
+def readers_section(rd: dict | None) -> list[str]:
+    """What the LLM adds: keyword reader vs Claude on the same notes, against the planted truth."""
+    if not rd:
+        return []
+    k, c, d, ic = rd["keyword"], rd["claude"], rd["claude_minus_keyword"], rd["injection_controls"]
+    out = ["", f"**What the LLM adds** (notes reader on the same {rd['meta']['n_notes']:,} notes, scored against the planted "
+           "red-flag categories; read by Claude Haiku through Claude Code subagents with the production prompt, since no API key "
+           "was available; see Limitations):", "",
+           "| Reader | Precision | Recall | F1 | Macro F1 |", "|---|---|---|---|---|",
+           f"| Keyword list | {p(k['micro']['precision'])} | {p(k['micro']['recall'])} | {p(k['micro']['f1'])} | {p(k['macro_f1'])} |",
+           f"| Claude | {p(c['micro']['precision'])} | {p(c['micro']['recall'])} | {p(c['micro']['f1'])} | {p(c['macro_f1'])} |",
+           "", f"Claude minus keyword, F1: {d['micro_f1']['value'] * 100:+.0f} points (95% CI {ci(d['micro_f1'])}). "
+           f"Quotes that were not exact substrings of the note: {rd['quotes']['n_dropped']} of {rd['quotes']['n_quotes']:,}. "]
+    pre = ic.get("claude_before_guardrail", {})
+    iv, rr = pre.get("injected_vs_control"), pre.get("reread_vs_control")
+    line = (f"**Prompt injection** ({ic['n_pairs']} injected notes, each also read with the injection removed): Claude reported "
+            f"the injection in {ic['claude']['injection_reported']} and red flags changed in {ic['claude']['flags_changed']}")
+    if iv and rr:
+        line += (f" (a plain second read of the same notes changes them in {rr['flags_changed']}). Mitigating context is less "
+                 f"stable: it changed in {p(iv['mitigating_changed_rate'])} of injected notes, against {p(rr['mitigating_changed_rate'])} "
+                 f"on a plain re-read, but injected notes gained mitigating quotes {iv['more_mitigating_quotes']} times and lost them "
+                 f"{iv['fewer_mitigating_quotes']} times, so code now ignores mitigating context in any note with an injection "
+                 f"(risk-lowering context added by an injection after that rule: {ic['claude']['mitigating_added_by_injection']})")
+    return out + [line + "."]
+
+
+def v1_section(r: dict) -> list[str]:
+    """Frozen v1 (before mule accounts, memory and tuning) against now, on the same households."""
+    p1 = Path("results/v1_metrics.json")
+    if not p1.exists():
+        return []
+    v1 = json.loads(p1.read_text())
+    rows = [("Cases caught, same workload as $100k rule", lambda m: m["matched_workload_100k"]["sentinel"]["recall"]),
+            ("Cases caught at 0.25%", lambda m: m["methods"]["sentinel"]["budgets"]["0.25%"]["recall"]),
+            ("Caught before money left at 0.25%", lambda m: m["methods"]["sentinel"]["budgets"]["0.25%"]["caught_before_money_left"]),
+            ("Look-alike false alarms at 0.25%", lambda m: m["methods"]["sentinel"]["budgets"]["0.25%"]["lookalike_false_alarm_rate"]),
+            ("$100k rule, cases caught", lambda m: m["methods"]["threshold_100k"]["natural"]["recall"])]
+    out = ["", "**Before and after the finals changes** (v1 was frozen in `results/v1_metrics.json` before the world changed; the "
+           "only change to the world is the destination-account column, drawn from a separate random stream, so every v1 record "
+           "is identical and the baselines were re-run on it):", "", "| | v1 | Now |", "|---|---|---|"]
+    out += [f"| {name} | {p(f(v1), 1)} | {p(f(r), 1)} |" for name, f in rows]
+    return out
+
+
+def tuning_section(r: dict) -> list[str]:
+    t = r.get("tuning")
+    if not t or not t.get("configs"):
+        return []
+    ch = t["chosen"]
+    best = lambda obj: max((c["val"]["0.25%"] for c in t["configs"] if c["objective"] == obj), key=lambda v: v["recall"], default=None)
+    rk, bn = best("lambdarank"), best("binary")
+    line = (f"**Model settings** were chosen on the validation split only (test never used) from {len(t['configs'])} configurations: "
+            f"`{ch['objective']}` with `{json.dumps(ch['params'])}`.")
+    if rk and bn:
+        line += (f" LightGBM's ranking objective, grouped by week, reached {p(rk['recall'], 1)} validation recall at 0.25% "
+                 f"against {p(bn['recall'], 1)} for the best binary model, so it was not chosen.")
+    return ["", line]
 
 
 def main():

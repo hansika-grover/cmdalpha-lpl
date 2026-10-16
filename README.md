@@ -167,6 +167,19 @@ tests/                   determinism, leakage, quote validation, deadlines, inje
   guidance); the exact share, pool size and lifetime are our assumptions. Large legitimate payees (tax, title, care homes,
   insurers) also share accounts, so "many clients paid this" is not a giveaway on its own. All baselines are re-run on
   the same world, and `ablation_no_network` reports Sentinel without these features.
+* **Claude's reading was produced without an API key.** For the finals, Claude Code subagents running Claude Haiku were
+  given only the notes reader's exact system prompt, JSON schema and chunks of 40 note texts (no labels, no other files),
+  and their output went through the same exact-quote validation as an API response
+  (`sentinel/llm/cache/notes_claude-haiku-5-5-subagent.jsonl`). Case files were drafted the same way by Claude Opus
+  subagents from pre-computed tool outputs and checked by `validate_case_file`. Claude read a stratified sample of 2,226
+  notes (for the reader comparison) and the notes of queued households (for the demo). It did **not** read all ~170k notes,
+  so Sentinel's headline numbers still use the keyword reader. In production both run through the Messages/Batches API.
+* **Reader sample.** Red-flag notes for the reader comparison come from all households, because neither reader is trained on
+  notes; the rest of the sample is from test households. It is stratified, not population-weighted, so its precision is
+  not the precision on a live note stream. Neither reader finds the planted category in silent-takeover service notes
+  (9 notes), which describe the request but no red-flag language.
+* **Household memory** uses a first-stage model's score on the household's earlier events; training rows get
+  out-of-fold scores. Leave-one-typology-out runs drop those two score features, since the first stage saw every scam type.
 * Synthetic data. Advisor notes are template-generated in five styles; real notes are far more varied. The next step is a
   backtest on LPL's past Senior Investor Protection cases, then a silent run alongside today's rules.
 * The weekly alert budget is a parameter LPL would set; precision is low at generous budgets and is also reported at a
