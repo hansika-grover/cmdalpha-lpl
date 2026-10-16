@@ -39,24 +39,24 @@ Test split: 4,000 households never seen in training. Notes reader: keyword notes
 | Expert rule checklist (no notes) | | 24% (78%) | 36% (88%) | 74% (96%) |
 | Money movement only (engine A) | | 60% (23%) | 78% (38%) | 91% (69%) |
 | **Sentinel** | | 74% (18%) | 86% (26%) | 86% (43%) |
-| Sentinel without notes | | 78% (22%) | 84% (33%) | 89% (49%) |
-| Sentinel without sequences | | 78% (7%) | 79% (17%) | 85% (35%) |
-| Sentinel without money movement | | 71% (19%) | 78% (27%) | 82% (36%) |
+| Sentinel without notes | | 76% (31%) | 85% (44%) | 91% (58%) |
+| Sentinel without sequences | | 60% (6%) | 74% (19%) | 80% (34%) |
+| Sentinel without money movement | | 71% (18%) | 76% (24%) | 79% (36%) |
 | Sentinel without the mule-account network | | 76% (17%) | 86% (27%) | 86% (43%) |
 | Sentinel without household memory | | 75% (16%) | 85% (27%) | 91% (39%) |
 
 **By scam type** at a 0.25% budget, and with that type held out of training entirely:
 
-| Typology | Test cases | Sentinel | Sentinel, type never seen | $100k rule |
-|---|---|---|---|---|
-| Investment, crypto or romance | 21 | 81% | 67% | 5% |
-| Tech support / bank impersonation | 16 | 94% | 62% | 0% |
-| Government impersonation | 7 | 43% | 43% | 14% |
-| Silent account takeover | 13 | 100% | 77% | 8% |
-| Grandparent / voice clone | 5 | 80% | 80% | 0% |
-| Trusted-person theft | 18 | 94% | 94% | 0% |
+| Typology | Test cases | Sentinel | Same features, all types seen | Same features, type never seen | $100k rule |
+|---|---|---|---|---|---|
+| Investment, crypto or romance | 21 | 81% | 81% | 67% | 5% |
+| Tech support / bank impersonation | 16 | 94% | 81% | 62% | 0% |
+| Government impersonation | 7 | 43% | 43% | 43% | 14% |
+| Silent account takeover | 13 | 100% | 100% | 77% | 8% |
+| Grandparent / voice clone | 5 | 80% | 80% | 80% | 0% |
+| Trusted-person theft | 18 | 94% | 94% | 94% | 0% |
 
-**Calibration:** expected calibration error 0.00061. **Fairness** (false-alarm rate relative to overall, target ≤ 1.25×): ages 55-64 0.90×, ages 65-74 0.96×, ages 75-84 1.07×, ages 85+ 1.19×. **Speed:** 0.755 ms per household for all three engines on a laptop.
+**Calibration:** expected calibration error 0.00061. **Fairness** (false-alarm rate relative to overall, target ≤ 1.25×): ages 55-64 0.90×, ages 65-74 0.96×, ages 75-84 1.07×, ages 85+ 1.19×. **Speed:** 0.809 ms per household for all three engines on a laptop.
 
 **Robustness** (same model and thresholds, cases caught at 0.25%): as evaluated 86%, all notes removed 82%, half the notes removed 80%, doubled account-event noise 84%; coached cover stories 92% (n=12).
 

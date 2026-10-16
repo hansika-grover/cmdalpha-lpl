@@ -26,7 +26,7 @@
    "selected_by": "mean validation recall at 0.25% weekly budget over 5 worlds",
    "chosen_at": "2026-10-16T22:31:29"
   },
-  "runtime_seconds": 371
+  "runtime_seconds": 356
  },
  "methods": {
   "threshold_100k": {
@@ -3248,88 +3248,88 @@
    }
   },
   "ablation_no_money": {
-   "label": "Sentinel without money movement",
+   "label": "Sentinel without money movement (and without household memory, which is built from it)",
    "budgets": {
     "0.05%": {
      "recall": {
-      "value": 0.625,
+      "value": 0.5875,
       "ci95": [
-       0.5224,
-       0.726
+       0.4789,
+       0.6905
       ]
      },
      "caught_before_money_left": {
-      "value": 0.3125,
+      "value": 0.3875,
       "ci95": [
-       0.2143,
-       0.4103
+       0.2839,
+       0.4894
       ]
      },
      "dollars_protected_share": {
-      "value": 0.5335,
+      "value": 0.5152,
       "ci95": [
-       0.3867,
-       0.6696
+       0.3645,
+       0.6509
       ]
      },
      "median_warning_days": {
-      "value": -0.1583,
+      "value": 0.0201,
       "ci95": [
-       -6.6326,
-       0.0201
+       0.0,
+       0.7882
       ]
      },
      "lookalike_false_alarm_rate": {
       "value": 0.1162,
       "ci95": [
        0.0718,
-       0.164
+       0.1623
       ]
      },
      "alerts_per_1k_households_per_week": {
-      "value": 0.4123,
+      "value": 0.3932,
       "ci95": [
-       0.3188,
-       0.5082
+       0.2997,
+       0.4939
       ]
      },
      "precision": {
-      "value": 0.5291,
+      "value": 0.5366,
       "ci95": [
-       0.4223,
-       0.6165
+       0.4296,
+       0.6262
       ]
      },
      "precision_at_0.5pct_base_rate": {
-      "value": 0.2167,
+      "value": 0.2219,
       "ci95": [
-       0.1638,
-       0.2802
+       0.1675,
+       0.291
       ]
      },
      "false_alarm_households_share": {
-      "value": 0.0125,
+      "value": 0.0112,
       "ci95": [
-       0.0092,
-       0.0158
+       0.0082,
+       0.0145
       ]
      },
      "fairness_by_age_band": {
       "55-64": {
-       "rate": 0.0161,
-       "ratio_to_overall": 1.2903
+       "rate": 0.0103,
+       "ratio_to_overall": 0.9144
       },
       "65-74": {
-       "rate": 0.0107,
-       "ratio_to_overall": 0.8554
+       "rate": 0.0118,
+       "ratio_to_overall": 1.0528
       },
       "75-84": {
-       "rate": 0.014,
-       "ratio_to_overall": 1.1184
+       "rate": 0.0115,
+       "ratio_to_overall": 1.0257
       },
       "85+": {
        "rate": 0.0082,
-       "ratio_to_overall": 0.6531
+       "ratio_to_overall": 0.7273
       }
      },
      "n_cases": 80,
@@ -3337,8 +3337,8 @@
      "n_households": 4000,
      "by_typology": {
       "government_impersonation": {
-       "recall": 0.1429,
-       "caught_before_money_left": 0.1429,
+       "recall": 0.0,
+       "caught_before_money_left": 0.0,
        "n": 7
       },
       "grandparent_voice_clone": {
@@ -3347,8 +3347,8 @@
        "n": 5
       },
       "investment_romance_scam": {
-       "recall": 0.619,
-       "caught_before_money_left": 0.1905,
+       "recall": 0.4762,
+       "caught_before_money_left": 0.2857,
        "n": 21
       },
       "silent_account_takeover": {
@@ -3357,13 +3357,13 @@
        "n": 13
       },
       "tech_support_impersonation": {
-       "recall": 0.5,
-       "caught_before_money_left": 0.4375,
+       "recall": 0.5625,
+       "caught_before_money_left": 0.5,
        "n": 16
       },
       "trusted_person_theft": {
        "recall": 0.9444,
-       "caught_before_money_left": 0.1111,
+       "caught_before_money_left": 0.3333,
        "n": 18
       }
      },
@@ -3373,36 +3373,27 @@
       "gift_to_family": 0.4054,
       "home_purchase": 0.0,
       "large_tax_payment": 0.0,
-      "long_term_care_deposit": 0.0667,
-      "moving_states": 0.0,
+      "long_term_care_deposit": 0.0,
+      "moving_states": 0.037,
       "remarriage": 1.0,
       "transfer_to_other_firm": 0.0,
       "trust_funding": 0.0
      },
      "warning_days_distribution": [
-      -50.8653,
-      -35.9819,
-      -28.7604,
+      -73.8139,
+      -50.8854,
+      -31.9403,
       -27.8639,
-      -25.9806,
+      -26.0944,
       -25.7903,
       -24.2083,
-      -21.891,
-      -21.0382,
       -19.9417,
       -19.9208,
       -17.1431,
-      -16.7681,
-      -11.6271,
       -11.1222,
       -10.8826,
       -10.2069,
-      -7.8229,
-      -6.6326,
-      -5.1708,
-      -5.0826,
-      -4.8118,
-      -2.3174,
+      -7.1264,
       -1.934,
       -0.1583,
       0.0,
@@ -3410,109 +3401,115 @@
       0.0,
       0.0,
       0.0,
+      0.0,
       0.0201,
       0.0201,
       0.0201,
       0.0201,
       0.0201,
-      0.1722,
-      0.2569,
+      0.1111,
       0.7396,
       0.7882,
-      1.1472,
+      0.9181,
+      1.5319,
       2.2806,
       2.8694,
       2.9708,
+      4.0215,
       4.2056,
+      4.7681,
+      5.7153,
+      5.9979,
       6.1632,
       6.6194,
       7.6736,
       9.8604,
-      27.8514,
+      14.8014,
+      28.9417,
       29.2493
      ],
-     "threshold": 0.682661
+     "threshold": 0.403164
     },
     "0.1%": {
      "recall": {
       "value": 0.7125,
       "ci95": [
-       0.6097,
-       0.8125
+       0.6136,
+       0.804
       ]
      },
      "caught_before_money_left": {
-      "value": 0.5125,
+      "value": 0.575,
       "ci95": [
-       0.4084,
-       0.6264
+       0.4643,
+       0.68
       ]
      },
      "dollars_protected_share": {
-      "value": 0.6576,
+      "value": 0.6907,
       "ci95": [
-       0.5149,
-       0.7891
+       0.5514,
+       0.8121
       ]
      },
      "median_warning_days": {
-      "value": 0.0201,
+      "value": 0.7882,
       "ci95": [
-       0.0,
-       2.0917
+       0.0201,
+       2.9423
       ]
      },
      "lookalike_false_alarm_rate": {
-      "value": 0.1869,
+      "value": 0.1818,
       "ci95": [
-       0.1354,
-       0.2454
+       0.1314,
+       0.2395
       ]
      },
      "alerts_per_1k_households_per_week": {
-      "value": 0.9421,
+      "value": 0.899,
       "ci95": [
-       0.8055,
-       1.0788
+       0.7598,
+       1.0308
       ]
      },
      "precision": {
-      "value": 0.2748,
+      "value": 0.2853,
       "ci95": [
-       0.2095,
-       0.3392
+       0.2159,
+       0.3486
       ]
      },
      "precision_at_0.5pct_base_rate": {
-      "value": 0.0853,
+      "value": 0.0895,
       "ci95": [
-       0.0647,
-       0.1073
+       0.0685,
+       0.1127
       ]
      },
      "false_alarm_households_share": {
-      "value": 0.0526,
+      "value": 0.048,
       "ci95": [
-       0.0459,
-       0.0594
+       0.0409,
+       0.0542
       ]
      },
      "fairness_by_age_band": {
       "55-64": {
-       "rate": 0.0543,
-       "ratio_to_overall": 1.0324
+       "rate": 0.0425,
+       "ratio_to_overall": 0.8866
       },
       "65-74": {
-       "rate": 0.0478,
-       "ratio_to_overall": 0.9102
+       "rate": 0.0416,
+       "ratio_to_overall": 0.8683
       },
       "75-84": {
-       "rate": 0.06,
-       "ratio_to_overall": 1.1424
+       "rate": 0.0617,
+       "ratio_to_overall": 1.286
       },
       "85+": {
-       "rate": 0.0449,
-       "ratio_to_overall": 0.8544
+       "rate": 0.0408,
+       "ratio_to_overall": 0.8511
       }
      },
      "n_cases": 80,
@@ -3525,18 +3522,18 @@
        "n": 7
       },
       "grandparent_voice_clone": {
-       "recall": 0.8,
+       "recall": 0.6,
        "caught_before_money_left": 0.6,
        "n": 5
       },
       "investment_romance_scam": {
-       "recall": 0.6667,
-       "caught_before_money_left": 0.381,
+       "recall": 0.5714,
+       "caught_before_money_left": 0.4286,
        "n": 21
       },
       "silent_account_takeover": {
-       "recall": 0.6923,
-       "caught_before_money_left": 0.6923,
+       "recall": 0.9231,
+       "caught_before_money_left": 0.9231,
        "n": 13
       },
       "tech_support_impersonation": {
@@ -3546,7 +3543,7 @@
       },
       "trusted_person_theft": {
        "recall": 0.9444,
-       "caught_before_money_left": 0.5,
+       "caught_before_money_left": 0.5556,
        "n": 18
       }
      },
@@ -3556,29 +3553,25 @@
       "gift_to_family": 0.4054,
       "home_purchase": 0.0,
       "large_tax_payment": 0.1111,
-      "long_term_care_deposit": 0.1333,
+      "long_term_care_deposit": 0.0667,
       "moving_states": 0.2593,
       "remarriage": 1.0,
       "transfer_to_other_firm": 0.0,
       "trust_funding": 0.2
      },
      "warning_days_distribution": [
-      -55.2979,
-      -38.6188,
-      -34.7931,
+      -58.9403,
+      -50.8653,
       -25.7903,
-      -24.2083,
       -19.9417,
       -19.9208,
-      -16.7681,
+      -17.1431,
       -11.1222,
       -10.2069,
-      -5.0826,
-      -4.5361,
-      -3.0743,
+      -2.8042,
       -1.934,
-      -1.0521,
       -0.1583,
+      0.0,
       0.0,
       0.0,
       0.0,
@@ -3597,112 +3590,116 @@
       0.7396,
       0.7882,
       0.9181,
+      1.0347,
       1.5319,
       2.0917,
       2.2806,
+      2.9417,
       2.9681,
       3.9424,
+      4.0215,
       4.2056,
+      4.2514,
       4.7681,
+      5.1097,
       5.7153,
       5.8903,
-      5.9979,
       6.1632,
       6.6194,
       7.6736,
-      10.1681,
+      9.5569,
+      9.8604,
       13.1278,
+      14.116,
       14.8014,
       19.1382,
       22.9444,
-      23.8458,
-      25.6014,
+      26.1833,
       28.9417,
-      29.2493,
-      30.0889
+      29.2493
      ],
-     "threshold": 0.070496
+     "threshold": 0.079423
     },
     "0.25%": {
      "recall": {
-      "value": 0.775,
+      "value": 0.7625,
       "ci95": [
-       0.6774,
-       0.8615
+       0.6667,
+       0.853
       ]
      },
      "caught_before_money_left": {
-      "value": 0.65,
+      "value": 0.6375,
       "ci95": [
-       0.5422,
-       0.75
+       0.5294,
+       0.7377
       ]
      },
      "dollars_protected_share": {
-      "value": 0.7523,
+      "value": 0.7388,
       "ci95": [
-       0.6091,
-       0.8683
+       0.5916,
+       0.8544
       ]
      },
      "median_warning_days": {
       "value": 2.0917,
       "ci95": [
        0.0201,
-       4.7681
+       4.2056
       ]
      },
      "lookalike_false_alarm_rate": {
-      "value": 0.2677,
+      "value": 0.2424,
       "ci95": [
-       0.2078,
-       0.3333
+       0.1808,
+       0.3054
       ]
      },
      "alerts_per_1k_households_per_week": {
-      "value": 2.2486,
+      "value": 2.2606,
       "ci95": [
-       2.0687,
-       2.4237
+       2.064,
+       2.4598
       ]
      },
      "precision": {
-      "value": 0.1279,
+      "value": 0.123,
       "ci95": [
-       0.0941,
-       0.162
+       0.09,
+       0.1576
       ]
      },
      "precision_at_0.5pct_base_rate": {
-      "value": 0.0349,
+      "value": 0.0334,
       "ci95": [
-       0.0273,
-       0.0433
+       0.0259,
+       0.0415
       ]
      },
      "false_alarm_households_share": {
-      "value": 0.1643,
+      "value": 0.1441,
       "ci95": [
-       0.1528,
-       0.1758
+       0.1335,
+       0.1551
       ]
      },
      "fairness_by_age_band": {
       "55-64": {
-       "rate": 0.1584,
-       "ratio_to_overall": 0.9639
+       "rate": 0.1364,
+       "ratio_to_overall": 0.9461
       },
       "65-74": {
-       "rate": 0.1632,
-       "ratio_to_overall": 0.9934
+       "rate": 0.1367,
+       "ratio_to_overall": 0.9488
       },
       "75-84": {
-       "rate": 0.1678,
-       "ratio_to_overall": 1.0212
+       "rate": 0.1571,
+       "ratio_to_overall": 1.0898
       },
       "85+": {
-       "rate": 0.1714,
-       "ratio_to_overall": 1.0435
+       "rate": 0.1551,
+       "ratio_to_overall": 1.0761
       }
      },
      "n_cases": 80,
@@ -3721,12 +3718,12 @@
       },
       "investment_romance_scam": {
        "recall": 0.7143,
-       "caught_before_money_left": 0.4286,
+       "caught_before_money_left": 0.4762,
        "n": 21
       },
       "silent_account_takeover": {
-       "recall": 1.0,
-       "caught_before_money_left": 1.0,
+       "recall": 0.9231,
+       "caught_before_money_left": 0.9231,
        "n": 13
       },
       "tech_support_impersonation": {
@@ -3736,33 +3733,33 @@
       },
       "trusted_person_theft": {
        "recall": 0.9444,
-       "caught_before_money_left": 0.7778,
+       "caught_before_money_left": 0.7222,
        "n": 18
       }
      },
-     "coached_cover_story_recall": 0.8333,
+     "coached_cover_story_recall": 0.75,
      "lookalike_fa_by_kind": {
-      "car_purchase": 0.0556,
-      "gift_to_family": 0.4595,
+      "car_purchase": 0.0,
+      "gift_to_family": 0.4324,
       "home_purchase": 0.0323,
-      "large_tax_payment": 0.1852,
-      "long_term_care_deposit": 0.2667,
+      "large_tax_payment": 0.1481,
+      "long_term_care_deposit": 0.2,
       "moving_states": 0.4074,
       "remarriage": 1.0,
-      "transfer_to_other_firm": 0.0952,
+      "transfer_to_other_firm": 0.0476,
       "trust_funding": 0.3333
      },
      "warning_days_distribution": [
-      -58.2271,
+      -58.2375,
       -55.2979,
-      -34.7931,
+      -50.8653,
       -25.7903,
       -19.9417,
-      -17.941,
-      -4.5361,
+      -11.1222,
+      -6.0694,
       -2.8042,
       -1.934,
-      -0.0917,
+      -0.1583,
       0.0,
       0.0,
       0.0,
@@ -3787,12 +3784,13 @@
       2.2806,
       2.8493,
       2.9681,
+      3.2132,
       3.9424,
       4.2056,
       4.2514,
       4.7681,
-      5.3257,
       5.7153,
+      5.8549,
       5.8903,
       6.1632,
       6.6194,
@@ -3800,12 +3798,10 @@
       7.1035,
       7.6736,
       9.5569,
-      10.1681,
-      12.7111,
       13.1278,
+      14.116,
       14.8014,
       19.1382,
-      20.0951,
       20.7937,
       22.016,
       22.9444,
@@ -3816,88 +3812,88 @@
       29.9535,
       30.0889
      ],
-     "threshold": 0.011346
+     "threshold": 0.020997
     },
     "0.5%": {
      "recall": {
-      "value": 0.8125,
+      "value": 0.8,
       "ci95": [
-       0.7262,
-       0.8934
+       0.7126,
+       0.8853
       ]
      },
      "caught_before_money_left": {
-      "value": 0.675,
+      "value": 0.7125,
       "ci95": [
-       0.5696,
-       0.7763
+       0.6111,
+       0.8111
       ]
      },
      "dollars_protected_share": {
-      "value": 0.7835,
+      "value": 0.8356,
       "ci95": [
-       0.6421,
-       0.8927
+       0.742,
+       0.9082
       ]
      },
      "median_warning_days": {
-      "value": 3.4049,
+      "value": 2.9681,
       "ci95": [
-       0.9965,
-       5.9889
+       0.9181,
+       5.7153
       ]
      },
      "lookalike_false_alarm_rate": {
-      "value": 0.3384,
+      "value": 0.3182,
       "ci95": [
-       0.2727,
-       0.4074
+       0.2527,
+       0.3793
       ]
      },
      "alerts_per_1k_households_per_week": {
-      "value": 4.8616,
+      "value": 4.8784,
       "ci95": [
-       4.6027,
-       5.1038
+       4.6003,
+       5.1445
       ]
      },
      "precision": {
-      "value": 0.0621,
+      "value": 0.0604,
       "ci95": [
-       0.0449,
-       0.0806
+       0.0434,
+       0.0786
       ]
      },
      "precision_at_0.5pct_base_rate": {
-      "value": 0.0161,
+      "value": 0.0156,
       "ci95": [
-       0.0129,
-       0.0195
+       0.0121,
+       0.0192
       ]
      },
      "false_alarm_households_share": {
-      "value": 0.3418,
+      "value": 0.3102,
       "ci95": [
-       0.3267,
-       0.356
+       0.2959,
+       0.3244
       ]
      },
      "fairness_by_age_band": {
       "55-64": {
-       "rate": 0.3314,
-       "ratio_to_overall": 0.9694
+       "rate": 0.2771,
+       "ratio_to_overall": 0.8934
       },
       "65-74": {
-       "rate": 0.3337,
-       "ratio_to_overall": 0.9762
+       "rate": 0.3067,
+       "ratio_to_overall": 0.9887
       },
       "75-84": {
-       "rate": 0.3561,
-       "ratio_to_overall": 1.0417
+       "rate": 0.3232,
+       "ratio_to_overall": 1.0419
       },
       "85+": {
-       "rate": 0.3592,
-       "ratio_to_overall": 1.0507
+       "rate": 0.3633,
+       "ratio_to_overall": 1.1711
       }
      },
      "n_cases": 80,
@@ -3915,8 +3911,8 @@
        "n": 5
       },
       "investment_romance_scam": {
-       "recall": 0.8571,
-       "caught_before_money_left": 0.5238,
+       "recall": 0.8095,
+       "caught_before_money_left": 0.5714,
        "n": 21
       },
       "silent_account_takeover": {
@@ -3926,6 +3922,203 @@
       },
       "tech_support_impersonation": {
        "recall": 0.75,
+       "caught_before_money_left": 0.6875,
+       "n": 16
+      },
+      "trusted_person_theft": {
+       "recall": 0.9444,
+       "caught_before_money_left": 0.8889,
+       "n": 18
+      }
+     },
+     "coached_cover_story_recall": 0.75,
+     "lookalike_fa_by_kind": {
+      "car_purchase": 0.0,
+      "gift_to_family": 0.5135,
+      "home_purchase": 0.0323,
+      "large_tax_payment": 0.3333,
+      "long_term_care_deposit": 0.3333,
+      "moving_states": 0.5556,
+      "remarriage": 1.0,
+      "transfer_to_other_firm": 0.0476,
+      "trust_funding": 0.4
+     },
+     "warning_days_distribution": [
+      -58.2375,
+      -55.2979,
+      -30.75,
+      -25.7903,
+      -9.7778,
+      -5.025,
+      -0.0917,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.7396,
+      0.7882,
+      0.9181,
+      1.6257,
+      1.7132,
+      1.8965,
+      1.9597,
+      2.0472,
+      2.3035,
+      2.8493,
+      2.9681,
+      3.9424,
+      4.2056,
+      4.3986,
+      4.7681,
+      4.8764,
+      5.3833,
+      5.7153,
+      5.8549,
+      5.8903,
+      5.9889,
+      6.1632,
+      6.6194,
+      6.8549,
+      6.9444,
+      7.1035,
+      7.1799,
+      7.6736,
+      9.5569,
+      13.1278,
+      14.8014,
+      19.1382,
+      20.0951,
+      20.7937,
+      22.016,
+      22.9444,
+      23.8458,
+      25.6014,
+      28.9417,
+      29.2493,
+      29.9535,
+      30.0889,
+      35.2826
+     ],
+     "threshold": 0.007785
+    },
+    "1%": {
+     "recall": {
+      "value": 0.7875,
+      "ci95": [
+       0.6956,
+       0.875
+      ]
+     },
+     "caught_before_money_left": {
+      "value": 0.7125,
+      "ci95": [
+       0.6092,
+       0.8132
+      ]
+     },
+     "dollars_protected_share": {
+      "value": 0.82,
+      "ci95": [
+       0.7239,
+       0.8985
+      ]
+     },
+     "median_warning_days": {
+      "value": 4.2056,
+      "ci95": [
+       1.8708,
+       5.9889
+      ]
+     },
+     "lookalike_false_alarm_rate": {
+      "value": 0.3636,
+      "ci95": [
+       0.2977,
+       0.4294
+      ]
+     },
+     "alerts_per_1k_households_per_week": {
+      "value": 9.3158,
+      "ci95": [
+       8.9441,
+       9.6802
+      ]
+     },
+     "precision": {
+      "value": 0.0314,
+      "ci95": [
+       0.0222,
+       0.0409
+      ]
+     },
+     "precision_at_0.5pct_base_rate": {
+      "value": 0.0079,
+      "ci95": [
+       0.0061,
+       0.0098
+      ]
+     },
+     "false_alarm_households_share": {
+      "value": 0.5079,
+      "ci95": [
+       0.4918,
+       0.5234
+      ]
+     },
+     "fairness_by_age_band": {
+      "55-64": {
+       "rate": 0.4897,
+       "ratio_to_overall": 0.9642
+      },
+      "65-74": {
+       "rate": 0.4924,
+       "ratio_to_overall": 0.9695
+      },
+      "75-84": {
+       "rate": 0.5296,
+       "ratio_to_overall": 1.0427
+      },
+      "85+": {
+       "rate": 0.5633,
+       "ratio_to_overall": 1.109
+      }
+     },
+     "n_cases": 80,
+     "n_lookalikes": 198,
+     "n_households": 4000,
+     "by_typology": {
+      "government_impersonation": {
+       "recall": 0.2857,
+       "caught_before_money_left": 0.2857,
+       "n": 7
+      },
+      "grandparent_voice_clone": {
+       "recall": 0.8,
+       "caught_before_money_left": 0.8,
+       "n": 5
+      },
+      "investment_romance_scam": {
+       "recall": 0.8095,
+       "caught_before_money_left": 0.6667,
+       "n": 21
+      },
+      "silent_account_takeover": {
+       "recall": 0.9231,
+       "caught_before_money_left": 0.9231,
+       "n": 13
+      },
+      "tech_support_impersonation": {
+       "recall": 0.6875,
        "caught_before_money_left": 0.625,
        "n": 16
       },
@@ -3937,33 +4130,29 @@
      },
      "coached_cover_story_recall": 0.75,
      "lookalike_fa_by_kind": {
-      "car_purchase": 0.0556,
-      "gift_to_family": 0.4595,
-      "home_purchase": 0.0645,
+      "car_purchase": 0.0,
+      "gift_to_family": 0.5135,
+      "home_purchase": 0.0323,
       "large_tax_payment": 0.4815,
       "long_term_care_deposit": 0.3333,
-      "moving_states": 0.4444,
+      "moving_states": 0.6667,
       "remarriage": 1.0,
-      "transfer_to_other_firm": 0.1429,
+      "transfer_to_other_firm": 0.0952,
       "trust_funding": 0.4667
      },
      "warning_days_distribution": [
-      -63.0188,
       -58.2271,
-      -55.2979,
-      -23.8833,
-      -16.8722,
-      -10.1104,
-      -9.7778,
-      -7.116,
-      -2.8042,
-      -1.1465,
+      -55.2778,
+      -30.75,
+      -25.7903,
+      -23.05,
       -0.0917,
       0.0,
       0.0,
       0.0,
       0.0,
-      0.0201,
+      0.0,
+      0.0,
       0.0201,
       0.0201,
       0.0201,
@@ -3975,27 +4164,29 @@
       0.9965,
       1.6257,
       1.7132,
+      1.8708,
       1.8965,
+      1.9597,
+      2.0472,
       2.3035,
-      2.8493,
       2.9681,
-      3.2132,
       3.4049,
-      3.9424,
-      4.2514,
-      4.7681,
+      4.1979,
+      4.2056,
+      4.3986,
+      4.8764,
+      4.9076,
       5.3833,
       5.8549,
       5.8903,
       5.9889,
-      6.1632,
       6.8549,
+      6.9444,
       7.1035,
       7.1799,
       7.2785,
       7.6736,
-      7.8854,
-      8.1347,
+      8.2549,
       9.5569,
       9.6556,
       12.7111,
@@ -4014,206 +4205,7 @@
       30.0889,
       35.2826
      ],
-     "threshold": 0.004901
-    },
-    "1%": {
-     "recall": {
-      "value": 0.825,
-      "ci95": [
-       0.7361,
-       0.9103
-      ]
-     },
-     "caught_before_money_left": {
-      "value": 0.725,
-      "ci95": [
-       0.6202,
-       0.8228
-      ]
-     },
-     "dollars_protected_share": {
-      "value": 0.7874,
-      "ci95": [
-       0.6404,
-       0.8949
-      ]
-     },
-     "median_warning_days": {
-      "value": 4.1979,
-      "ci95": [
-       0.995,
-       6.2521
-      ]
-     },
-     "lookalike_false_alarm_rate": {
-      "value": 0.3636,
-      "ci95": [
-       0.2959,
-       0.4309
-      ]
-     },
-     "alerts_per_1k_households_per_week": {
-      "value": 9.6921,
-      "ci95": [
-       9.3345,
-       10.0424
-      ]
-     },
-     "precision": {
-      "value": 0.0317,
-      "ci95": [
-       0.0227,
-       0.0412
-      ]
-     },
-     "precision_at_0.5pct_base_rate": {
-      "value": 0.008,
-      "ci95": [
-       0.0063,
-       0.0097
-      ]
-     },
-     "false_alarm_households_share": {
-      "value": 0.563,
-      "ci95": [
-       0.547,
-       0.5779
-      ]
-     },
-     "fairness_by_age_band": {
-      "55-64": {
-       "rate": 0.5425,
-       "ratio_to_overall": 0.9636
-      },
-      "65-74": {
-       "rate": 0.5453,
-       "ratio_to_overall": 0.9685
-      },
-      "75-84": {
-       "rate": 0.5855,
-       "ratio_to_overall": 1.04
-      },
-      "85+": {
-       "rate": 0.6367,
-       "ratio_to_overall": 1.1309
-      }
-     },
-     "n_cases": 80,
-     "n_lookalikes": 198,
-     "n_households": 4000,
-     "by_typology": {
-      "government_impersonation": {
-       "recall": 0.4286,
-       "caught_before_money_left": 0.4286,
-       "n": 7
-      },
-      "grandparent_voice_clone": {
-       "recall": 0.8,
-       "caught_before_money_left": 0.8,
-       "n": 5
-      },
-      "investment_romance_scam": {
-       "recall": 0.8571,
-       "caught_before_money_left": 0.6667,
-       "n": 21
-      },
-      "silent_account_takeover": {
-       "recall": 0.8462,
-       "caught_before_money_left": 0.8462,
-       "n": 13
-      },
-      "tech_support_impersonation": {
-       "recall": 0.75,
-       "caught_before_money_left": 0.625,
-       "n": 16
-      },
-      "trusted_person_theft": {
-       "recall": 1.0,
-       "caught_before_money_left": 0.8889,
-       "n": 18
-      }
-     },
-     "coached_cover_story_recall": 0.75,
-     "lookalike_fa_by_kind": {
-      "car_purchase": 0.0,
-      "gift_to_family": 0.5135,
-      "home_purchase": 0.0323,
-      "large_tax_payment": 0.5185,
-      "long_term_care_deposit": 0.4667,
-      "moving_states": 0.5185,
-      "remarriage": 1.0,
-      "transfer_to_other_firm": 0.1429,
-      "trust_funding": 0.4667
-     },
-     "warning_days_distribution": [
-      -63.0188,
-      -58.2271,
-      -55.2778,
-      -20.1785,
-      -16.8722,
-      -2.8042,
-      -1.1465,
-      -0.0917,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.8958,
-      0.934,
-      0.9965,
-      1.6257,
-      1.7132,
-      1.8965,
-      1.9597,
-      2.3035,
-      3.4049,
-      4.1979,
-      4.2514,
-      4.9076,
-      5.3833,
-      5.8549,
-      5.9889,
-      6.1632,
-      6.2375,
-      6.2521,
-      6.8549,
-      7.1035,
-      7.1799,
-      7.2785,
-      7.6736,
-      7.8854,
-      8.1347,
-      9.5569,
-      9.6556,
-      12.7111,
-      12.8236,
-      13.1278,
-      14.8014,
-      19.1382,
-      20.0951,
-      20.7937,
-      22.016,
-      22.9444,
-      23.8458,
-      25.6014,
-      28.9417,
-      29.2493,
-      29.9535,
-      30.0889,
-      35.2826
-     ],
-     "threshold": 0.00171
+     "threshold": 0.004572
     }
    }
   },
@@ -5206,88 +5198,263 @@
    }
   },
   "ablation_no_sequences": {
-   "label": "Sentinel without account-change sequences",
+   "label": "Sentinel without account-change sequences (and without household memory, which is built from it)",
    "budgets": {
     "0.05%": {
      "recall": {
-      "value": 0.65,
+      "value": 0.525,
       "ci95": [
-       0.5376,
-       0.7568
+       0.4189,
+       0.6364
       ]
      },
      "caught_before_money_left": {
-      "value": 0.4,
+      "value": 0.2875,
       "ci95": [
-       0.2911,
-       0.5062
+       0.1905,
+       0.381
       ]
      },
      "dollars_protected_share": {
-      "value": 0.5589,
+      "value": 0.4701,
       "ci95": [
-       0.4167,
-       0.6978
+       0.3293,
+       0.6045
       ]
      },
      "median_warning_days": {
       "value": 0.0,
       "ci95": [
-       -0.3791,
+       -2.3174,
        0.0201
       ]
      },
      "lookalike_false_alarm_rate": {
-      "value": 0.0152,
+      "value": 0.0202,
       "ci95": [
-       0.0,
-       0.0349
+       0.0047,
+       0.0419
       ]
      },
      "alerts_per_1k_households_per_week": {
-      "value": 0.4627,
+      "value": 0.3812,
       "ci95": [
-       0.3572,
-       0.5729
+       0.2949,
+       0.4675
       ]
      },
      "precision": {
-      "value": 0.4974,
+      "value": 0.478,
       "ci95": [
-       0.3963,
-       0.5722
+       0.3798,
+       0.5652
       ]
      },
      "precision_at_0.5pct_base_rate": {
-      "value": 0.1959,
+      "value": 0.184,
       "ci95": [
-       0.1494,
-       0.2511
+       0.137,
+       0.239
       ]
      },
      "false_alarm_households_share": {
-      "value": 0.0135,
+      "value": 0.0151,
       "ci95": [
-       0.0102,
-       0.0173
+       0.0114,
+       0.0189
       ]
      },
      "fairness_by_age_band": {
       "55-64": {
-       "rate": 0.0191,
-       "ratio_to_overall": 1.4098
+       "rate": 0.0117,
+       "ratio_to_overall": 0.7794
       },
       "65-74": {
-       "rate": 0.0124,
-       "ratio_to_overall": 0.9157
+       "rate": 0.0163,
+       "ratio_to_overall": 1.0843
       },
       "75-84": {
-       "rate": 0.0123,
-       "ratio_to_overall": 0.9124
+       "rate": 0.0148,
+       "ratio_to_overall": 0.9835
       },
       "85+": {
-       "rate": 0.0122,
-       "ratio_to_overall": 0.9057
+       "rate": 0.0163,
+       "ratio_to_overall": 1.0847
+      }
+     },
+     "n_cases": 80,
+     "n_lookalikes": 198,
+     "n_households": 4000,
+     "by_typology": {
+      "government_impersonation": {
+       "recall": 0.0,
+       "caught_before_money_left": 0.0,
+       "n": 7
+      },
+      "grandparent_voice_clone": {
+       "recall": 0.8,
+       "caught_before_money_left": 0.8,
+       "n": 5
+      },
+      "investment_romance_scam": {
+       "recall": 0.619,
+       "caught_before_money_left": 0.4286,
+       "n": 21
+      },
+      "silent_account_takeover": {
+       "recall": 0.4615,
+       "caught_before_money_left": 0.2308,
+       "n": 13
+      },
+      "tech_support_impersonation": {
+       "recall": 0.3125,
+       "caught_before_money_left": 0.3125,
+       "n": 16
+      },
+      "trusted_person_theft": {
+       "recall": 0.7778,
+       "caught_before_money_left": 0.1111,
+       "n": 18
+      }
+     },
+     "coached_cover_story_recall": 0.5,
+     "lookalike_fa_by_kind": {
+      "car_purchase": 0.0,
+      "gift_to_family": 0.027,
+      "home_purchase": 0.0,
+      "large_tax_payment": 0.0,
+      "long_term_care_deposit": 0.0,
+      "moving_states": 0.1111,
+      "remarriage": 0.0,
+      "transfer_to_other_firm": 0.0,
+      "trust_funding": 0.0
+     },
+     "warning_days_distribution": [
+      -88.1451,
+      -55.2979,
+      -41.7271,
+      -36.9681,
+      -30.75,
+      -29.9493,
+      -26.0944,
+      -25.9806,
+      -25.7903,
+      -19.9417,
+      -17.8458,
+      -17.1431,
+      -10.8826,
+      -10.2069,
+      -2.3174,
+      -1.934,
+      -0.3618,
+      -0.1854,
+      -0.1687,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.1111,
+      4.0215,
+      4.2056,
+      6.1632,
+      7.1035,
+      7.6736,
+      14.116,
+      14.8014,
+      28.9417,
+      29.2493
+     ],
+     "threshold": 0.236277
+    },
+    "0.1%": {
+     "recall": {
+      "value": 0.6,
+      "ci95": [
+       0.4886,
+       0.7143
+      ]
+     },
+     "caught_before_money_left": {
+      "value": 0.375,
+      "ci95": [
+       0.2631,
+       0.4706
+      ]
+     },
+     "dollars_protected_share": {
+      "value": 0.569,
+      "ci95": [
+       0.4273,
+       0.7026
+      ]
+     },
+     "median_warning_days": {
+      "value": 0.0,
+      "ci95": [
+       -0.3618,
+       0.0201
+      ]
+     },
+     "lookalike_false_alarm_rate": {
+      "value": 0.0556,
+      "ci95": [
+       0.0265,
+       0.0891
+      ]
+     },
+     "alerts_per_1k_households_per_week": {
+      "value": 0.8318,
+      "ci95": [
+       0.7168,
+       0.9541
+      ]
+     },
+     "precision": {
+      "value": 0.2478,
+      "ci95": [
+       0.1859,
+       0.3127
+      ]
+     },
+     "precision_at_0.5pct_base_rate": {
+      "value": 0.075,
+      "ci95": [
+       0.057,
+       0.096
+      ]
+     },
+     "false_alarm_households_share": {
+      "value": 0.0505,
+      "ci95": [
+       0.0444,
+       0.0573
+      ]
+     },
+     "fairness_by_age_band": {
+      "55-64": {
+       "rate": 0.0455,
+       "ratio_to_overall": 0.8999
+      },
+      "65-74": {
+       "rate": 0.0495,
+       "ratio_to_overall": 0.9804
+      },
+      "75-84": {
+       "rate": 0.0535,
+       "ratio_to_overall": 1.0583
+      },
+      "85+": {
+       "rate": 0.0571,
+       "ratio_to_overall": 1.1313
       }
      },
      "n_cases": 80,
@@ -5301,63 +5468,61 @@
       },
       "grandparent_voice_clone": {
        "recall": 0.8,
-       "caught_before_money_left": 0.6,
+       "caught_before_money_left": 0.8,
        "n": 5
       },
       "investment_romance_scam": {
        "recall": 0.619,
-       "caught_before_money_left": 0.381,
+       "caught_before_money_left": 0.4762,
        "n": 21
       },
       "silent_account_takeover": {
-       "recall": 0.6923,
-       "caught_before_money_left": 0.6154,
+       "recall": 0.6154,
+       "caught_before_money_left": 0.4615,
        "n": 13
       },
       "tech_support_impersonation": {
-       "recall": 0.5625,
-       "caught_before_money_left": 0.5,
+       "recall": 0.4375,
+       "caught_before_money_left": 0.375,
        "n": 16
       },
       "trusted_person_theft": {
-       "recall": 0.8889,
-       "caught_before_money_left": 0.2222,
+       "recall": 0.8333,
+       "caught_before_money_left": 0.1667,
        "n": 18
       }
      },
-     "coached_cover_story_recall": 0.8333,
+     "coached_cover_story_recall": 0.6667,
      "lookalike_fa_by_kind": {
       "car_purchase": 0.0,
-      "gift_to_family": 0.0,
-      "home_purchase": 0.0,
+      "gift_to_family": 0.0541,
+      "home_purchase": 0.0323,
       "large_tax_payment": 0.0,
-      "long_term_care_deposit": 0.0667,
-      "moving_states": 0.0,
-      "remarriage": 0.2857,
+      "long_term_care_deposit": 0.0,
+      "moving_states": 0.2963,
+      "remarriage": 0.0,
       "transfer_to_other_firm": 0.0,
       "trust_funding": 0.0
      },
      "warning_days_distribution": [
-      -70.7069,
-      -46.7743,
-      -36.9681,
-      -34.7931,
-      -30.7868,
+      -69.8132,
+      -55.2979,
+      -30.75,
+      -29.0896,
+      -26.0944,
+      -25.9806,
       -25.7903,
       -19.9417,
-      -17.1431,
-      -15.6229,
-      -12.8674,
+      -19.9208,
+      -17.8458,
       -10.8826,
       -10.2069,
-      -7.116,
-      -5.0826,
-      -3.0743,
+      -6.1972,
+      -4.0104,
       -2.3174,
       -1.934,
-      -1.1778,
-      -1.0521,
       -0.3618,
+      -0.1854,
       0.0,
       0.0,
       0.0,
@@ -5377,102 +5542,100 @@
       0.0201,
       0.0201,
       0.0201,
-      0.0201,
-      0.1722,
-      0.2569,
-      1.1472,
-      2.7986,
-      2.8694,
+      0.1111,
+      1.9597,
+      4.0215,
       4.2056,
       6.1632,
+      7.1035,
       7.6736,
-      13.6944,
+      14.116,
       14.8014,
-      27.8514,
+      28.9417,
       29.2493
      ],
-     "threshold": 0.392563
+     "threshold": 0.088703
     },
-    "0.1%": {
+    "0.25%": {
      "recall": {
-      "value": 0.775,
+      "value": 0.7375,
       "ci95": [
-       0.68,
-       0.8677
+       0.6385,
+       0.8276
       ]
      },
      "caught_before_money_left": {
       "value": 0.55,
       "ci95": [
-       0.4418,
-       0.6535
+       0.4359,
+       0.6533
       ]
      },
      "dollars_protected_share": {
-      "value": 0.7031,
+      "value": 0.6949,
       "ci95": [
-       0.5541,
-       0.827
+       0.5479,
+       0.813
       ]
      },
      "median_warning_days": {
       "value": 0.0,
       "ci95": [
        0.0,
-       0.0201
+       0.0
       ]
      },
      "lookalike_false_alarm_rate": {
-      "value": 0.0657,
+      "value": 0.1869,
       "ci95": [
-       0.0346,
-       0.1032
+       0.1317,
+       0.2461
       ]
      },
      "alerts_per_1k_households_per_week": {
-      "value": 0.9086,
+      "value": 2.3757,
       "ci95": [
-       0.7791,
-       1.0428
+       2.1981,
+       2.5627
       ]
      },
      "precision": {
-      "value": 0.2902,
+      "value": 0.1019,
       "ci95": [
-       0.2244,
-       0.3524
+       0.0744,
+       0.1304
       ]
      },
      "precision_at_0.5pct_base_rate": {
-      "value": 0.0915,
+      "value": 0.0272,
       "ci95": [
-       0.0717,
-       0.1138
+       0.0214,
+       0.0335
       ]
      },
      "false_alarm_households_share": {
-      "value": 0.0503,
+      "value": 0.1648,
       "ci95": [
-       0.0441,
-       0.0572
+       0.1535,
+       0.1762
       ]
      },
      "fairness_by_age_band": {
       "55-64": {
-       "rate": 0.0469,
-       "ratio_to_overall": 0.9337
+       "rate": 0.1437,
+       "ratio_to_overall": 0.872
       },
       "65-74": {
-       "rate": 0.0478,
-       "ratio_to_overall": 0.9518
+       "rate": 0.1609,
+       "ratio_to_overall": 0.9766
       },
       "75-84": {
-       "rate": 0.0543,
-       "ratio_to_overall": 1.08
+       "rate": 0.1801,
+       "ratio_to_overall": 1.0929
       },
       "85+": {
-       "rate": 0.0571,
-       "ratio_to_overall": 1.1371
+       "rate": 0.1755,
+       "ratio_to_overall": 1.065
       }
      },
      "n_cases": 80,
@@ -5485,8 +5648,8 @@
        "n": 7
       },
       "grandparent_voice_clone": {
-       "recall": 0.8,
-       "caught_before_money_left": 0.8,
+       "recall": 1.0,
+       "caught_before_money_left": 1.0,
        "n": 5
       },
       "investment_romance_scam": {
@@ -5495,52 +5658,58 @@
        "n": 21
       },
       "silent_account_takeover": {
-       "recall": 0.7692,
-       "caught_before_money_left": 0.6923,
+       "recall": 0.8462,
+       "caught_before_money_left": 0.6154,
        "n": 13
       },
       "tech_support_impersonation": {
-       "recall": 0.75,
-       "caught_before_money_left": 0.6875,
+       "recall": 0.5625,
+       "caught_before_money_left": 0.5625,
        "n": 16
       },
       "trusted_person_theft": {
-       "recall": 0.9444,
-       "caught_before_money_left": 0.3333,
+       "recall": 0.8333,
+       "caught_before_money_left": 0.4444,
        "n": 18
       }
      },
-     "coached_cover_story_recall": 0.9167,
+     "coached_cover_story_recall": 0.8333,
      "lookalike_fa_by_kind": {
-      "car_purchase": 0.0556,
-      "gift_to_family": 0.0,
-      "home_purchase": 0.0323,
-      "large_tax_payment": 0.037,
+      "car_purchase": 0.0,
+      "gift_to_family": 0.2703,
+      "home_purchase": 0.0645,
+      "large_tax_payment": 0.1481,
       "long_term_care_deposit": 0.0667,
-      "moving_states": 0.1481,
+      "moving_states": 0.5185,
       "remarriage": 0.4286,
-      "transfer_to_other_firm": 0.0476,
+      "transfer_to_other_firm": 0.0952,
       "trust_funding": 0.0667
      },
      "warning_days_distribution": [
-      -70.7069,
+      -69.8132,
+      -63.0188,
       -61.9792,
-      -55.2979,
-      -36.9681,
-      -25.7903,
-      -24.2083,
+      -55.2778,
+      -29.0896,
+      -25.9806,
+      -19.9417,
       -19.9208,
-      -17.1431,
-      -16.7681,
       -10.8826,
       -10.2069,
-      -10.1104,
-      -9.7778,
-      -8.1694,
-      -5.0826,
-      -1.934,
-      -0.3618,
-      -0.1583,
+      -6.1972,
+      -5.025,
+      -4.0125,
+      -1.7396,
+      -0.1854,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
       0.0,
       0.0,
       0.0,
@@ -5564,502 +5733,101 @@
       0.0201,
       0.0201,
       0.0201,
-      0.7396,
-      0.7882,
-      1.5319,
-      2.0917,
-      2.2806,
-      2.7458,
-      2.8694,
-      2.9708,
+      0.0201,
+      0.1111,
+      1.9597,
       4.2056,
-      4.7681,
-      5.9979,
       6.1632,
       7.1035,
       7.6736,
-      7.8132,
-      13.6944,
       14.116,
       14.8014,
       23.8458,
       28.9417,
       29.2493
      ],
-     "threshold": 0.05306
-    },
-    "0.25%": {
-     "recall": {
-      "value": 0.7875,
-      "ci95": [
-       0.6962,
-       0.8736
-      ]
-     },
-     "caught_before_money_left": {
-      "value": 0.6,
-      "ci95": [
-       0.4878,
-       0.7028
-      ]
-     },
-     "dollars_protected_share": {
-      "value": 0.7375,
-      "ci95": [
-       0.5976,
-       0.8543
-      ]
-     },
-     "median_warning_days": {
-      "value": 0.0,
-      "ci95": [
-       0.0,
-       0.0201
-      ]
-     },
-     "lookalike_false_alarm_rate": {
-      "value": 0.1717,
-      "ci95": [
-       0.1189,
-       0.2253
-      ]
-     },
-     "alerts_per_1k_households_per_week": {
-      "value": 2.3805,
-      "ci95": [
-       2.1862,
-       2.5795
-      ]
-     },
-     "precision": {
-      "value": 0.1158,
-      "ci95": [
-       0.0859,
-       0.1465
-      ]
-     },
-     "precision_at_0.5pct_base_rate": {
-      "value": 0.0312,
-      "ci95": [
-       0.0247,
-       0.0386
-      ]
-     },
-     "false_alarm_households_share": {
-      "value": 0.1638,
-      "ci95": [
-       0.1524,
-       0.1757
-      ]
-     },
-     "fairness_by_age_band": {
-      "55-64": {
-       "rate": 0.1481,
-       "ratio_to_overall": 0.9042
-      },
-      "65-74": {
-       "rate": 0.166,
-       "ratio_to_overall": 1.0136
-      },
-      "75-84": {
-       "rate": 0.1711,
-       "ratio_to_overall": 1.0444
-      },
-      "85+": {
-       "rate": 0.1551,
-       "ratio_to_overall": 0.947
-      }
-     },
-     "n_cases": 80,
-     "n_lookalikes": 198,
-     "n_households": 4000,
-     "by_typology": {
-      "government_impersonation": {
-       "recall": 0.4286,
-       "caught_before_money_left": 0.4286,
-       "n": 7
-      },
-      "grandparent_voice_clone": {
-       "recall": 0.8,
-       "caught_before_money_left": 0.8,
-       "n": 5
-      },
-      "investment_romance_scam": {
-       "recall": 0.7619,
-       "caught_before_money_left": 0.5714,
-       "n": 21
-      },
-      "silent_account_takeover": {
-       "recall": 0.8462,
-       "caught_before_money_left": 0.6923,
-       "n": 13
-      },
-      "tech_support_impersonation": {
-       "recall": 0.75,
-       "caught_before_money_left": 0.625,
-       "n": 16
-      },
-      "trusted_person_theft": {
-       "recall": 0.9444,
-       "caught_before_money_left": 0.5556,
-       "n": 18
-      }
-     },
-     "coached_cover_story_recall": 0.8333,
-     "lookalike_fa_by_kind": {
-      "car_purchase": 0.0,
-      "gift_to_family": 0.1351,
-      "home_purchase": 0.0645,
-      "large_tax_payment": 0.2222,
-      "long_term_care_deposit": 0.1333,
-      "moving_states": 0.4074,
-      "remarriage": 0.5714,
-      "transfer_to_other_firm": 0.0476,
-      "trust_funding": 0.2
-     },
-     "warning_days_distribution": [
-      -55.2979,
-      -45.1917,
-      -29.0896,
-      -25.7903,
-      -19.9208,
-      -17.1431,
-      -16.7681,
-      -10.1389,
-      -8.1694,
-      -6.0694,
-      -5.0826,
-      -1.1465,
-      -0.2181,
-      -0.1403,
-      -0.0917,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.7396,
-      0.7882,
-      0.9181,
-      1.5319,
-      2.0917,
-      2.2806,
-      2.7458,
-      2.9681,
-      2.9708,
-      4.2056,
-      4.9076,
-      5.9979,
-      6.1632,
-      7.0278,
-      7.1035,
-      7.6736,
-      13.6944,
-      14.116,
-      14.8014,
-      23.8458,
-      28.9417,
-      29.2493,
-      29.9535
-     ],
-     "threshold": 0.012434
+     "threshold": 0.025634
     },
     "0.5%": {
      "recall": {
       "value": 0.7875,
       "ci95": [
-       0.6962,
-       0.8778
+       0.6865,
+       0.8721
       ]
      },
      "caught_before_money_left": {
-      "value": 0.65,
+      "value": 0.6125,
       "ci95": [
-       0.5412,
-       0.7534
+       0.5065,
+       0.7127
       ]
      },
      "dollars_protected_share": {
-      "value": 0.7445,
+      "value": 0.7575,
       "ci95": [
-       0.6051,
-       0.863
+       0.6149,
+       0.8658
       ]
      },
      "median_warning_days": {
       "value": 0.0,
       "ci95": [
        0.0,
-       0.0201
+       0.0
       ]
      },
      "lookalike_false_alarm_rate": {
       "value": 0.2626,
       "ci95": [
-       0.2057,
-       0.3241
+       0.2021,
+       0.3284
       ]
      },
      "alerts_per_1k_households_per_week": {
-      "value": 4.6099,
+      "value": 4.7969,
       "ci95": [
-       4.3654,
-       4.8689
+       4.5284,
+       5.0679
       ]
      },
      "precision": {
-      "value": 0.0608,
+      "value": 0.055,
       "ci95": [
-       0.0447,
-       0.0781
+       0.04,
+       0.0706
       ]
      },
      "precision_at_0.5pct_base_rate": {
-      "value": 0.0157,
+      "value": 0.0141,
       "ci95": [
-       0.0125,
-       0.0192
+       0.0112,
+       0.0173
       ]
      },
      "false_alarm_households_share": {
-      "value": 0.3105,
+      "value": 0.3092,
       "ci95": [
-       0.2964,
-       0.3251
+       0.2954,
+       0.3238
       ]
      },
      "fairness_by_age_band": {
       "55-64": {
-       "rate": 0.2962,
-       "ratio_to_overall": 0.954
+       "rate": 0.2698,
+       "ratio_to_overall": 0.8726
       },
       "65-74": {
-       "rate": 0.2999,
-       "ratio_to_overall": 0.9661
+       "rate": 0.3078,
+       "ratio_to_overall": 0.9956
       },
       "75-84": {
-       "rate": 0.324,
-       "ratio_to_overall": 1.0437
+       "rate": 0.3355,
+       "ratio_to_overall": 1.0852
       },
       "85+": {
-       "rate": 0.3592,
-       "ratio_to_overall": 1.1569
-      }
-     },
-     "n_cases": 80,
-     "n_lookalikes": 198,
-     "n_households": 4000,
-     "by_typology": {
-      "government_impersonation": {
-       "recall": 0.4286,
-       "caught_before_money_left": 0.4286,
-       "n": 7
-      },
-      "grandparent_voice_clone": {
-       "recall": 0.8,
-       "caught_before_money_left": 0.8,
-       "n": 5
-      },
-      "investment_romance_scam": {
-       "recall": 0.7619,
-       "caught_before_money_left": 0.5714,
-       "n": 21
-      },
-      "silent_account_takeover": {
-       "recall": 0.8462,
-       "caught_before_money_left": 0.7692,
-       "n": 13
-      },
-      "tech_support_impersonation": {
-       "recall": 0.75,
-       "caught_before_money_left": 0.625,
-       "n": 16
-      },
-      "trusted_person_theft": {
-       "recall": 0.9444,
-       "caught_before_money_left": 0.7222,
-       "n": 18
-      }
-     },
-     "coached_cover_story_recall": 0.8333,
-     "lookalike_fa_by_kind": {
-      "car_purchase": 0.0,
-      "gift_to_family": 0.1892,
-      "home_purchase": 0.1935,
-      "large_tax_payment": 0.2963,
-      "long_term_care_deposit": 0.2,
-      "moving_states": 0.5185,
-      "remarriage": 0.7143,
-      "transfer_to_other_firm": 0.2381,
-      "trust_funding": 0.2667
-     },
-     "warning_days_distribution": [
-      -55.2979,
-      -45.1917,
-      -29.0896,
-      -16.7681,
-      -10.1389,
-      -8.1694,
-      -6.1972,
-      -5.025,
-      -1.1465,
-      -0.2181,
-      -0.0917,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.7882,
-      0.8958,
-      0.9181,
-      1.5319,
-      1.9597,
-      2.3035,
-      2.7458,
-      2.9708,
-      4.2056,
-      4.9076,
-      5.7153,
-      5.9979,
-      6.8368,
-      7.0278,
-      7.1035,
-      7.1799,
-      7.6736,
-      13.6944,
-      14.8014,
-      23.8458,
-      28.9417,
-      29.2493,
-      29.9535,
-      35.2826
-     ],
-     "threshold": 0.00828
-    },
-    "1%": {
-     "recall": {
-      "value": 0.85,
-      "ci95": [
-       0.7702,
-       0.9248
-      ]
-     },
-     "caught_before_money_left": {
-      "value": 0.7375,
-      "ci95": [
-       0.6363,
-       0.8296
-      ]
-     },
-     "dollars_protected_share": {
-      "value": 0.887,
-      "ci95": [
-       0.8162,
-       0.942
-      ]
-     },
-     "median_warning_days": {
-      "value": 0.0201,
-      "ci95": [
-       0.0,
-       1.6257
-      ]
-     },
-     "lookalike_false_alarm_rate": {
-      "value": 0.3485,
-      "ci95": [
-       0.2823,
-       0.4225
-      ]
-     },
-     "alerts_per_1k_households_per_week": {
-      "value": 9.6849,
-      "ci95": [
-       9.3324,
-       10.0278
-      ]
-     },
-     "precision": {
-      "value": 0.0307,
-      "ci95": [
-       0.0227,
-       0.0393
-      ]
-     },
-     "precision_at_0.5pct_base_rate": {
-      "value": 0.0077,
-      "ci95": [
-       0.0062,
-       0.0093
-      ]
-     },
-     "false_alarm_households_share": {
-      "value": 0.5587,
-      "ci95": [
-       0.544,
-       0.5739
-      ]
-     },
-     "fairness_by_age_band": {
-      "55-64": {
-       "rate": 0.5572,
-       "ratio_to_overall": 0.9973
-      },
-      "65-74": {
-       "rate": 0.5397,
-       "ratio_to_overall": 0.966
-      },
-      "75-84": {
-       "rate": 0.5748,
-       "ratio_to_overall": 1.0289
-      },
-      "85+": {
-       "rate": 0.6204,
-       "ratio_to_overall": 1.1105
+       "rate": 0.298,
+       "ratio_to_overall": 0.9637
       }
      },
      "n_cases": 80,
@@ -6072,53 +5840,254 @@
        "n": 7
       },
       "grandparent_voice_clone": {
-       "recall": 0.8,
-       "caught_before_money_left": 0.8,
+       "recall": 1.0,
+       "caught_before_money_left": 1.0,
        "n": 5
       },
       "investment_romance_scam": {
-       "recall": 0.9048,
-       "caught_before_money_left": 0.7619,
+       "recall": 0.8095,
+       "caught_before_money_left": 0.5238,
        "n": 21
       },
       "silent_account_takeover": {
        "recall": 0.8462,
-       "caught_before_money_left": 0.8462,
+       "caught_before_money_left": 0.7692,
        "n": 13
       },
       "tech_support_impersonation": {
-       "recall": 0.8125,
-       "caught_before_money_left": 0.6875,
+       "recall": 0.625,
+       "caught_before_money_left": 0.5625,
        "n": 16
       },
       "trusted_person_theft": {
-       "recall": 0.9444,
-       "caught_before_money_left": 0.7222,
+       "recall": 0.8889,
+       "caught_before_money_left": 0.5556,
+       "n": 18
+      }
+     },
+     "coached_cover_story_recall": 0.8333,
+     "lookalike_fa_by_kind": {
+      "car_purchase": 0.0,
+      "gift_to_family": 0.4865,
+      "home_purchase": 0.0968,
+      "large_tax_payment": 0.2593,
+      "long_term_care_deposit": 0.0667,
+      "moving_states": 0.5556,
+      "remarriage": 0.4286,
+      "transfer_to_other_firm": 0.1905,
+      "trust_funding": 0.0667
+     },
+     "warning_days_distribution": [
+      -63.0188,
+      -55.2778,
+      -45.1917,
+      -30.7868,
+      -28.9083,
+      -24.2083,
+      -23.8833,
+      -19.9417,
+      -19.9208,
+      -10.2069,
+      -6.1972,
+      -5.025,
+      -1.7396,
+      -1.0049,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.0201,
+      0.1111,
+      1.9597,
+      4.2056,
+      6.8368,
+      7.1035,
+      7.6736,
+      14.116,
+      14.8014,
+      23.8458,
+      28.9417,
+      29.2493
+     ],
+     "threshold": 0.011459
+    },
+    "1%": {
+     "recall": {
+      "value": 0.8,
+      "ci95": [
+       0.7083,
+       0.8795
+      ]
+     },
+     "caught_before_money_left": {
+      "value": 0.6375,
+      "ci95": [
+       0.5308,
+       0.7387
+      ]
+     },
+     "dollars_protected_share": {
+      "value": 0.7794,
+      "ci95": [
+       0.6329,
+       0.885
+      ]
+     },
+     "median_warning_days": {
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.0201
+      ]
+     },
+     "lookalike_false_alarm_rate": {
+      "value": 0.3434,
+      "ci95": [
+       0.2783,
+       0.4149
+      ]
+     },
+     "alerts_per_1k_households_per_week": {
+      "value": 9.7017,
+      "ci95": [
+       9.354,
+       10.0637
+      ]
+     },
+     "precision": {
+      "value": 0.0287,
+      "ci95": [
+       0.0209,
+       0.0372
+      ]
+     },
+     "precision_at_0.5pct_base_rate": {
+      "value": 0.0072,
+      "ci95": [
+       0.0057,
+       0.0088
+      ]
+     },
+     "false_alarm_households_share": {
+      "value": 0.5556,
+      "ci95": [
+       0.5401,
+       0.5714
+      ]
+     },
+     "fairness_by_age_band": {
+      "55-64": {
+       "rate": 0.5513,
+       "ratio_to_overall": 0.9923
+      },
+      "65-74": {
+       "rate": 0.5402,
+       "ratio_to_overall": 0.9723
+      },
+      "75-84": {
+       "rate": 0.5715,
+       "ratio_to_overall": 1.0287
+      },
+      "85+": {
+       "rate": 0.6,
+       "ratio_to_overall": 1.0799
+      }
+     },
+     "n_cases": 80,
+     "n_lookalikes": 198,
+     "n_households": 4000,
+     "by_typology": {
+      "government_impersonation": {
+       "recall": 0.5714,
+       "caught_before_money_left": 0.5714,
+       "n": 7
+      },
+      "grandparent_voice_clone": {
+       "recall": 1.0,
+       "caught_before_money_left": 1.0,
+       "n": 5
+      },
+      "investment_romance_scam": {
+       "recall": 0.8571,
+       "caught_before_money_left": 0.619,
+       "n": 21
+      },
+      "silent_account_takeover": {
+       "recall": 0.8462,
+       "caught_before_money_left": 0.7692,
+       "n": 13
+      },
+      "tech_support_impersonation": {
+       "recall": 0.625,
+       "caught_before_money_left": 0.5625,
+       "n": 16
+      },
+      "trusted_person_theft": {
+       "recall": 0.8889,
+       "caught_before_money_left": 0.5556,
        "n": 18
       }
      },
      "coached_cover_story_recall": 0.8333,
      "lookalike_fa_by_kind": {
       "car_purchase": 0.0556,
-      "gift_to_family": 0.2432,
-      "home_purchase": 0.2581,
-      "large_tax_payment": 0.4074,
-      "long_term_care_deposit": 0.4,
+      "gift_to_family": 0.5405,
+      "home_purchase": 0.1935,
+      "large_tax_payment": 0.2963,
+      "long_term_care_deposit": 0.2,
       "moving_states": 0.5926,
-      "remarriage": 0.8571,
-      "transfer_to_other_firm": 0.3333,
+      "remarriage": 0.4286,
+      "transfer_to_other_firm": 0.2857,
       "trust_funding": 0.3333
      },
      "warning_days_distribution": [
+      -63.0188,
       -55.2778,
+      -30.7868,
       -28.9083,
-      -10.1389,
+      -24.2083,
+      -23.1389,
+      -19.9208,
+      -10.2069,
+      -9.7778,
       -6.1972,
       -5.025,
-      -3.0208,
-      -2.8042,
-      -1.1465,
+      -1.7396,
       -0.0917,
+      0.0,
       0.0,
       0.0,
       0.0,
@@ -6149,310 +6118,114 @@
       0.0201,
       0.1111,
       0.8958,
-      0.934,
       0.9965,
       1.6257,
       1.9597,
       2.3035,
-      4.1222,
       4.2056,
       4.9076,
       5.3833,
-      5.7153,
-      5.8903,
       5.9889,
       6.2375,
-      6.6194,
       6.8368,
-      7.0278,
       7.1035,
       7.1799,
       7.6736,
-      8.1757,
       13.1278,
       14.8014,
-      19.9986,
       22.9444,
       23.8458,
       28.9417,
       29.2493,
-      29.9535,
       35.2826
      ],
-     "threshold": 0.003395
+     "threshold": 0.008476
     }
    }
   },
   "ablation_no_notes": {
-   "label": "Sentinel without notes",
+   "label": "Sentinel without notes (and without household memory, which is built from it)",
    "budgets": {
     "0.05%": {
      "recall": {
-      "value": 0.675,
+      "value": 0.6625,
       "ci95": [
-       0.5753,
-       0.7738
+       0.5526,
+       0.7667
       ]
      },
      "caught_before_money_left": {
-      "value": 0.35,
+      "value": 0.575,
       "ci95": [
-       0.25,
-       0.4493
+       0.4667,
+       0.6825
       ]
      },
      "dollars_protected_share": {
-      "value": 0.584,
+      "value": 0.5792,
       "ci95": [
-       0.4417,
-       0.7198
+       0.4284,
+       0.7436
       ]
      },
      "median_warning_days": {
       "value": 0.0,
       "ci95": [
-       -5.0848,
-       0.0
-      ]
-     },
-     "lookalike_false_alarm_rate": {
-      "value": 0.1263,
-      "ci95": [
-       0.0816,
-       0.1749
-      ]
-     },
-     "alerts_per_1k_households_per_week": {
-      "value": 0.4243,
-      "ci95": [
-       0.326,
-       0.5251
-      ]
-     },
-     "precision": {
-      "value": 0.5424,
-      "ci95": [
-       0.4375,
-       0.6304
-      ]
-     },
-     "precision_at_0.5pct_base_rate": {
-      "value": 0.2259,
-      "ci95": [
-       0.1706,
-       0.2929
-      ]
-     },
-     "false_alarm_households_share": {
-      "value": 0.0115,
-      "ci95": [
-       0.0084,
-       0.0151
-      ]
-     },
-     "fairness_by_age_band": {
-      "55-64": {
-       "rate": 0.0147,
-       "ratio_to_overall": 1.2773
-      },
-      "65-74": {
-       "rate": 0.009,
-       "ratio_to_overall": 0.7843
-      },
-      "75-84": {
-       "rate": 0.014,
-       "ratio_to_overall": 1.2178
-      },
-      "85+": {
-       "rate": 0.0082,
-       "ratio_to_overall": 0.7111
-      }
-     },
-     "n_cases": 80,
-     "n_lookalikes": 198,
-     "n_households": 4000,
-     "by_typology": {
-      "government_impersonation": {
-       "recall": 0.0,
-       "caught_before_money_left": 0.0,
-       "n": 7
-      },
-      "grandparent_voice_clone": {
-       "recall": 0.8,
-       "caught_before_money_left": 0.6,
-       "n": 5
-      },
-      "investment_romance_scam": {
-       "recall": 0.6667,
-       "caught_before_money_left": 0.2381,
-       "n": 21
-      },
-      "silent_account_takeover": {
-       "recall": 0.6923,
-       "caught_before_money_left": 0.6154,
-       "n": 13
-      },
-      "tech_support_impersonation": {
-       "recall": 0.625,
-       "caught_before_money_left": 0.5625,
-       "n": 16
-      },
-      "trusted_person_theft": {
-       "recall": 0.9444,
-       "caught_before_money_left": 0.1667,
-       "n": 18
-      }
-     },
-     "coached_cover_story_recall": 0.8333,
-     "lookalike_fa_by_kind": {
-      "car_purchase": 0.0,
-      "gift_to_family": 0.4054,
-      "home_purchase": 0.0,
-      "large_tax_payment": 0.0,
-      "long_term_care_deposit": 0.0667,
-      "moving_states": 0.0741,
-      "remarriage": 1.0,
-      "transfer_to_other_firm": 0.0,
-      "trust_funding": 0.0
-     },
-     "warning_days_distribution": [
-      -63.0188,
-      -34.666,
-      -27.8639,
-      -24.2083,
-      -21.891,
-      -19.9618,
-      -19.9208,
-      -18.8799,
-      -17.1431,
-      -16.7681,
-      -13.2993,
-      -12.8674,
-      -11.6271,
-      -11.1222,
-      -10.1104,
-      -8.6576,
-      -7.8229,
-      -7.116,
-      -6.6326,
-      -5.1708,
-      -5.0826,
-      -3.0743,
-      -2.3174,
-      -1.0521,
-      -0.825,
-      -0.3618,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.1722,
-      0.2569,
-      2.7986,
-      2.8694,
-      3.4222,
-      3.6951,
-      4.7681,
-      5.0951,
-      17.209,
-      27.8514
-     ],
-     "threshold": 0.722273
-    },
-    "0.1%": {
-     "recall": {
-      "value": 0.775,
-      "ci95": [
-       0.6786,
-       0.8642
-      ]
-     },
-     "caught_before_money_left": {
-      "value": 0.65,
-      "ci95": [
-       0.5416,
-       0.75
-      ]
-     },
-     "dollars_protected_share": {
-      "value": 0.7186,
-      "ci95": [
-       0.5719,
-       0.8507
-      ]
-     },
-     "median_warning_days": {
-      "value": 0.0201,
-      "ci95": [
        0.0,
-       2.9681
+       0.7882
       ]
      },
      "lookalike_false_alarm_rate": {
-      "value": 0.2222,
+      "value": 0.1869,
       "ci95": [
-       0.1613,
-       0.2804
+       0.1292,
+       0.245
       ]
      },
      "alerts_per_1k_households_per_week": {
-      "value": 0.9589,
+      "value": 0.537,
       "ci95": [
-       0.815,
-       1.0956
+       0.4291,
+       0.6449
       ]
      },
      "precision": {
-      "value": 0.2975,
+      "value": 0.4107,
       "ci95": [
-       0.23,
-       0.3564
+       0.3187,
+       0.4927
       ]
      },
      "precision_at_0.5pct_base_rate": {
-      "value": 0.0944,
+      "value": 0.1465,
       "ci95": [
-       0.0748,
-       0.1154
+       0.1111,
+       0.1883
       ]
      },
      "false_alarm_households_share": {
-      "value": 0.0526,
+      "value": 0.026,
       "ci95": [
-       0.046,
-       0.0595
+       0.0214,
+       0.0311
       ]
      },
      "fairness_by_age_band": {
       "55-64": {
-       "rate": 0.0499,
-       "ratio_to_overall": 0.9487
+       "rate": 0.0264,
+       "ratio_to_overall": 1.0143
       },
       "65-74": {
-       "rate": 0.0495,
-       "ratio_to_overall": 0.9424
+       "rate": 0.0197,
+       "ratio_to_overall": 0.7569
       },
       "75-84": {
-       "rate": 0.0617,
-       "ratio_to_overall": 1.1737
+       "rate": 0.0354,
+       "ratio_to_overall": 1.359
       },
       "85+": {
-       "rate": 0.0367,
-       "ratio_to_overall": 0.699
+       "rate": 0.0245,
+       "ratio_to_overall": 0.9412
       }
      },
      "n_cases": 80,
@@ -6465,53 +6238,50 @@
        "n": 7
       },
       "grandparent_voice_clone": {
-       "recall": 0.8,
-       "caught_before_money_left": 0.8,
+       "recall": 0.4,
+       "caught_before_money_left": 0.4,
        "n": 5
       },
       "investment_romance_scam": {
-       "recall": 0.7143,
-       "caught_before_money_left": 0.4762,
+       "recall": 0.4762,
+       "caught_before_money_left": 0.2857,
        "n": 21
       },
       "silent_account_takeover": {
-       "recall": 0.9231,
-       "caught_before_money_left": 0.9231,
+       "recall": 0.8462,
+       "caught_before_money_left": 0.8462,
        "n": 13
       },
       "tech_support_impersonation": {
        "recall": 0.8125,
-       "caught_before_money_left": 0.6875,
+       "caught_before_money_left": 0.75,
        "n": 16
       },
       "trusted_person_theft": {
-       "recall": 0.9444,
+       "recall": 0.8889,
        "caught_before_money_left": 0.7778,
        "n": 18
       }
      },
-     "coached_cover_story_recall": 0.8333,
+     "coached_cover_story_recall": 0.75,
      "lookalike_fa_by_kind": {
       "car_purchase": 0.0,
-      "gift_to_family": 0.4054,
+      "gift_to_family": 0.4324,
       "home_purchase": 0.0,
-      "large_tax_payment": 0.0,
-      "long_term_care_deposit": 0.2,
-      "moving_states": 0.5926,
+      "large_tax_payment": 0.037,
+      "long_term_care_deposit": 0.1333,
+      "moving_states": 0.3704,
       "remarriage": 1.0,
       "transfer_to_other_firm": 0.0,
-      "trust_funding": 0.2
+      "trust_funding": 0.0667
      },
      "warning_days_distribution": [
-      -25.7903,
-      -21.891,
-      -8.6576,
-      -8.1694,
-      -5.1708,
-      -5.025,
+      -26.9667,
+      -21.1389,
+      -16.7847,
+      -10.1104,
+      -8.075,
       -3.0208,
-      -2.8042,
-      -1.1465,
       -0.1583,
       0.0,
       0.0,
@@ -6533,121 +6303,309 @@
       0.0,
       0.0,
       0.0,
-      0.0201,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
       0.7396,
       0.7882,
       0.9181,
-      1.0347,
       1.5319,
+      1.7132,
+      2.0472,
       2.0917,
       2.2806,
       2.9681,
-      3.2132,
-      3.6951,
-      3.9424,
-      4.0215,
-      4.2056,
-      4.2514,
       4.7681,
-      5.0951,
+      5.8549,
       5.8903,
       6.6194,
       6.8549,
+      6.9444,
       9.5569,
       9.6556,
-      10.1681,
+      9.8604,
+      19.1382,
+      20.0951,
+      20.7937
+     ],
+     "threshold": 0.22059
+    },
+    "0.1%": {
+     "recall": {
+      "value": 0.7625,
+      "ci95": [
+       0.6702,
+       0.8514
+      ]
+     },
+     "caught_before_money_left": {
+      "value": 0.625,
+      "ci95": [
+       0.5185,
+       0.7326
+      ]
+     },
+     "dollars_protected_share": {
+      "value": 0.7687,
+      "ci95": [
+       0.6651,
+       0.8602
+      ]
+     },
+     "median_warning_days": {
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       1.5319
+      ]
+     },
+     "lookalike_false_alarm_rate": {
+      "value": 0.3081,
+      "ci95": [
+       0.2449,
+       0.3743
+      ]
+     },
+     "alerts_per_1k_households_per_week": {
+      "value": 1.1219,
+      "ci95": [
+       0.9876,
+       1.249
+      ]
+     },
+     "precision": {
+      "value": 0.2244,
+      "ci95": [
+       0.1677,
+       0.2801
+      ]
+     },
+     "precision_at_0.5pct_base_rate": {
+      "value": 0.0665,
+      "ci95": [
+       0.0512,
+       0.0831
+      ]
+     },
+     "false_alarm_households_share": {
+      "value": 0.0773,
+      "ci95": [
+       0.0692,
+       0.0852
+      ]
+     },
+     "fairness_by_age_band": {
+      "55-64": {
+       "rate": 0.0777,
+       "ratio_to_overall": 1.0054
+      },
+      "65-74": {
+       "rate": 0.0703,
+       "ratio_to_overall": 0.9101
+      },
+      "75-84": {
+       "rate": 0.0863,
+       "ratio_to_overall": 1.1171
+      },
+      "85+": {
+       "rate": 0.0816,
+       "ratio_to_overall": 1.0561
+      }
+     },
+     "n_cases": 80,
+     "n_lookalikes": 198,
+     "n_households": 4000,
+     "by_typology": {
+      "government_impersonation": {
+       "recall": 0.2857,
+       "caught_before_money_left": 0.2857,
+       "n": 7
+      },
+      "grandparent_voice_clone": {
+       "recall": 0.4,
+       "caught_before_money_left": 0.4,
+       "n": 5
+      },
+      "investment_romance_scam": {
+       "recall": 0.7619,
+       "caught_before_money_left": 0.381,
+       "n": 21
+      },
+      "silent_account_takeover": {
+       "recall": 0.9231,
+       "caught_before_money_left": 0.9231,
+       "n": 13
+      },
+      "tech_support_impersonation": {
+       "recall": 0.8125,
+       "caught_before_money_left": 0.75,
+       "n": 16
+      },
+      "trusted_person_theft": {
+       "recall": 0.8889,
+       "caught_before_money_left": 0.7778,
+       "n": 18
+      }
+     },
+     "coached_cover_story_recall": 0.8333,
+     "lookalike_fa_by_kind": {
+      "car_purchase": 0.0,
+      "gift_to_family": 0.4865,
+      "home_purchase": 0.0645,
+      "large_tax_payment": 0.2222,
+      "long_term_care_deposit": 0.3333,
+      "moving_states": 0.7407,
+      "remarriage": 1.0,
+      "transfer_to_other_firm": 0.0,
+      "trust_funding": 0.2
+     },
+     "warning_days_distribution": [
+      -40.6229,
+      -29.8875,
+      -23.9049,
+      -21.1389,
+      -16.7847,
+      -10.0188,
+      -7.1958,
+      -5.025,
+      -4.9403,
+      -1.1181,
+      -0.1583,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.7396,
+      0.7882,
+      0.9181,
+      1.5319,
+      1.7132,
+      2.0472,
+      2.0917,
+      2.2806,
+      2.9417,
+      2.9681,
+      3.9424,
+      4.7681,
+      5.8549,
+      5.8903,
+      6.6194,
+      6.8549,
+      6.9444,
+      9.5569,
+      9.6556,
+      9.8604,
       13.1278,
-      17.209,
       19.1382,
       20.0951,
       20.7937,
       22.9444,
       25.6014,
-      27.8514,
       30.0889
      ],
-     "threshold": 0.069144
+     "threshold": 0.063988
     },
     "0.25%": {
      "recall": {
-      "value": 0.8375,
+      "value": 0.85,
       "ci95": [
-       0.75,
-       0.9103
+       0.7612,
+       0.9243
       ]
      },
      "caught_before_money_left": {
-      "value": 0.75,
+      "value": 0.7,
       "ci95": [
-       0.6455,
-       0.8387
+       0.5972,
+       0.7941
       ]
      },
      "dollars_protected_share": {
-      "value": 0.8661,
+      "value": 0.8538,
       "ci95": [
-       0.7803,
+       0.7563,
        0.9316
       ]
      },
      "median_warning_days": {
-      "value": 1.8708,
+      "value": 0.0,
       "ci95": [
        0.0,
-       3.9424
+       2.0917
       ]
      },
      "lookalike_false_alarm_rate": {
-      "value": 0.3333,
+      "value": 0.4444,
       "ci95": [
-       0.2708,
-       0.405
+       0.3762,
+       0.5155
       ]
      },
      "alerts_per_1k_households_per_week": {
-      "value": 2.426,
+      "value": 2.5795,
       "ci95": [
-       2.2462,
-       2.6155
+       2.3996,
+       2.769
       ]
      },
      "precision": {
-      "value": 0.1265,
+      "value": 0.1106,
       "ci95": [
-       0.0932,
-       0.16
+       0.0814,
+       0.1413
       ]
      },
      "precision_at_0.5pct_base_rate": {
-      "value": 0.0344,
+      "value": 0.0297,
       "ci95": [
-       0.0271,
-       0.0419
+       0.0233,
+       0.0363
       ]
      },
      "false_alarm_households_share": {
-      "value": 0.1765,
+      "value": 0.1939,
       "ci95": [
-       0.1664,
-       0.1886
+       0.1816,
+       0.2059
       ]
      },
      "fairness_by_age_band": {
       "55-64": {
-       "rate": 0.1569,
-       "ratio_to_overall": 0.8887
+       "rate": 0.1921,
+       "ratio_to_overall": 0.9907
       },
       "65-74": {
-       "rate": 0.1626,
-       "ratio_to_overall": 0.9213
+       "rate": 0.175,
+       "ratio_to_overall": 0.9027
       },
       "75-84": {
-       "rate": 0.2015,
-       "ratio_to_overall": 1.1413
+       "rate": 0.2163,
+       "ratio_to_overall": 1.1156
       },
       "85+": {
-       "rate": 0.2082,
-       "ratio_to_overall": 1.1792
+       "rate": 0.2245,
+       "ratio_to_overall": 1.1579
       }
      },
      "n_cases": 80,
@@ -6660,22 +6618,428 @@
        "n": 7
       },
       "grandparent_voice_clone": {
-       "recall": 0.8,
-       "caught_before_money_left": 0.8,
+       "recall": 0.6,
+       "caught_before_money_left": 0.6,
        "n": 5
       },
       "investment_romance_scam": {
-       "recall": 0.8095,
-       "caught_before_money_left": 0.619,
+       "recall": 0.9048,
+       "caught_before_money_left": 0.5238,
        "n": 21
       },
       "silent_account_takeover": {
-       "recall": 0.9231,
-       "caught_before_money_left": 0.9231,
+       "recall": 1.0,
+       "caught_before_money_left": 1.0,
        "n": 13
       },
       "tech_support_impersonation": {
-       "recall": 0.875,
+       "recall": 0.8125,
+       "caught_before_money_left": 0.75,
+       "n": 16
+      },
+      "trusted_person_theft": {
+       "recall": 0.9444,
+       "caught_before_money_left": 0.7778,
+       "n": 18
+      }
+     },
+     "coached_cover_story_recall": 0.8333,
+     "lookalike_fa_by_kind": {
+      "car_purchase": 0.0556,
+      "gift_to_family": 0.5676,
+      "home_purchase": 0.1613,
+      "large_tax_payment": 0.4815,
+      "long_term_care_deposit": 0.6,
+      "moving_states": 0.8519,
+      "remarriage": 1.0,
+      "transfer_to_other_firm": 0.0476,
+      "trust_funding": 0.5333
+     },
+     "warning_days_distribution": [
+      -50.9924,
+      -36.9472,
+      -35.1785,
+      -23.8833,
+      -21.1389,
+      -16.7847,
+      -15.6229,
+      -8.0549,
+      -5.0549,
+      -4.9403,
+      -1.1181,
+      -0.1583,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.7396,
+      0.7882,
+      0.9181,
+      1.5319,
+      1.7132,
+      1.8965,
+      2.0472,
+      2.0917,
+      2.2806,
+      2.8493,
+      2.9417,
+      2.9681,
+      4.1979,
+      4.7681,
+      5.8549,
+      5.8903,
+      6.6194,
+      6.8549,
+      6.9444,
+      7.8854,
+      8.1347,
+      9.5569,
+      9.6556,
+      9.8604,
+      12.7111,
+      13.1278,
+      17.8833,
+      19.1382,
+      20.0951,
+      20.7937,
+      22.016,
+      22.9444,
+      25.6014,
+      30.0889
+     ],
+     "threshold": 0.02372
+    },
+    "0.5%": {
+     "recall": {
+      "value": 0.9,
+      "ci95": [
+       0.8243,
+       0.9595
+      ]
+     },
+     "caught_before_money_left": {
+      "value": 0.7625,
+      "ci95": [
+       0.6629,
+       0.8475
+      ]
+     },
+     "dollars_protected_share": {
+      "value": 0.8931,
+      "ci95": [
+       0.8074,
+       0.959
+      ]
+     },
+     "median_warning_days": {
+      "value": 1.8708,
+      "ci95": [
+       0.0,
+       3.4049
+      ]
+     },
+     "lookalike_false_alarm_rate": {
+      "value": 0.5101,
+      "ci95": [
+       0.4354,
+       0.5821
+      ]
+     },
+     "alerts_per_1k_households_per_week": {
+      "value": 5.0438,
+      "ci95": [
+       4.8017,
+       5.2788
+      ]
+     },
+     "precision": {
+      "value": 0.0604,
+      "ci95": [
+       0.0439,
+       0.0773
+      ]
+     },
+     "precision_at_0.5pct_base_rate": {
+      "value": 0.0156,
+      "ci95": [
+       0.0124,
+       0.0188
+      ]
+     },
+     "false_alarm_households_share": {
+      "value": 0.3561,
+      "ci95": [
+       0.3402,
+       0.3716
+      ]
+     },
+     "fairness_by_age_band": {
+      "55-64": {
+       "rate": 0.3563,
+       "ratio_to_overall": 1.0005
+      },
+      "65-74": {
+       "rate": 0.3376,
+       "ratio_to_overall": 0.9481
+      },
+      "75-84": {
+       "rate": 0.3824,
+       "ratio_to_overall": 1.0738
+      },
+      "85+": {
+       "rate": 0.3592,
+       "ratio_to_overall": 1.0086
+      }
+     },
+     "n_cases": 80,
+     "n_lookalikes": 198,
+     "n_households": 4000,
+     "by_typology": {
+      "government_impersonation": {
+       "recall": 0.5714,
+       "caught_before_money_left": 0.5714,
+       "n": 7
+      },
+      "grandparent_voice_clone": {
+       "recall": 1.0,
+       "caught_before_money_left": 1.0,
+       "n": 5
+      },
+      "investment_romance_scam": {
+       "recall": 0.9524,
+       "caught_before_money_left": 0.5714,
+       "n": 21
+      },
+      "silent_account_takeover": {
+       "recall": 1.0,
+       "caught_before_money_left": 1.0,
+       "n": 13
+      },
+      "tech_support_impersonation": {
+       "recall": 0.8125,
+       "caught_before_money_left": 0.75,
+       "n": 16
+      },
+      "trusted_person_theft": {
+       "recall": 0.9444,
+       "caught_before_money_left": 0.8333,
+       "n": 18
+      }
+     },
+     "coached_cover_story_recall": 0.8333,
+     "lookalike_fa_by_kind": {
+      "car_purchase": 0.1111,
+      "gift_to_family": 0.6216,
+      "home_purchase": 0.2903,
+      "large_tax_payment": 0.5556,
+      "long_term_care_deposit": 0.6667,
+      "moving_states": 0.963,
+      "remarriage": 1.0,
+      "transfer_to_other_firm": 0.0476,
+      "trust_funding": 0.5333
+     },
+     "warning_days_distribution": [
+      -50.9924,
+      -36.9472,
+      -23.8833,
+      -9.9458,
+      -8.7764,
+      -8.0549,
+      -5.0549,
+      -4.0938,
+      -3.0743,
+      -3.0208,
+      -0.0917,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.7396,
+      0.7882,
+      0.9181,
+      0.991,
+      1.5319,
+      1.7132,
+      1.8708,
+      1.8965,
+      2.0472,
+      2.0764,
+      2.0917,
+      2.2806,
+      2.8493,
+      2.9681,
+      3.2132,
+      3.4049,
+      4.1979,
+      4.7681,
+      4.8764,
+      5.1097,
+      5.3833,
+      5.8215,
+      5.8549,
+      5.8903,
+      6.8549,
+      6.9444,
+      7.2785,
+      7.8854,
+      8.1347,
+      9.5569,
+      9.6556,
+      9.8604,
+      12.7111,
+      13.1278,
+      17.8833,
+      19.1382,
+      20.0951,
+      20.7937,
+      22.016,
+      22.9444,
+      25.6014,
+      30.0889,
+      35.2826
+     ],
+     "threshold": 0.011888
+    },
+    "1%": {
+     "recall": {
+      "value": 0.9125,
+      "ci95": [
+       0.8382,
+       0.9672
+      ]
+     },
+     "caught_before_money_left": {
+      "value": 0.85,
+      "ci95": [
+       0.76,
+       0.9254
+      ]
+     },
+     "dollars_protected_share": {
+      "value": 0.9124,
+      "ci95": [
+       0.8278,
+       0.9754
+      ]
+     },
+     "median_warning_days": {
+      "value": 2.0764,
+      "ci95": [
+       0.8958,
+       4.1979
+      ]
+     },
+     "lookalike_false_alarm_rate": {
+      "value": 0.5808,
+      "ci95": [
+       0.5127,
+       0.6514
+      ]
+     },
+     "alerts_per_1k_households_per_week": {
+      "value": 9.9822,
+      "ci95": [
+       9.6417,
+       10.294
+      ]
+     },
+     "precision": {
+      "value": 0.0315,
+      "ci95": [
+       0.0228,
+       0.0405
+      ]
+     },
+     "precision_at_0.5pct_base_rate": {
+      "value": 0.0079,
+      "ci95": [
+       0.0064,
+       0.0095
+      ]
+     },
+     "false_alarm_households_share": {
+      "value": 0.6079,
+      "ci95": [
+       0.592,
+       0.623
+      ]
+     },
+     "fairness_by_age_band": {
+      "55-64": {
+       "rate": 0.588,
+       "ratio_to_overall": 0.9672
+      },
+      "65-74": {
+       "rate": 0.592,
+       "ratio_to_overall": 0.9738
+      },
+      "75-84": {
+       "rate": 0.6349,
+       "ratio_to_overall": 1.0443
+      },
+      "85+": {
+       "rate": 0.6449,
+       "ratio_to_overall": 1.0608
+      }
+     },
+     "n_cases": 80,
+     "n_lookalikes": 198,
+     "n_households": 4000,
+     "by_typology": {
+      "government_impersonation": {
+       "recall": 0.7143,
+       "caught_before_money_left": 0.7143,
+       "n": 7
+      },
+      "grandparent_voice_clone": {
+       "recall": 1.0,
+       "caught_before_money_left": 1.0,
+       "n": 5
+      },
+      "investment_romance_scam": {
+       "recall": 0.9524,
+       "caught_before_money_left": 0.8095,
+       "n": 21
+      },
+      "silent_account_takeover": {
+       "recall": 1.0,
+       "caught_before_money_left": 1.0,
+       "n": 13
+      },
+      "tech_support_impersonation": {
+       "recall": 0.8125,
        "caught_before_money_left": 0.75,
        "n": 16
       },
@@ -6687,421 +7051,20 @@
      },
      "coached_cover_story_recall": 0.8333,
      "lookalike_fa_by_kind": {
-      "car_purchase": 0.0556,
-      "gift_to_family": 0.4324,
-      "home_purchase": 0.0323,
-      "large_tax_payment": 0.1481,
-      "long_term_care_deposit": 0.4,
-      "moving_states": 0.7778,
-      "remarriage": 1.0,
-      "transfer_to_other_firm": 0.0952,
-      "trust_funding": 0.5333
-     },
-     "warning_days_distribution": [
-      -55.2979,
-      -25.7903,
-      -15.6229,
-      -8.1694,
-      -3.0208,
-      -1.1465,
-      -0.1583,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0201,
-      0.0201,
-      0.7396,
-      0.7882,
-      0.9181,
-      1.5319,
-      1.7132,
-      1.8708,
-      1.8965,
-      2.0917,
-      2.2806,
-      2.8493,
-      2.9681,
-      3.6951,
-      3.9424,
-      4.0215,
-      4.2514,
-      4.7681,
-      5.1097,
-      5.8549,
-      5.8903,
-      6.1632,
-      6.6194,
-      6.8549,
-      7.8854,
-      8.1347,
-      9.5569,
-      9.6556,
-      10.1681,
-      12.7111,
-      13.1278,
-      14.8014,
-      17.209,
-      17.8833,
-      19.1382,
-      20.0951,
-      20.7937,
-      22.9444,
-      25.6014,
-      27.8514,
-      30.0889
-     ],
-     "threshold": 0.017379
-    },
-    "0.5%": {
-     "recall": {
-      "value": 0.8625,
-      "ci95": [
-       0.7765,
-       0.931
-      ]
-     },
-     "caught_before_money_left": {
-      "value": 0.8,
-      "ci95": [
-       0.7,
-       0.8831
-      ]
-     },
-     "dollars_protected_share": {
-      "value": 0.8969,
-      "ci95": [
-       0.8165,
-       0.9509
-      ]
-     },
-     "median_warning_days": {
-      "value": 2.2806,
-      "ci95": [
-       0.7396,
-       6.2375
-      ]
-     },
-     "lookalike_false_alarm_rate": {
-      "value": 0.399,
-      "ci95": [
-       0.3333,
-       0.4656
-      ]
-     },
-     "alerts_per_1k_households_per_week": {
-      "value": 4.8065,
-      "ci95": [
-       4.5834,
-       5.0271
-      ]
-     },
-     "precision": {
-      "value": 0.0658,
-      "ci95": [
-       0.0483,
-       0.0842
-      ]
-     },
-     "precision_at_0.5pct_base_rate": {
-      "value": 0.0171,
-      "ci95": [
-       0.0137,
-       0.0206
-      ]
-     },
-     "false_alarm_households_share": {
-      "value": 0.3528,
-      "ci95": [
-       0.3385,
-       0.3669
-      ]
-     },
-     "fairness_by_age_band": {
-      "55-64": {
-       "rate": 0.349,
-       "ratio_to_overall": 0.9891
-      },
-      "65-74": {
-       "rate": 0.3399,
-       "ratio_to_overall": 0.9634
-      },
-      "75-84": {
-       "rate": 0.3643,
-       "ratio_to_overall": 1.0326
-      },
-      "85+": {
-       "rate": 0.4,
-       "ratio_to_overall": 1.1338
-      }
-     },
-     "n_cases": 80,
-     "n_lookalikes": 198,
-     "n_households": 4000,
-     "by_typology": {
-      "government_impersonation": {
-       "recall": 0.4286,
-       "caught_before_money_left": 0.4286,
-       "n": 7
-      },
-      "grandparent_voice_clone": {
-       "recall": 0.8,
-       "caught_before_money_left": 0.8,
-       "n": 5
-      },
-      "investment_romance_scam": {
-       "recall": 0.8571,
-       "caught_before_money_left": 0.7143,
-       "n": 21
-      },
-      "silent_account_takeover": {
-       "recall": 0.9231,
-       "caught_before_money_left": 0.9231,
-       "n": 13
-      },
-      "tech_support_impersonation": {
-       "recall": 0.9375,
-       "caught_before_money_left": 0.875,
-       "n": 16
-      },
-      "trusted_person_theft": {
-       "recall": 0.9444,
-       "caught_before_money_left": 0.8889,
-       "n": 18
-      }
-     },
-     "coached_cover_story_recall": 0.9167,
-     "lookalike_fa_by_kind": {
-      "car_purchase": 0.0556,
-      "gift_to_family": 0.4865,
-      "home_purchase": 0.0645,
-      "large_tax_payment": 0.3704,
-      "long_term_care_deposit": 0.6,
-      "moving_states": 0.8148,
-      "remarriage": 1.0,
-      "transfer_to_other_firm": 0.0952,
-      "trust_funding": 0.5333
-     },
-     "warning_days_distribution": [
-      -55.2979,
-      -25.7903,
-      -4.5361,
-      -3.0208,
-      -0.0917,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.7396,
-      0.7882,
-      0.9181,
-      1.6257,
-      1.7132,
-      1.8965,
-      1.9597,
-      2.0472,
-      2.2806,
-      2.9681,
-      4.1979,
-      4.7681,
-      5.1097,
-      5.8549,
-      5.8903,
-      6.1632,
-      6.2375,
-      6.6194,
-      6.8549,
-      6.9444,
-      7.1035,
-      7.1799,
-      7.6736,
-      7.8854,
-      8.1347,
-      9.5569,
-      9.6556,
-      10.1681,
-      12.7111,
-      12.8236,
-      13.1278,
-      14.8014,
-      17.8833,
-      19.1382,
-      20.0951,
-      20.7937,
-      22.016,
-      22.9444,
-      23.8458,
-      25.6014,
-      28.9417,
-      29.2493,
-      30.0889
-     ],
-     "threshold": 0.007326
-    },
-    "1%": {
-     "recall": {
-      "value": 0.8875,
-      "ci95": [
-       0.8082,
-       0.9508
-      ]
-     },
-     "caught_before_money_left": {
-      "value": 0.8375,
-      "ci95": [
-       0.747,
-       0.9155
-      ]
-     },
-     "dollars_protected_share": {
-      "value": 0.9119,
-      "ci95": [
-       0.8416,
-       0.9623
-      ]
-     },
-     "median_warning_days": {
-      "value": 4.1979,
-      "ci95": [
-       1.711,
-       6.2521
-      ]
-     },
-     "lookalike_false_alarm_rate": {
-      "value": 0.4899,
-      "ci95": [
-       0.4158,
-       0.5607
-      ]
-     },
-     "alerts_per_1k_households_per_week": {
-      "value": 9.8336,
-      "ci95": [
-       9.5026,
-       10.1477
-      ]
-     },
-     "precision": {
-      "value": 0.0339,
-      "ci95": [
-       0.0247,
-       0.0436
-      ]
-     },
-     "precision_at_0.5pct_base_rate": {
-      "value": 0.0086,
-      "ci95": [
-       0.0069,
-       0.0103
-      ]
-     },
-     "false_alarm_households_share": {
-      "value": 0.5992,
-      "ci95": [
-       0.5849,
-       0.6138
-      ]
-     },
-     "fairness_by_age_band": {
-      "55-64": {
-       "rate": 0.5762,
-       "ratio_to_overall": 0.9616
-      },
-      "65-74": {
-       "rate": 0.5914,
-       "ratio_to_overall": 0.987
-      },
-      "75-84": {
-       "rate": 0.6127,
-       "ratio_to_overall": 1.0224
-      },
-      "85+": {
-       "rate": 0.6531,
-       "ratio_to_overall": 1.0898
-      }
-     },
-     "n_cases": 80,
-     "n_lookalikes": 198,
-     "n_households": 4000,
-     "by_typology": {
-      "government_impersonation": {
-       "recall": 0.4286,
-       "caught_before_money_left": 0.4286,
-       "n": 7
-      },
-      "grandparent_voice_clone": {
-       "recall": 0.8,
-       "caught_before_money_left": 0.8,
-       "n": 5
-      },
-      "investment_romance_scam": {
-       "recall": 0.9524,
-       "caught_before_money_left": 0.8095,
-       "n": 21
-      },
-      "silent_account_takeover": {
-       "recall": 0.8462,
-       "caught_before_money_left": 0.8462,
-       "n": 13
-      },
-      "tech_support_impersonation": {
-       "recall": 0.9375,
-       "caught_before_money_left": 0.875,
-       "n": 16
-      },
-      "trusted_person_theft": {
-       "recall": 1.0,
-       "caught_before_money_left": 1.0,
-       "n": 18
-      }
-     },
-     "coached_cover_story_recall": 0.8333,
-     "lookalike_fa_by_kind": {
-      "car_purchase": 0.0556,
-      "gift_to_family": 0.5946,
-      "home_purchase": 0.2581,
-      "large_tax_payment": 0.5185,
+      "car_purchase": 0.1667,
+      "gift_to_family": 0.7297,
+      "home_purchase": 0.4194,
+      "large_tax_payment": 0.6296,
       "long_term_care_deposit": 0.6667,
-      "moving_states": 0.8148,
+      "moving_states": 0.963,
       "remarriage": 1.0,
-      "transfer_to_other_firm": 0.2381,
-      "trust_funding": 0.5333
+      "transfer_to_other_firm": 0.1429,
+      "trust_funding": 0.6
      },
      "warning_days_distribution": [
-      -20.1785,
-      -17.0771,
+      -16.8722,
+      -8.7764,
+      -3.0743,
       -3.0208,
       -0.0917,
       0.0,
@@ -7117,62 +7080,63 @@
       0.0,
       0.0,
       0.0,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
-      0.0201,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.8583,
       0.8958,
       0.9181,
+      0.991,
       0.9965,
       1.6257,
-      1.7132,
+      1.8542,
+      1.8708,
       1.8965,
-      1.9597,
       2.0472,
-      2.2806,
+      2.0764,
+      2.3035,
+      2.8493,
       2.9681,
+      3.2132,
       3.4049,
-      4.1222,
+      3.6951,
+      4.0215,
+      4.166,
       4.1979,
+      4.7681,
       4.8764,
-      4.9076,
+      5.1097,
       5.3833,
-      5.8549,
+      5.8215,
       5.9889,
-      6.1632,
-      6.2375,
+      6.0438,
       6.2521,
       6.8549,
       7.0507,
-      7.1035,
       7.1799,
       7.2785,
-      7.6736,
-      7.8854,
       8.1347,
-      9.5569,
+      9.625,
       9.6556,
+      10.1681,
       12.7111,
-      12.8236,
       13.1278,
-      14.8014,
       17.8833,
       19.1382,
       20.0951,
       20.7937,
       22.016,
       22.9444,
-      23.8458,
       25.6014,
-      28.9417,
-      29.2493,
-      29.9535,
       30.0889,
       35.2826
      ],
-     "threshold": 0.002499
+     "threshold": 0.007183
     }
    }
   },
@@ -8968,6 +8932,11 @@
     "0.5%": 0.8571,
     "1%": 0.9048
    },
+   "same_features_trained_on_all_recall": {
+    "0.25%": 0.8095,
+    "0.5%": 0.9048,
+    "1%": 0.9048
+   },
    "threshold_100k_recall": 0.0476
   },
   "tech_support_impersonation": {
@@ -8981,6 +8950,11 @@
     "0.25%": 0.9375,
     "0.5%": 0.9375,
     "1%": 0.8125
+   },
+   "same_features_trained_on_all_recall": {
+    "0.25%": 0.8125,
+    "0.5%": 1.0,
+    "1%": 1.0
    },
    "threshold_100k_recall": 0.0
   },
@@ -8996,6 +8970,11 @@
     "0.5%": 0.4286,
     "1%": 0.5714
    },
+   "same_features_trained_on_all_recall": {
+    "0.25%": 0.4286,
+    "0.5%": 0.4286,
+    "1%": 0.4286
+   },
    "threshold_100k_recall": 0.1429
   },
   "silent_account_takeover": {
@@ -9009,6 +8988,11 @@
     "0.25%": 1.0,
     "0.5%": 0.8462,
     "1%": 0.8462
+   },
+   "same_features_trained_on_all_recall": {
+    "0.25%": 1.0,
+    "0.5%": 1.0,
+    "1%": 0.9231
    },
    "threshold_100k_recall": 0.0769
   },
@@ -9024,6 +9008,11 @@
     "0.5%": 0.8,
     "1%": 1.0
    },
+   "same_features_trained_on_all_recall": {
+    "0.25%": 0.8,
+    "0.5%": 1.0,
+    "1%": 1.0
+   },
    "threshold_100k_recall": 0.0
   },
   "trusted_person_theft": {
@@ -9034,6 +9023,11 @@
     "1%": 0.9444
    },
    "sentinel_trained_on_all_recall": {
+    "0.25%": 0.9444,
+    "0.5%": 0.9444,
+    "1%": 0.9444
+   },
+   "same_features_trained_on_all_recall": {
     "0.25%": 0.9444,
     "0.5%": 0.9444,
     "1%": 0.9444
@@ -9318,10 +9312,10 @@
   }
  },
  "cost": {
-  "feature_seconds_all_households": 14.2,
-  "memory_seconds_incl_stage1_training": 80.1,
-  "score_seconds_all_points": 0.92,
-  "ms_per_household_scored": 0.755,
+  "feature_seconds_all_households": 15.3,
+  "memory_seconds_incl_stage1_training": 82.2,
+  "score_seconds_all_points": 0.87,
+  "ms_per_household_scored": 0.809,
   "scoring_points": 769303
  },
  "tuning": {
