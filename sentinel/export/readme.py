@@ -51,11 +51,13 @@ def render(r: dict, seeds: dict | None) -> str:
     s = M["sentinel"]["budgets"]["0.25%"]
     loto = r.get("leave_one_typology_out", {})
     out += ["", "**By scam type** at a 0.25% budget, and with that type held out of training entirely:", "",
-            "| Typology | Test cases | Sentinel | Sentinel, type never seen | $100k rule |", "|---|---|---|---|---|"]
+            "| Typology | Test cases | Sentinel | Same features, all types seen | Same features, type never seen | $100k rule |",
+            "|---|---|---|---|---|---|"]
     for t, name in TYP.items():
         bt = s["by_typology"].get(t, {})
         lo = loto.get(t, {})
-        out.append(f"| {name} | {bt.get('n', 0)} | {p(bt.get('recall'))} | {p(lo.get('sentinel_recall', {}).get('0.25%'))} | {p(lo.get('threshold_100k_recall'))} |")
+        out.append(f"| {name} | {bt.get('n', 0)} | {p(bt.get('recall'))} | {p(lo.get('same_features_trained_on_all_recall', {}).get('0.25%'))} | "
+                   f"{p(lo.get('sentinel_recall', {}).get('0.25%'))} | {p(lo.get('threshold_100k_recall'))} |")
     fair = s["fairness_by_age_band"]
     out += ["", "**Calibration:** expected calibration error " + str(r["calibration"]["ece"]) + ". "
             "**Fairness** (false-alarm rate relative to overall, target ≤ 1.25×): "

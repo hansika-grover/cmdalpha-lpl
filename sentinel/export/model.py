@@ -30,7 +30,9 @@ Apply events in order, each to the result of the previous one. Time does not pas
   * withdrawal_new_payee: a withdrawal of `amount` to a payee created today; then optionally payee_kind_<kind> and/or
     method_wire for the same withdrawal. The payee is assumed not to be the trusted contact, POA or joint owner.
 Only features in `features` are listed. The notes TF-IDF risk features (kw_risk_*) are never changed: the browser
-cannot run that model.
+cannot run that model. Household-memory features (engines fired, score history) and mule-network features (other
+clients paying the same account) are also held at the preset's values, so a builder event that would add to them
+under-scores slightly.
 """
 from __future__ import annotations
 
@@ -137,6 +139,8 @@ def export_model(world="data/world", exporter=None):
     X = F[feats].to_numpy(np.float32)
     margin = booster.predict(X, raw_score=True)
     proba, cal = np.asarray(ex.raw), np.asarray(ex.cal)
+    if not str(dump["objective"]).startswith("binary"):
+        raise SystemExit(f"model.json assumes a binary model (proba = sigmoid(margin)); got {dump['objective']}")
     assert np.allclose(1 / (1 + np.exp(-margin)), proba, atol=1e-9)
     tau = float(ex.taus["0.25%"])
     vec = lambda i: {f: F32(v) for f, v in zip(feats, X[i])}

@@ -208,14 +208,18 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
              "sequence": ("sequences", "account-change sequences"), "notes": ("notes", "notes"), "memory": ("memory", "household memory")}
     specs = {
         "money_only": ("Money movement only (engine A)", R.feats["money"], False),
+        # memory is built with the scoring reader's notes and a stage-1 model on them, so it is left out here
         "rules_plus_keyword_notes": ("Engines A + B + keyword notes reader",
-                                     block_features(R, [b for b in chosen if b != "notes"]) + R.feats["notes_kw"], True),
+                                     block_features(R, [b for b in chosen if b not in ("notes", "memory")]) + R.feats["notes_kw"], True),
         "sentinel": (f"Sentinel: {' + '.join(NAMES[b][1] for b in chosen)} ({'Claude' if R.reader == 'llm' else 'keyword (Claude not run)'} "
                      "notes reader), fused and calibrated", sentinel_features(R), True),
     }
+    DERIVED = {"money", "sequence", "notes"}  # household memory is built from these, so it goes when one of them goes
     for b in BLOCKS:
         if b in chosen:  # the hard rule reads the role chain features, so it is off without sequences (as in v1)
-            specs[f"ablation_no_{NAMES[b][0]}"] = (f"Sentinel without {NAMES[b][1]}", block_features(R, [x for x in chosen if x != b]), b != "sequence")
+            drop = {b, "memory"} if b in DERIVED and "memory" in chosen else {b}
+            label = f"Sentinel without {NAMES[b][1]}" + (" (and without household memory, which is built from it)" if len(drop) > 1 else "")
+            specs[f"ablation_no_{NAMES[b][0]}"] = (label, block_features(R, [x for x in chosen if x not in drop]), b != "sequence")
         else:
             specs[f"with_{NAMES[b][0]}"] = (f"Sentinel plus {NAMES[b][1]} (tried, not chosen on validation)", block_features(R, chosen + [b]), True)
     if R.reader != "llm":
@@ -259,6 +263,8 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
         # memory: stage-1 scores saw every typology, so LOTO keeps only the model-free memory features
         feats = [f for f in specs["sentinel"][1] if f not in memory.SCORE_FEATURES]
         thr = threshold_scores(R.F, 100000)
+        # like-for-like comparison: the same reduced feature list, trained on every typology
+        same = R.evaluate(R.train(feats, seed=seed).raw(R.F), hard_rule(R.F), budgets={k: BUDGETS[k] for k in ("0.25%", "0.5%", "1%")}, B=200)
         for typ in TYPOLOGIES:
             held = set(R.L["cases"].loc[R.L["cases"]["typology"] == typ, "household_id"])
             m = R.train(feats, exclude_households=held, seed=seed)
@@ -269,6 +275,7 @@ def main(world_dir="data/world", out="results/metrics.json", seed=0, B=1000, lot
                 "n_test_cases": ev["0.5%"]["by_typology"].get(typ, {}).get("n", 0),
                 "sentinel_recall": {b: ev[b]["by_typology"].get(typ, {}).get("recall") for b in ev},
                 "sentinel_trained_on_all_recall": {b: M["sentinel"]["budgets"][b]["by_typology"].get(typ, {}).get("recall") for b in ("0.25%", "0.5%", "1%")},
+                "same_features_trained_on_all_recall": {b: same[b]["by_typology"].get(typ, {}).get("recall") for b in same},
                 "threshold_100k_recall": base["by_typology"].get(typ, {}).get("recall"),
             }
             if R.verbose:

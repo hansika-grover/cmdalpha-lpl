@@ -239,7 +239,14 @@ tests/                   determinism, leakage, quote validation, deadlines, inje
   not the precision on a live note stream. Neither reader finds the planted category in silent-takeover service notes
   (9 notes), which describe the request but no red-flag language.
 * **Household memory** uses a first-stage model's score on the household's earlier events; training rows get
-  out-of-fold scores. Leave-one-typology-out runs drop those two score features, since the first stage saw every scam type.
+  out-of-fold scores, with one exception found in review: the keyword reader's TF-IDF note risk, an input to that
+  first stage, is fitted on all training notes, so for training rows it is in-sample. Validation and test are
+  unaffected (no test number is inflated), but memory may lean on that score more than it should; we did not refit for
+  the finals. Leave-one-typology-out runs drop the two score features (the first stage saw every scam type) and are
+  compared with a model on the same features trained on every type. The keyword TF-IDF is still fitted on the held-out
+  type's training notes in those runs.
+* **Ablations:** household memory is built from money, sequences and notes, so "Sentinel without notes" (and without
+  money, without sequences) also drops memory.
 * Synthetic data. Advisor notes are template-generated in five styles; real notes are far more varied. The next step is a
   backtest on LPL's past Senior Investor Protection cases, then a silent run alongside today's rules.
 * The weekly alert budget is a parameter LPL would set; precision is low at generous budgets and is also reported at a

@@ -11,7 +11,10 @@ Two kinds of feature, both using only scoring points at or before the current on
 * score history: rolling max / mean of a stage-1 score (Fusion on money + sequence + notes, no
   memory) over the household's EARLIER points in the last 14 / 30 days (current point excluded, so the
   current event's risk is credited to its own engine, not to "history"; 0 when there is no earlier point).
-  Training rows get out-of-fold stage-1 scores (5 folds by household within train); validation
+  Training rows get out-of-fold stage-1 scores (5 folds by household within train). One exception: the
+  keyword reader's TF-IDF note risk (kw_risk_*) is itself fitted on all training notes, so for training rows
+  that input is in-sample; validation and test are unaffected, but memory may lean on it more than it
+  should (disclosed in the README; not refit for the finals). Validation
   and test rows get the stage-1 model trained on every training row.
 """
 from __future__ import annotations

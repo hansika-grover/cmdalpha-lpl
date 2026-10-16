@@ -38,10 +38,11 @@ def result_path(s):
 
 
 def fresh(s, d=None, p=None):
-    """The seed's results file exists and is newer than its world."""
+    """The seed's results file exists and is newer than its world and than config/model.yaml."""
     d, p = Path(d or world_dir(s)), Path(p or result_path(s))
-    m = d / "manifest.json"
-    return p.exists() and m.exists() and p.stat().st_mtime >= m.stat().st_mtime
+    m, cfg = d / "manifest.json", Path("config/model.yaml")
+    return (p.exists() and m.exists() and p.stat().st_mtime >= m.stat().st_mtime
+            and (not cfg.exists() or p.stat().st_mtime >= cfg.stat().st_mtime))
 
 
 def run_seed(s, households=None, d=None, p=None):

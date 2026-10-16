@@ -2,9 +2,9 @@
 
 Grid: objective {binary, lambdarank} x depth {3, 4} x trees {300, 600} x learning rate {0.03, 0.05}
 x class weight {None, balanced} (binary only) = 24 configs. Each is trained on train, thresholds and
-metrics both come from validation; the winner is the highest validation recall at the 0.25% weekly
-budget (ties: lower look-alike false-alarm rate, then simpler). Writes results/tuning.json and
-config/model.yaml, which run_eval then uses for every model spec. Usage:
+metrics both come from validation; the best is the highest validation recall at the 0.25% weekly
+budget (ties: lower look-alike false-alarm rate, then simpler). Writes results/tuning.json only;
+eval/select.py then weighs these settings against the defaults over 5 worlds and writes config/model.yaml. Usage:
     python -m sentinel.eval.tune --world data/world [--quick]
 """
 from __future__ import annotations
@@ -73,15 +73,9 @@ def main(world_dir="data/world", quick=False, seed=0, B=0, out="results/tuning.j
            "configs": rows, "chosen": {**chosen, "val": best["val"]}, "runtime_seconds": round(time.time() - t_all)}
     Path(out).parent.mkdir(parents=True, exist_ok=True)
     Path(out).write_text(json.dumps(res, indent=1), encoding="utf-8")
-    Path(config).parent.mkdir(parents=True, exist_ok=True)
-    Path(config).write_text(yaml.safe_dump(chosen, sort_keys=False), encoding="utf-8")
-    metrics = Path(out).parent / "metrics.json"
-    if metrics.exists():
-        M = json.loads(metrics.read_text(encoding="utf-8"))
-        M["tuning"] = {k: res[k] for k in ("world", "selected_by", "quick", "chosen", "runtime_seconds")} | {
-            "n_configs": len(rows), "table": [{k: r[k] for k in ("objective", "params", "val")} for r in rows]}
-        metrics.write_text(json.dumps(M, indent=1), encoding="utf-8")
-    print(f"chosen {chosen['objective']} {chosen['params']}; wrote {out} and {config} in {time.time() - t_all:.0f}s")
+    # config/model.yaml is written by eval/select.py, which weighs these settings against the defaults over 5
+    # worlds; run_eval copies results/tuning.json into metrics.json
+    print(f"best {chosen['objective']} {chosen['params']}; wrote {out} in {time.time() - t_all:.0f}s (next: python -m sentinel.eval.select)")
     return res
 
 
